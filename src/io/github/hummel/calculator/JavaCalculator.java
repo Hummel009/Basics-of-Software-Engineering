@@ -10,29 +10,26 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-//класс базируется на JFrame и наследует его содержимое, ActionListener отвечает за отслеживание нажатой кнопки
 public class JavaCalculator extends JFrame implements ActionListener {
-	public JButton button[] = new JButton[32]; //все наши кнопки
-	public double output, input1, input2; //вводимые и выводимые данные
-	public JTextField outputField = new JTextField(20); //поле вывода
-	public JPanel panel = new JPanel();  //сетка из кнопок
+	public JButton button[] = new JButton[32];
+	public Operation operation;
+	public double output, input1, input2;
+	public JTextField outputField;
+	public JPanel panel = new JPanel();
 
 	public static void main(String arg[]) {
 		new JavaCalculator();
 	}
 
 	public JavaCalculator() {
-		super("Calculator v1.2.0"); //полностью повторяем содержимое JFrame и задаём заголовок окна 
-		
-		//создаём кнопки про помощи цикла
+		super("Calculator v1.2.0");
+		setLayout(new BorderLayout());
 		for (int i = 0; i <= 31; i++) {
 			button[i] = new JButton();
 		}
+		panel.setLayout(new GridLayout(8, 4));
 
-		panel.setLayout(new GridLayout(8, 4)); //сетка из кнопок - в высоту и в ширину 
-
-		//настраиваем созданные кнопки, используя новый метод "registerButton"
-		registerButton(button[13], "C"); 
+		registerButton(button[13], "C");
 		registerButton(button[12], "e");
 		registerButton(button[11], "π");
 		registerButton(button[14], "÷");
@@ -71,29 +68,88 @@ public class JavaCalculator extends JFrame implements ActionListener {
 		registerButton(button[29], "arccos");
 		registerButton(button[30], "arctg");
 		registerButton(button[31], "arcctg");
-		
-		outputField.setFont(outputField.getFont().deriveFont(50f)); //меняем размер шрифта полю вывода
-		outputField.setHorizontalAlignment(JTextField.RIGHT); //располагаем выводимый текст справа, а не по умолчанию в центре
-		outputField.setEditable(false); //запрещаем редактировать поле через мышь и клавиатуру, т.к. вычислять таким образом всё равно нельзя.
-		
-		add(outputField, BorderLayout.NORTH); //поле вывода - наверху
-		add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
-		setVisible(true); //окно видимое
-		setSize(600, 700); //размер окна
-		setLocationRelativeTo(null); //выводим окно в центре экрана
+
+		outputField = new JTextField(20);
+		outputField.setFont(outputField.getFont().deriveFont(50f));
+		outputField.setHorizontalAlignment(JTextField.RIGHT);
+		outputField.setEditable(false);
+
+		add(panel, BorderLayout.CENTER);
+		add(outputField, BorderLayout.NORTH);
+		setVisible(true);
+		setSize(600, 700);
+		setLocationRelativeTo(null);
 	}
 
-	/* Этот метод помогает сократить количество кода, выполняя сразу несколько действий. Аргументы:
-	 * 
-	 * button - кнопка, элемент массива, который мы настраиваем
-	 * name - текст, который будет написан на кнопке
-	 * 
-	 * От порядка настройки кнопок зависит их положение в сетке кнопок. Сетка заполняется сверху вниз и слева направо.
-	 */
 	public void registerButton(JButton button, String name) {
-		button.setFont(button.getFont().deriveFont(20f)); //присваиваем кнопке увеличенный шрифт
-		button.addActionListener(this); //присваиваем кнопке механизм вызова actionPerformed
-		button.setText(name); //присваиваем кнопке name в качестве текста
-		panel.add(button); //располагаем кнопку на сетке кнопок.
+		button.setFont(button.getFont().deriveFont(20f));
+		button.addActionListener(this);
+		button.setText(name);
+		panel.add(button);
+	}
+
+	public double calculate() {
+		switch (operation) {
+		case PLUS:
+			output = input1 + input2;
+			break;
+		case MINUS:
+			output = input1 - input2;
+			break;
+		case MULTIPLE:
+			output = input1 * input2;
+			break;
+		case ARCSIN:
+			output = Math.asin(input1);
+			break;
+		case ARCCOS:
+			output = Math.acos(input1);
+			break;
+		case ARCTG:
+			output = Math.atan(input1);
+			break;
+		case ARCCTG:
+			output = 1 / Math.atan(input1);
+			break;
+		case SIN:
+			output = Math.sin(Math.toRadians(input1));
+			break;
+		case COS:
+			output = Math.cos(Math.toRadians(input1));
+			break;
+		case TG:
+			output = Math.tan(Math.toRadians(input1));
+			break;
+		case CTG:
+			output = 1 / Math.tan(Math.toRadians(input1));
+			break;
+		case SQRT:
+			output = Math.sqrt(input1);
+			break;
+		case LOGARITHM:
+			output = Math.log10(input1) / Math.log10(input2);
+			break;
+		case POWER:
+			output = Math.pow(input1, input2);
+			break;
+		case FACTORIAL:
+			long result = 1;
+			for (long i = 1; i <= input1; i++) {
+				result = result * i;
+			}
+			output = result;
+			break;
+		case DIVIDE:
+			output = input1 / input2;
+			break;
+		case PERCENT:
+			output = input1 * input2 / 100;
+			break;
+		}
+		return 0;
+	}
+
+	public enum Operation {
+		ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL, LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER, SIN, SQRT, TG;
 	}
 }
