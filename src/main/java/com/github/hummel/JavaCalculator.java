@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ public class JavaCalculator extends JFrame implements ActionListener {
 	private double input2; //вводимые данные
 	private JTextField outputField = new JTextField(20); //поле вывода
 	private JPanel panel = new JPanel();  //сетка из кнопок
+	private int notInclude;
 
 	public static void main(String[] arg) {
 		new JavaCalculator();
@@ -76,13 +78,12 @@ public class JavaCalculator extends JFrame implements ActionListener {
 		registerButton(button[30], "arctg");
 		registerButton(button[31], "arcctg");
 
-		outputField.setFont(outputField.getFont().deriveFont(50f)); //меняем размер шрифта полю вывода
+		outputField.setFont(outputField.getFont().deriveFont(40f)); //меняем размер шрифта полю вывода
 		outputField.setHorizontalAlignment(SwingConstants.RIGHT); //располагаем выводимый текст справа, а не по умолчанию в центре
 		outputField.setEditable(false); //запрещаем редактировать поле через мышь и клавиатуру, т.к. вычислять таким образом всё равно нельзя.
 
 		add(outputField, BorderLayout.NORTH); //поле вывода - наверху
 		add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
-		operation = Operation.NULL; //операция по умолчанию
 		setVisible(true); //окно видимое
 		setSize(600, 700); //размер окна
 		setLocationRelativeTo(null); //выводим окно в центре экрана
@@ -114,46 +115,47 @@ public class JavaCalculator extends JFrame implements ActionListener {
 
 		//если нажатая кнопка - равно
 		else if (jbutton == button[19]) {
-			input2 = Double.parseDouble(outputField.getText()); //считываем последние введённые данные
+			input2 = Double.parseDouble(outputField.getText().substring(notInclude)); //считываем последние введённые данные
 			calculate(); //выполняем последнюю присвоенную операцию
-			outputField.setText("" + output); //выводим результат
+			String result = new DecimalFormat("#.###############").format(output); //округление
+			outputField.setText(outputField.getText() + "=" + result); //выводим результат
 		}
 
 		//если нажатая кнопка - операция, то мы присваиваем ей операцию методами oneNumber или twoNumbers
 		else if (jbutton == button[23]) {
-			oneNumber(Operation.FACTORIAL);
+			oneNumber(Operation.FACTORIAL, button[23]);
 		} else if (jbutton == button[20]) {
-			oneNumber(Operation.SQRT);
+			oneNumber(Operation.SQRT, button[20]);
 		} else if (jbutton == button[24]) {
-			oneNumber(Operation.SIN);
+			oneNumber(Operation.SIN, button[24]);
 		} else if (jbutton == button[25]) {
-			oneNumber(Operation.COS);
+			oneNumber(Operation.COS, button[25]);
 		} else if (jbutton == button[26]) {
-			oneNumber(Operation.TG);
+			oneNumber(Operation.TG, button[26]);
 		} else if (jbutton == button[27]) {
-			oneNumber(Operation.CTG);
+			oneNumber(Operation.CTG, button[27]);
 		} else if (jbutton == button[28]) {
-			oneNumber(Operation.ARCSIN);
+			oneNumber(Operation.ARCSIN, button[28]);
 		} else if (jbutton == button[29]) {
-			oneNumber(Operation.ARCCOS);
+			oneNumber(Operation.ARCCOS, button[29]);
 		} else if (jbutton == button[30]) {
-			oneNumber(Operation.ARCTG);
+			oneNumber(Operation.ARCTG, button[30]);
 		} else if (jbutton == button[31]) {
-			oneNumber(Operation.ARCCTG);
+			oneNumber(Operation.ARCCTG, button[31]);
 		} else if (jbutton == button[17]) {
-			twoNumbers(Operation.PLUS);
+			twoNumbers(Operation.PLUS, button[17]);
 		} else if (jbutton == button[16]) {
-			twoNumbers(Operation.MINUS);
+			twoNumbers(Operation.MINUS, button[16]);
 		} else if (jbutton == button[15]) {
-			twoNumbers(Operation.MULTIPLE);
+			twoNumbers(Operation.MULTIPLE, button[15]);
 		} else if (jbutton == button[22]) {
-			twoNumbers(Operation.LOGARITHM);
+			twoNumbers(Operation.LOGARITHM, button[22]);
 		} else if (jbutton == button[21]) {
-			twoNumbers(Operation.POWER);
+			twoNumbers(Operation.POWER, button[21]);
 		} else if (jbutton == button[14]) {
-			twoNumbers(Operation.DIVIDE);
+			twoNumbers(Operation.DIVIDE, button[14]);
 		} else if (jbutton == button[18]) {
-			twoNumbers(Operation.PERCENT);
+			twoNumbers(Operation.PERCENT, button[18]);
 		}
 
 		//если нажатая кнопка - число Эйлера
@@ -184,11 +186,12 @@ public class JavaCalculator extends JFrame implements ActionListener {
 	 *
 	 * Данный метод автоматически выполняет вычисление и выводит результат, не требуя нажатие кнопки "равно"
 	 */
-	public void oneNumber(Operation op) {
+	public void oneNumber(Operation op, JButton button) {
 		input1 = Double.parseDouble(outputField.getText()); //считываем введённые символы и преобразуем их в число
 		operation = op; //присваиваем операцию
 		calculate(); //выполняем вычисление, формула которого меняется в зависимости от операции
-		outputField.setText("" + output); //выводим результат
+		String result = new DecimalFormat("#.###############").format(output); //округление
+		outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result); //выводим результат
 	}
 
 	/* Этот метод помогает сократить количество кода, выполняя сразу несколько действий. Аргументы:
@@ -197,18 +200,16 @@ public class JavaCalculator extends JFrame implements ActionListener {
 	 *
 	 * Данный метод не выполняет вычисление, поскольку требуется ввод второго числа, после которого нужно нажать "равно"
 	 */
-	public void twoNumbers(Operation op) {
+	public void twoNumbers(Operation op, JButton button) {
+		notInclude = outputField.getText().length() + button.getText().length();
 		input1 = Double.parseDouble(outputField.getText());  //считываем введённые символы и преобразуем их в число
 		operation = op; //присваиваем операцию
-		outputField.setText(""); //очищаем экран для последующего ввода второго числа
+		outputField.setText(outputField.getText() + button.getText()); //очищаем экран для последующего ввода второго числа
 	}
 
 	//вычисления, где формула зависит от ранее присвоенной операции
 	public double calculate() {
 		switch (operation) {
-		case NULL:
-			output = input2;
-			break;
 		case PLUS:
 			output = input1 + input2;
 			break;
@@ -262,7 +263,7 @@ public class JavaCalculator extends JFrame implements ActionListener {
 			output = input1 / input2;
 			break;
 		case PERCENT:
-			output = input1 * input2 / 100;
+			output = input2 * input1 / 100;
 			break;
 		}
 		return 0;
@@ -270,25 +271,25 @@ public class JavaCalculator extends JFrame implements ActionListener {
 
 	//перечисление всех операций, где NULL - операция по умолчанию, использущаяся, если пользователь не присвоил новую операцию.
 	public enum Operation {
-		ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL, LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER, SIN, SQRT, TG, NULL;
+		ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL, LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER, SIN, SQRT, TG;
 	}
 	
-	//access
+	//доступ к приватному полю
 	public void setInput1(double i) {
 		input1 = i;
 	}
 	
-	//access
+	//доступ к приватному полю
 	public void setInput2(double i) {
 		input2 = i;
 	}
 	
-	//access
+	//доступ к приватному полю
 	public double getOutput() {
 		return output;
 	}
 	
-	//access
+	//доступ к приватному полю
 	public void setOperation(Operation op) {
 		operation = op;
 	}
