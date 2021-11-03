@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.test</groupId>
-    <artifactId>test1</artifactId>
+    <groupId>com.github</groupId>
+    <artifactId>hummel</artifactId>
     <version>1.2</version>
     <packaging>jar</packaging>
 
