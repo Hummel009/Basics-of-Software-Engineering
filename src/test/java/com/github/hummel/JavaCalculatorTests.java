@@ -14,161 +14,161 @@ class JavaCalculatorTests {
 	@Test
 	@DisplayName("PLUS")
 	void testPLUS() {
-		calculator.input1 = 2;
-		calculator.input2 = 3;
-		calculator.operation = Operation.PLUS;
+		calculator.setInput1(2);
+		calculator.setInput2(3);
+		calculator.setOperation(Operation.PLUS);
 		calculator.calculate();
-		assertEquals(5, calculator.output, "2+3=5");
+		assertEquals(5, calculator.getOutput(), "2+3=5");
 	}
 	
 	@Test
 	@DisplayName("MINUS")
 	void testMINUS() {
-		calculator.input1 = 2;
-		calculator.input2 = 3;
-		calculator.operation = Operation.MINUS;
+		calculator.setInput1(2);
+		calculator.setInput2(3);
+		calculator.setOperation(Operation.MINUS);
 		calculator.calculate();
-		assertEquals(-1, calculator.output, "2-3=-1");
+		assertEquals(-1, calculator.getOutput(), "2-3=-1");
 	}
 	
 	@Test
 	@DisplayName("MULTIPLE")
 	void testMULTIPLE() {
-		calculator.input1 = 2;
-		calculator.input2 = 3;
-		calculator.operation = Operation.MULTIPLE;
+		calculator.setInput1(2);
+		calculator.setInput2(3);
+		calculator.setOperation(Operation.MULTIPLE);
 		calculator.calculate();
-		assertEquals(6, calculator.output, "2*3=6");
+		assertEquals(6, calculator.getOutput(), "2*3=6");
 	}
 	
 	@Test
 	@DisplayName("DIVIDE")
 	void testDIVIDE() {
-		calculator.input1 = 9;
-		calculator.input2 = 3;
-		calculator.operation = Operation.DIVIDE;
+		calculator.setInput1(9);
+		calculator.setInput2(3);
+		calculator.setOperation(Operation.DIVIDE);
 		calculator.calculate();
-		assertEquals(3, calculator.output, "9:3=3");
+		assertEquals(3, calculator.getOutput(), "9:3=3");
 	}
 	
 	@Test
 	@DisplayName("PERCENT")
 	void testPERCENT() {
-		calculator.input1 = 90;
-		calculator.input2 = 10;
-		calculator.operation = Operation.PERCENT;
+		calculator.setInput1(90);
+		calculator.setInput2(10);
+		calculator.setOperation(Operation.PERCENT);
 		calculator.calculate();
-		assertEquals(9, calculator.output, "10% of 90 =9");
+		assertEquals(9, calculator.getOutput(), "10% of 90 =9");
 	}
 	
 	@Test
 	@DisplayName("SQRT")
 	void testSQRT() {
-		calculator.input1 = 25;
-		calculator.operation = Operation.SQRT;
+		calculator.setInput1(25);
+		calculator.setOperation(Operation.SQRT);
 		calculator.calculate();
-		assertEquals(5, calculator.output, "sqrt(25)=5");
+		assertEquals(5, calculator.getOutput(), "sqrt(25)=5");
 	}
 	
 	@Test
 	@DisplayName("POWER")
 	void testPOWER() {
-		calculator.input1 = 5;
-		calculator.input2 = 2;
-		calculator.operation = Operation.POWER;
+		calculator.setInput1(5);
+		calculator.setInput2(2);
+		calculator.setOperation(Operation.POWER);
 		calculator.calculate();
-		assertEquals(25, calculator.output, "5^2=25");
+		assertEquals(25, calculator.getOutput(), "5^2=25");
 	}
 	
 	@Test
 	@DisplayName("LOGARITHM")
 	void testLOGARITHM() {
-		calculator.input1 = 25;
-		calculator.input2 = 5;
-		calculator.operation = Operation.LOGARITHM;
+		calculator.setInput1(25);
+		calculator.setInput2(5);
+		calculator.setOperation(Operation.LOGARITHM);
 		calculator.calculate();
-		assertEquals(2, calculator.output, "log5(25)=2");
+		assertEquals(2, calculator.getOutput(), "log5(25)=2");
 	}
 
 	@Test
 	@DisplayName("FACTORIAL")
 	void testFACTORIAL() {
-		calculator.input1 = 3;
-		calculator.operation = Operation.FACTORIAL;
+		calculator.setInput1(3);
+		calculator.setOperation(Operation.FACTORIAL);
 		calculator.calculate();
-		assertEquals(6, calculator.output, "3!=6");
+		assertEquals(6, calculator.getOutput(), "3!=6");
 	}
 
 	@Test
 	@DisplayName("SIN")
 	void testSIN() {
-		calculator.input1 = 30;
-		calculator.operation = Operation.SIN;
+		calculator.setInput1(30);
+		calculator.setOperation(Operation.SIN);
 		calculator.calculate();
-		assertEquals(Math.sin(Math.toRadians(30)), calculator.output, "sin(30)=0.5");
+		assertEquals(Math.sin(Math.toRadians(30)), calculator.getOutput(), "sin(30)=0.5");
 	}
 
 	@Test
 	@DisplayName("COS")
 	void testCOS() {
-		calculator.input1 = 60;
-		calculator.operation = Operation.COS;
+		calculator.setInput1(60);
+		calculator.setOperation(Operation.COS);
 		calculator.calculate();
-		assertEquals(Math.cos(Math.toRadians(60)), calculator.output, "cos(60)=0.5");
+		assertEquals(Math.cos(Math.toRadians(60)), calculator.getOutput(), "cos(60)=0.5");
 	}
 
 	@Test
 	@DisplayName("TG")
 	void testTG() {
-		calculator.input1 = 45;
-		calculator.operation = Operation.TG;
+		calculator.setInput1(45);
+		calculator.setOperation(Operation.TG);
 		calculator.calculate();
-		assertEquals(Math.tan(Math.toRadians(45)), calculator.output, "tg(45)=1");
+		assertEquals(Math.tan(Math.toRadians(45)), calculator.getOutput(), "tg(45)=1");
 	}
 
 	@Test
 	@DisplayName("CTG")
 	void testCTG() {
-		calculator.input1 = 45;
-		calculator.operation = Operation.CTG;
+		calculator.setInput1(45);
+		calculator.setOperation(Operation.CTG);
 		calculator.calculate();
-		assertEquals(1/Math.tan(Math.toRadians(45)), calculator.output, "ctg(45)=1");
+		assertEquals(1/Math.tan(Math.toRadians(45)), calculator.getOutput(), "ctg(45)=1");
 	}
 
 
 	@Test
 	@DisplayName("ARCSIN")
 	void testARCSIN() {
-		calculator.input1 = 0.5;
-		calculator.operation = Operation.ARCSIN;
+		calculator.setInput1(0.5);
+		calculator.setOperation(Operation.ARCSIN);
 		calculator.calculate();
-		assertEquals(Math.asin(0.5), calculator.output, "arcsin(0.5)=30");
+		assertEquals(Math.asin(0.5), calculator.getOutput(), "arcsin(0.5)=30");
 	}
 
 	@Test
 	@DisplayName("ARCCOS")
 	void testARCCOS() {
-		calculator.input1 = 0.5;
-		calculator.operation = Operation.ARCCOS;
+		calculator.setInput1(0.5);
+		calculator.setOperation(Operation.ARCCOS);
 		calculator.calculate();
-		assertEquals(Math.acos(0.5), calculator.output, "arccos(0.5)=60");
+		assertEquals(Math.acos(0.5), calculator.getOutput(), "arccos(0.5)=60");
 	}
 
 	@Test
 	@DisplayName("ARCTG")
 	void testARCTG() {
-		calculator.input1 = 1;
-		calculator.operation = Operation.ARCTG;
+		calculator.setInput1(1);
+		calculator.setOperation(Operation.ARCTG);
 		calculator.calculate();
-		assertEquals(Math.atan(1), calculator.output, "arctg(1)=45");
+		assertEquals(Math.atan(1), calculator.getOutput(), "arctg(1)=45");
 	}
 
 	@Test
 	@DisplayName("ARCCTG")
 	void testARCCTG() {
-		calculator.input1 = 1;
-		calculator.operation = Operation.ARCCTG;
+		calculator.setInput1(1);
+		calculator.setOperation(Operation.ARCCTG);
 		calculator.calculate();
-		assertEquals(1/Math.atan(1), calculator.output, "arcctg(1)=45");
+		assertEquals(1/Math.atan(1), calculator.getOutput(), "arcctg(1)=45");
 	}
 }
