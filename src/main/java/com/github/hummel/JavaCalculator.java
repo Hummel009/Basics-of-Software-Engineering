@@ -21,7 +21,11 @@ public class JavaCalculator extends JFrame implements ActionListener {
 	public static void main(String arg[]) {
 		new JavaCalculator();
 	}
-
+	
+	public int add(int a, int b) {
+		return a + b;
+	}
+	
 	public JavaCalculator() {
 		super("Calculator v1.2.0"); //полностью повторяем содержимое JFrame и задаём заголовок окна 
 		
