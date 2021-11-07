@@ -1,19 +1,11 @@
 package main.java.com.uni;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JFrame;
-
-public class JavaCalculator extends JFrame implements ActionListener {
+public class JavaCalculator {
 	private Operation operation; //тип операции - сложение, вычитание и т.д.
 	private double output; //выводимые данные
 	private double input1; //вводимые данные
 	private double input2; //вводимые данные
 
-
-	@Override
-	public void actionPerformed(ActionEvent event) {}
 	
 	//вычисления, где формула зависит от ранее присвоенной операции
 	public double calculate() {
