@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 //класс базируется на JFrame и наследует его содержимое, ActionListener отвечает за отслеживание нажатой кнопки
-public class JavaCalculator implements ActionListener {
+public class JavaCalculator /*extends JFrame*/ implements ActionListener {
 	private JButton[] button = new JButton[32]; //все наши кнопки
 	private Operation operation; //тип операции - сложение, вычитание и т.д.
 	private double output; //выводимые данные
@@ -28,6 +28,7 @@ public class JavaCalculator implements ActionListener {
 	}
 
 	public JavaCalculator() {
+		JFrame frame = new JFrame("Calculator v1.2.0");
 		//super("Calculator v1.2.0"); //полностью повторяем содержимое JFrame и задаём заголовок окна
 
 		//создаём кнопки про помощи цикла
@@ -82,11 +83,11 @@ public class JavaCalculator implements ActionListener {
 		outputField.setHorizontalAlignment(SwingConstants.RIGHT); //располагаем выводимый текст справа, а не по умолчанию в центре
 		outputField.setEditable(false); //запрещаем редактировать поле через мышь и клавиатуру, т.к. вычислять таким образом всё равно нельзя.
 
-		//add(outputField, BorderLayout.NORTH); //поле вывода - наверху
-		//add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
-		//setVisible(true); //окно видимое
-		//setSize(600, 700); //размер окна
-		//setLocationRelativeTo(null); //выводим окно в центре экрана
+		frame.add(outputField, BorderLayout.NORTH); //поле вывода - наверху
+		frame.add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
+		frame.setVisible(true); //окно видимое
+		frame.setSize(600, 700); //размер окна
+		frame.setLocationRelativeTo(null); //выводим окно в центре экрана
 	}
 
 	/* Этот метод помогает сократить количество кода, выполняя сразу несколько действий. Аргументы:
@@ -98,7 +99,7 @@ public class JavaCalculator implements ActionListener {
 	 */
 	public void registerButton(JButton button, String name) {
 		button.setFont(button.getFont().deriveFont(20f)); //присваиваем кнопке увеличенный шрифт
-		//button.addActionListener(this); //присваиваем кнопке механизм вызова actionPerformed
+		button.addActionListener(this); //присваиваем кнопке механизм вызова actionPerformed
 		button.setText(name); //присваиваем кнопке name в качестве текста
 		panel.add(button); //располагаем кнопку на сетке кнопок.
 	}
