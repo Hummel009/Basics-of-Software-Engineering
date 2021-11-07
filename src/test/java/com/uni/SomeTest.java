@@ -2,7 +2,6 @@ package test.java.com.uni;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import main.java.com.uni.Some;
@@ -12,7 +11,6 @@ class JavaCalculatorTests {
 	Some calculator = new Some();
 	
 	@Test
-	@DisplayName("PLUS")
 	void testPLUS() {
 		calculator.setInput1(2);
 		calculator.setInput2(3);
@@ -22,7 +20,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("MINUS")
 	void testMINUS() {
 		calculator.setInput1(2);
 		calculator.setInput2(3);
@@ -32,7 +29,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("MULTIPLE")
 	void testMULTIPLE() {
 		calculator.setInput1(2);
 		calculator.setInput2(3);
@@ -42,7 +38,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("DIVIDE")
 	void testDIVIDE() {
 		calculator.setInput1(9);
 		calculator.setInput2(3);
@@ -52,7 +47,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("PERCENT")
 	void testPERCENT() {
 		calculator.setInput1(90);
 		calculator.setInput2(10);
@@ -62,7 +56,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("SQRT")
 	void testSQRT() {
 		calculator.setInput1(25);
 		calculator.setOperation(Operation.SQRT);
@@ -71,7 +64,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("POWER")
 	void testPOWER() {
 		calculator.setInput1(5);
 		calculator.setInput2(2);
@@ -81,7 +73,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("LOGARITHM")
 	void testLOGARITHM() {
 		calculator.setInput1(25);
 		calculator.setInput2(5);
@@ -91,7 +82,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("FACTORIAL")
 	void testFACTORIAL() {
 		calculator.setInput1(3);
 		calculator.setOperation(Operation.FACTORIAL);
@@ -100,7 +90,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("SIN")
 	void testSIN() {
 		calculator.setInput1(30);
 		calculator.setOperation(Operation.SIN);
@@ -109,7 +98,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("COS")
 	void testCOS() {
 		calculator.setInput1(60);
 		calculator.setOperation(Operation.COS);
@@ -118,7 +106,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("TG")
 	void testTG() {
 		calculator.setInput1(45);
 		calculator.setOperation(Operation.TG);
@@ -127,7 +114,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("CTG")
 	void testCTG() {
 		calculator.setInput1(45);
 		calculator.setOperation(Operation.CTG);
@@ -137,7 +123,6 @@ class JavaCalculatorTests {
 
 
 	@Test
-	@DisplayName("ARCSIN")
 	void testARCSIN() {
 		calculator.setInput1(0.5);
 		calculator.setOperation(Operation.ARCSIN);
@@ -146,7 +131,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("ARCCOS")
 	void testARCCOS() {
 		calculator.setInput1(0.5);
 		calculator.setOperation(Operation.ARCCOS);
@@ -155,7 +139,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("ARCTG")
 	void testARCTG() {
 		calculator.setInput1(1);
 		calculator.setOperation(Operation.ARCTG);
@@ -164,7 +147,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	@DisplayName("ARCCTG")
 	void testARCCTG() {
 		calculator.setInput1(1);
 		calculator.setOperation(Operation.ARCCTG);
