@@ -204,7 +204,7 @@ public class JavaCalculator extends JFrame implements ActionListener {
 		notInclude = outputField.getText().length() + button.getText().length();
 		input1 = Double.parseDouble(outputField.getText());  //считываем введённые символы и преобразуем их в число
 		operation = op; //присваиваем операцию
-		outputField.setText(outputField.getText() + button.getText()); //очищаем экран для последующего ввода второго числа
+		outputField.setText(outputField.getText() + button.getText()); //выводим операцию
 	}
 
 	//вычисления, где формула зависит от ранее присвоенной операции
