@@ -2,51 +2,18 @@ package main.java.com.uni;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 
 public class JavaCalculator extends JFrame implements ActionListener {
-	private JButton[] button = new JButton[32]; //все наши кнопки
 	private Operation operation; //тип операции - сложение, вычитание и т.д.
 	private double output; //выводимые данные
 	private double input1; //вводимые данные
 	private double input2; //вводимые данные
-	private JTextField outputField = new JTextField(20); //поле вывода
-	private int notInclude;
 
 
 	@Override
 	public void actionPerformed(ActionEvent event) {}
-
-	/* Этот метод помогает сократить количество кода, выполняя сразу несколько действий. Аргументы:
-	 *
-	 * op - присваемая нами операция
-	 *
-	 * Данный метод автоматически выполняет вычисление и выводит результат, не требуя нажатие кнопки "равно"
-	 */
-	public void oneNumber(Operation op, JButton button) {
-		input1 = Double.parseDouble(outputField.getText()); //считываем введённые символы и преобразуем их в число
-		operation = op; //присваиваем операцию
-		calculate(); //выполняем вычисление, формула которого меняется в зависимости от операции
-		String result = new DecimalFormat("#.###############").format(output); //округление
-		outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result); //выводим результат
-	}
-
-	/* Этот метод помогает сократить количество кода, выполняя сразу несколько действий. Аргументы:
-	 *
-	 * op - присваемая нами операция
-	 *
-	 * Данный метод не выполняет вычисление, поскольку требуется ввод второго числа, после которого нужно нажать "равно"
-	 */
-	public void twoNumbers(Operation op, JButton button) {
-		notInclude = outputField.getText().length() + button.getText().length();
-		input1 = Double.parseDouble(outputField.getText());  //считываем введённые символы и преобразуем их в число
-		operation = op; //присваиваем операцию
-		outputField.setText(outputField.getText() + button.getText()); //выводим операцию
-	}
 	
 	//вычисления, где формула зависит от ранее присвоенной операции
 	public double calculate() {
