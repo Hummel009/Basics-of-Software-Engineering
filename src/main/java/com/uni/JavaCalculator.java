@@ -1,6 +1,6 @@
 package main.java.com.uni;
 
-public class Some {
+public class JavaCalculator {
 	private Operation operation; //тип операции - сложение, вычитание и т.д.
 	private double output; //выводимые данные
 	private double input1; //вводимые данные

@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import main.java.com.uni.Some;
-import main.java.com.uni.Some.Operation;
+import main.java.com.uni.JavaCalculator;
+import main.java.com.uni.JavaCalculator.Operation;
 
-class JavaCalculatorTests {
-	Some calculator = new Some();
+public class JavaCalculatorTests {
+	JavaCalculator calculator = new JavaCalculator();
 	
 	@Test
 	@DisplayName("PLUS")
