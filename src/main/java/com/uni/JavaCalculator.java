@@ -3,6 +3,7 @@ package main.java.com.uni;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 import javax.swing.JButton;
@@ -12,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 //класс базируется на JFrame и наследует его содержимое, ActionListener отвечает за отслеживание нажатой кнопки
-public class JavaCalculator extends JFrame {
+public class JavaCalculator implements ActionListener {
 	private JButton[] button = new JButton[32]; //все наши кнопки
 	private Operation operation; //тип операции - сложение, вычитание и т.д.
 	private double output; //выводимые данные
@@ -27,7 +28,7 @@ public class JavaCalculator extends JFrame {
 	}
 
 	public JavaCalculator() {
-		super("Calculator v1.2.0"); //полностью повторяем содержимое JFrame и задаём заголовок окна
+		//super("Calculator v1.2.0"); //полностью повторяем содержимое JFrame и задаём заголовок окна
 
 		//создаём кнопки про помощи цикла
 		for (int i = 0; i <= 31; i++) {
@@ -81,11 +82,11 @@ public class JavaCalculator extends JFrame {
 		outputField.setHorizontalAlignment(SwingConstants.RIGHT); //располагаем выводимый текст справа, а не по умолчанию в центре
 		outputField.setEditable(false); //запрещаем редактировать поле через мышь и клавиатуру, т.к. вычислять таким образом всё равно нельзя.
 
-		add(outputField, BorderLayout.NORTH); //поле вывода - наверху
-		add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
-		setVisible(true); //окно видимое
-		setSize(600, 700); //размер окна
-		setLocationRelativeTo(null); //выводим окно в центре экрана
+		//add(outputField, BorderLayout.NORTH); //поле вывода - наверху
+		//add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
+		//setVisible(true); //окно видимое
+		//setSize(600, 700); //размер окна
+		//setLocationRelativeTo(null); //выводим окно в центре экрана
 	}
 
 	/* Этот метод помогает сократить количество кода, выполняя сразу несколько действий. Аргументы:
