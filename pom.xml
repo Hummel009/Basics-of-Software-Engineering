@@ -1,22 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github</groupId>
-    <artifactId>hummel</artifactId>
-    <version>1.2</version>
-    <packaging>jar</packaging>
-
-    <name>Java Calculator</name>
-    <url>http://maven.apache.org</url>
+    <groupId>org.uni</groupId>
+    <artifactId>Maven_coverage</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>Maven_coverage</name>
 
     <properties>
-        <sonar.organization>hummel009</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>15</maven.compiler.source>
-        <maven.compiler.target>15</maven.compiler.target>
+
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
+        <!-- Sonar -->
+        <sonar.organization>universityteam</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
@@ -24,7 +24,7 @@
     </properties>
 
     <dependencies>
-       <dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.8.1</version>
@@ -44,7 +44,8 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-     <build>
+
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -100,10 +101,11 @@
                 <configuration>
                     <debug>false</debug>
                     <optimize>true</optimize>
-                    <source>15</source>
-                    <target>15</target>
+                    <source>16</source>
+                    <target>16</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
 </project>
