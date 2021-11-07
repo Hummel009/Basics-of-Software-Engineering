@@ -12,31 +12,42 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+//класс базируется на JFrame и наследует его содержимое, ActionListener отвечает за отслеживание нажатой кнопки
 public class Some extends JFrame implements ActionListener {
-	private JButton[] button = new JButton[32]; 
-	private Operation operation; 
-	private double output; 
-	private double input1; 
-	private double input2; 
-	private JTextField outputField = new JTextField(20); 
-	private JPanel panel = new JPanel();  
+	private JButton[] button = new JButton[32]; //все наши кнопки
+	private Operation operation; //тип операции - сложение, вычитание и т.д.
+	private double output; //выводимые данные
+	private double input1; //вводимые данные
+	private double input2; //вводимые данные
+	private JTextField outputField = new JTextField(20); //поле вывода
+	private JPanel panel = new JPanel();  //сетка из кнопок
 	private int notInclude;
+    private int number;
 
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public int square(){
+        return number * number;
+    }
+
+    public int triple() {return 3 * number; }
 	public static void main(String[] arg) {
 		new Some();
 	}
 
 	public Some() {
-		super("Calculator v1.2.0"); 
+		super("Calculator v1.2.0"); //полностью повторяем содержимое JFrame и задаём заголовок окна
 
-		
+		//создаём кнопки про помощи цикла
 		for (int i = 0; i <= 31; i++) {
 			button[i] = new JButton();
 		}
 
-		panel.setLayout(new GridLayout(8, 4)); 
+		panel.setLayout(new GridLayout(8, 4)); //сетка из кнопок - в высоту и в ширину
 
-		
+		//настраиваем созданные кнопки, используя новый метод "registerButton"
 		registerButton(button[13], "C");
 		registerButton(button[12], "e");
 		registerButton(button[11], "π");
@@ -77,44 +88,50 @@ public class Some extends JFrame implements ActionListener {
 		registerButton(button[30], "arctg");
 		registerButton(button[31], "arcctg");
 
-		outputField.setFont(outputField.getFont().deriveFont(40f)); 
-		outputField.setHorizontalAlignment(SwingConstants.RIGHT); 
-		outputField.setEditable(false); 
+		outputField.setFont(outputField.getFont().deriveFont(40f)); //меняем размер шрифта полю вывода
+		outputField.setHorizontalAlignment(SwingConstants.RIGHT); //располагаем выводимый текст справа, а не по умолчанию в центре
+		outputField.setEditable(false); //запрещаем редактировать поле через мышь и клавиатуру, т.к. вычислять таким образом всё равно нельзя.
 
-		add(outputField, BorderLayout.NORTH); 
-		add(panel, BorderLayout.CENTER); 
-		setVisible(true); 
-		setSize(600, 700); 
-		setLocationRelativeTo(null); 
+		add(outputField, BorderLayout.NORTH); //поле вывода - наверху
+		add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
+		setVisible(true); //окно видимое
+		setSize(600, 700); //размер окна
+		setLocationRelativeTo(null); //выводим окно в центре экрана
 	}
 
-	
+	/* Этот метод помогает сократить количество кода, выполняя сразу несколько действий. Аргументы:
+	 *
+	 * button - конкретная кнопка, элемент массива, который мы настраиваем
+	 * name - текст, который будет написан на кнопке
+	 *
+	 * От порядка настройки кнопок зависит их положение в сетке кнопок. Сетка заполняется сверху вниз и слева направо.
+	 */
 	public void registerButton(JButton button, String name) {
-		button.setFont(button.getFont().deriveFont(20f)); 
-		button.addActionListener(this); 
-		button.setText(name); 
-		panel.add(button); 
+		button.setFont(button.getFont().deriveFont(20f)); //присваиваем кнопке увеличенный шрифт
+		button.addActionListener(this); //присваиваем кнопке механизм вызова actionPerformed
+		button.setText(name); //присваиваем кнопке name в качестве текста
+		panel.add(button); //располагаем кнопку на сетке кнопок.
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		final JButton jbutton = (JButton) event.getSource(); 
+		final JButton jbutton = (JButton) event.getSource(); //определяет, какая именно кнопка была нажата
 
-		
+		//если нажатая кнопка - очистить
 		if (jbutton == button[13]) {
-			output = input1 = input2 = 0; 
-			outputField.setText(""); 
+			output = input1 = input2 = 0; //стираем память
+			outputField.setText(""); //очищаем поле вывода
 		}
 
-		
+		//если нажатая кнопка - равно
 		else if (jbutton == button[19]) {
-			input2 = Double.parseDouble(outputField.getText().substring(notInclude)); 
-			calculate(); 
-			String result = new DecimalFormat("#.###############").format(output); 
-			outputField.setText(outputField.getText() + "=" + result); 
+			input2 = Double.parseDouble(outputField.getText().substring(notInclude)); //считываем последние введённые данные
+			calculate(); //выполняем последнюю присвоенную операцию
+			String result = new DecimalFormat("#.###############").format(output); //округление
+			outputField.setText(outputField.getText() + "=" + result); //выводим результат
 		}
 
-		
+		//если нажатая кнопка - операция, то мы присваиваем ей операцию методами oneNumber или twoNumbers
 		else if (jbutton == button[23]) {
 			oneNumber(Operation.FACTORIAL, button[23]);
 		} else if (jbutton == button[20]) {
@@ -151,46 +168,56 @@ public class Some extends JFrame implements ActionListener {
 			twoNumbers(Operation.PERCENT, button[18]);
 		}
 
-		
+		//если нажатая кнопка - число Эйлера
 		else if (jbutton == button[12]) {
-			outputField.setText("2.718281828459045"); 
+			outputField.setText("2.718281828459045"); //выводим число Эйлера
 		}
 
-		
+		//если нажатая кнопка - число Пи
 		else if (jbutton == button[11]) {
-			outputField.setText("3.141592653589793"); 
+			outputField.setText("3.141592653589793"); //выводим число Пи
 		}
 
-		
+		//если нажатая кнопка - цифра или точка
 		else {
 			for (int i = 0; i < 11; i++) {
 				if (jbutton == button[i]) {
-					String t = outputField.getText(); 
-					t += button[i].getText(); 
-					outputField.setText(t); 
+					String t = outputField.getText(); //считываем введённые символы
+					t += button[i].getText(); //добавляем к считанным данным символ, написанный на кпопке
+					outputField.setText(t); //выводим обратно данные + добавленный нами символ
 				}
 			}
 		}
 	}
 
-	
+	/* Этот метод помогает сократить количество кода, выполняя сразу несколько действий. Аргументы:
+	 *
+	 * op - присваемая нами операция
+	 *
+	 * Данный метод автоматически выполняет вычисление и выводит результат, не требуя нажатие кнопки "равно"
+	 */
 	public void oneNumber(Operation op, JButton button) {
-		input1 = Double.parseDouble(outputField.getText()); 
-		operation = op; 
-		calculate(); 
-		String result = new DecimalFormat("#.###############").format(output); 
-		outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result); 
+		input1 = Double.parseDouble(outputField.getText()); //считываем введённые символы и преобразуем их в число
+		operation = op; //присваиваем операцию
+		calculate(); //выполняем вычисление, формула которого меняется в зависимости от операции
+		String result = new DecimalFormat("#.###############").format(output); //округление
+		outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result); //выводим результат
 	}
 
-	
+	/* Этот метод помогает сократить количество кода, выполняя сразу несколько действий. Аргументы:
+	 *
+	 * op - присваемая нами операция
+	 *
+	 * Данный метод не выполняет вычисление, поскольку требуется ввод второго числа, после которого нужно нажать "равно"
+	 */
 	public void twoNumbers(Operation op, JButton button) {
 		notInclude = outputField.getText().length() + button.getText().length();
-		input1 = Double.parseDouble(outputField.getText());  
-		operation = op; 
-		outputField.setText(outputField.getText() + button.getText()); 
+		input1 = Double.parseDouble(outputField.getText());  //считываем введённые символы и преобразуем их в число
+		operation = op; //присваиваем операцию
+		outputField.setText(outputField.getText() + button.getText()); //выводим операцию
 	}
 
-	
+	//вычисления, где формула зависит от ранее присвоенной операции
 	public double calculate() {
 		switch (operation) {
 		case PLUS:
@@ -252,27 +279,27 @@ public class Some extends JFrame implements ActionListener {
 		return 0;
 	}
 
-	
+	//перечисление всех операций, где NULL - операция по умолчанию, использущаяся, если пользователь не присвоил новую операцию.
 	public enum Operation {
 		ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL, LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER, SIN, SQRT, TG;
 	}
 	
-	
+	//доступ к приватному полю
 	public void setInput1(double i) {
 		input1 = i;
 	}
 	
-	
+	//доступ к приватному полю
 	public void setInput2(double i) {
 		input2 = i;
 	}
 	
-	
+	//доступ к приватному полю
 	public double getOutput() {
 		return output;
 	}
 	
-	
+	//доступ к приватному полю
 	public void setOperation(Operation op) {
 		operation = op;
 	}
