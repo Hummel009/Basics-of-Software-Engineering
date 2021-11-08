@@ -2,6 +2,7 @@ package test.java.com.uni;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +10,12 @@ import main.java.com.uni.JavaCalculator;
 import main.java.com.uni.JavaCalculator.Operation;
 
 class JavaCalculatorTests {
+
+	@BeforeClass
+	public static void setupHeadlessMode() {
+		System.setProperty("java.awt.headless", "false");
+	}
+	
 	JavaCalculator calculator = new JavaCalculator();
 
 	@Test
