@@ -2,6 +2,7 @@ package test.java.com.uni;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
