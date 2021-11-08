@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -27,7 +28,7 @@ public class JavaCalculator implements ActionListener {
 	}
 
 	public JavaCalculator() {
-		JavaCalculatorFrame frame = new JavaCalculatorFrame("Calculator v1.2.0");  //создаём окно и задаём заголовок
+		JFrame frame = new JFrame("Calculator v1.2.0");  //создаём окно и задаём заголовок
 
 		//создаём кнопки про помощи цикла
 		for (int i = 0; i <= 31; i++) {
