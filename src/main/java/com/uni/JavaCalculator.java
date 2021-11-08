@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -28,7 +27,7 @@ public class JavaCalculator implements ActionListener {
 	}
 
 	public JavaCalculator() {
-		//JFrame frame = new JFrame("Calculator v1.2.0");  //создаём окно и задаём заголовок
+		JavaCalculatorFrame frame = new JavaCalculatorFrame("Calculator v1.2.0");  //создаём окно и задаём заголовок
 
 		//создаём кнопки про помощи цикла
 		for (int i = 0; i <= 31; i++) {
@@ -82,11 +81,11 @@ public class JavaCalculator implements ActionListener {
 		outputField.setHorizontalAlignment(SwingConstants.RIGHT); //располагаем выводимый текст справа, а не по умолчанию в центре
 		outputField.setEditable(false); //запрещаем редактировать поле через мышь и клавиатуру, т.к. вычислять таким образом всё равно нельзя.
 
-		//frame.add(outputField, BorderLayout.NORTH); //поле вывода - наверху
-		//frame.add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
-		//frame.setVisible(true); //окно видимое
-		//frame.setSize(600, 700); //размер окна
-		//frame.setLocationRelativeTo(null); //выводим окно в центре экрана
+		frame.add(outputField, BorderLayout.NORTH); //поле вывода - наверху
+		frame.add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
+		frame.setVisible(true); //окно видимое
+		frame.setSize(600, 700); //размер окна
+		frame.setLocationRelativeTo(null); //выводим окно в центре экрана
 	}
 
 	/* Этот метод помогает сократить количество кода, выполняя сразу несколько действий. Аргументы:
