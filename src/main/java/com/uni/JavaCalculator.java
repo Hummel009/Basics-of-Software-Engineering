@@ -290,13 +290,15 @@ public class JavaCalculator implements ActionListener {
 	}
 	
 	//доступ к приватному полю
-	public void setInput1(double i) {
-		input1 = i;
+	public void addOutputText(String t) {
+		String o = outputField.getText();
+		o += t;
+		outputField.setText(o);
 	}
 	
 	//доступ к приватному полю
-	public void setOutputText(String t) {
-		outputField.setText(t);
+	public void setInput1(double i) {
+		input1 = i;
 	}
 	
 	//доступ к приватному полю
