@@ -17,6 +17,14 @@ class JavaCalculatorTests {
 
 	@Test
 	@DisplayName("CLEAR")
+	void testSelection() {
+		calculator.setOutputText("3");
+		calculator.selectButton(calculator.getButton(23));
+		assertEquals(6, calculator.getOutput(), "3!=6");
+	}
+
+	@Test
+	@DisplayName("CLEAR")
 	void testCLEAR() {
 		calculator.setOutputText("3");
 		calculator.clear();

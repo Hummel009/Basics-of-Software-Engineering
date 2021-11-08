@@ -103,10 +103,14 @@ public class JavaCalculator implements ActionListener {
 		panel.add(button); //располагаем кнопку на сетке кнопок.
 	}
 
-	//@Override
+	@Override
 	public void actionPerformed(ActionEvent event) {
 		final JButton jbutton = (JButton) event.getSource(); //определяет, какая именно кнопка была нажата
-
+		selectButton(jbutton);
+	
+	}
+	
+	public void selectButton(JButton jbutton) {
 		//если нажатая кнопка - операция, то мы присваиваем ей операцию методами oneNumber или twoNumbers
 		if (jbutton == button[23]) {
 			oneNumber(Operation.FACTORIAL, button[23]);
