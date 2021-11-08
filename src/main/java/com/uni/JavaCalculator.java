@@ -14,14 +14,14 @@ import javax.swing.SwingConstants;
 
 //класс базируется на JFrame и наследует его содержимое, ActionListener отвечает за отслеживание нажатой кнопки
 public class JavaCalculator implements ActionListener {
-	private JButton[] button = new JButton[32]; //все наши кнопки
+	public JButton[] button = new JButton[32]; //все наши кнопки
 	private Operation operation; //тип операции - сложение, вычитание и т.д.
 	private double output; //выводимые данные
 	private double input1; //вводимые данные
 	private double input2; //вводимые данные
-	private JTextField outputField = new JTextField(20); //поле вывода
+	public JTextField outputField = new JTextField(20); //поле вывода
 	private JPanel panel = new JPanel();  //сетка из кнопок
-	private int notInclude;
+	public int notInclude;
 
 	public static void main(String[] arg) {
 		new JavaCalculator();

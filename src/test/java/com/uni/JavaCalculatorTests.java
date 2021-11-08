@@ -8,8 +8,29 @@ import org.junit.jupiter.api.Test;
 import main.java.com.uni.JavaCalculator;
 import main.java.com.uni.JavaCalculator.Operation;
 
-public class JavaCalculatorTests {
+class JavaCalculatorTests {
 	JavaCalculator calculator = new JavaCalculator();
+
+	@Test
+	@DisplayName("VOID2")
+	void testVoid2() {
+		calculator.outputField.setText("2");
+		calculator.twoNumbers(Operation.PLUS, calculator.button[17]);
+		String t = calculator.outputField.getText();
+		t += calculator.button[2].getText();
+		calculator.outputField.setText(t);
+		calculator.setInput2(Double.parseDouble(calculator.outputField.getText().substring(calculator.notInclude)));
+		calculator.calculate();
+		assertEquals(4, calculator.getOutput(), "2+2=4");
+	}
+	
+	@Test
+	@DisplayName("VOID1")
+	void testVoid1() {
+		calculator.outputField.setText("3");
+		calculator.oneNumber(Operation.FACTORIAL, calculator.button[23]);
+		assertEquals(6, calculator.getOutput(), "3!=6");
+	}
 	
 	@Test
 	@DisplayName("PLUS")
