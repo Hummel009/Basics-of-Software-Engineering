@@ -43,6 +43,52 @@
             <version>0.8.7</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>
+                     org.apache.felix.framework
+            </artifactId>
+            <version>5.6.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>
+                org.apache.felix.eventadmin
+            </artifactId>
+            <version>1.2.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jabricks.resources</groupId>
+            <artifactId>util-resources</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jabricks.basegui</groupId>
+            <artifactId>gui-widgets</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jabricks.jframe</groupId>
+            <artifactId>base-jframe</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jabricks.menu</groupId>
+            <artifactId>gui-menu</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jabricks.toolbar</groupId>
+            <artifactId>gui-toolbar</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
