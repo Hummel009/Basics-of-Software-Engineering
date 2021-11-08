@@ -14,12 +14,12 @@ class JavaCalculatorTests {
 	@Test
 	@DisplayName("VOID2")
 	void testVoid2() {
-		calculator.outputField.setText("2");
-		calculator.twoNumbers(Operation.PLUS, calculator.button[17]);
-		String t = calculator.outputField.getText();
-		t += calculator.button[2].getText();
-		calculator.outputField.setText(t);
-		calculator.setInput2(Double.parseDouble(calculator.outputField.getText().substring(calculator.notInclude)));
+		calculator.setOutputText("2");
+		calculator.twoNumbers(Operation.PLUS, calculator.getButton(17));
+		String t = calculator.getOutputText();
+		t += calculator.getButton(2).getText();
+		calculator.setOutputText(t);
+		calculator.setInput2(Double.parseDouble(calculator.getOutputText().substring(calculator.getNotInclude())));
 		calculator.calculate();
 		assertEquals(4, calculator.getOutput(), "2+2=4");
 	}
@@ -27,8 +27,8 @@ class JavaCalculatorTests {
 	@Test
 	@DisplayName("VOID1")
 	void testVoid1() {
-		calculator.outputField.setText("3");
-		calculator.oneNumber(Operation.FACTORIAL, calculator.button[23]);
+		calculator.setOutputText("3");
+		calculator.oneNumber(Operation.FACTORIAL, calculator.getButton(23));
 		assertEquals(6, calculator.getOutput(), "3!=6");
 	}
 	
