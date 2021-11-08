@@ -9,6 +9,12 @@ import main.java.com.uni.JavaCalculator;
 import main.java.com.uni.JavaCalculator.Operation;
 
 class JavaCalculatorTests {
+
+	@BeforeClass
+	public static void setupHeadlessMode() {
+		System.setProperty("java.awt.headless", "false");
+	}
+	
 	JavaCalculator calculator = new JavaCalculator();
 
 	@Test
