@@ -2,6 +2,10 @@ package test.java.com.uni;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +14,24 @@ import main.java.com.uni.JavaCalculator.Operation;
 
 class JavaCalculatorTests {
 	JavaCalculator calculator = new JavaCalculator();
+
+	@Test
+	@DisplayName("CLEAR")
+	void testCLEAR() {
+		calculator.setOutputText("3");
+		calculator.clear();
+		assertEquals("", calculator.getOutputText());
+	}
+
+	@Test
+	@DisplayName("EQUALS")
+	void testEQUALS() {
+		calculator.setInput1(2);
+		calculator.setOutputText("3");
+		calculator.setOperation(Operation.MULTIPLE);
+		calculator.equals();
+		assertEquals(6, calculator.getOutput(), "2*3=6");
+	}
 
 	@Test
 	@DisplayName("VOID2")

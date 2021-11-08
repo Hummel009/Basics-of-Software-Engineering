@@ -107,22 +107,8 @@ public class JavaCalculator implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		final JButton jbutton = (JButton) event.getSource(); //определяет, какая именно кнопка была нажата
 
-		//если нажатая кнопка - очистить
-		if (jbutton == button[13]) {
-			output = input1 = input2 = 0; //стираем память
-			outputField.setText(""); //очищаем поле вывода
-		}
-
-		//если нажатая кнопка - равно
-		else if (jbutton == button[19]) {
-			input2 = Double.parseDouble(outputField.getText().substring(notInclude)); //считываем последние введённые данные
-			calculate(); //выполняем последнюю присвоенную операцию
-			String result = new DecimalFormat("#.###############").format(output); //округление
-			outputField.setText(outputField.getText() + "=" + result); //выводим результат
-		}
-
 		//если нажатая кнопка - операция, то мы присваиваем ей операцию методами oneNumber или twoNumbers
-		else if (jbutton == button[23]) {
+		if (jbutton == button[23]) {
 			oneNumber(Operation.FACTORIAL, button[23]);
 		} else if (jbutton == button[20]) {
 			oneNumber(Operation.SQRT, button[20]);
@@ -158,6 +144,16 @@ public class JavaCalculator implements ActionListener {
 			twoNumbers(Operation.PERCENT, button[18]);
 		}
 
+		//если нажатая кнопка - очистить
+		else if (jbutton == button[13]) {
+			clear();
+		}
+		
+		//если нажатая кнопка - равно
+		else if (jbutton == button[19]) {
+			equals();
+		}
+		
 		//если нажатая кнопка - число Эйлера
 		else if (jbutton == button[12]) {
 			outputField.setText("2.718281828459045"); //выводим число Эйлера
@@ -178,6 +174,21 @@ public class JavaCalculator implements ActionListener {
 				}
 			}
 		}
+	}
+
+	/* Действия, выполняемые кнопкой "очистка" */
+	public void clear() {
+		output = input1 = input2 = 0; //стираем память
+		outputField.setText(""); //очищаем поле вывода
+	}
+
+
+	/* Действия, выполняемые кнопкой "равно" */
+	public void equals() {
+		input2 = Double.parseDouble(outputField.getText().substring(notInclude)); //считываем последние введённые данные
+		calculate(); //выполняем последнюю присвоенную операцию
+		String result = new DecimalFormat("#.###############").format(output); //округление
+		outputField.setText(outputField.getText() + "=" + result); //выводим результат
 	}
 
 	/* Этот метод помогает сократить количество кода, выполняя сразу несколько действий. Аргументы:
