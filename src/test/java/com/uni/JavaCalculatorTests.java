@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import main.java.com.uni.JavaCalculator;
 import main.java.com.uni.JavaCalculator.Operation;
 
-public class JavaCalculatorTests {
+class JavaCalculatorTests {
 	JavaCalculator calculator = new JavaCalculator();
 	
 	@Test
