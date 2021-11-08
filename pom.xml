@@ -44,9 +44,13 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.wujing.jframe</groupId>
-            <artifactId>jframe</artifactId>
-            <version>1.1.2</version>
+        <dependency>
+	        <groupId>com.jtransc</groupId>
+	        <artifactId>jtransc-rt</artifactId>
+	        <version>0.5.0-ALPHA4</version>
+        </dependency>
+<!-- Thanks for using https://jar-download.com -->
+
         </dependency>
     </dependencies>
 
