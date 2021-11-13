@@ -1,19 +1,17 @@
 package main.java.com.uni;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 //класс базируется на JFrame и наследует его содержимое, ActionListener отвечает за отслеживание нажатой кнопки
-public class JavaCalculator extends JFrame implements ActionListener {
+public class JavaCalculator /*extends JFrame*/ implements ActionListener {
 	private final JButton[] button = new JButton[50]; //все наши кнопки
 	private Operation operation; //тип операции - сложение, вычитание и т.д.
 	private double output; //выводимые данные
@@ -29,7 +27,7 @@ public class JavaCalculator extends JFrame implements ActionListener {
 	}
 
 	public JavaCalculator() {
-		super("Calculator v1.2.0");  //создаём окно и задаём заголовок
+		//super("Calculator v1.2.0");  //создаём окно и задаём заголовок
 
 		//создаём кнопки про помощи цикла
 		for (int i = 0; i <= 49; i++) {
@@ -96,11 +94,11 @@ public class JavaCalculator extends JFrame implements ActionListener {
 		outputField.setHorizontalAlignment(SwingConstants.RIGHT); //располагаем выводимый текст справа, а не по умолчанию в центре
 		outputField.setEditable(false); //запрещаем редактировать поле через мышь и клавиатуру, т.к. вычислять таким образом всё равно нельзя.
 
-		add(outputField, BorderLayout.NORTH); //поле вывода - наверху
-		add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
-		setVisible(true); //окно видимое
-		setSize(600, 700); //размер окна
-		setLocationRelativeTo(null); //выводим окно в центре экрана
+		//add(outputField, BorderLayout.NORTH); //поле вывода - наверху
+		//add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
+		//setVisible(true); //окно видимое
+		//setSize(600, 700); //размер окна
+		//setLocationRelativeTo(null); //выводим окно в центре экрана
 	}
 
 	/* Этот метод помогает сократить количество кода, выполняя сразу несколько действий. Аргументы:
