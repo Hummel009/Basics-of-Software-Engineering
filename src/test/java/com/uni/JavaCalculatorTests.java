@@ -212,6 +212,13 @@ class JavaCalculatorTests {
 	}
 
 	@Test
+	void testSBACK() {
+		calculator.addOutputText("1");
+		calculator.selectButton(calculator.getButton(43));
+		assertEquals(1, calculator.getOutput());
+	}
+
+	@Test
 	void testSTH() {
 		calculator.addOutputText("0");
 		calculator.selectButton(calculator.getButton(40));
@@ -222,7 +229,6 @@ class JavaCalculatorTests {
 	void testSCTH() {
 		calculator.addOutputText("3");
 		calculator.selectButton(calculator.getButton(41));
-		assertEquals((Math.pow(2.7183, 3) + Math.pow(2.7183, (-1) * 3))
-				/ (Math.pow(2.7183, 3) - Math.pow(2.7183, (-1) * 3)), calculator.getOutput());
+		assertEquals((Math.pow(2.7183, 3) + Math.pow(2.7183, (-1) * 3)) / (Math.pow(2.7183, 3) - Math.pow(2.7183, (-1) * 3)), calculator.getOutput());
 	}
 }
