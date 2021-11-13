@@ -157,9 +157,9 @@ public class JavaCalculator implements ActionListener {
 		} else if (jbutton == button[31]) {
 			oneNumber(Operation.ARCCTG, button[31]);
 		} else if (jbutton == button[34]) {
-			oneNumber(Operation.SQAIR, button[34]);
+			oneNumber(Operation.SQARE, button[34]);
 		} else if (jbutton == button[35]) {
-			oneNumber(Operation.KUB, button[35]);
+			oneNumber(Operation.CUBE, button[35]);
 		} else if (jbutton == button[36]) {
 			oneNumber(Operation.LG, button[36]);
 		} else if (jbutton == button[37]) {
@@ -387,10 +387,10 @@ public class JavaCalculator implements ActionListener {
 		case PERCENT:
 			output = input2 * input1 / 100;
 			break;
-		case SQAIR:
+		case SQARE:
 			output = input1 * input1;
 			break;
-		case KUB:
+		case CUBE:
 			output = Math.pow(input1, 3);
 			break;
 		case LG:
@@ -406,12 +406,10 @@ public class JavaCalculator implements ActionListener {
 			output = (Math.pow(2.7183, input1) - Math.pow(2.7183, (-1) * input1)) / 2;
 			break;
 		case TH:
-			output = (Math.pow(2.7183, input1) - Math.pow(2.7183, (-1) * input1))
-					/ (Math.pow(2.7183, input1) + Math.pow(2.7183, (-1) * input1));
+			output = (Math.pow(2.7183, input1) - Math.pow(2.7183, (-1) * input1)) / (Math.pow(2.7183, input1) + Math.pow(2.7183, (-1) * input1));
 			break;
 		case CTH:
-			output = (Math.pow(2.7183, input1) + Math.pow(2.7183, (-1) * input1))
-					/ (Math.pow(2.7183, input1) - Math.pow(2.7183, (-1) * input1));
+			output = (Math.pow(2.7183, input1) + Math.pow(2.7183, (-1) * input1)) / (Math.pow(2.7183, input1) - Math.pow(2.7183, (-1) * input1));
 			break;
 		case TEN:
 			output = Math.pow(10, input1);
@@ -433,8 +431,7 @@ public class JavaCalculator implements ActionListener {
 	// перечисление всех операций, где NULL - операция по умолчанию, использущаяся,
 	// если пользователь не присвоил новую операцию.
 	public enum Operation {
-		ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL, LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER,
-		SIN, SQRT, TG, SQAIR, KUB, LG, LN, CH, SH, TH, CTH, TEN, BACK, DOUBLEFACT;
+		ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL, LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER, SIN, SQRT, TG, SQARE, CUBE, LG, LN, CH, SH, TH, CTH, TEN, BACK, DOUBLEFACT;
 	}
 
 	// доступ к приватному полю

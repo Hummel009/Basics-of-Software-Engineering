@@ -77,14 +77,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	void testSIN() {
-		calculator.setInput1(30);
-		calculator.setOperation(Operation.SIN);
-		calculator.calculate();
-		assertEquals(Math.sin(Math.toRadians(30)), calculator.getOutput());
-	}
-
-	@Test
 	void testSLOGARITHM() {
 		calculator.addOutputText("25");
 		calculator.selectButton(calculator.getButton(22));
@@ -143,14 +135,6 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	void testSQRT() {
-		calculator.setInput1(25);
-		calculator.setOperation(Operation.SQRT);
-		calculator.calculate();
-		assertEquals(5, calculator.getOutput());
-	}
-
-	@Test
 	void testSSIN() {
 		calculator.addOutputText("30");
 		calculator.selectButton(calculator.getButton(24));
@@ -172,99 +156,73 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	void testTG() {
-		calculator.setInput1(45);
-		calculator.setOperation(Operation.TG);
-		calculator.calculate();
-		assertEquals(Math.tan(Math.toRadians(45)), calculator.getOutput());
-	}
-
-	@Test
 	void testSDOUBLEFACT() {
 		calculator.addOutputText("9");
-		calculator.oneNumber(Operation.DOUBLEFACT, calculator.getButton(44));
+		calculator.selectButton(calculator.getButton(44));
 		assertEquals(945, calculator.getOutput());
 	}
 
 	@Test
-	void testTEN() {
+	void testSTEN() {
 		calculator.addOutputText("2");
-		calculator.oneNumber(Operation.TEN, calculator.getButton(42));
+		calculator.selectButton(calculator.getButton(42));
 		assertEquals(100, calculator.getOutput());
 	}
 
 	@Test
-	void testLN() {
+	void testSLN() {
 		calculator.addOutputText("10");
-		calculator.oneNumber(Operation.LN, calculator.getButton(37));
+		calculator.selectButton(calculator.getButton(37));
 		assertEquals(Math.log(10), calculator.getOutput());
 	}
 
 	@Test
-	void testLG() {
+	void testSLG() {
 		calculator.addOutputText("10");
-		calculator.oneNumber(Operation.LG, calculator.getButton(36));
+		calculator.selectButton(calculator.getButton(36));
 		assertEquals(1, calculator.getOutput());
 	}
 
 	@Test
-	void testKUB() {
+	void testSCUBE() {
 		calculator.addOutputText("3");
-		calculator.oneNumber(Operation.KUB, calculator.getButton(35));
+		calculator.selectButton(calculator.getButton(35));
 		assertEquals(27, calculator.getOutput());
 	}
 
 	@Test
-	void testSQAIR() {
+	void testSSQUARE() {
 		calculator.addOutputText("3");
-		calculator.oneNumber(Operation.SQAIR, calculator.getButton(34));
+		calculator.selectButton(calculator.getButton(34));
 		assertEquals(9, calculator.getOutput());
 	}
 
 	@Test
-	void testSH() {
+	void testSSH() {
 		calculator.addOutputText("3");
-		calculator.oneNumber(Operation.SH, calculator.getButton(38));
+		calculator.selectButton(calculator.getButton(39));
 		assertEquals((Math.pow(2.7183, 3) - Math.pow(2.7183, (-1) * 3)) / 2, calculator.getOutput());
 	}
 
 	@Test
-	void testCH() {
+	void testSCH() {
 		calculator.addOutputText("3");
-		calculator.oneNumber(Operation.CH, calculator.getButton(39));
+		calculator.selectButton(calculator.getButton(38));
 		assertEquals((Math.pow(2.7183, 3) + Math.pow(2.7183, (-1) * 3)) / 2, calculator.getOutput());
 	}
 
 	@Test
-	void testTH() {
-		calculator.addOutputText("3");
-		calculator.oneNumber(Operation.TH, calculator.getButton(40));
-		assertEquals((Math.pow(2.7183, 3) - Math.pow(2.7183, (-1) * 3))
-				/ (Math.pow(2.7183, 3) + Math.pow(2.7183, (-1) * 3)), calculator.getOutput());
+	void testSTH() {
+		calculator.addOutputText("0");
+		calculator.selectButton(calculator.getButton(40));
+		assertEquals((Math.pow(2.7183, 0) - Math.pow(2.7183, (-1) * 0)) / (Math.pow(2.7183, 0) + Math.pow(2.7183, (-1) * 0)), calculator.getOutput());
 	}
 
 	@Test
-	void testCTH() {
+	void testSCTH() {
 		calculator.addOutputText("3");
-		calculator.oneNumber(Operation.CTH, calculator.getButton(41));
+		calculator.selectButton(calculator.getButton(41));
 		assertEquals((Math.pow(2.7183, 3) + Math.pow(2.7183, (-1) * 3))
 				/ (Math.pow(2.7183, 3) - Math.pow(2.7183, (-1) * 3)), calculator.getOutput());
-	}
-
-	@Test
-	void testVoid1() {
-		calculator.addOutputText("3");
-		calculator.oneNumber(Operation.FACTORIAL, calculator.getButton(23));
-		assertEquals(6, calculator.getOutput());
-	}
-
-	@Test
-	void testVoid2() {
-		calculator.addOutputText("2");
-		calculator.twoNumbers(Operation.PLUS, calculator.getButton(17));
-		calculator.addOutputText("2");
-		calculator.setInput2(Double.parseDouble(calculator.getOutputText().substring(calculator.getNotInclude())));
-		calculator.calculate();
-		assertEquals(4, calculator.getOutput());
 	}
 }
