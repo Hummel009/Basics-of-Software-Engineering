@@ -43,6 +43,14 @@ class JavaCalculatorTests {
 	}
 
 	@Test
+	void testQAIR() {
+		calculator.setInput1(3);
+		calculator.setOperation(Operation.SQAIR);
+		calculator.calculate();
+		assertEquals(9, calculator.getOutput());
+	}
+
+	@Test
 	void testCLEAR() {
 		calculator.addOutputText("3");
 		calculator.clear();
@@ -320,6 +328,13 @@ class JavaCalculatorTests {
 		calculator.setOperation(Operation.TG);
 		calculator.calculate();
 		assertEquals(Math.tan(Math.toRadians(45)), calculator.getOutput());
+	}
+
+	@Test
+	void testSDOUBLEFACT() {
+		calculator.addOutputText("9");
+		calculator.oneNumber(Operation.DOUBLEFACT, calculator.getButton(44));
+		assertEquals(945, calculator.getOutput());
 	}
 
 	@Test
