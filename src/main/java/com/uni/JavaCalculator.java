@@ -104,14 +104,11 @@ public class JavaCalculator implements ActionListener {
 	}
 
 	/*
-	 * Этот метод помогает сократить количество кода, выполняя сразу несколько
-	 * действий. Аргументы:
+	 * Этот метод помогает сократить количество кода, выполняя сразу несколько действий. Аргументы:
 	 *
-	 * button - конкретная кнопка, элемент массива, который мы настраиваем name -
-	 * текст, который будет написан на кнопке
+	 * button - конкретная кнопка, элемент массива, который мы настраиваем name - текст, который будет написан на кнопке
 	 *
-	 * От порядка настройки кнопок зависит их положение в сетке кнопок. Сетка
-	 * заполняется сверху вниз и слева направо.
+	 * От порядка настройки кнопок зависит их положение в сетке кнопок. Сетка заполняется сверху вниз и слева направо.
 	 */
 	public void registerButton(JButton button, String name) {
 		button.setFont(button.getFont().deriveFont(20f)); // присваиваем кнопке увеличенный шрифт
@@ -120,6 +117,11 @@ public class JavaCalculator implements ActionListener {
 		panel.add(button);// располагаем кнопку на сетке кнопок.
 	}
 
+	/*
+	 * Этот метод помогает оптимизировать меню инженера, позволяя открывать и закрывать доселе невидимые кнопки. Аргументы:
+	 *
+	 * button - конкретная кнопка, элемент массива, который мы настраиваем name - текст, который будет написан на кнопке
+	 */
 	public void registerHiddenButton(JButton button, String name) {
 		button.setFont(button.getFont().deriveFont(20f)); // присваиваем кнопке увеличенный шрифт
 		button.addActionListener(this); // присваиваем кнопке механизм вызова actionPerformed
@@ -129,12 +131,12 @@ public class JavaCalculator implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		final JButton jbutton = (JButton) event.getSource(); // определяет, какая именно кнопка была нажата
-		selectButton(jbutton);
+		selectButton(jbutton); // выбирает условие в зависимости от нажатой кнопки
 	}
 
+	//выбор развилки в зависимости от нажатой кнопки
 	public void selectButton(JButton jbutton) {
-		// если нажатая кнопка - операция, то мы присваиваем ей операцию методами
-		// oneNumber или twoNumbers
+		// если нажатая кнопка - операция, то мы присваиваем ей операцию методами oneNumber или twoNumbers
 		if (jbutton == button[23]) {
 			oneNumber(Operation.FACTORIAL, button[23]);
 		} else if (jbutton == button[44]) {
@@ -236,6 +238,7 @@ public class JavaCalculator implements ActionListener {
 		outputField.setText(""); // очищаем поле вывода
 	}
 
+	/* Действия, выполняемые кнопкой "инженер" */
 	public void extendedMode() {
 		if (!isExtended) {
 			panel.setLayout(new GridLayout(11, 4));
