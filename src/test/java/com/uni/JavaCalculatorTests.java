@@ -366,6 +366,20 @@ class JavaCalculatorTests {
 	}
 
 	@Test
+	void testSH() {
+		calculator.addOutputText("3");
+		calculator.oneNumber(Operation.SH, calculator.getButton(38));
+		assertEquals((Math.pow(2.7183, 3) - Math.pow(2.7183, (-1) * 3)) / 2, calculator.getOutput());
+	}
+
+	@Test
+	void testCH() {
+		calculator.addOutputText("3");
+		calculator.oneNumber(Operation.CH, calculator.getButton(39));
+		assertEquals((Math.pow(2.7183, 3) + Math.pow(2.7183, (-1) * 3)) / 2, calculator.getOutput());
+	}
+
+	@Test
 	void testVoid1() {
 		calculator.addOutputText("3");
 		calculator.oneNumber(Operation.FACTORIAL, calculator.getButton(23));
