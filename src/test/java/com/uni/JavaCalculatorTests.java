@@ -63,7 +63,7 @@ class JavaCalculatorTests {
 	}
 
 	@Test
-	void testSelection() {
+	void testSNUMBER() {
 		calculator.addOutputText("3");
 		calculator.selectButton(calculator.getButton(23));
 		assertEquals(6, calculator.getOutput());
@@ -191,6 +191,13 @@ class JavaCalculatorTests {
 		calculator.addOutputText("2");
 		calculator.oneNumber(Operation.TEN, calculator.getButton(42));
 		assertEquals(100, calculator.getOutput());
+	}
+
+	@Test
+	void testLN() {
+		calculator.addOutputText("10");
+		calculator.oneNumber(Operation.LN, calculator.getButton(37));
+		assertEquals(Math.log(10), calculator.getOutput());
 	}
 
 	@Test

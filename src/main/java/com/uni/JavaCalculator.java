@@ -162,6 +162,8 @@ public class JavaCalculator implements ActionListener {
 			oneNumber(Operation.KUB, button[35]);
 		} else if (jbutton == button[36]) {
 			oneNumber(Operation.LG, button[36]);
+		} else if (jbutton == button[37]) {
+			oneNumber(Operation.LN, button[37]);
 		} else if (jbutton == button[38]) {
 			oneNumber(Operation.CH, button[38]);
 		} else if (jbutton == button[39]) {
