@@ -323,6 +323,34 @@ class JavaCalculatorTests {
 	}
 
 	@Test
+	void testTEN() {
+		calculator.addOutputText("2");
+		calculator.oneNumber(Operation.TEN, calculator.getButton(42));
+		assertEquals(100, calculator.getOutput());
+	}
+
+	@Test
+	void testLG() {
+		calculator.addOutputText("10");
+		calculator.oneNumber(Operation.LG, calculator.getButton(36));
+		assertEquals(1, calculator.getOutput());
+	}
+
+	@Test
+	void testKUB() {
+		calculator.addOutputText("3");
+		calculator.oneNumber(Operation.KUB, calculator.getButton(35));
+		assertEquals(27, calculator.getOutput());
+	}
+
+	@Test
+	void testSQAIR() {
+		calculator.addOutputText("3");
+		calculator.oneNumber(Operation.SQAIR, calculator.getButton(34));
+		assertEquals(9, calculator.getOutput());
+	}
+
+	@Test
 	void testVoid1() {
 		calculator.addOutputText("3");
 		calculator.oneNumber(Operation.FACTORIAL, calculator.getButton(23));

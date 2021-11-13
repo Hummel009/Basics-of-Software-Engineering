@@ -27,7 +27,7 @@ public class JavaCalculator implements ActionListener {
 	}
 
 	public JavaCalculator() {
-		// JFrame frame = new JFrame("Calculator v1.2.0"); //создаём окно и задаём
+		// JFrame frame = new JFrame("Calculator v2.0"); //создаём окно и задаём
 		// заголовок
 
 		// создаём кнопки про помощи цикла
