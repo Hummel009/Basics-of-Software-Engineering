@@ -95,7 +95,7 @@ public class JavaCalculator implements ActionListener {
 		outputField.setFont(outputField.getFont().deriveFont(40f)); // меняем размер шрифта полю вывода
 		outputField.setHorizontalAlignment(SwingConstants.RIGHT); // располагаем выводимый текст справа, а не по умолчанию в центре
 		outputField.setEditable(false); // запрещаем редактировать поле через мышь и клавиатуру, т.к. вычислять таким образом всё равно нельзя.
-
+		operation = Operation.NULL;
 		//frame.add(outputField, BorderLayout.NORTH); //поле вывода - наверху
 		//frame.add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
 		//frame.setVisible(true); //окно видимое
@@ -425,6 +425,9 @@ public class JavaCalculator implements ActionListener {
 			}
 			output = result2;
 			break;
+		case NULL:
+			output = input2;
+			break;
 		}
 		return 0;
 	}
@@ -432,7 +435,7 @@ public class JavaCalculator implements ActionListener {
 	// перечисление всех операций, где NULL - операция по умолчанию, использущаяся,
 	// если пользователь не присвоил новую операцию.
 	public enum Operation {
-		ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL, LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER, SIN, SQRT, TG, SQARE, CUBE, LG, LN, CH, SH, TH, CTH, TEN, BACK, DOUBLEFACT;
+		NULL, ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL, LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER, SIN, SQRT, TG, SQARE, CUBE, LG, LN, CH, SH, TH, CTH, TEN, BACK, DOUBLEFACT;
 	}
 
 	// доступ к приватному полю

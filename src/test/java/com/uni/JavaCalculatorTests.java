@@ -245,21 +245,28 @@ class JavaCalculatorTests {
 	void testExtended() {
 		calculator.selectButton(calculator.getButton(32));
 		assertEquals(true, calculator.getExtended());
+		calculator.selectButton(calculator.getButton(32));
+		assertEquals(false, calculator.getExtended());
 	}
 
 	@Test
 	void testCLEAR() {
 		calculator.selectButton(calculator.getButton(3));
-		calculator.clear();
+		calculator.selectButton(calculator.getButton(13));
 		assertEquals(0, calculator.getOutput());
 	}
 
 	@Test
-	void testEQUALS() {
-		calculator.selectButton(calculator.getButton(2));
-		calculator.selectButton(calculator.getButton(15));
-		calculator.selectButton(calculator.getButton(3));
-		calculator.equals();
-		assertEquals(6, calculator.getOutput());
+	void testE() {
+		calculator.selectButton(calculator.getButton(12));
+		calculator.selectButton(calculator.getButton(19));
+		assertEquals(2.718281828459045, calculator.getOutput());
+	}
+
+	@Test
+	void testP() {
+		calculator.selectButton(calculator.getButton(11));
+		calculator.selectButton(calculator.getButton(19));
+		assertEquals(3.141592653589793, calculator.getOutput());
 	}
 }
