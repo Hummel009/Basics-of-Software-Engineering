@@ -1,17 +1,19 @@
 package main.java.com.uni;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 //класс базируется на JFrame и наследует его содержимое, ActionListener отвечает за отслеживание нажатой кнопки
-public class JavaCalculator /*extends JFrame*/ implements ActionListener {
+public class JavaCalculator implements ActionListener {
 	private final JButton[] button = new JButton[50]; //все наши кнопки
 	private Operation operation; //тип операции - сложение, вычитание и т.д.
 	private double output; //выводимые данные
@@ -27,7 +29,7 @@ public class JavaCalculator /*extends JFrame*/ implements ActionListener {
 	}
 
 	public JavaCalculator() {
-		//super("Calculator v1.2.0");  //создаём окно и задаём заголовок
+		//JFrame frame = new JFrame("Calculator v1.2.0");  //создаём окно и задаём заголовок
 
 		//создаём кнопки про помощи цикла
 		for (int i = 0; i <= 49; i++) {
@@ -94,11 +96,11 @@ public class JavaCalculator /*extends JFrame*/ implements ActionListener {
 		outputField.setHorizontalAlignment(SwingConstants.RIGHT); //располагаем выводимый текст справа, а не по умолчанию в центре
 		outputField.setEditable(false); //запрещаем редактировать поле через мышь и клавиатуру, т.к. вычислять таким образом всё равно нельзя.
 
-		//add(outputField, BorderLayout.NORTH); //поле вывода - наверху
-		//add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
-		//setVisible(true); //окно видимое
-		//setSize(600, 700); //размер окна
-		//setLocationRelativeTo(null); //выводим окно в центре экрана
+		//frame.add(outputField, BorderLayout.NORTH); //поле вывода - наверху
+		//frame.add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
+		//frame.setVisible(true); //окно видимое
+		//frame.setSize(600, 700); //размер окна
+		//frame.setLocationRelativeTo(null); //выводим окно в центре экрана
 	}
 
 	/* Этот метод помогает сократить количество кода, выполняя сразу несколько действий. Аргументы:
@@ -126,12 +128,12 @@ public class JavaCalculator /*extends JFrame*/ implements ActionListener {
 		final JButton jbutton = (JButton) event.getSource(); //определяет, какая именно кнопка была нажата
 		selectButton(jbutton);
 	}
-
+	
 	public void selectButton(JButton jbutton) {
 		//если нажатая кнопка - операция, то мы присваиваем ей операцию методами oneNumber или twoNumbers
 		if (jbutton == button[23]) {
 			oneNumber(Operation.FACTORIAL, button[23]);
-		}else if (jbutton == button[44]) {
+		} else if (jbutton == button[44]) {
 			oneNumber(Operation.DOUBLEFACT, button[44]);
 		} else if (jbutton == button[20]) {
 			oneNumber(Operation.SQRT, button[20]);
@@ -151,7 +153,7 @@ public class JavaCalculator /*extends JFrame*/ implements ActionListener {
 			oneNumber(Operation.ARCTG, button[30]);
 		} else if (jbutton == button[31]) {
 			oneNumber(Operation.ARCCTG, button[31]);
-		}else if (jbutton == button[34]) {
+		} else if (jbutton == button[34]) {
 			oneNumber(Operation.SQAIR, button[34]);
 		} else if (jbutton == button[35]) {
 			oneNumber(Operation.KUB, button[35]);
@@ -189,12 +191,12 @@ public class JavaCalculator /*extends JFrame*/ implements ActionListener {
 		} else if (jbutton == button[13]) {
 			clear();
 		}
-
+		
 		//если нажатая кнопка - равно
 		else if (jbutton == button[19]) {
 			equals();
 		}
-
+		
 		//если нажатая кнопка - число Эйлера
 		else if (jbutton == button[12]) {
 			outputField.setText("2.718281828459045"); //выводим число Эйлера
@@ -222,7 +224,7 @@ public class JavaCalculator /*extends JFrame*/ implements ActionListener {
 		output = input1 = input2 = 0; //стираем память
 		outputField.setText(""); //очищаем поле вывода
 	}
-
+	
 	public void ing() {
 		if (!isExtended) {
 			panel.setLayout(new GridLayout(11, 4));
@@ -274,6 +276,7 @@ public class JavaCalculator /*extends JFrame*/ implements ActionListener {
 			button[32].setText("Инженер");
 		}
 	}
+
 
 	/* Действия, выполняемые кнопкой "равно" */
 	public void equals() {
@@ -413,46 +416,46 @@ public class JavaCalculator /*extends JFrame*/ implements ActionListener {
 	public enum Operation {
 		ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL,
 		LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER, SIN,
-		SQRT, TG, SQAIR, KUB,LG,LN, CH, SH, TH, CTH, TEN, BACK,DOUBLEFACT;
+		SQRT, TG, SQAIR, KUB,LG,LN, CH, SH, TH, CTH, TEN, BACK, DOUBLEFACT;
 	}
-
+	
 	//доступ к приватному полю
 	public void addOutputText(String t) {
 		String o = outputField.getText();
 		o += t;
 		outputField.setText(o);
 	}
-
+	
 	//доступ к приватному полю
 	public void setInput1(double i) {
 		input1 = i;
 	}
-
+	
 	//доступ к приватному полю
 	public void setInput2(double i) {
 		input2 = i;
 	}
-
+	
 	//доступ к приватному полю
 	public String getOutputText() {
 		return outputField.getText();
 	}
-
+	
 	//доступ к приватному полю
 	public JButton getButton(int i) {
 		return button[i];
 	}
-
+	
 	//доступ к приватному полю
 	public int getNotInclude() {
 		return notInclude;
 	}
-
+	
 	//доступ к приватному полю
 	public double getOutput() {
 		return output;
 	}
-
+	
 	//доступ к приватному полю
 	public void setOperation(Operation op) {
 		operation = op;
