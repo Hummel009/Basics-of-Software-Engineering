@@ -11,157 +11,6 @@ class JavaCalculatorTests {
 	JavaCalculator calculator = new JavaCalculator();
 
 	@Test
-	void testARCCOS() {
-		calculator.setInput1(0.5);
-		calculator.setOperation(Operation.ARCCOS);
-		calculator.calculate();
-		assertEquals(Math.acos(0.5), calculator.getOutput());
-	}
-
-	@Test
-	void testARCCTG() {
-		calculator.setInput1(1);
-		calculator.setOperation(Operation.ARCCTG);
-		calculator.calculate();
-		assertEquals(1 / Math.atan(1), calculator.getOutput());
-	}
-
-	@Test
-	void testARCSIN() {
-		calculator.setInput1(0.5);
-		calculator.setOperation(Operation.ARCSIN);
-		calculator.calculate();
-		assertEquals(Math.asin(0.5), calculator.getOutput());
-	}
-
-	@Test
-	void testARCTG() {
-		calculator.setInput1(1);
-		calculator.setOperation(Operation.ARCTG);
-		calculator.calculate();
-		assertEquals(Math.atan(1), calculator.getOutput());
-	}
-
-	@Test
-	void testQAIR() {
-		calculator.setInput1(3);
-		calculator.setOperation(Operation.SQAIR);
-		calculator.calculate();
-		assertEquals(9, calculator.getOutput());
-	}
-
-	@Test
-	void testCLEAR() {
-		calculator.addOutputText("3");
-		calculator.clear();
-		assertEquals("", calculator.getOutputText());
-	}
-
-	@Test
-	void testCOS() {
-		calculator.setInput1(60);
-		calculator.setOperation(Operation.COS);
-		calculator.calculate();
-		assertEquals(Math.cos(Math.toRadians(60)), calculator.getOutput());
-	}
-
-	@Test
-	void testCTG() {
-		calculator.setInput1(45);
-		calculator.setOperation(Operation.CTG);
-		calculator.calculate();
-		assertEquals(1 / Math.tan(Math.toRadians(45)), calculator.getOutput());
-	}
-
-	@Test
-	void testDIVIDE() {
-		calculator.setInput1(9);
-		calculator.setInput2(3);
-		calculator.setOperation(Operation.DIVIDE);
-		calculator.calculate();
-		assertEquals(3, calculator.getOutput());
-	}
-
-	@Test
-	void testEQUALS() {
-		calculator.setInput1(2);
-		calculator.addOutputText("3");
-		calculator.setOperation(Operation.MULTIPLE);
-		calculator.equals();
-		assertEquals(6, calculator.getOutput());
-	}
-
-	@Test
-	void testFACTORIAL2() {
-		calculator.setInput1(9);
-		calculator.setOperation(Operation.DOUBLEFACT);
-		calculator.calculate();
-		assertEquals(945, calculator.getOutput());
-	}
-
-	@Test
-	void testFACTORIAL() {
-		calculator.setInput1(3);
-		calculator.setOperation(Operation.FACTORIAL);
-		calculator.calculate();
-		assertEquals(6, calculator.getOutput());
-	}
-
-	@Test
-	void testLOGARITHM() {
-		calculator.setInput1(25);
-		calculator.setInput2(5);
-		calculator.setOperation(Operation.LOGARITHM);
-		calculator.calculate();
-		assertEquals(2, calculator.getOutput());
-	}
-
-	@Test
-	void testMINUS() {
-		calculator.setInput1(2);
-		calculator.setInput2(3);
-		calculator.setOperation(Operation.MINUS);
-		calculator.calculate();
-		assertEquals(-1, calculator.getOutput());
-	}
-
-	@Test
-	void testMULTIPLE() {
-		calculator.setInput1(2);
-		calculator.setInput2(3);
-		calculator.setOperation(Operation.MULTIPLE);
-		calculator.calculate();
-		assertEquals(6, calculator.getOutput());
-	}
-
-	@Test
-	void testPERCENT() {
-		calculator.setInput1(90);
-		calculator.setInput2(10);
-		calculator.setOperation(Operation.PERCENT);
-		calculator.calculate();
-		assertEquals(9, calculator.getOutput());
-	}
-
-	@Test
-	void testPLUS() {
-		calculator.setInput1(2);
-		calculator.setInput2(3);
-		calculator.setOperation(Operation.PLUS);
-		calculator.calculate();
-		assertEquals(5, calculator.getOutput());
-	}
-
-	@Test
-	void testPOWER() {
-		calculator.setInput1(5);
-		calculator.setInput2(2);
-		calculator.setOperation(Operation.POWER);
-		calculator.calculate();
-		assertEquals(25, calculator.getOutput());
-	}
-
-	@Test
 	void testSARCCOS() {
 		calculator.addOutputText("0.5");
 		calculator.selectButton(calculator.getButton(29));
@@ -377,6 +226,22 @@ class JavaCalculatorTests {
 		calculator.addOutputText("3");
 		calculator.oneNumber(Operation.CH, calculator.getButton(39));
 		assertEquals((Math.pow(2.7183, 3) + Math.pow(2.7183, (-1) * 3)) / 2, calculator.getOutput());
+	}
+
+	@Test
+	void testTH() {
+		calculator.addOutputText("3");
+		calculator.oneNumber(Operation.TH, calculator.getButton(40));
+		assertEquals((Math.pow(2.7183, 3) - Math.pow(2.7183, (-1) * 3))
+				/ (Math.pow(2.7183, 3) + Math.pow(2.7183, (-1) * 3)), calculator.getOutput());
+	}
+
+	@Test
+	void testCTH() {
+		calculator.addOutputText("3");
+		calculator.oneNumber(Operation.CTH, calculator.getButton(41));
+		assertEquals((Math.pow(2.7183, 3) + Math.pow(2.7183, (-1) * 3))
+				/ (Math.pow(2.7183, 3) - Math.pow(2.7183, (-1) * 3)), calculator.getOutput());
 	}
 
 	@Test
