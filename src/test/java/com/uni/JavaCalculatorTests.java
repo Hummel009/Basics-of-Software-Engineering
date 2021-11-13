@@ -231,4 +231,26 @@ class JavaCalculatorTests {
 		calculator.selectButton(calculator.getButton(41));
 		assertEquals((Math.pow(2.7183, 3) + Math.pow(2.7183, (-1) * 3)) / (Math.pow(2.7183, 3) - Math.pow(2.7183, (-1) * 3)), calculator.getOutput());
 	}
+
+	@Test
+	void testExtended() {
+		calculator.selectButton(calculator.getButton(32));
+		assertEquals(true, calculator.getExtended());
+	}
+
+	@Test
+	void testCLEAR() {
+		calculator.addOutputText("3");
+		calculator.clear();
+		assertEquals(0, calculator.getOutput());
+	}
+
+	@Test
+	void testEQUALS() {
+		calculator.selectButton(calculator.getButton(2));
+		calculator.selectButton(calculator.getButton(15));
+		calculator.selectButton(calculator.getButton(3));
+		calculator.equals();
+		assertEquals(6, calculator.getOutput(), "2*3=6");
+	}
 }

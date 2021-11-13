@@ -442,28 +442,13 @@ public class JavaCalculator implements ActionListener {
 	}
 
 	// доступ к приватному полю
-	public void setInput1(double i) {
-		input1 = i;
-	}
-
-	// доступ к приватному полю
-	public void setInput2(double i) {
-		input2 = i;
-	}
-
-	// доступ к приватному полю
-	public String getOutputText() {
-		return outputField.getText();
-	}
-
-	// доступ к приватному полю
 	public JButton getButton(int i) {
 		return button[i];
 	}
 
 	// доступ к приватному полю
-	public int getNotInclude() {
-		return notInclude;
+	public boolean getExtended() {
+		return isExtended;
 	}
 
 	// доступ к приватному полю
