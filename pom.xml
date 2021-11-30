@@ -7,7 +7,7 @@
     <groupId>org.uni</groupId>
     <artifactId>Java_Calculator</artifactId>
     <version>2.0</version>
-    <name>Snake</name>
+    <name>Java Calculator</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
