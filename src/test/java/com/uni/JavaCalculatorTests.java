@@ -16,11 +16,4 @@ class JavaCalculatorTests {
 		calculator.selectButton(calculator.getButton(36));
 		assertEquals(1, calculator.getOutput());
 	}
-
-	@Test
-	void testSCUBE() {
-		calculator.selectButton(calculator.getButton(3));
-		calculator.selectButton(calculator.getButton(35));
-		assertEquals(27, calculator.getOutput());
-	}
 }
