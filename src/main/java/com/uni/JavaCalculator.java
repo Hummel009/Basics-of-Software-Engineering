@@ -1,11 +1,13 @@
 package main.java.com.uni;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,6 +24,7 @@ public class JavaCalculator implements ActionListener {
 	private final JTextField outputField = new JTextField(20); // поле вывода
 	private final JPanel panel = new JPanel(); // сетка из кнопок
 	private int notInclude;
+	private int[] exNums = { 22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42 }; //айдишники кнопок в инженерной части
 	boolean isExtended = false;
 
 	public static void main(String[] arg) {
@@ -29,7 +32,7 @@ public class JavaCalculator implements ActionListener {
 	}
 
 	public JavaCalculator() {
-		//JFrame frame = new JFrame("Calculator v2.0"); //создаём окно и задаём заголовок
+		JFrame frame = new JFrame("Calculator v2.0"); //создаём окно и задаём заголовок
 
 		// создаём кнопки про помощи цикла
 		for (int i = 0; i <= 49; i++) {
@@ -96,11 +99,11 @@ public class JavaCalculator implements ActionListener {
 		outputField.setHorizontalAlignment(SwingConstants.RIGHT); // располагаем выводимый текст справа, а не по умолчанию в центре
 		outputField.setEditable(false); // запрещаем редактировать поле через мышь и клавиатуру, т.к. вычислять таким образом всё равно нельзя.
 		operation = Operation.NULL;
-		//frame.add(outputField, BorderLayout.NORTH); //поле вывода - наверху
-		//frame.add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
-		//frame.setVisible(true); //окно видимое
-		//frame.setSize(600, 700); //размер окна
-		//frame.setLocationRelativeTo(null); //выводим окно в центре экрана
+		frame.add(outputField, BorderLayout.NORTH); //поле вывода - наверху
+		frame.add(panel, BorderLayout.CENTER); //кнопки - под полем вывода
+		frame.setVisible(true); //окно видимое
+		frame.setSize(600, 700); //размер окна
+		frame.setLocationRelativeTo(null); //выводим окно в центре экрана
 	}
 
 	/*
@@ -136,67 +139,57 @@ public class JavaCalculator implements ActionListener {
 
 	//выбор развилки в зависимости от нажатой кнопки
 	public void selectButton(JButton jbutton) {
-		// если нажатая кнопка - операция, то мы присваиваем ей операцию методами oneNumber или twoNumbers
-		if (jbutton == button[23]) {
-			oneNumber(Operation.FACTORIAL, button[23]);
-		} else if (jbutton == button[44]) {
-			oneNumber(Operation.DOUBLEFACT, button[44]);
-		} else if (jbutton == button[20]) {
-			oneNumber(Operation.SQRT, button[20]);
-		} else if (jbutton == button[24]) {
-			oneNumber(Operation.SIN, button[24]);
-		} else if (jbutton == button[25]) {
-			oneNumber(Operation.COS, button[25]);
-		} else if (jbutton == button[26]) {
-			oneNumber(Operation.TG, button[26]);
-		} else if (jbutton == button[27]) {
-			oneNumber(Operation.CTG, button[27]);
-		} else if (jbutton == button[28]) {
-			oneNumber(Operation.ARCSIN, button[28]);
-		} else if (jbutton == button[29]) {
-			oneNumber(Operation.ARCCOS, button[29]);
-		} else if (jbutton == button[30]) {
-			oneNumber(Operation.ARCTG, button[30]);
-		} else if (jbutton == button[31]) {
-			oneNumber(Operation.ARCCTG, button[31]);
-		} else if (jbutton == button[34]) {
-			oneNumber(Operation.SQARE, button[34]);
-		} else if (jbutton == button[35]) {
-			oneNumber(Operation.CUBE, button[35]);
-		} else if (jbutton == button[36]) {
-			oneNumber(Operation.LG, button[36]);
-		} else if (jbutton == button[37]) {
-			oneNumber(Operation.LN, button[37]);
-		} else if (jbutton == button[38]) {
-			oneNumber(Operation.CH, button[38]);
-		} else if (jbutton == button[39]) {
-			oneNumber(Operation.SH, button[39]);
-		} else if (jbutton == button[40]) {
-			oneNumber(Operation.TH, button[40]);
-		} else if (jbutton == button[41]) {
-			oneNumber(Operation.CTH, button[41]);
-		} else if (jbutton == button[42]) {
-			oneNumber(Operation.TEN, button[42]);
-		} else if (jbutton == button[43]) {
-			oneNumber(Operation.BACK, button[43]);
-		} else if (jbutton == button[17]) {
-			twoNumbers(Operation.PLUS, button[17]);
-		} else if (jbutton == button[16]) {
-			twoNumbers(Operation.MINUS, button[16]);
-		} else if (jbutton == button[15]) {
-			twoNumbers(Operation.MULTIPLE, button[15]);
-		} else if (jbutton == button[22]) {
-			twoNumbers(Operation.LOGARITHM, button[22]);
-		} else if (jbutton == button[21]) {
-			twoNumbers(Operation.POWER, button[21]);
-		} else if (jbutton == button[14]) {
-			twoNumbers(Operation.DIVIDE, button[14]);
-		} else if (jbutton == button[18]) {
-			twoNumbers(Operation.PERCENT, button[18]);
-		} 
+		
+		//Регистрируем и заполняем карту соответствий "кнопка - операция с одним числом"
+		Map<JButton, Operation> one = new HashMap<>();
+		one.put(button[23], Operation.FACTORIAL);
+		one.put(button[44], Operation.DOUBLEFACT);
+		one.put(button[20], Operation.SQRT);
+		one.put(button[24], Operation.SIN);
+		one.put(button[25], Operation.COS);
+		one.put(button[26], Operation.TG);
+		one.put(button[27], Operation.CTG);
+		one.put(button[28], Operation.ARCSIN);
+		one.put(button[29], Operation.ARCCOS);
+		one.put(button[30], Operation.ARCTG);
+		one.put(button[31], Operation.ARCCTG);
+		one.put(button[34], Operation.SQARE);
+		one.put(button[35], Operation.CUBE);
+		one.put(button[36], Operation.LG);
+		one.put(button[37], Operation.LN);
+		one.put(button[38], Operation.CH);
+		one.put(button[39], Operation.SH);
+		one.put(button[40], Operation.TH);
+		one.put(button[41], Operation.CTH);
+		one.put(button[42], Operation.TEN);
+		one.put(button[43], Operation.BACK);
 
+		//Регистрируем и заполняем карту соответствий "кнопка - операция с двумя числами"
+		Map<JButton, Operation> two = new HashMap<>();
+		two.put(button[17], Operation.PLUS);
+		two.put(button[16], Operation.MINUS);
+		two.put(button[15], Operation.MULTIPLE);
+		two.put(button[22], Operation.LOGARITHM);
+		two.put(button[21], Operation.POWER);
+		two.put(button[14], Operation.DIVIDE);
+		two.put(button[18], Operation.PERCENT);
+		
+		//Перебираем все ключи (первый стобик карты)
+		for (JButton btn: one.keySet()) {
+			if (jbutton == btn) {
+				oneNumber(one.get(btn), btn); //Если кнопка равна ключу, то ей в соответствие ставим её значение из карты
+			}
+		}
+
+		//Перебираем все ключи (первый стобик карты)
+		for (JButton btn: two.keySet()) {
+			if (jbutton == btn) {
+				twoNumbers(two.get(btn), btn); //Если кнопка равна ключу, то ей в соответствие ставим её значение из карты
+			}
+		}
+		
 		// если нажатая кнопка - инженер
-		else if (jbutton == button[32]) {
+		if (jbutton == button[32]) {
 			extendedMode();
 		} 
 		
@@ -245,22 +238,10 @@ public class JavaCalculator implements ActionListener {
 			isExtended = true;
 			panel.remove(button[32]);
 
-			panel.add(button[42]);
-			panel.add(button[24]);
-			panel.add(button[25]);
-			panel.add(button[26]);
-			panel.add(button[27]);
-			panel.add(button[28]);
-			panel.add(button[29]);
-			panel.add(button[30]);
-			panel.add(button[31]);
-			panel.add(button[38]);
-			panel.add(button[39]);
-			panel.add(button[40]);
-			panel.add(button[41]);
-			panel.add(button[22]);
-			panel.add(button[36]);
-			panel.add(button[37]);
+			//Перебираем номера в массиве с айдишниками
+			for (int i = 0; i < exNums.length; i++) {
+				panel.add(button[exNums[i]]); //добавляем кнопку с айдишником из массива
+			}
 
 			panel.add(button[32]);
 			button[32].setText("Назад");
@@ -269,22 +250,10 @@ public class JavaCalculator implements ActionListener {
 			isExtended = false;
 			panel.remove(button[32]);
 
-			panel.remove(button[42]);
-			panel.remove(button[24]);
-			panel.remove(button[25]);
-			panel.remove(button[26]);
-			panel.remove(button[27]);
-			panel.remove(button[28]);
-			panel.remove(button[29]);
-			panel.remove(button[30]);
-			panel.remove(button[31]);
-			panel.remove(button[38]);
-			panel.remove(button[39]);
-			panel.remove(button[40]);
-			panel.remove(button[41]);
-			panel.remove(button[22]);
-			panel.remove(button[36]);
-			panel.remove(button[37]);
+			//Перебираем номера в массиве с айдишниками
+			for (int i = 0; i < exNums.length; i++) {
+				panel.remove(button[exNums[i]]); //удаляем кнопку с айдишником из массива
+			}
 
 			panel.add(button[32]);
 			button[32].setText("Инженер");
