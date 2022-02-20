@@ -303,93 +303,37 @@ public class JavaCalculator implements ActionListener {
 	}
 
 	// вычисления, где формула зависит от ранее присвоенной операции
-	public double calculate() {
-		switch (operation) {
-		case PLUS:
-			output = input1 + input2;
-			break;
-		case MINUS:
-			output = input1 - input2;
-			break;
-		case MULTIPLE:
-			output = input1 * input2;
-			break;
-		case ARCSIN:
-			output = Math.asin(input1);
-			break;
-		case ARCCOS:
-			output = Math.acos(input1);
-			break;
-		case ARCTG:
-			output = Math.atan(input1);
-			break;
-		case ARCCTG:
-			output = 1 / Math.atan(input1);
-			break;
-		case SIN:
-			output = Math.sin(Math.toRadians(input1));
-			break;
-		case COS:
-			output = Math.cos(Math.toRadians(input1));
-			break;
-		case TG:
-			output = Math.tan(Math.toRadians(input1));
-			break;
-		case CTG:
-			output = 1 / Math.tan(Math.toRadians(input1));
-			break;
-		case SQRT:
-			output = Math.sqrt(input1);
-			break;
-		case LOGARITHM:
-			output = Math.log10(input1) / Math.log10(input2);
-			break;
-		case POWER:
-			output = Math.pow(input1, input2);
-			break;
-		case FACTORIAL:
-			long result = 1;
-			for (long i = 1; i <= input1; i++) {
-				result = result * i;
-			}
-			output = result;
-			break;
-		case DIVIDE:
-			output = input1 / input2;
-			break;
-		case PERCENT:
-			output = input2 * input1 / 100;
-			break;
-		case SQARE:
-			output = input1 * input1;
-			break;
-		case CUBE:
-			output = Math.pow(input1, 3);
-			break;
-		case LG:
-			output = Math.log10(input1);
-			break;
-		case LN:
-			output = Math.log(input1);
-			break;
-		case CH:
-			output = (Math.pow(2.7183, input1) + Math.pow(2.7183, (-1) * input1)) / 2;
-			break;
-		case SH:
-			output = (Math.pow(2.7183, input1) - Math.pow(2.7183, (-1) * input1)) / 2;
-			break;
-		case TH:
-			output = (Math.pow(2.7183, input1) - Math.pow(2.7183, (-1) * input1)) / (Math.pow(2.7183, input1) + Math.pow(2.7183, (-1) * input1));
-			break;
-		case CTH:
-			output = (Math.pow(2.7183, input1) + Math.pow(2.7183, (-1) * input1)) / (Math.pow(2.7183, input1) - Math.pow(2.7183, (-1) * input1));
-			break;
-		case TEN:
-			output = Math.pow(10, input1);
-			break;
-		case BACK:
-			output = 1 / input1;
-			break;
+	public void calculate() {
+		Map<Operation, Double> op = new HashMap<>();
+		op.put(Operation.PLUS, input1 + input2);
+		op.put(Operation.MINUS, input1 - input2);
+		op.put(Operation.MULTIPLE, input1 * input2);
+		op.put(Operation.ARCSIN, Math.asin(input1));
+		op.put(Operation.ARCCOS, Math.acos(input1));
+		op.put(Operation.ARCTG, Math.atan(input1));
+		op.put(Operation.ARCCTG, 1 / Math.atan(input1));
+		op.put(Operation.SIN, Math.sin(Math.toRadians(input1)));
+		op.put(Operation.COS, Math.cos(Math.toRadians(input1)));
+		op.put(Operation.TG, Math.tan(Math.toRadians(input1)));
+		op.put(Operation.CTG, 1 / Math.tan(Math.toRadians(input1)));
+		op.put(Operation.SQRT, Math.sqrt(input1));
+		op.put(Operation.LOGARITHM, Math.log10(input1) / Math.log10(input2));
+		op.put(Operation.POWER, Math.pow(input1, input2));
+		op.put(Operation.DIVIDE, input1 / input2);
+		op.put(Operation.PERCENT, input2 * input1 / 100);
+		op.put(Operation.SQARE, input1 * input1);
+		op.put(Operation.CUBE, Math.pow(input1, 3));
+		op.put(Operation.LG, Math.log10(input1));
+		op.put(Operation.LN, Math.log(input1));
+		op.put(Operation.CH, (Math.pow(2.7183, input1) + Math.pow(2.7183, (-1) * input1)) / 2);
+		op.put(Operation.SH, (Math.pow(2.7183, input1) - Math.pow(2.7183, (-1) * input1)) / 2);
+		op.put(Operation.TH, (Math.pow(2.7183, input1) - Math.pow(2.7183, (-1) * input1)) / (Math.pow(2.7183, input1) + Math.pow(2.7183, (-1) * input1)));
+		op.put(Operation.CTH, (Math.pow(2.7183, input1) + Math.pow(2.7183, (-1) * input1)) / (Math.pow(2.7183, input1) - Math.pow(2.7183, (-1) * input1)));
+		op.put(Operation.TEN, Math.pow(10, input1));
+		op.put(Operation.BACK, 1 / input1);
+		op.put(Operation.NULL, input2);
+		
+		switch(operation) {
 		case DOUBLEFACT:
 			long result2 = 1;
 			for (Long k = Math.round(input1); k > 0; k = k - 2) {
@@ -397,11 +341,16 @@ public class JavaCalculator implements ActionListener {
 			}
 			output = result2;
 			break;
-		case NULL:
-			output = input2;
+		case FACTORIAL:	
+			long result = 1;
+			for (long i = 1; i <= input1; i++) {
+				result = result * i;
+			}
+			output = result;
 			break;
+		default:
+			output = op.get(operation);
 		}
-		return 0;
 	}
 
 	// перечисление всех операций, где NULL - операция по умолчанию, использущаяся,
