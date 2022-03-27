@@ -1,10 +1,10 @@
-package test.java.com.uni;
+package test.java.hummel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import main.java.com.uni.JavaCalculator;
+import main.java.hummel.JavaCalculator;
 
 class JavaCalculatorTests {
 	JavaCalculator calculator = new JavaCalculator();
