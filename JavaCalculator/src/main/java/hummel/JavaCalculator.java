@@ -1,4 +1,4 @@
-package main.java.hummel;
+﻿package main.java.hummel;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -225,7 +225,7 @@ public class JavaCalculator implements ActionListener {
 			}
 
 			panel.add(button[32]);
-			button[32].setText("РќР°Р·Р°Рґ");
+			button[32].setText("Назад");
 		} else {
 			panel.setLayout(new GridLayout(7, 4));
 			isExtended = false;
@@ -236,7 +236,7 @@ public class JavaCalculator implements ActionListener {
 			}
 
 			panel.add(button[32]);
-			button[32].setText("Р�РЅР¶РµРЅРµСЂ");
+			button[32].setText("Инженер");
 		}
 	}
 
@@ -249,18 +249,18 @@ public class JavaCalculator implements ActionListener {
 	}
 
 	public void oneNumber(Operation op, JButton button) {
-		input1 = Double.parseDouble(outputField.getText()); // СЃС‡РёС‚С‹РІР°РµРј РІРІРµРґС‘РЅРЅС‹Рµ СЃРёРјРІРѕР»С‹ Рё РїСЂРµРѕР±СЂР°Р·СѓРµРј РёС… РІ С‡РёСЃР»Рѕ
-		operation = op; // РїСЂРёСЃРІР°РёРІР°РµРј РѕРїРµСЂР°С†РёСЋ
-		calculate(); // РІС‹РїРѕР»РЅСЏРµРј РІС‹С‡РёСЃР»РµРЅРёРµ, С„РѕСЂРјСѓР»Р° РєРѕС‚РѕСЂРѕРіРѕ РјРµРЅСЏРµС‚СЃСЏ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РѕРїРµСЂР°С†РёРё
-		final String result = new DecimalFormat("#.###############").format(output); // РѕРєСЂСѓРіР»РµРЅРёРµ
-		outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result); // РІС‹РІРѕРґРёРј СЂРµР·СѓР»СЊС‚Р°С‚
+		input1 = Double.parseDouble(outputField.getText());
+		operation = op;
+		calculate(); 
+		final String result = new DecimalFormat("#.###############").format(output); 
+		outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result); 
 	}
 
 	public void twoNumbers(Operation op, JButton button) {
 		notInclude = outputField.getText().length() + button.getText().length();
-		input1 = Double.parseDouble(outputField.getText()); // СЃС‡РёС‚С‹РІР°РµРј РІРІРµРґС‘РЅРЅС‹Рµ СЃРёРјРІРѕР»С‹ Рё РїСЂРµРѕР±СЂР°Р·СѓРµРј РёС… РІ С‡РёСЃР»Рѕ
-		operation = op; // РїСЂРёСЃРІР°РёРІР°РµРј РѕРїРµСЂР°С†РёСЋ
-		outputField.setText(outputField.getText() + button.getText()); // РІС‹РІРѕРґРёРј РѕРїРµСЂР°С†РёСЋ
+		input1 = Double.parseDouble(outputField.getText()); 
+		operation = op;
+		outputField.setText(outputField.getText() + button.getText());
 	}
 
 	public void calculate() {
