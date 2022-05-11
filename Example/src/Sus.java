@@ -1,41 +1,41 @@
-
+п»ї
 import java.util.Random;
 import java.util.Scanner;
 
 public class Sus {
 
-    public static void main(String[] args) {
-        char LetterArray[] = {'Б', 'В', 'Г', 'Д', 'Ж', 'З', 'К', 'Л', 'М', 'Н', 'П', 'Р', 'С', 'Т', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ'};
+	public static void main(String[] args) {
+		char LetterArray[] = { 'Р‘', 'Р’', 'Р“', 'Р”', 'Р–', 'Р—', 'Рљ', 'Р›', 'Рњ', 'Рќ', 'Рџ', 'Р ', 'РЎ', 'Рў', 'Р¤', 'РҐ', 'Р¦', 'Р§', 'РЁ', 'Р©' };
 
-        Scanner in = new Scanner(System.in);
-        System.out.print("Введите количество прописных букв n: ");
+		Scanner in = new Scanner(System.in);
+		System.out.print("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕРїРёСЃРЅС‹С… Р±СѓРєРІ n: ");
 
-        boolean kindaSus = false;
-        int parsedNum = 0;
-        String unparsedString;
-        
-        do {
-        	kindaSus = false;
-            unparsedString = in.nextLine();
-            for (int i = 0; i<= unparsedString.length()-1; i++) {
-            	if (Character.isDigit(unparsedString.charAt(i)) == false) {
-            		kindaSus = true;
-            		break;
-            	}
-            }
-        } while (kindaSus == true);
+		boolean kindaSus = false;
+		int parsedNum = 0;
+		String unparsedString;
 
-        try {
-            parsedNum = Integer.parseInt(unparsedString);
-        } catch (ArrayIndexOutOfBoundsException arre) {
-            System.out.println("Количество прописных букв: " + unparsedString);
-        }
+		do {
+			kindaSus = false;
+			unparsedString = in.nextLine();
+			for (int i = 0; i <= unparsedString.length() - 1; i++) {
+				if (!Character.isDigit(unparsedString.charAt(i))) {
+					kindaSus = true;
+					break;
+				}
+			}
+		} while (kindaSus);
 
-        Random rand = new Random();
+		try {
+			parsedNum = Integer.parseInt(unparsedString);
+		} catch (ArrayIndexOutOfBoundsException arre) {
+			System.out.println("РљРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕРїРёСЃРЅС‹С… Р±СѓРєРІ: " + unparsedString);
+		}
 
-        for (int i = 0; i < parsedNum; i++) {
-            System.out.print(" " + LetterArray[rand.nextInt(LetterArray.length)]);
-        }
+		Random rand = new Random();
 
-    }
+		for (int i = 0; i < parsedNum; i++) {
+			System.out.print(" " + LetterArray[rand.nextInt(LetterArray.length)]);
+		}
+
+	}
 }
