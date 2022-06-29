@@ -1,6 +1,7 @@
-п»їpublic class HeapSort {
+package main.java.hummel;
+public class HeapSort {
 	public static void main(String args[]) {
-		int arr[] = {5, 4, 3, 2, 1, 9, 9, 8, 7, 6, 15, 14, 13, 12, 11};
+		int arr[] = {8, 4, 8, 13, 1, 10, 9, 5, 7, 6, 11, 14, 2, 12, 15};
 		
 		System.out.println("Start array is");
 		printArray(arr);
@@ -12,7 +13,7 @@
 		printArray(arr);
 	}
 
-	/* Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ РІС‹РІРѕРґР° РЅР° СЌРєСЂР°РЅ РјР°СЃСЃРёРІР° СЂР°Р·РјРµСЂР° n */
+	/* Вспомогательная функция для вывода на экран массива размера n */
 	static void printArray(int arr[]) {
 		int n = arr.length;
 		for (int i = 0; i < n; ++i) {
@@ -21,11 +22,11 @@
 		System.out.println();
 	}
 
-	// РџСЂРѕС†РµРґСѓСЂР° РґР»СЏ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РІ РґРІРѕРёС‡РЅСѓСЋ РєСѓС‡Сѓ РїРѕРґРґРµСЂРµРІР° СЃ РєРѕСЂРЅРµРІС‹Рј СѓР·Р»РѕРј i, С‡С‚Рѕ СЏРІР»СЏРµС‚СЃСЏ РёРЅРґРµРєСЃРѕРј РІ arr[]. n - СЂР°Р·РјРµСЂ РєСѓС‡Рё
+	// Процедура для преобразования в двоичную кучу поддерева с корневым узлом i, что является индексом в arr[]. n - размер кучи
 	void heapify(int arr[], int n, int i) {
-		int max = i; // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РЅР°РёР±РѕР»СЊС€РёР№ СЌР»РµРјРµРЅС‚ РєР°Рє РєРѕСЂРµРЅСЊ
-		int l = 2 * i + 1; // Р»РµРІС‹Р№ = 2*i + 1
-		int r = 2 * i + 2; // РїСЂР°РІС‹Р№ = 2*i + 2
+		int max = i; // Инициализируем наибольший элемент как корень
+		int l = 2 * i + 1; // левый = 2*i + 1
+		int r = 2 * i + 2; // правый = 2*i + 2
 		boolean flag = true;
 
 		System.out.println("I = " + Integer.toString(i) + "; Arr[I] = " + Integer.toString(arr[i]));
@@ -43,7 +44,7 @@
 			flag = false;
 		}
 		
-		// Р•СЃР»Рё Р»РµРІС‹Р№ РґРѕС‡РµСЂРЅРёР№ СЌР»РµРјРµРЅС‚ Р±РѕР»СЊС€Рµ РєРѕСЂРЅСЏ
+		// Если левый дочерний элемент больше корня
 		if (l < n && arr[l] > arr[max]) {
 			System.out.println("Arr[L] > Arr[Max] => Max = L = " + Integer.toString(l) + "; Arr[Max] = " + Integer.toString(arr[l]));
 			max = l;
@@ -51,7 +52,7 @@
 			System.out.println("Arr[L] < Arr[Max]");
 		}
 
-		// Р•СЃР»Рё РїСЂР°РІС‹Р№ РґРѕС‡РµСЂРЅРёР№ СЌР»РµРјРµРЅС‚ Р±РѕР»СЊС€Рµ, С‡РµРј СЃР°РјС‹Р№ Р±РѕР»СЊС€РѕР№ СЌР»РµРјРµРЅС‚ РЅР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚
+		// Если правый дочерний элемент больше, чем самый большой элемент на данный момент
 		if (r < n && arr[r] > arr[max]) {
 			System.out.println("Arr[R] > Arr[Max] => Max = R = " + Integer.toString(r) + "; Arr[Max] = " + Integer.toString(arr[r]));
 			max = r;
@@ -60,14 +61,14 @@
 			System.out.println("Arr[R] < Arr[Max]");
 		}
 		
-		// Р•СЃР»Рё СЃР°РјС‹Р№ Р±РѕР»СЊС€РѕР№ СЌР»РµРјРµРЅС‚ РЅРµ РєРѕСЂРµРЅСЊ
+		// Если самый большой элемент не корень
 		if (max != i) {
 			System.out.println("Max <> I => Swap(Arr[I], Arr[Max])");
 			int swap = arr[i];
 			arr[i] = arr[max];
 			arr[max] = swap;
 			printArray(arr);
-			// Р РµРєСѓСЂСЃРёРІРЅРѕ РїСЂРµРѕР±СЂР°Р·СѓРµРј РІ РґРІРѕРёС‡РЅСѓСЋ РєСѓС‡Сѓ Р·Р°С‚СЂРѕРЅСѓС‚РѕРµ РїРѕРґРґРµСЂРµРІРѕ
+			// Рекурсивно преобразуем в двоичную кучу затронутое поддерево
 			heapify(arr, n, max);
 		} else {
 			System.out.println("Max = I");
@@ -80,8 +81,8 @@
 		System.out.println();
 		System.out.println();
 		System.out.println("Making heap");
-		// РџРѕСЃС‚СЂРѕРµРЅРёРµ РєСѓС‡Рё (РїРµСЂРµРіСЂСѓРїРїРёСЂСѓРµРј РјР°СЃСЃРёРІ)
-		for (int i = 6; i >= 0; i--) {
+		// Построение кучи (перегруппируем массив)
+		for (int i = n / 2 - 1; i >= 0; i--) {
 			heapify(arr, n, i);
 			printArray(arr);
 			System.out.println();
@@ -89,9 +90,9 @@
 		System.out.println();
 		System.out.println("Taking elements");
 
-		// РћРґРёРЅ Р·Р° РґСЂСѓРіРёРј РёР·РІР»РµРєР°РµРј СЌР»РµРјРµРЅС‚С‹ РёР· РєСѓС‡Рё
+		// Один за другим извлекаем элементы из кучи
 		for (int i = n - 1; i >= 0; i--) {
-			// РџРµСЂРµРјРµС‰Р°РµРј С‚РµРєСѓС‰РёР№ РєРѕСЂРµРЅСЊ РІ РєРѕРЅРµС†
+			// Перемещаем текущий корень в конец
 			int temp = arr[0];
 			arr[0] = arr[i];
 			arr[i] = temp;
@@ -99,10 +100,6 @@
 			System.out.println("N = " + Integer.toString(i) + "; Swap(Arr[0], Arr[N])");
 			System.out.println("Arr[0] = " + Integer.toString(arr[0]) + "; Arr[N] = " + Integer.toString(arr[i]));
 			printArray(arr);
-			System.out.println();
-			
-			// Р’С‹Р·С‹РІР°РµРј РїСЂРѕС†РµРґСѓСЂСѓ heapify РЅР° СѓРјРµРЅСЊС€РµРЅРЅРѕР№ РєСѓС‡Рµ
-			System.out.println("Heapify(Arr, " + Integer.toString(i) + ", 0)");
 			heapify(arr, i, 0);
 			printArray(arr);
 			System.out.println();

@@ -15,10 +15,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class JavaCalculator implements ActionListener {
-	private final JButton[] button = new JButton[50]; 
-	private Operation operation; 
+	private final JButton[] button = new JButton[50];
+	private Operation operation;
 	private double output;
-	private double input1; 
+	private double input1;
 	private double input2;
 	private final JTextField outputField = new JTextField(20);
 	private final JPanel panel = new JPanel();
@@ -93,12 +93,12 @@ public class JavaCalculator implements ActionListener {
 		registerButton(button[32], "\u0418\u043D\u0436\u0435\u043D\u0435\u0440");
 
 		outputField.setFont(outputField.getFont().deriveFont(40f));
-		outputField.setHorizontalAlignment(SwingConstants.RIGHT); 
+		outputField.setHorizontalAlignment(SwingConstants.RIGHT);
 		outputField.setEditable(false);
 		operation = Operation.NULL;
 		frame.add(outputField, BorderLayout.NORTH);
 		frame.add(panel, BorderLayout.CENTER);
-		frame.setVisible(true); 
+		frame.setVisible(true);
 		frame.setSize(600, 700);
 		frame.setLocationRelativeTo(null);
 	}
@@ -146,7 +146,7 @@ public class JavaCalculator implements ActionListener {
 		one.put(button[41], Operation.CTH);
 		one.put(button[42], Operation.TEN);
 		one.put(button[43], Operation.BACK);
-		
+
 		Map<JButton, Operation> two = new HashMap<>();
 		two.put(button[17], Operation.PLUS);
 		two.put(button[16], Operation.MINUS);
@@ -165,7 +165,7 @@ public class JavaCalculator implements ActionListener {
 
 		for (JButton btn: one.keySet()) {
 			if (jbutton == btn) {
-				oneNumber(one.get(btn), btn); 
+				oneNumber(one.get(btn), btn);
 				break;
 			}
 		}
@@ -176,7 +176,7 @@ public class JavaCalculator implements ActionListener {
 				break;
 			}
 		}
-		
+
 		for (JButton btn: vd.keySet()) {
 			if (jbutton == btn) {
 				enable(vd.get(btn));
@@ -187,8 +187,8 @@ public class JavaCalculator implements ActionListener {
 		for (int i = 0; i < 11; i++) {
 			if (jbutton == button[i]) {
 				String t = outputField.getText();
-				t += button[i].getText(); 
-				outputField.setText(t); 
+				t += button[i].getText();
+				outputField.setText(t);
 				break;
 			}
 		}
@@ -201,7 +201,7 @@ public class JavaCalculator implements ActionListener {
 			break;
 		case 1:
 			output = input1 = input2 = 0;
-			outputField.setText(""); 
+			outputField.setText("");
 			break;
 		case 2:
 			equals();
@@ -232,7 +232,7 @@ public class JavaCalculator implements ActionListener {
 			panel.remove(button[32]);
 
 			for (int exNum : exNums) {
-				panel.remove(button[exNum]); 
+				panel.remove(button[exNum]);
 			}
 
 			panel.add(button[32]);
@@ -241,24 +241,24 @@ public class JavaCalculator implements ActionListener {
 	}
 
 	public void equals() {
-		input2 = Double.parseDouble(outputField.getText().substring(notInclude)); 
-																					
-		calculate(); 
+		input2 = Double.parseDouble(outputField.getText().substring(notInclude));
+
+		calculate();
 		final String result = new DecimalFormat("#.###############").format(output);
-		outputField.setText(outputField.getText() + "=" + result); 
+		outputField.setText(outputField.getText() + "=" + result);
 	}
 
 	public void oneNumber(Operation op, JButton button) {
 		input1 = Double.parseDouble(outputField.getText());
 		operation = op;
-		calculate(); 
-		final String result = new DecimalFormat("#.###############").format(output); 
-		outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result); 
+		calculate();
+		final String result = new DecimalFormat("#.###############").format(output);
+		outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result);
 	}
 
 	public void twoNumbers(Operation op, JButton button) {
 		notInclude = outputField.getText().length() + button.getText().length();
-		input1 = Double.parseDouble(outputField.getText()); 
+		input1 = Double.parseDouble(outputField.getText());
 		operation = op;
 		outputField.setText(outputField.getText() + button.getText());
 	}
@@ -315,17 +315,5 @@ public class JavaCalculator implements ActionListener {
 
 	public enum Operation {
 		NULL, ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL, LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER, SIN, SQRT, TG, SQARE, CUBE, LG, LN, CH, SH, TH, CTH, TEN, BACK, DOUBLEFACT;
-	}
-
-	public JButton getButton(int i) {
-		return button[i];
-	}
-
-	public boolean getExtended() {
-		return isExtended;
-	}
-
-	public double getOutput() {
-		return output;
 	}
 }
