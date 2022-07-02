@@ -1,0 +1,27 @@
+package main.java.hummel;
+
+import java.util.Scanner;
+
+public class Lab1_03 {
+	private static Scanner input = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		System.out.print("Enter the number of elements: ");
+		int n = Integer.parseInt(input.nextLine());
+		System.out.println();
+		int[] arr = new int[n];
+
+		for (int i = 0; i < n; i++) {
+			System.out.print("Enter the element: ");
+			arr[i] = Integer.parseInt(input.nextLine());
+		}
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (arr[i] == arr[j] && i != j) {
+
+				}
+			}
+		}
+	}
+}

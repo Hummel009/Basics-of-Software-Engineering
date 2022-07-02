@@ -1,0 +1,19 @@
+package main.java.hummel;
+
+import java.util.Scanner;
+
+public class Lab1_02 {
+	public static void main(String[] args) {
+		int N;
+		Scanner input = new Scanner(System.in);
+		do {
+			System.out.println("Enter the quantity of input array elements:");
+			try {
+				N = Integer.parseInt(input.nextLine());
+			} catch (NumberFormatException e) {
+
+			}
+		} while (N <= 1 && Error > 0);
+		System.out.println(N);
+	}
+}

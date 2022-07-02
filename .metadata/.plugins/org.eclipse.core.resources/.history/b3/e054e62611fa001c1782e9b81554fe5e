@@ -1,0 +1,22 @@
+package main.java.hummel;
+
+public class Lab1_05 {
+
+	public static void main(String[] args) {
+		double eps = 0;
+		double x = 0.1;
+
+		while (x < 1.0) {
+			int k = 1;
+			double f = 0;
+			do {
+				double temp = f;
+				f += (Math.pow(x, 3*k+1))/((4*k-1)*(4*k-2));
+				k +=1;
+				eps = f - temp;
+			} while (eps > 1e-5);
+
+			x +=0.1;
+		}
+	}
+}

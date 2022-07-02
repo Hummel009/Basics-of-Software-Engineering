@@ -1,0 +1,120 @@
+package main.java.hummel;
+
+import java.util.*;
+
+public class Lab1_06 {
+	public static Scanner input = new Scanner(System.in);
+	public static HashMap<Months, Integer> daysSinceNY = new HashMap<>();
+	public static HashMap<Months, Integer> monthCapacity = new HashMap<>();
+
+	static {
+		daysSinceNY.put(Months.JAN, 0);
+		daysSinceNY.put(Months.FEB, 31);
+		daysSinceNY.put(Months.MAR, 59);
+		daysSinceNY.put(Months.APR, 90);
+		daysSinceNY.put(Months.MAY, 120);
+		daysSinceNY.put(Months.JUN, 151);
+		daysSinceNY.put(Months.JUL, 181);
+		daysSinceNY.put(Months.AUG, 212);
+		daysSinceNY.put(Months.SEP, 243);
+		daysSinceNY.put(Months.OCT, 273);
+		daysSinceNY.put(Months.NOV, 304);
+		daysSinceNY.put(Months.DEC, 334);
+
+		monthCapacity.put(Months.JAN, 31);
+		monthCapacity.put(Months.FEB, 28);
+		monthCapacity.put(Months.MAR, 31);
+		monthCapacity.put(Months.APR, 30);
+		monthCapacity.put(Months.MAY, 31);
+		monthCapacity.put(Months.JUN, 30);
+		monthCapacity.put(Months.JUL, 31);
+		monthCapacity.put(Months.AUG, 31);
+		monthCapacity.put(Months.SEP, 30);
+		monthCapacity.put(Months.OCT, 31);
+		monthCapacity.put(Months.NOV, 30);
+		monthCapacity.put(Months.DEC, 31);
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Enter the date in three steps like, 2002 07 10");
+		int year;
+		do {
+			System.out.print("Enter the year: ");
+			year = input.nextInt();
+		} while (year < 1);
+
+		boolean isHigher = year % 4 == 0 && year % 100 != 0 && year % 400 == 0;
+
+		Months month = null;
+		int temp1;
+		do {
+			System.out.print("Enter the month number: ");
+			temp1 = input.nextInt();
+			for (Months m : Months.values()) {
+				if (m.getNum() == temp1) {
+					month = m;
+					break;
+				}
+			}
+		} while (temp1 > 12 || temp1 < 1);
+
+		int date;
+		int temp2;
+		if (month == Months.FEB && isHigher) {
+			temp2 = 29;
+		} else {
+			temp2 = monthCapacity.get(month);
+		}
+		do {
+			System.out.print("Enter the day: ");
+			date = input.nextInt();
+		} while (date > temp2 || date < 1);
+
+		System.out.println(date + " " + month.toString() + " " + year);
+
+		int result = date + daysSinceNY.get(month) + (year - 1) * 365;
+		int additional = (year - 1) / 4 - (year - 1) / 100 + (year - 1) / 400;
+		if (isHigher && daysSinceNY.get(month) + date > 59) {
+			additional += 1;
+		}
+		result += additional;
+		int day = result % 7;
+
+		Days dd = null;
+		for (Days d : Days.values()) {
+			if (d.getNum() == day) {
+				dd = d;
+				break;
+			}
+		}
+		System.out.println(dd.toString());
+	}
+
+	public enum Days {
+		MON(1), TUE(2), WED(3), THI(4), FRI(5), SAT(6), SUN(0);
+
+		private int num;
+
+		Days(int i) {
+			num = i;
+		}
+
+		public int getNum() {
+			return num;
+		}
+	}
+
+	public enum Months {
+		JAN(1), FEB(2), MAR(3), APR(4), MAY(5), JUN(6), JUL(7), AUG(8), SEP(9), OCT(10), NOV(11), DEC(12);
+
+		private int num;
+
+		Months(int i) {
+			num = i;
+		}
+
+		public int getNum() {
+			return num;
+		}
+	}
+}

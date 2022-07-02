@@ -1,0 +1,15 @@
+package main.java.hummel;
+
+import java.util.Scanner;
+
+public class Lab1_06 {
+	public static Scanner input = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		System.out.println("Enter the date in three steps like 10 07 2002");
+		int date = input.nextInt();
+		int month = input.nextInt();
+		int year = input.nextInt();
+		System.out.println(date + "." + month + "." + year);
+	}
+}

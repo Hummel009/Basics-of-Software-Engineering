@@ -1,0 +1,28 @@
+package main.java.hummel;
+
+import java.util.*;
+
+public class Lab1_04 {
+	private static Scanner input = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		System.out.print("Enter the size of matrix: ");
+		int n = Integer.parseInt(input.nextLine());
+		System.out.println();
+		int[][] matrix = new int[n][n];
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				System.out.print("Enter the element: ");
+				matrix[i][j] = Integer.parseInt(input.nextLine());
+			}
+		}
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				System.out.print(matrix[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+}

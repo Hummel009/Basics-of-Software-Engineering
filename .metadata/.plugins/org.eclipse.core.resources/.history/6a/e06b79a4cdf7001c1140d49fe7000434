@@ -1,0 +1,26 @@
+package main.java.hummel;
+
+public class Lab1_01 {
+	public static void main(String[] args) {
+		double x = 0.6;
+		while(x <= 1.1) {
+			for (int n = 10; n <= 15; n++) {
+				double sum = 0;
+				for (int k = 1; k <= n; k++) {
+			        double termR1 = Math.exp(1.2 * k);
+			        double termR2 = (k - 10) / (k + 30);
+			        double numerator = Math.exp(Math.log(termR1 + termR2) / k);
+			        double TermR3 = Math.sqrt((k * Math.exp(Math.log(n + 5) / 3)));
+			        double TermR4 = Math.log(Math.sqrt(n * x));
+			        double Denominator = TermR3 + TermR4;
+			        sum += numerator / Denominator;
+				}
+				double TermL1 = Math.exp(n * x) / 2;
+				double TermL2 = Math.exp(Math.log(n * x) / 3);
+				double F = sum + Math.exp(Math.log(TermL1 + TermL2) / 3);
+				System.out.println("X = " + x + ", N = " + n + ", F = " + F);
+			}
+			x +=0.1;
+		}
+	}
+}

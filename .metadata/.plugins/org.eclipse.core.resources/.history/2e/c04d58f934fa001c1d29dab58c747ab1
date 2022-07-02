@@ -1,0 +1,40 @@
+package main.java.hummel;
+
+import java.util.*;
+
+public class Lab1_06 {
+	public static Scanner input = new Scanner(System.in);
+	public static HashMap<Integer, Integer> daysSinceNY = new HashMap<>();
+
+	static {
+		daysSinceNY.put(1, 0);
+		daysSinceNY.put(2, 31);
+		daysSinceNY.put(3, 59);
+		daysSinceNY.put(4, 90);
+		daysSinceNY.put(5, 120);
+		daysSinceNY.put(6, 151);
+		daysSinceNY.put(7, 181);
+		daysSinceNY.put(8, 212);
+		daysSinceNY.put(9, 243);
+		daysSinceNY.put(10, 273);
+		daysSinceNY.put(11, 304);
+		daysSinceNY.put(12, 334);
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Enter the date in three steps like 2002 07 10");
+		int year;
+		do {
+			year = input.nextInt();
+		} while (year < 1);
+
+		int month;
+		do {
+			month = input.nextInt();
+		} while (month > 12 || month < 1);
+
+		int date = input.nextInt();
+		System.out.println(date + "." + month + "." + year);
+		int days = date + daysSinceNY.get(month) + (year - 1) * 365;
+	}
+}

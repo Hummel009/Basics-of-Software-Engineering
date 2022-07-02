@@ -1,0 +1,82 @@
+
+]
+java:S1197"*Move the array designators [] to the type.(òÂòú8›öÃÔü/H¹RMINORZ
+CODE_SMELL
+M
+java:S2119"Save and re-use this "Random".(¡Å”¦8›öÃÔü/H•RCRITICALZBUG
+†
+java:S1450R"SRemove the "scan" field and declare it as a local variable in the relevant methods.(ÖÕ°Ñ8–®İÔü/HÀRMINORZ
+CODE_SMELL
+I	java:S121"Missing curly brace.(è¤óù8–®İÔü/HÅRCRITICALZ
+CODE_SMELL
+I	java:S121	"Missing curly brace.(è¤óù8–®İÔü/HÂRCRITICALZ
+CODE_SMELL
+N	java:S1217"Missing curly brace.( ·ùÿÿÿÿ8–®İÔü/HÇRCRITICALZ
+CODE_SMELL
+N	java:S121"Missing curly brace.(¢óİœşÿÿÿÿ8–®İÔü/HÃRCRITICALZ
+CODE_SMELL
+s
+java:S2184
+"BCast one of the operands of this addition operation to a "double".(õ¹Á¤ıÿÿÿÿ8›öÃÔü/H´RMINORZBUG
+r
+java:S1213R"?Move this static variable to comply with Java Code Conventions.(ÖÕ°Ñ8–®İÔü/H¿RMINORZ
+CODE_SMELL
+M
+java:S2119"Save and re-use this "Random".(¡Å”¦8›öÃÔü/H«RCRITICALZBUG
+_
+java:S1197C",Move the array designators [][] to the type.(şÍœ8›öÃÔü/H¥RMINORZ
+CODE_SMELL
+_
+java:S1197",Move the array designators [][] to the type.(óİµŸ8›öÃÔü/H¶RMINORZ
+CODE_SMELL
+N	java:S121"Missing curly brace.(÷×Éºüÿÿÿÿ8–®İÔü/HÄRCRITICALZ
+CODE_SMELL
+N	java:S121"Missing curly brace.(ƒµöŒşÿÿÿÿ8–®İÔü/HÁRCRITICALZ
+CODE_SMELL
+^
+java:S1172"+Remove this unused method parameter "size".(òÂòú8›öÃÔü/H¬RMAJORZ
+CODE_SMELL
+_
+java:S1197",Move the array designators [][] to the type.(àË›Á8›öÃÔü/H–RMINORZ
+CODE_SMELL
+s
+java:S2184"BCast one of the operands of this addition operation to a "double".(¼¶÷ÿÿÿÿÿÿ8›öÃÔü/H¾RMINORZBUG
+ˆ	java:S1346"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(É ù¦úÿÿÿÿ8›öÃÔü/H¯RCRITICALZ
+CODE_SMELL
+	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬š¥D8›öÃÔü/H™RMINORZ
+CODE_SMELL
+\
+java:S1197"*Move the array designators [] to the type.(¬š¥D8›öÃÔü/HRMINORZ
+CODE_SMELL
+€	java:S100C"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şÍœ8›öÃÔü/HµRMINORZ
+CODE_SMELL
+Œ
+java:S3012G"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(÷µöÀ8›öÃÔü/H®RMINORZ
+CODE_SMELL
+N	java:S121E"Missing curly brace.(ƒµöŒşÿÿÿÿ8–®İÔü/HÈRCRITICALZ
+CODE_SMELL
+I	java:S121F"Missing curly brace.(è¤óù8–®İÔü/HÉRCRITICALZ
+CODE_SMELL
+€	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òÂòú8›öÃÔü/HRMINORZ
+CODE_SMELL
+_
+java:S1197C",Move the array designators [][] to the type.(şÍœ8›öÃÔü/H¢RMINORZ
+CODE_SMELL
+€	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óİµŸ8›öÃÔü/H¡RMINORZ
+CODE_SMELL
+N	java:S121 "Missing curly brace.(÷×Éºüÿÿÿÿ8–®İÔü/HÆRCRITICALZ
+CODE_SMELL
+]
+java:S1197C"*Move the array designators [] to the type.(şÍœ8›öÃÔü/HšRMINORZ
+CODE_SMELL
+]
+java:S1172"+Remove this unused method parameter "size".(¬š¥D8›öÃÔü/H¼RMAJORZ
+CODE_SMELL
+n
+java:S1943U"6Remove this use of constructor "Scanner(InputStream)".(¥šöèüÿÿÿÿ8–®İÔü/HÊRMINORZ
+CODE_SMELL
+^
+java:S1197'",Move the array designators [][] to the type.(åÖÑ8›öÃÔü/H¨RMINORZ
+CODE_SMELL
+€	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àË›Á8›öÃÔü/H³RMINORZ
+CODE_SMELL

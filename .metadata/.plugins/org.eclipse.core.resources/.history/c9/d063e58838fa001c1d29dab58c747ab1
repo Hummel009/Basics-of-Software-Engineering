@@ -1,0 +1,90 @@
+package main.java.hummel;
+
+import java.time.Month;
+import java.util.*;
+
+public class Lab1_06 {
+	public static Scanner input = new Scanner(System.in);
+	public static HashMap<Months, Integer> daysSinceNY = new HashMap<>();
+	public static HashMap<Months, Integer> daysInMonths = new HashMap<>();
+
+
+	static {
+		daysSinceNY.put(Months.JAN, 0);
+		daysSinceNY.put(Months.FEB, 31);
+		daysSinceNY.put(Months.MAR, 59);
+		daysSinceNY.put(Months.APR, 90);
+		daysSinceNY.put(Months.MAY, 120);
+		daysSinceNY.put(Months.JUN, 151);
+		daysSinceNY.put(Months.JUL, 181);
+		daysSinceNY.put(Months.AUG, 212);
+		daysSinceNY.put(Months.SEP, 243);
+		daysSinceNY.put(Months.OCT, 273);
+		daysSinceNY.put(Months.NOV, 304);
+		daysSinceNY.put(Months.DEC, 334);
+
+		daysInMonths.put(Months.JAN, 31);
+		daysInMonths.put(Months.FEB, 28);
+		daysInMonths.put(Months.MAR, 31);
+		daysInMonths.put(Months.APR, 30);
+		daysInMonths.put(Months.MAY, 31);
+		daysInMonths.put(Months.JUN, 30);
+		daysInMonths.put(Months.JUL, 31);
+		daysInMonths.put(Months.AUG, 31);
+		daysInMonths.put(Months.SEP, 30);
+		daysInMonths.put(Months.OCT, 31);
+		daysInMonths.put(Months.NOV, 30);
+		daysInMonths.put(Months.DEC, 31);
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Enter the date in three steps like 2002 07 10");
+		int year;
+		do {
+			year = input.nextInt();
+		} while (year < 1);
+
+		boolean higher = year % 4 == 0 && year % 100 != 0 && year % 400 == 0;
+
+		Months month = null;
+		int temp;
+		do {
+			temp = input.nextInt();
+			for (Months m: Months.values()) {
+				if (m.getNum() == temp) {
+					month = m;
+					break;
+				}
+			}
+		} while (temp > 12 || temp < 1);
+
+		int date;
+		int limit;
+		if (month == Months.FEB && higher) {
+			limit = 29;
+		} else {
+			limit = daysInMonths.get(month);
+		}
+
+		do {
+			date = input.nextInt();
+		} while (temp > 12 || temp < 1);
+
+
+		System.out.println(date + "." + month.num + "." + year);
+		int days = date + daysSinceNY.get(month) + (year - 1) * 365;
+	}
+
+	public enum Months {
+		JAN(1), FEB(2), MAR(3), APR(4), MAY(5), JUN(6), JUL(7), AUG(8), SEP(9), OCT(10), NOV(11), DEC(12);
+
+		public int num;
+		Months(int i) {
+			num = i;
+		}
+
+		public int getNum() {
+			return num;
+		}
+	}
+}

@@ -1,0 +1,18 @@
+package main.java.hummel;
+
+public class Lab1_05 {
+
+	public static void main(String[] args) {
+		double eps = 0;
+		double x = 0.1;
+
+		while (x < 1.0) {
+			int k = 1;
+
+			do {
+				k +=1;
+			} while (eps > 1e-5);
+			x +=0.1;
+		}
+	}
+}

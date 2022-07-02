@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;HeapSort.java&apos; to &apos;HeapSort/src/main.java.hummel&apos;&#x0D;&#x0A;- Original project: &apos;HeapSort&apos;&#x0D;&#x0A;- Destination element: &apos;HeapSort/src/main.java.hummel&apos;&#x0D;&#x0A;- Original element: &apos;HeapSort.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;main.java.hummel" element1="/src&lt;{HeapSort.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" log="/src&lt;&#x09;/src&lt;main.java.hummel" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1656519438792" units="1" version="1.0"/>
+</session>

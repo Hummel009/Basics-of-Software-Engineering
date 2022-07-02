@@ -1,0 +1,23 @@
+
+n
+java:S2184ê"HCast one of the operands of this multiplication operation to a "double".(Àïü°HßRMINORZBUG
+n
+java:S2184Õ"HCast one of the operands of this multiplication operation to a "double".(ùÃĞºHİRMINORZBUG
+s
+java:S2184ñ"HCast one of the operands of this multiplication operation to a "double".(ú¯àòşÿÿÿÿHâRMINORZBUG
+s
+java:S2184ñ"HCast one of the operands of this multiplication operation to a "double".(ú¯àòşÿÿÿÿHáRMINORZBUG
+l
+java:S3414	";Move this test class to the test folder in current project.(ÄüäÛøÿÿÿÿHÜRMAJORZ
+CODE_SMELL
+^
+java:S2039
+"3Explicitly declare the visibility for "calculator".(€¯ğ&HÛRMINORZ
+CODE_SMELL
+m
+java:S2184Ü"HCast one of the operands of this multiplication operation to a "double".(‡½á7HŞRMINORZBUG
+n
+java:S2184ê"HCast one of the operands of this multiplication operation to a "double".(Àïü°HàRMINORZBUG
+“
+java:S4144M"[Update this method so that its implementation is not identical to "testSNUMBER" on line 70.(ãš•úÿÿÿÿ8£í‘Öü/HÈRMAJORZ
+CODE_SMELL

@@ -12,7 +12,7 @@ public class Lab1_02 {
 			error = false;
 			System.out.print("Enter the quantity of numbers: ");
 			try {
-				n = Integer.parseInt(input.nextLine());
+				n = input.nextInt();
 			} catch (NumberFormatException e) {
 				error = true;
 			}
@@ -25,7 +25,7 @@ public class Lab1_02 {
 				error = false;
 				System.out.print("Enter the element: ");
 				try {
-					arr[i] = Integer.parseInt(input.nextLine());
+					arr[i] = input.nextInt();
 					if (arr[i] < 0) {
 						arr[i] *= -1;
 					}

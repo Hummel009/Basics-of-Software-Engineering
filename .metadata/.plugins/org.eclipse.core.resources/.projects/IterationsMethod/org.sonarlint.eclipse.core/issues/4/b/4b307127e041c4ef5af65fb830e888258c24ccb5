@@ -1,0 +1,10 @@
+
+m
+java:S2184"BCast one of the operands of this addition operation to a "double".(‚Ãäx8èòÌﬂ˝/HÜRMINORZBUG
+Ö
+java:S3012"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(òÅçøHáRMINORZ
+CODE_SMELL
+w	java:S116"LRename this field "M" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˘±ÁæHàRMINORZ
+CODE_SMELL
+|	java:S134S"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ÑÂÜ∑HâRCRITICALZ
+CODE_SMELL

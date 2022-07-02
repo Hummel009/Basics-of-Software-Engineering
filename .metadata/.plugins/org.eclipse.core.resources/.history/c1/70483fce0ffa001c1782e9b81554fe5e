@@ -1,0 +1,9 @@
+package main.java.hummel;
+
+import java.util.*;
+
+public class Lab1_05 {
+	public static void main(String[] args) {
+
+	}
+}

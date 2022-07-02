@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.internal.QuickAccess">
+		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_WIDTH" value="600"/>
+		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_HEIGHT" value="675"/>
+		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_SIZE" value="true"/>
+		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_LOCATION" value="false"/>
+		<list key="orderedElements">
+			<item value="org.eclipse.jdt.ui.edit.text.java.clean.up"/>
+			<item value="org.eclipse.equinox.p2.ui.sdk.install"/>
+			<item value="org.eclipse.debug.ui.launchView"/>
+			<item value="org.eclipse.jdt.debug.ui.preferences.VMPreferencePage"/>
+			<item value="org.eclipse.ui.preferencePages.Startup.Workspaces"/>
+			<item value="org.eclipse.jdt.junit.ResultView"/>
+			<item value="org.eclipse.ui.preferencePages.Views"/>
+		</list>
+		<list key="orderedProviders">
+			<item value="org.eclipse.ui.commands"/>
+			<item value="org.eclipse.ui.commands"/>
+			<item value="org.eclipse.e4.ui.parts"/>
+			<item value="org.eclipse.ui.preferences"/>
+			<item value="org.eclipse.ui.preferences"/>
+			<item value="org.eclipse.e4.ui.parts"/>
+			<item value="org.eclipse.ui.preferences"/>
+		</list>
+		<list key="textEntries">
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="2"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+		</list>
+		<list key="textArray">
+			<item value="clean"/>
+			<item value="insta"/>
+			<item value="launch"/>
+			<item value="jres"/>
+			<item value="jre"/>
+			<item value="workspa"/>
+			<item value="jun"/>
+			<item value="dark"/>
+		</list>
+	</section>
+	<section name="ImportExportAction">
+		<item key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID" value="org.eclipse.jdt.internal.ui.fatjarpackager.JarPackageWizard"/>
+		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.ui.wizards.import.Preferences"/>
+		<list key="ImportExportPage.STORE_EXPANDED_EXPORT_CATEGORIES">
+			<item value="org.eclipse.jdt.ui.Java"/>
+		</list>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
+	</section>
+	<section name="PreferencesImportWizard">
+		<item key="" value="D:\Eclipse\1.epf"/>
+		<list key="WizardPreferencesExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="D:\Eclipse\1.epf"/>
+		</list>
+	</section>
+</section>

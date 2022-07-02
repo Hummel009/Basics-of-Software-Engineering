@@ -1,0 +1,15 @@
+
+a
+java:S2864´"4Iterate over the "entrySet" instead of the "keySet".(áË¤äHÕRMAJORZ
+CODE_SMELL
+g
+java:S1213!";Move this constructor to comply with Java Code Conventions.(ÏëØ¢HÖRMINORZ
+CODE_SMELL
+P	java:S131Æ""Add a default case to this switch.(ìúÇVH×RCRITICALZ
+CODE_SMELL
+f
+java:S2864¦"4Iterate over the "entrySet" instead of the "keySet".(ÇšŒ›üÿÿÿÿHØRMAJORZ
+CODE_SMELL
+a
+java:S2864­"4Iterate over the "entrySet" instead of the "keySet".(ùßð²HÙRMAJORZ
+CODE_SMELL

@@ -1,0 +1,8 @@
+
+w	java:S116"LRename this field "M" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù±ç¾H¿RMINORZ
+CODE_SMELL
+|	java:S134G"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(„å†·H»RCRITICALZ
+CODE_SMELL
+Œ
+java:S3012m"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(˜¿8¯şüÔü/HÃRMINORZ
+CODE_SMELL

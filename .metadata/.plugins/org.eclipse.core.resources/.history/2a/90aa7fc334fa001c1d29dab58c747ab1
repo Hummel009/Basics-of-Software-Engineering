@@ -1,0 +1,32 @@
+package main.java.hummel;
+
+import java.util.*;
+
+public class Lab1_06 {
+	public static Scanner input = new Scanner(System.in);
+	public static HashMap<Integer, Integer> daysInMonths = new HashMap<>();
+
+	static {
+		daysInMonths.put(1, 0);
+		daysInMonths.put(2, 31);
+		daysInMonths.put(3, 59);
+		daysInMonths.put(4, 90);
+		daysInMonths.put(5, 120);
+		daysInMonths.put(6, 151);
+		daysInMonths.put(7, 181);
+		daysInMonths.put(8, 212);
+		daysInMonths.put(9, 243);
+		daysInMonths.put(10, 273);
+		daysInMonths.put(11, 304);
+		daysInMonths.put(12, 334);
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Enter the date in three steps like 2002 07 10");
+		int date = input.nextInt();
+		int month = input.nextInt();
+		int year = input.nextInt();
+		System.out.println(date + "." + month + "." + year);
+		int days = date + daysInMonths.get(month) + (year - 1) * 365;
+	}
+}
