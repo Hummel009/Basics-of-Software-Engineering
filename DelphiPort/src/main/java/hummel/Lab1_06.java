@@ -39,8 +39,7 @@ public class Lab1_06 {
 		System.out.println("Enter the date in three steps like, 2002 07 10");
 		int year;
 		do {
-			System.out.print("Enter the year: ");
-			year = input.nextInt();
+			year = HummelLib.readNumberUntilNoError(input, "Enter the year: ");
 		} while (year < 1);
 
 		boolean isHigher = year % 4 == 0 && year % 100 != 0 && year % 400 == 0;
@@ -48,8 +47,7 @@ public class Lab1_06 {
 		Month month = null;
 		int temp1;
 		do {
-			System.out.print("Enter the month number: ");
-			temp1 = input.nextInt();
+			temp1 = HummelLib.readNumberUntilNoError(input, "Enter the month number: ");
 			for (Month m : Month.values()) {
 				if (m.num == temp1) {
 					month = m;
@@ -66,8 +64,7 @@ public class Lab1_06 {
 			temp2 = monthCapacity.get(month);
 		}
 		do {
-			System.out.print("Enter the day: ");
-			date = input.nextInt();
+			date = HummelLib.readNumberUntilNoError(input, "Enter the day: ");
 		} while (date > temp2 || date < 1);
 
 		System.out.println(date + " " + month.toString() + " " + year);
@@ -90,22 +87,22 @@ public class Lab1_06 {
 		System.out.println(weekday.toString());
 	}
 
-	public enum Weekday {
-		MON(1), TUE(2), WED(3), THI(4), FRI(5), SAT(6), SUN(0);
-
-		public int num;
-
-		Weekday(int i) {
-			num = i;
-		}
-	}
-
 	public enum Month {
 		JAN(1), FEB(2), MAR(3), APR(4), MAY(5), JUN(6), JUL(7), AUG(8), SEP(9), OCT(10), NOV(11), DEC(12);
 
 		public int num;
 
 		Month(int i) {
+			num = i;
+		}
+	}
+
+	public enum Weekday {
+		MON(1), TUE(2), WED(3), THI(4), FRI(5), SAT(6), SUN(0);
+
+		public int num;
+
+		Weekday(int i) {
 			num = i;
 		}
 	}

@@ -2,11 +2,6 @@ package main.java.hummel;
 
 public class Lab1_05 {
 
-	public static void main(String[] args) {
-		doCalcsWithEps(1e-5);
-		doCalcsWithEps(1e-6);
-	}
-
 	public static void doCalcsWithEps(double limit) {
 		double eps = 0;
 		double x = 0.1;
@@ -24,5 +19,10 @@ public class Lab1_05 {
 			x += 0.1;
 		}
 		System.out.println();
+	}
+
+	public static void main(String[] args) {
+		doCalcsWithEps(1e-5);
+		doCalcsWithEps(1e-6);
 	}
 }

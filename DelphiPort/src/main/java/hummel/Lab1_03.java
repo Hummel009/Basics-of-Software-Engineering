@@ -6,14 +6,13 @@ public class Lab1_03 {
 	private static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		System.out.print("Enter the number of elements: ");
-		int n = input.nextInt();
+		int n = HummelLib.readNumberUntilNoError(input, "Enter the quantity of elements: ");
+
 		System.out.println();
 		int[] arr = new int[n];
 
 		for (int i = 0; i < n; i++) {
-			System.out.print("Enter the element: ");
-			arr[i] = input.nextInt();
+			arr[i] = HummelLib.readNumberUntilNoError(input, "Enter the element: ");
 		}
 
 		HashSet<Integer> nums = new HashSet<>();
@@ -28,7 +27,7 @@ public class Lab1_03 {
 
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				if (arr[i] == arr [j] && i != j) {
+				if (arr[i] == arr[j] && i != j) {
 					max = arr[i];
 					break;
 				}
@@ -37,7 +36,7 @@ public class Lab1_03 {
 
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				if (arr[i] == arr [j] && i != j && max < arr[i]) {
+				if (arr[i] == arr[j] && i != j && max < arr[i]) {
 					max = arr[i];
 				}
 			}
