@@ -2,7 +2,7 @@ package main.java.hummel;
 
 import java.util.*;
 
-public class Lab1_06 {
+public class Lab1_06_1 {
 	public static Scanner input = new Scanner(System.in);
 	public static HashMap<Month, Integer> daysSinceNY = new HashMap<>();
 	public static HashMap<Month, Integer> monthCapacity = new HashMap<>();
