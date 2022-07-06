@@ -6,13 +6,13 @@ public class Lab1_03 {
 	private static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		int n = HummelLib.readNumberUntilNoError(input, "Enter the quantity of elements: ");
+		int n = HummelLib.readln(input, "Enter the quantity of elements: ");
 
 		System.out.println();
 		int[] arr = new int[n];
 
 		for (int i = 0; i < n; i++) {
-			arr[i] = HummelLib.readNumberUntilNoError(input, "Enter the element: ");
+			arr[i] = HummelLib.readln(input, "Enter the element: ");
 		}
 
 		HashSet<Integer> nums = new HashSet<>();

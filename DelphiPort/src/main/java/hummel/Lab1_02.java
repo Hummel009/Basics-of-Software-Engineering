@@ -6,12 +6,12 @@ public class Lab1_02 {
 	private static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		int n = HummelLib.readNumberUntilNoError(input, "Enter the quantity of elements: ");
+		int n = HummelLib.readln(input, "Enter the quantity of elements: ");
 
 		int[] arr = new int[n];
 
 		for (int i = 0; i <= n - 1; i++) {
-			arr[i] = HummelLib.readNumberUntilNoError(input, "Enter the element: ");
+			arr[i] = HummelLib.readln(input, "Enter the element: ");
 			if (arr[i] < 0) {
 				arr[i] *= -1;
 			}

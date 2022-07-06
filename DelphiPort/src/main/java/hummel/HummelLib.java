@@ -3,7 +3,7 @@ package main.java.hummel;
 import java.util.*;
 
 public class HummelLib {
-	public static void bubbleSort(int arr[], int arrSize) {
+	public static void sort(int arr[], int arrSize) {
 		for (int i = 0; i < arrSize - 1; i++) {
 			for (int j = 0; j < arrSize - 1 - i; j++) {
 				if (arr[j] > arr[j + 1]) {
@@ -15,7 +15,7 @@ public class HummelLib {
 		}
 	}
 
-	public static int readNumberUntilNoError(Scanner input, String message) {
+	public static int readln(Scanner input, String message) {
 		int n = 0;
 		boolean error;
 		do {

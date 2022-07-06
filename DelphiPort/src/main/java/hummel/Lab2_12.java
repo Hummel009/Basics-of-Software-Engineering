@@ -9,15 +9,21 @@ public class Lab2_12 {
 		ArrayList<Integer> sus = new ArrayList<>();
 		ArrayList<Integer> amogus = new ArrayList<>();
 
-		int n = HummelLib.readNumberUntilNoError(input, "Enter the number: ");
+		int n = HummelLib.readln(input, "Enter the number: ");
 
 		for (int i = 1; i <= n; i++) {
 			sus.add(i);
 			amogus.add(n - i + 1);
 		}
 
-		for (Integer i: sus) {
+		Iterator<Integer> iter1 = sus.iterator();
+		Iterator<Integer> iter2 = amogus.iterator();
 
+		int result = 1;
+		while (iter1.hasNext() && iter2.hasNext()) {
+			result *= iter1.next() + iter2.next();
 		}
+
+		System.out.println(result);
 	}
 }

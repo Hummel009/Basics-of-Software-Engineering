@@ -39,7 +39,7 @@ public class Lab1_06_1 {
 		System.out.println("Enter the date in three steps like, 2002 07 10");
 		int year;
 		do {
-			year = HummelLib.readNumberUntilNoError(input, "Enter the year: ");
+			year = HummelLib.readln(input, "Enter the year: ");
 		} while (year < 1);
 
 		boolean isHigher = year % 4 == 0 && year % 100 != 0 && year % 400 == 0;
@@ -47,7 +47,7 @@ public class Lab1_06_1 {
 		Month month = null;
 		int temp1;
 		do {
-			temp1 = HummelLib.readNumberUntilNoError(input, "Enter the month number: ");
+			temp1 = HummelLib.readln(input, "Enter the month number: ");
 			for (Month m : Month.values()) {
 				if (m.num == temp1) {
 					month = m;
@@ -64,7 +64,7 @@ public class Lab1_06_1 {
 			temp2 = monthCapacity.get(month);
 		}
 		do {
-			date = HummelLib.readNumberUntilNoError(input, "Enter the day: ");
+			date = HummelLib.readln(input, "Enter the day: ");
 		} while (date > temp2 || date < 1);
 
 		System.out.println(date + " " + month.toString() + " " + year);
