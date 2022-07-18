@@ -2,7 +2,7 @@ package main.java.hummel;
 
 import java.util.*;
 
-public class Lab1_08_1 {
+public class Lab1_08 {
 	public static Scanner input = new Scanner(System.in);
 	public static Random random = new Random();
 

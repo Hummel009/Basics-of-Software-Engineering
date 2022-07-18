@@ -5,11 +5,27 @@ import java.util.*;
 public class Lab2_12 {
 	public static Scanner input = new Scanner(System.in);
 
+	public static int readln(Scanner input, String message) {
+		int n = 0;
+		boolean error;
+		do {
+			error = false;
+			System.out.print(message);
+			try {
+				n = input.nextInt();
+			} catch (InputMismatchException e) {
+				error = true;
+				input.next();
+			}
+		} while (error);
+		return n;
+	}
+
 	public static void main(String[] args) {
 		ArrayList<Integer> sus = new ArrayList<>();
 		ArrayList<Integer> amogus = new ArrayList<>();
 
-		int n = HummelLib.readln(input, "Enter the number: ");
+		int n = readln(input, "Enter the number: ");
 
 		for (int i = 1; i <= n; i++) {
 			sus.add(i);
