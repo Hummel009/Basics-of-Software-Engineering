@@ -15,6 +15,20 @@ public class Main {
 	public static WindowType wtype;
 
 	public static void main(String[] args) {
+		System.out.println("─────────────────────────────────────────────────────────────────────────");
+		System.out.println("─██████──────────██████─██████████████─██████████████████─██████████████─");
+		System.out.println("─██░░██████████████░░██─██░░░░░░░░░░██─██░░░░░░░░░░░░░░██─██░░░░░░░░░░██─");
+		System.out.println("─██░░░░░░░░░░░░░░░░░░██─██░░██████░░██─████████████░░░░██─██░░██████████─");
+		System.out.println("─██░░██████░░██████░░██─██░░██──██░░██─────────████░░████─██░░██─────────");
+		System.out.println("─██░░██──██░░██──██░░██─██░░██████░░██───────████░░████───██░░██████████─");
+		System.out.println("─██░░██──██░░██──██░░██─██░░░░░░░░░░██─────████░░████─────██░░░░░░░░░░██─");
+		System.out.println("─██░░██──██████──██░░██─██░░██████░░██───████░░████───────██░░██████████─");
+		System.out.println("─██░░██──────────██░░██─██░░██──██░░██─████░░████─────────██░░██─────────");
+		System.out.println("─██░░██──────────██░░██─██░░██──██░░██─██░░░░████████████─██░░██████████─");
+		System.out.println("─██░░██──────────██░░██─██░░██──██░░██─██░░░░░░░░░░░░░░██─██░░░░░░░░░░██─");
+		System.out.println("─██████──────────██████─██████──██████─██████████████████─██████████████─");
+		System.out.println("─────────────────────────────────────────────────────────────────────────");
+
 		Floors floor = null;
 		do {
 			System.out.println("Enter the color of the floor: ");
@@ -344,6 +358,10 @@ public class Main {
 		room[i++] = new Room("black", "false", "false", "false", RoomType.OTSEK, WindowType.NONE);
 		room[i++] = new Room("green", "false", "false", "false", RoomType.OTSEK, WindowType.NONE);
 
+		System.out.println("|=======================================|");
+		System.out.println("|==============  GO BACK  ==============|");
+		System.out.println("|=======================================|");
+		System.out.println();
 		switch (floor) {
 		case ONE:
 			if (compareRooms(rm, blackRoom)) {
@@ -402,17 +420,17 @@ public class Main {
 	}
 
 	public static void drawAsAMatrix(int left1, int right, int left2) {
-		int lLeft1 = left1 / 10;
-		int lRight = right / 10;
-		int lLeft2 = left2 / 10;
-		String matr[][] = new String[13][13];
-		for (int i = 0; i < 13; i++) {
-			for (int j = 0; j < 13; j++) {
+		int lLeft1 = left1 / 5;
+		int lRight = right / 5;
+		int lLeft2 = left2 / 5;
+		String matr[][] = new String[26][26];
+		for (int i = 0; i < 26; i++) {
+			for (int j = 0; j < 26; j++) {
 				matr[i][j] = " ";
 			}
 		}
-		int x = 6;
-		int y = 6;
+		int x = 12;
+		int y = 12;
 		while (lLeft1 > 0) {
 			matr[x][y] = "G";
 			x--;
@@ -429,15 +447,19 @@ public class Main {
 			lLeft2--;
 		}
 		matr[x][y] = "L";
-		matr[6][6] = "S";
-		System.out.println("=============");
-		for (int i = 0; i < 13; i++) {
-			for (int j = 0; j < 13; j++) {
+		matr[12][12] = "S";
+		System.out.println("|=======================================|");
+		System.out.println("|===============  ROUTE  ===============|");
+		System.out.println("|=======================================|");
+		System.out.println();
+		System.out.println("==========================");
+		for (int i = 0; i < 26; i++) {
+			for (int j = 0; j < 26; j++) {
 				System.out.print(matr[i][j]);
 			}
 			System.out.println();
 		}
-		System.out.println("=============");
+		System.out.println("==========================");
 	}
 
 	public enum Floors {
