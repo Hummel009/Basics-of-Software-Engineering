@@ -7,6 +7,7 @@ public class Sus {
 	public static Scanner input2 = new Scanner(System.in);
 	public static Scanner input3 = new Scanner(System.in);
 	public static ArrayList<Content> list = new ArrayList<>();
+	public static HashMap<String, Content> map = new HashMap<>();
 
 	public static void printOptions() {
 		System.out.println();
@@ -82,13 +83,7 @@ public class Sus {
 	private static void editObject() {
 		System.out.println("Enter the old name of the old object.");
 		String name = input2.nextLine();
-		Content saved = null;
-		for (Content cont: list) {
-			if (cont.name.equals(name)) {
-				saved = cont;
-				break;
-			}
-		}
+		Content cont = map.get(name);
 		ArrayList<Integer> ids = new ArrayList<>();
 		System.out.println("Enter the new ids of the old object.");
 		for (int i = 0; i < 3; i++) {
@@ -96,20 +91,14 @@ public class Sus {
 			ids.add(read);
 		}
 		Collections.sort(ids);
-		saved.ids = ids;
+		cont.ids = ids;
 	}
 
 	private static void findObject() {
 		System.out.println("Enter the old name of the old object.");
 		String name = input2.nextLine();
-		Content saved = null;
-		for (Content cont: list) {
-			if (cont.name.equals(name)) {
-				saved = cont;
-				break;
-			}
-		}
-		System.out.println(saved.toString());
+		Content cont = map.get(name);
+		System.out.println(cont.toString());
 	}
 
 	private static void showObjects() {
@@ -121,14 +110,9 @@ public class Sus {
 	private static void removeObject() {
 		System.out.println("Enter the old name of the old object.");
 		String name = input2.nextLine();
-		Content saved = null;
-		for (Content cont: list) {
-			if (cont.name.equals(name)) {
-				saved = cont;
-				break;
-			}
-		}
-		list.remove(saved);
+		Content cont = map.get(name);
+		list.remove(cont);
+		map.remove(name);
 	}
 
 	private static void addObject() {
@@ -142,5 +126,6 @@ public class Sus {
 		}
 		Collections.sort(ids);
 		list.add(new Content(name, ids));
+		map.put(name, new Content(name, ids));
 	}
 }
