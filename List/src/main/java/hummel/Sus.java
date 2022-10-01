@@ -86,23 +86,22 @@ public class Sus {
 		System.out.println("Enter the old name of the old object.");
 		String name = input2.nextLine();
 		Content cont = map.get(name);
-		ArrayList<Integer> ids = new ArrayList<>();
+		cont.ids.clear();
+		cont.sub.ids.clear();
 		System.out.println("Enter the new ids of the old object.");
 		while (true) {
 			int read = input3.nextInt();
 			if (read == 0) break;
-			ids.add(read);
+			cont.ids.add(read);
 		}
-		ArrayList<Integer> ids2 = new ArrayList<>();
 		System.out.println("Enter the new ids of the old sub-object.");
 		while (true) {
 			int read = input4.nextInt();
 			if (read == 0) break;
-			ids2.add(read);
+			cont.sub.ids.add(read);
 		}
-		Collections.sort(ids);
-		cont.ids = ids;
-		cont.sub.ids = ids2;
+		Collections.sort(cont.ids);
+		Collections.sort(cont.sub.ids);
 	}
 
 	private static void findObject() {
@@ -146,6 +145,7 @@ public class Sus {
 			ids2.add(read);
 		}
 		Collections.sort(ids);
+		Collections.sort(ids2);
 		list.add(new Content(name, ids, new SubContent(name2, ids2)));
 		map.put(name, new Content(name, ids, new SubContent(name2, ids2)));
 	}
