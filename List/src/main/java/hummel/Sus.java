@@ -6,6 +6,8 @@ public class Sus {
 	public static Scanner input1 = new Scanner(System.in);
 	public static Scanner input2 = new Scanner(System.in);
 	public static Scanner input3 = new Scanner(System.in);
+	public static Scanner input4 = new Scanner(System.in);
+	public static Scanner input5 = new Scanner(System.in);
 	public static ArrayList<Content> list = new ArrayList<>();
 	public static HashMap<String, Content> map = new HashMap<>();
 
@@ -90,8 +92,15 @@ public class Sus {
 			int read = input3.nextInt();
 			ids.add(read);
 		}
+		ArrayList<Integer> ids2 = new ArrayList<>();
+		System.out.println("Enter the new ids of the old sub-object.");
+		for (int i = 0; i < 3; i++) {
+			int read = input4.nextInt();
+			ids.add(read);
+		}
 		Collections.sort(ids);
 		cont.ids = ids;
+		cont.sub.ids = ids2;
 	}
 
 	private static void findObject() {
@@ -124,8 +133,17 @@ public class Sus {
 			int read = input3.nextInt();
 			ids.add(read);
 		}
+
+		System.out.println("Enter the new name of the new sub-object.");
+		String name2 = input4.nextLine();
+		ArrayList<Integer> ids2 = new ArrayList<>();
+		System.out.println("Enter the new ids of the new sub-object.");
+		for (int i = 0; i < 3; i++) {
+			int read = input5.nextInt();
+			ids.add(read);
+		}
 		Collections.sort(ids);
-		list.add(new Content(name, ids));
-		map.put(name, new Content(name, ids));
+		list.add(new Content(name, ids, new SubContent(name2, ids2)));
+		map.put(name, new Content(name, ids, new SubContent(name2, ids2)));
 	}
 }
