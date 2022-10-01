@@ -15,6 +15,6 @@ public class Content {
 
 	@Override
 	public String toString() {
-		return name + ": " + ids.toString() + ", sub: " + sub.name;
+		return name + ": " + ids.toString() + ", sub: " + sub.toString();
 	}
 }

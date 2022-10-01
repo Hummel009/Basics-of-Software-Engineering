@@ -88,15 +88,17 @@ public class Sus {
 		Content cont = map.get(name);
 		ArrayList<Integer> ids = new ArrayList<>();
 		System.out.println("Enter the new ids of the old object.");
-		for (int i = 0; i < 3; i++) {
+		while (true) {
 			int read = input3.nextInt();
+			if (read == 0) break;
 			ids.add(read);
 		}
 		ArrayList<Integer> ids2 = new ArrayList<>();
 		System.out.println("Enter the new ids of the old sub-object.");
-		for (int i = 0; i < 3; i++) {
+		while (true) {
 			int read = input4.nextInt();
-			ids.add(read);
+			if (read == 0) break;
+			ids2.add(read);
 		}
 		Collections.sort(ids);
 		cont.ids = ids;
@@ -129,18 +131,19 @@ public class Sus {
 		String name = input2.nextLine();
 		ArrayList<Integer> ids = new ArrayList<>();
 		System.out.println("Enter the new ids of the new object.");
-		for (int i = 0; i < 3; i++) {
+		while (true) {
 			int read = input3.nextInt();
+			if (read == 0) break;
 			ids.add(read);
 		}
-
 		System.out.println("Enter the new name of the new sub-object.");
 		String name2 = input4.nextLine();
 		ArrayList<Integer> ids2 = new ArrayList<>();
 		System.out.println("Enter the new ids of the new sub-object.");
-		for (int i = 0; i < 3; i++) {
+		while (true) {
 			int read = input5.nextInt();
-			ids.add(read);
+			if (read == 0) break;
+			ids2.add(read);
 		}
 		Collections.sort(ids);
 		list.add(new Content(name, ids, new SubContent(name2, ids2)));
