@@ -2,7 +2,7 @@ package main.java.hummel;
 
 import java.util.*;
 
-public class Sus {
+public class ADS02 {
 	public static Scanner input1 = new Scanner(System.in);
 	public static Scanner input2 = new Scanner(System.in);
 	public static Scanner input3 = new Scanner(System.in);

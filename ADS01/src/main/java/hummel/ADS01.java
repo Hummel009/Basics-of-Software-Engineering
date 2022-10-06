@@ -4,7 +4,7 @@ import java.util.*;
 
 import main.java.hummel.Room.*;
 
-public class Main {
+public class ADS01 {
 	public static Room rm;
 	public static Scanner input = new Scanner(System.in);
 	public static String color;
