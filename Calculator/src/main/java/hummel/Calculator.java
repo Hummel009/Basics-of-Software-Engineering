@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class JavaCalculator implements ActionListener {
+public class Calculator implements ActionListener {
 	private final JButton[] button = new JButton[50];
 	private Operation operation;
 	private double output;
@@ -27,10 +27,10 @@ public class JavaCalculator implements ActionListener {
 	private boolean isExtended = false;
 
 	public static void main(String[] arg) {
-		new JavaCalculator();
+		new Calculator();
 	}
 
-	public JavaCalculator() {
+	public Calculator() {
 		JFrame frame = new JFrame("JavaCalculator v2.0");
 
 		for (int i = 0; i <= 49; i++) {

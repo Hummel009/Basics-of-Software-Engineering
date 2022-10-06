@@ -2,7 +2,7 @@
 
 import java.util.*;
 
-public class Convert {
+public class Belarcon {
 	public static Scanner scan = new Scanner(System.in);
 	public static HashMap<String, String> letters = new HashMap<>();
 	static {
@@ -51,7 +51,7 @@ public class Convert {
 				entered = entered.replace(sus, letters.get(sus));
 			}
 			System.out.println(reverse(entered));
-		} while (entered != "СТОП");
+		} while (entered != "стоп");
 	}
 
 	public static String reverse(String str) {

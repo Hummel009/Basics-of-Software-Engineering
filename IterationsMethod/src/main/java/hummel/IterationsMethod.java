@@ -8,7 +8,7 @@ public class IterationsMethod {
 
 	public static void main(String[] args) {
 		double[][] M;
-		IterationsMethod jacobi;
+		IterationsMethod method;
 		M = new double[10][11];
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
@@ -20,25 +20,25 @@ public class IterationsMethod {
 			}
 			M[i][10] = 19*(i+1) + 171;
 		}
-		jacobi = new IterationsMethod(M, true);
+		method = new IterationsMethod(M, true);
 		System.out.println(
 				"\u0421\u0440\u0430\u0432\u043D\u0435\u043D\u0438\u0435 \u043C\u0435\u0442\u043E\u0434\u043E\u0432 \u044F\u043A\u043E\u0431\u0438 \u0438 \u0413\u0430\u0443\u0441\u0441\u0430-\u0417\u0435\u0439\u0434\u0435\u043B\u044F \u0434\u043B\u044F \u0440\u0435\u0448\u0435\u043D\u0438\u044F \u0421\u041B\u0410\u0423");
 		System.out.println();
 		System.out.println(
 				"\u0418\u0441\u0445\u043E\u0434\u043D\u0430\u044F \u043C\u0430\u0442\u0440\u0438\u0446\u0430:");
 		System.out.println();
-		jacobi.print();
+		method.print();
 		System.out.println();
 		System.out.println(
 				"\u0418\u0442\u0435\u0440\u0430\u0446\u0438\u0438 \u043F\u0440\u0438 \u043C\u0435\u0442\u043E\u0434\u0435 \u042F\u043A\u043E\u0431\u0438:");
 		System.out.println();
-		jacobi.solve();
+		method.solve();
 		System.out.println();
 		System.out.println(
 				"\u0418\u0442\u0435\u0440\u0430\u0446\u0438\u0438 \u043F\u0440\u0438 \u043C\u0435\u0442\u043E\u0434\u0435 \u0417\u0435\u0439\u0434\u0435\u043B\u044F-\u0413\u0430\u0443\u0441\u0441\u0430:");
 		System.out.println();
-		jacobi = new IterationsMethod(M, false);
-		jacobi.solve();
+		method = new IterationsMethod(M, false);
+		method.solve();
 	}
 
 	public double[][] M;
