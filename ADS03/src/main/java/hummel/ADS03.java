@@ -13,21 +13,6 @@ public class ADS03 {
 		root = null;
 	}
 
-	public void printLinked() {
-		printLinked(root, "", "");
-	}
-
-	public void printLinked(Node root, String s, String isLeft) {
-		System.out.println(s + isLeft + root.value);
-		s += "   ";
-		if (root.left != null) {
-			print(root.left, s, "LL) ");
-		}
-		if (root.right != null) {
-			print(root.right, s, "RL) ");
-		}
-	}
-
 	public void print() {
 		print(root, "", "");
 	}
