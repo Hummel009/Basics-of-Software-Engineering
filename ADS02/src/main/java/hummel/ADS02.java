@@ -146,7 +146,7 @@ public class ADS02 {
 		}
 		Collections.sort(ids);
 		Collections.sort(ids2);
-		list.add(new Content(name, ids, new SubContent(name2, ids2)));
-		map.put(name, new Content(name, ids, new SubContent(name2, ids2)));
+		list.add(new Content(name, ids, new Content(name2, ids2)));
+		map.put(name, new Content(name, ids, new Content(name2, ids2)));
 	}
 }
