@@ -4,10 +4,12 @@ import java.util.*;
 
 public class ADS02 {
 	public static Scanner input1 = new Scanner(System.in);
-	public static Scanner input2 = new Scanner(System.in);
-	public static Scanner input3 = new Scanner(System.in);
-	public static Scanner input4 = new Scanner(System.in);
-	public static Scanner input5 = new Scanner(System.in);
+	public static Scanner input11 = new Scanner(System.in);
+	public static Scanner input12 = new Scanner(System.in);
+	public static Scanner input21 = new Scanner(System.in);
+	public static Scanner input22 = new Scanner(System.in);
+	public static Scanner input31 = new Scanner(System.in);
+	public static Scanner input32 = new Scanner(System.in);
 	public static ArrayList<Content> list = new ArrayList<>();
 	public static HashMap<String, Content> map = new HashMap<>();
 
@@ -84,19 +86,19 @@ public class ADS02 {
 
 	private static void editObject() {
 		System.out.println("Enter the old name of the old object.");
-		String name = input2.nextLine();
+		String name = input11.nextLine();
 		Content cont = map.get(name);
 		cont.ids.clear();
 		cont.sub.ids.clear();
 		System.out.println("Enter the new ids of the old object.");
 		while (true) {
-			int read = input3.nextInt();
+			int read = input12.nextInt();
 			if (read == 0) break;
 			cont.ids.add(read);
 		}
 		System.out.println("Enter the new ids of the old sub-object.");
 		while (true) {
-			int read = input4.nextInt();
+			int read = input21.nextInt();
 			if (read == 0) break;
 			cont.sub.ids.add(read);
 		}
@@ -106,7 +108,7 @@ public class ADS02 {
 
 	private static void findObject() {
 		System.out.println("Enter the old name of the old object.");
-		String name = input2.nextLine();
+		String name = input11.nextLine();
 		Content cont = map.get(name);
 		System.out.println(cont.toString());
 	}
@@ -119,7 +121,7 @@ public class ADS02 {
 
 	private static void removeObject() {
 		System.out.println("Enter the old name of the old object.");
-		String name = input2.nextLine();
+		String name = input11.nextLine();
 		Content cont = map.get(name);
 		list.remove(cont);
 		map.remove(name);
@@ -127,26 +129,39 @@ public class ADS02 {
 
 	private static void addObject() {
 		System.out.println("Enter the new name of the new object.");
-		String name = input2.nextLine();
-		ArrayList<Integer> ids = new ArrayList<>();
+		String name1 = input11.nextLine();
+		ArrayList<Integer> ids1 = new ArrayList<>();
 		System.out.println("Enter the new ids of the new object.");
 		while (true) {
-			int read = input3.nextInt();
+			int read = input12.nextInt();
 			if (read == 0) break;
-			ids.add(read);
+			ids1.add(read);
 		}
+		Collections.sort(ids1);
+
 		System.out.println("Enter the new name of the new sub-object.");
-		String name2 = input4.nextLine();
+		String name2 = input21.nextLine();
 		ArrayList<Integer> ids2 = new ArrayList<>();
 		System.out.println("Enter the new ids of the new sub-object.");
 		while (true) {
-			int read = input5.nextInt();
+			int read = input22.nextInt();
 			if (read == 0) break;
 			ids2.add(read);
 		}
-		Collections.sort(ids);
 		Collections.sort(ids2);
-		list.add(new Content(name, ids, new Content(name2, ids2)));
-		map.put(name, new Content(name, ids, new Content(name2, ids2)));
+
+		System.out.println("Enter the new name of the new sub-object.");
+		String name3 = input31.nextLine();
+		ArrayList<Integer> ids3 = new ArrayList<>();
+		System.out.println("Enter the new ids of the new sub-object.");
+		while (true) {
+			int read = input32.nextInt();
+			if (read == 0) break;
+			ids3.add(read);
+		}
+		Collections.sort(ids3);
+
+		list.add(new Content(name1, ids1, new Content(name2, ids2, new Content(name3, ids3))));
+		map.put(name1, new Content(name1, ids1, new Content(name2, ids2, new Content(name3, ids3))));
 	}
 }
