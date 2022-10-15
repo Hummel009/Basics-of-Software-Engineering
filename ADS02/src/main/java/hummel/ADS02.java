@@ -132,6 +132,7 @@ public class ADS02 {
 				}
 			}
 		}
+		showObjects();
 	}
 
 	private static void findObject() {
