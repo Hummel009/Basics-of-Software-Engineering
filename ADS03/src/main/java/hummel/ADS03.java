@@ -3,6 +3,7 @@ package main.java.hummel;
 import java.util.*;
 
 public class ADS03 {
+	public static Scanner scan = new Scanner(System.in);
 	public Node root;
 	public ArrayList<Value> list = new ArrayList<>();
 	public int[] rab = new int[100];
@@ -35,7 +36,7 @@ public class ADS03 {
 
 	public void printABR() {
 		printABR(root);
-		abr[abrc] = abr[0];
+		abr[abrc] = this.root.value;
 		abrc++;
 	}
 
@@ -79,7 +80,7 @@ public class ADS03 {
 
 	public void printARB() {
 		printARB(root);
-		arb[arbc] = arb[0];
+		arb[arbc] = this.root.value;
 		arbc++;
 	}
 
@@ -123,7 +124,7 @@ public class ADS03 {
 
 	public void printRAB() {
 		printRAB(root);
-		rab[rabc] = rab[0];
+		rab[rabc] = this.root.value;
 		rabc++;
 	}
 
@@ -207,59 +208,38 @@ public class ADS03 {
 
 	public static void main(String[] args) {
 		ADS03 bst = new ADS03();
-		bst.push(45);
-		bst.push(10);
-		bst.push(7);
-		bst.push(12);
-		bst.push(90);
-		bst.push(50);
+		int[] arr = new int[6];
+		System.out.print("ENTER NUMBERS (example: 45 10 7 12 90 50): ");
+		for (int i = 0; i < 6; i++) {
+			arr[i] = scan.nextInt();
+		}
+		System.out.print("ENTER REMOVAL (example: 7): ");
+		int rem = scan.nextInt();
+		for (int i = 0; i < 6; i++) {
+			bst.push(arr[i]);
+		}
 		System.out.print("START TREE: ");
 		bst.print();
-		System.out.println();
-		System.out.print("RAB: ");
+		System.out.println("\nTREE WITH RAB LINKS");
 		bst.printRAB();
-		System.out.println();
-		System.out.println();
-		System.out.print("TREE WITH RAB LINKS");
 		bst.printRABLinked();
-		System.out.println();
-		System.out.print("ARB: ");
+		System.out.println("\nTREE WITH ARB LINKS");
 		bst.printARB();
-		System.out.println();
-		System.out.println();
-		System.out.print("TREE WITH ARB LINKS");
 		bst.printARBLinked();
-		System.out.println();
-		System.out.print("ABR: ");
+		System.out.println("\nTREE WITH ABR LINKS");
 		bst.printABR();
-		System.out.println();
-		System.out.println();
-		System.out.print("TREE WITH ABR LINKS");
 		bst.printABRLinked();
-		System.out.print("REMOVING ELEMENT");
-
-		bst.remove(7);
+		System.out.print("\nREMOVING ELEMENT\nSTART TREE:");
+		bst.remove(rem);
 		bst.print();
-		System.out.println();
-		System.out.print("RAB: ");
+		System.out.println("\nTREE WITH RAB LINKS");
 		bst.printRAB();
-		System.out.println();
-		System.out.println();
-		System.out.print("TREE WITH RAB LINKS");
 		bst.printRABLinked();
-		System.out.println();
-		System.out.print("ARB: ");
+		System.out.println("\nTREE WITH ARB LINKS");
 		bst.printARB();
-		System.out.println();
-		System.out.println();
-		System.out.print("TREE WITH ARB LINKS");
 		bst.printARBLinked();
-		System.out.println();
-		System.out.print("ABR: ");
+		System.out.println("\nTREE WITH ABR LINKS");
 		bst.printABR();
-		System.out.println();
-		System.out.println();
-		System.out.print("TREE WITH ABR LINKS");
 		bst.printABRLinked();
 	}
 
