@@ -3,7 +3,7 @@ package main.java.hummel;
 import java.util.*;
 
 public class ADS02 {
-	public static Scanner input1 = new Scanner(System.in);
+	public static Scanner input10 = new Scanner(System.in);
 	public static Scanner input11 = new Scanner(System.in);
 	public static Scanner input12 = new Scanner(System.in);
 	public static Scanner input13 = new Scanner(System.in);
@@ -157,7 +157,7 @@ public class ADS02 {
 	public static void main(String[] args) {
 		printOptions();
 		sus: while (true) {
-			int opt = input1.nextInt();
+			int opt = input10.nextInt();
 			switch (opt) {
 			case 1:
 				addObject();
