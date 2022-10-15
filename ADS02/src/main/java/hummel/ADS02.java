@@ -6,6 +6,7 @@ public class ADS02 {
 	public static Scanner input1 = new Scanner(System.in);
 	public static Scanner input11 = new Scanner(System.in);
 	public static Scanner input12 = new Scanner(System.in);
+	public static Scanner input13 = new Scanner(System.in);
 	public static Scanner input21 = new Scanner(System.in);
 	public static Scanner input22 = new Scanner(System.in);
 	public static Scanner input31 = new Scanner(System.in);
@@ -107,10 +108,21 @@ public class ADS02 {
 	}
 
 	private static void findObject() {
-		System.out.println("Enter the old name of the old object.");
+		System.out.println("Enter the name of the old object.");
 		String name = input11.nextLine();
 		Content cont = map.get(name);
-		System.out.println(cont.toString());
+		if (cont != null) {
+			System.out.println(cont.toString());
+		} else {
+			System.out.println("Wrong! Enter the sub-object name then.");
+			String namesub = input13.nextLine();
+			for (Content c: map.values()) {
+				if (c.sub.name.equals(namesub)) {
+					System.out.println(c.toString());
+					break;
+				}
+			}
+		}
 	}
 
 	private static void showObjects() {
