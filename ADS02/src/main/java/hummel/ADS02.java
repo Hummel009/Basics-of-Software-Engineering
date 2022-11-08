@@ -94,24 +94,23 @@ public class ADS02 {
 		while (true) {
 			System.out.println("Has sub-content?");
 			boolean read = input13.nextBoolean();
-			if (read == false) {
+			if (!read) {
 				break;
-			} else {
-				ArrayList<Integer> temp = new ArrayList<>();
-				System.out.println("Enter the name:");
-				String name = input21.nextLine();
-				System.out.println("Enter the new ids:");
-				while (true) {
-					int reads = input12.nextInt();
-					if (reads == 0) {
-						break;
-					}
-					temp.add(reads);
-				}
-				Collections.sort(temp);
-				Content prev = new Content(name, temp);
-				obj.sub.add(prev);
 			}
+			ArrayList<Integer> temp = new ArrayList<>();
+			System.out.println("Enter the name:");
+			String name = input21.nextLine();
+			System.out.println("Enter the new ids:");
+			while (true) {
+				int reads = input12.nextInt();
+				if (reads == 0) {
+					break;
+				}
+				temp.add(reads);
+			}
+			Collections.sort(temp);
+			Content prev = new Content(name, temp);
+			obj.sub.add(prev);
 		}
 	}
 
@@ -126,7 +125,7 @@ public class ADS02 {
 			String namesub = input13.nextLine();
 			for (Content c : map.values()) {
 				for (Content sub : c.sub) {
-					if (sub.name.equals(namesub)) {
+					if (c.sub != null && sub.name.equals(namesub)) {
 						editObject(c);
 					}
 				}
@@ -146,7 +145,7 @@ public class ADS02 {
 			String namesub = input13.nextLine();
 			for (Content c : map.values()) {
 				for (Content sub : c.sub) {
-					if (sub.name.equals(namesub)) {
+					if (c.sub != null && sub.name.equals(namesub)) {
 						System.out.println(c.toString());
 					}
 				}
@@ -215,7 +214,7 @@ public class ADS02 {
 			String namesub = input13.nextLine();
 			for (Content c : map.values()) {
 				for (Content sub : c.sub) {
-					if (sub.name.equals(namesub)) {
+					if (c.sub != null && sub.name.equals(namesub)) {
 						list.remove(c);
 					}
 				}
@@ -233,7 +232,9 @@ public class ADS02 {
 	private static void sortContent() {
 		Comparator<Content> comparator = Comparator.comparing(o1 -> o1.ids.get(0));
 		for (Content c : list) {
-			Collections.sort(c.sub, comparator);
+			if (c.sub != null) {
+				Collections.sort(c.sub, comparator);
+			}
 		}
 		Collections.sort(list, comparator);
 		showObjects();
@@ -243,7 +244,9 @@ public class ADS02 {
 		Comparator<Content> comparator = Comparator.comparing(o1 -> o1.name);
 		Collections.sort(list, comparator);
 		for (Content c : list) {
-			Collections.sort(c.sub, comparator);
+			if (c.sub != null) {
+				Collections.sort(c.sub, comparator);
+			}
 		}
 		showObjects();
 	}
