@@ -9,9 +9,16 @@ public class ADS04 {
 		edges.add(new Edge(1, 2, 7));
 		edges.add(new Edge(2, 0, 5));
 		edges.add(new Edge(2, 1, 4));
-		edges.add(new Edge(3, 2, 10));
+		edges.add(new Edge(3, 2, 9));
 		edges.add(new Edge(4, 5, 1));
 		edges.add(new Edge(5, 4, 3));
+		for (Edge e1: edges) {
+			for (Edge e2: edges) {
+				if (e1 != e2 && e1.src != e2.dest) {
+
+				}
+			}
+		}
 		Graph graph = new Graph(edges);
 		Graph.printGraph(graph);
 	}
@@ -48,7 +55,7 @@ public class ADS04 {
 
 			while (src < n) {
 				for (Node edge : graph.adjList.get(src)) {
-					System.out.printf("%d —> %s ", src, edge);
+					System.out.printf("%d --%s ", src, edge);
 				}
 
 				System.out.println();
@@ -67,7 +74,7 @@ public class ADS04 {
 
 		@Override
 		public String toString() {
-			return value + " (" + weight + ")";
+			return weight + "--> " + value;
 		}
 	}
 }
