@@ -12,12 +12,17 @@ public class ADS04 {
 		edges.add(new Edge(3, 2, 9));
 		edges.add(new Edge(4, 5, 1));
 		edges.add(new Edge(5, 4, 3));
+		Edge start = null;
 		for (Edge e1: edges) {
+			start = e1;
 			for (Edge e2: edges) {
-				if (e1 != e2 && e1.src != e2.dest) {
-
+				if (e1 != e2 && e1.src == e2.dest) {
+					start = null;
 				}
 			}
+		}
+		if (start != null) {
+			System.out.printf("Start: %d -----> %s\n", start.src, start.dest);
 		}
 		Graph graph = new Graph(edges);
 		Graph.printGraph(graph);
