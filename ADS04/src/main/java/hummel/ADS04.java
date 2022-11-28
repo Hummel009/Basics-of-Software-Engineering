@@ -243,8 +243,7 @@ public class ADS04 {
 
 		if (j == tmp2) {
 			int t = 0;
-			while (step[t] != 0) {
-				t++;
+			for (; step[t] != 0; t++) {
 			}
 			step[t] = tmp;
 		}
