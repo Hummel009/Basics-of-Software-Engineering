@@ -28,11 +28,11 @@ public class SD00 {
 		} else if (c == '+' || c == '-' || c == '*' || c == '/') {
 			return Types.OP;
 		}
-		return Types.NULL;
+		return Types.NONE;
 	}
 
 	public enum Types {
-		NULL(0), DIGIT(1), OP(2);
+		NONE(0), DIGIT(1), OP(2);
 
 		public int integer;
 
