@@ -1,6 +1,31 @@
+import java.io.*;
+
 public class JsonValidator {
 	public static void main(String[] args) {
-		String input = "{\r\n\t\"tag\": {\r\n\t\t\"tag\": \"tag\",\r\n\t\t\"tag\": {\r\n\t\t\t\"tag\": \"tag\",\r\n\t\t\t\"tag\": {\r\n\t\t\t\t\"tag\": {\r\n\t\t\t\t\t\"tag\": \"tag\",\r\n\t\t\t\t\t\"tag\": \"tag\",\r\n\t\t\t\t\t\"tag\": {\r\n\t\t\t\t\t\t\"tag\": \"tag\",\r\n\t\t\t\t\t\t\"tag\": [\"tag\", \"tag\"]\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"tag\": \"tag\"\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}";
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader("amogus.txt"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		StringBuilder stringBuilder = new StringBuilder();
+		String line = null;
+		String ls = System.getProperty("line.separator");
+		try {
+			while ((line = reader.readLine()) != null) {
+				stringBuilder.append(line);
+				stringBuilder.append(ls);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+		try {
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String input = stringBuilder.toString();
 		System.out.println(input);
 		input = input.replaceAll(" ", "").replaceAll("\t", "");
 		boolean invalid = false;
@@ -64,6 +89,7 @@ public class JsonValidator {
 			}
 		}
 		/* CHECK THE RESULT */
+		input = input.replaceAll(" ", "").replaceAll("\r", "").replaceAll("\t", "").replaceAll("\n", "");
 		if (!"\"tag\"".equals(input)) {
 			invalid = true;
 		}
