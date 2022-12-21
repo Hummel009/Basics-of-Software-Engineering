@@ -1,6 +1,9 @@
 import java.io.*;
 
 public class JsonValidator {
+	public static int cur = 0;
+	public static Tokens[] arr;
+
 	public static void main(String[] args) {
 		BufferedReader reader = null;
 		try {
@@ -10,7 +13,7 @@ public class JsonValidator {
 		}
 		StringBuilder stringBuilder = new StringBuilder();
 		String line = null;
-		String ls = System.getProperty("line.separator");
+		String ls = System.lineSeparator();
 		try {
 			while ((line = reader.readLine()) != null) {
 				stringBuilder.append(line);
@@ -26,85 +29,90 @@ public class JsonValidator {
 			e.printStackTrace();
 		}
 		String input = stringBuilder.toString();
-		System.out.println(input);
-		input = input.replaceAll(" ", "").replaceAll("\t", "");
-		boolean invalid = false;
-		/* FAST PREVIEW */
-		if (input.contains("{") && !input.contains("}")) {
-			invalid = true;
-		}
-		if (!invalid) {
-			if (input.contains("[") && !input.contains("]")) {
-				invalid = true;
-			}
-		}
-		/* SLOWER PREVIEW */
-		if (!invalid) {
-			int par1 = useRecursion(input, '{', 0);
-			int par2 = useRecursion(input, '}', 0);
-			if ((par1 + par2) % 2 == 1) {
-				invalid = true;
-			}
-		}
-		if (!invalid) {
-			int sq1 = useRecursion(input, '[', 0);
-			int sq2 = useRecursion(input, ']', 0);
-			if ((sq1 + sq2) % 2 == 1) {
-				invalid = true;
-			}
-		}
-		if (!invalid) {
-			int k = useRecursion(input, '"', 0);
-			if (k % 2 == 1) {
-				invalid = true;
-			}
-		}
-		/* MAIN PROCESS (SLOWEST) */
-		if (!invalid) {
-			while (input.contains("\n")) {
-				int counter = 0;
-				int firstRB = input.indexOf('}');
-				int prevLB = 0;
-				for (int i = firstRB; i > 0; i--) {
-					if (input.charAt(i) == '{') {
-						prevLB = i;
-						break;
-					}
-				}
-				String input1 = input.substring(0, prevLB);
-				String input2 = input.substring(firstRB + 1);
-				input = input1.concat("\"tag\"").concat(input2);
-				if (input.contains("\"tag\"\"tag\"")) {
-					invalid = true;
-					break;
-				}
-				if (input.contains("\"tag\"\r\n\"tag\"")) {
-					invalid = true;
-					break;
-				}
-				counter++;
-				if (counter > 100) {
-					break;
+		System.out.printf("%s", input);
+		input = input.replace("\t", "").replace("\r", "").replace("\n", "").replace(" ", "");
+		int c = 0;
+		int a;
+		arr = new Tokens[input.length()];
+		for (a = 0; a < input.length(); a++) {
+			String temp = input.substring(0, a + 1);
+			for (Tokens token : Tokens.values()) {
+				if (temp.equals(token.getS())) {
+					System.out.printf("Added %s\n", temp);
+					arr[c] = token;
+					c++;
+					input = input.substring(a + 1);
+					a = -1;
 				}
 			}
 		}
-		/* CHECK THE RESULT */
-		input = input.replaceAll(" ", "").replaceAll("\r", "").replaceAll("\t", "").replaceAll("\n", "");
-		if (!"\"tag\"".equals(input)) {
-			invalid = true;
+
+		for (int i = 0; i < c; i++) {
+			System.out.printf("%s ", arr[i].getS());
 		}
-		if (!invalid) {
-			System.out.println("OK");
+
+		if (json()) {
+			System.out.printf("\nTrue");
 		} else {
-			System.out.println("NOT OK");
+			System.out.printf("\nFalse");
 		}
 	}
 
-	public static int useRecursion(String someString, char searchedChar, int index) {
-		if (index >= someString.length()) {
-			return 0;
+	public static boolean term(Tokens tok) {
+		if (arr[cur] == tok) {
+			cur++;
+			return true;
 		}
-		int count = someString.charAt(index) == searchedChar ? 1 : 0;
-		return count + useRecursion(someString, searchedChar, index + 1);
+		return false;
+	}
+
+	public static boolean array() {
+		return term(Tokens.ALEFT) && term(Tokens.ARIGHT) || term(Tokens.ALEFT) && elements() && term(Tokens.ARIGHT);
+	}
+
+	public static boolean element() {
+		return value();
+	}
+
+	public static boolean elements() {
+		return element() || element() && term(Tokens.KOSKA) && elements();
+	}
+
+	public static boolean json() {
+		return element();
+	}
+
+	public static boolean member() {
+		return string() && term(Tokens.DWUKROP) && element();
+	}
+
+	public static boolean members() {
+		return member() || member() && term(Tokens.KOSKA) && members();
+	}
+
+	public static boolean object() {
+		return term(Tokens.SLEFT) && term(Tokens.SRIGHT) || term(Tokens.SLEFT) && members() && term(Tokens.SRIGHT);
+	}
+
+	public static boolean string() {
+		return term(Tokens.STRING);
+	}
+
+	public static boolean value() {
+		return object() || array() || string();
+	}
+
+	enum Tokens {
+		SLEFT("{"), SRIGHT("}"), ALEFT("{"), ARIGHT("}"), STRING("\"tag\""), DWUKROP(":"), KOSKA(",");
+
+		String s;
+
+		Tokens(String s) {
+			this.s = s;
+		}
+
+		public String getS() {
+			return s;
+		}
 	}
 }
