@@ -7,19 +7,17 @@ public class Ex0203 {
 	public static Scanner scanner = new Scanner(System.in);
 
 	public static void launch() {
+		bufferSize = scanner.nextInt();
 		buffer = new ArrayDeque<>(bufferSize);
 		int packageCount = scanner.nextInt();
 
 		if (packageCount == 0) {
 			System.out.println("");
 		} else if (packageCount == 1) {
-			int sus = scanner.nextInt();
-			System.out.println(sus);
+			System.out.println(scanner.nextInt());
 		} else {
 			for (int i = 0; i < packageCount; i++) {
-				int abobus = scanner.nextInt();
-				int amogus = scanner.nextInt();
-				process(new Package(abobus, amogus));
+				process(new Package(scanner.nextInt(), scanner.nextInt()));
 			}
 			scanner.close();
 		}

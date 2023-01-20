@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class Ex0602 {
-	private static Node[] nodes;
+	public static Node[] nodes;
 
-	private static boolean isTreeValid(int index, int leftBorder, int rightBorder) {
+	public static boolean isTreeValid(int index, int leftBorder, int rightBorder) {
 		if (index == -1) {
 			return true;
 		}
@@ -33,12 +33,12 @@ public class Ex0602 {
 		}
 	}
 
-	private static class Node {
-		int value;
-		int left;
-		int right;
+	public static class Node {
+		public int value;
+		public int left;
+		public int right;
 
-		private Node(int value, int left, int right) {
+		public Node(int value, int left, int right) {
 			this.value = value;
 			this.left = left;
 			this.right = right;
