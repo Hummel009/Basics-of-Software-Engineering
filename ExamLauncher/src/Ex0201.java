@@ -1,55 +1,47 @@
 import java.util.*;
 
 public class Ex0201 {
-	public static HashMap<Character, Character> pairBrace = new HashMap<>();
-	public static Scanner scanner = new Scanner(System.in);
-
-	static {
-		pairBrace = new HashMap<>();
-		pairBrace.put(')', '(');
-		pairBrace.put(']', '[');
-		pairBrace.put('}', '{');
-	}
+	public static Scanner in = new Scanner(System.in);
 
 	public static void launch() {
-		char[] input = scanner.next().toCharArray();
-		Deque<Pair> bracers = new ArrayDeque<>();
-		int errorPosition = -1;
+		char bracket[] = in.next().toCharArray();
+		LinkedList<Character> stack = new LinkedList<>();
 
-		for (int i = 0; i < input.length; i++) {
-			char inputChar = input[i];
+		int n = bracket.length;
+		int unclosedBracket = 0;
 
-			if (inputChar == '(' || inputChar == '[' || inputChar == '{') {
-				bracers.push(new Pair(inputChar, i));
-			} else if (inputChar == ')' || inputChar == ']' || inputChar == '}') {
-				if (bracers.isEmpty() || bracers.peek().character != pairBrace.get(inputChar)) {
-					errorPosition = i + 1;
-					break;
+		for (int i = 0; i < n; i++) {
+			if (bracket[i] == '{' || bracket[i] == '(' || bracket[i] == '[') {
+				if (stack.isEmpty()) {
+					unclosedBracket = i + 1;
 				}
-				bracers.pop();
-			}
-
-			if (i + 1 == input.length && !bracers.isEmpty()) {
-				errorPosition = bracers.peek().position + 1;
-				break;
+				stack.push(bracket[i]);
+			} else if (bracket[i] == '}' || bracket[i] == ')' || bracket[i] == ']') {
+				if (stack.peek() == reverseBracket(bracket[i])) {
+					stack.pop();
+				} else {
+					System.out.println(i + 1);
+					return;
+				}
 			}
 		}
-
-		if (errorPosition != -1) {
-			System.out.println(errorPosition);
-		} else {
+		if (stack.isEmpty()) {
 			System.out.println("Success");
+		} else {
+			System.out.println(unclosedBracket);
 		}
-
 	}
 
-	public static class Pair {
-		public char character;
-		public int position;
-
-		public Pair(char character, int position) {
-			this.character = character;
-			this.position = position;
+	public static Character reverseBracket(char c) {
+		switch (c) {
+		case '}':
+			return '{';
+		case ']':
+			return '[';
+		case ')':
+			return '(';
+		default:
+			return '-';
 		}
 	}
 }
