@@ -36,7 +36,7 @@ public class ExamLauncher {
 		} else if ("0603".equals(s)) {
 			Ex0603.launch(); //ввести цифры из условия слева направо сверху вниз. Будет вывод
 		} else if ("0605".equals(s)) {
-			Ex0605.launch();  //реализация дерьмо
+			Ex0605.launch();
 		}
 	}
 }
