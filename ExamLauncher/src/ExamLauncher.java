@@ -38,7 +38,7 @@ public class ExamLauncher {
 		} else if ("0604".equals(s)) {
 			Ex0604.launch();  //реализация дерьмо
 		} else if ("0605".equals(s)) {
-			Ex0605.launch();  //реализация дерьмо
+			Ex0605.launch();
 		}
 	}
 }
