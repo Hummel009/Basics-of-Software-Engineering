@@ -1,30 +1,50 @@
 import java.util.Scanner;
 
 public class Ex0605 {
-	public static String str;
-	public static Scanner sc = new Scanner(System.in);
+	public static Scanner scanner = new Scanner(System.in);
 
-	public static void launch() {
-		str = sc.nextLine();
-		int q = sc.nextInt();
-		sc.nextLine();
+	public static class Rope {
+		public String text;
+		public int argsCount;
 
-		for (int i = 0; i < q; i++) {
-			int start = sc.nextInt();
-			int end = sc.nextInt();
-			int k = sc.nextInt();
-			sc.nextLine();
-
-			String sub = str.substring(start, end + 1);
-			str = str.substring(0, start) + str.substring(end + 1);
-
-			if (k == 0) {
-				str = sub + str;
-			} else {
-				str = str.substring(0, k) + sub + str.substring(k);
-			}
+		public Rope(String input, int argsCount) { // конструктор
+			this.text = input;
+			this.argsCount = argsCount;
 		}
 
-		System.out.println(str);
+		public String ropeText(int from, int until, int instead) {
+			StringBuilder tmp = new StringBuilder();
+			// Получим с from до until
+			for (int i = from; i <= until; i++) {
+				tmp.append(text.charAt(i));
+			}
+			text = text.replaceFirst(tmp.toString(), "");// Удалили то, что
+															// получили с
+															// исходной строки
+			StringBuilder textSB = new StringBuilder(text);
+			textSB.insert(instead, tmp); // instead - куда вставить, tmp - что
+											// вставить
+			text = textSB.toString();
+
+			return text;
+		}
+
+	}
+
+	public static void launch() {
+		System.out.println("Enter text:");
+		String text = scanner.nextLine();
+		System.out.println("Enter args count:");
+		int argsCount = scanner.nextInt();
+		scanner.nextLine(); // баг, для правильного чтения
+		Rope rope = new Rope(text, argsCount);
+		for (int i = 0; i < argsCount; i++) {
+			String arg = scanner.nextLine();
+			int from = Integer.parseInt(arg.split(" ")[0]);
+			int until = Integer.parseInt(arg.split(" ")[1]);
+			int instead = Integer.parseInt(arg.split(" ")[2]);
+			String res = rope.ropeText(from, until, instead);
+			System.out.println(res);
+		}
 	}
 }
