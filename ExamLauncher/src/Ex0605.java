@@ -7,23 +7,19 @@ public class Ex0605 {
 		public String text;
 		public int argsCount;
 
-		public Rope(String input, int argsCount) { // конструктор
+		public Rope(String input, int argsCount) {
 			this.text = input;
 			this.argsCount = argsCount;
 		}
 
 		public String ropeText(int from, int until, int instead) {
 			StringBuilder tmp = new StringBuilder();
-			// Получим с from до until
 			for (int i = from; i <= until; i++) {
 				tmp.append(text.charAt(i));
 			}
-			text = text.replaceFirst(tmp.toString(), "");// Удалили то, что
-															// получили с
-															// исходной строки
+			text = text.replaceFirst(tmp.toString(), "");// Удалили то, что получили с исходной строки
 			StringBuilder textSB = new StringBuilder(text);
-			textSB.insert(instead, tmp); // instead - куда вставить, tmp - что
-											// вставить
+			textSB.insert(instead, tmp); // instead - куда вставить, tmp - что вставить
 			text = textSB.toString();
 
 			return text;
