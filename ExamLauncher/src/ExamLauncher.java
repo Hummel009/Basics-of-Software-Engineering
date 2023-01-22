@@ -1,44 +1,32 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class ExamLauncher {
 	public static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		String s = scan.nextLine();
-		if ("0201".equals(s)) {
-			Ex0201.launch(); //ввести какую-нибудь строку из открытых и закрытых скобок
-		} else if ("0202".equals(s)) {
-			Ex0202.launch(); //ввести число N, затем N чисел. Будет вывод
-		} else if ("0203".equals(s)) {
-			Ex0203.launch(); //СТРОЧКУ ЧИСЕЛ ВВОДИТЬ ОДНОЙ СТРОКОЙ ЧЕРЕЗ ПРОБЕЛ. Не обращать внимание на ввод.
-		} else if ("0204".equals(s)) {
-			Ex0204.launch(); //ввести число N. Затем можно push число, pop число или max. На максах будут выводы, можно не обращать внимания
-		} else if ("0205".equals(s)) {
-			Ex0205.launch(); //ввести число N, затем N чисел, затем число M. Будет вывод
-		} else if ("0301".equals(s)) {
-			Ex0301.launch(); //ввести число N, затем N чисел. Будет вывод
-		} else if ("0302".equals(s)) {
-			Ex0302.launch(); //ввести числа из условия слева направо сверху вниз, не обращая внимание на вывод. Будет что нужно
-		} else if ("0401".equals(s)) {
-			Ex0401.launch(); //ввести числа из условия слева направо сверху вниз, не обращая внимание на вывод. Будет что нужно
-		} else if ("0402".equals(s)) {
-			Ex0402.launch(); //ввести числа из условия слева направо сверху вниз, не обращая внимание на вывод. Будет что нужно
-		} else if ("0501".equals(s)) {
-			Ex0501.launch(); //ввести число операций. потом можно add цифра имя, find цифра
-		} else if ("0502".equals(s)) {
-			Ex0502.launch(); //ввести строки из условия слева направо сверху вниз, не обращая внимание на вывод. Будет что нужно
-		} else if ("0503".equals(s)) {
-			Ex0503.launch();  //ввести строки из условия слева направо сверху вниз, не обращая внимание на вывод. Будет что нужно
-		} else if ("0601".equals(s)) {
-			Ex0601.launch(); //альтернатива - лаба 3
-		} else if ("0602".equals(s)) {
-			Ex0602.launch(); //ввести цифры из условия слева направо сверху вниз. Будет вывод. Строки вида Ключ ЛевыйНомер ПравыйНомер
-		} else if ("0603".equals(s)) {
-			Ex0603.launch(); //ввести цифры из условия слева направо сверху вниз. Будет вывод
-		} else if ("0604".equals(s)) {
-			Ex0604.launch();  //реализация дерьмо
-		} else if ("0605".equals(s)) {
-			Ex0605.launch();
+		HashMap<String, Runnable> functions = new HashMap<>();
+		functions.put("0201", Ex0201::launch);
+		functions.put("0202", Ex0202::launch);
+		functions.put("0203", Ex0203::launch);
+		functions.put("0204", Ex0204::launch);
+		functions.put("0205", Ex0205::launch);
+		functions.put("0301", Ex0301::launch);
+		functions.put("0302", Ex0302::launch);
+		functions.put("0401", Ex0401::launch);
+		functions.put("0402", Ex0402::launch);
+		functions.put("0501", Ex0501::launch);
+		functions.put("0502", Ex0502::launch);
+		functions.put("0503", Ex0503::launch);
+		functions.put("0601", Ex0601::launch);
+		functions.put("0602", Ex0602::launch);
+		functions.put("0603", Ex0603::launch);
+		functions.put("0604", Ex0604::launch);
+		functions.put("0605", Ex0605::launch);
+		String command = scan.nextLine();
+		if (functions.containsKey(command)) {
+			functions.get(command).run();
+		} else {
+			System.out.println("Invalid command");
 		}
 	}
 }
