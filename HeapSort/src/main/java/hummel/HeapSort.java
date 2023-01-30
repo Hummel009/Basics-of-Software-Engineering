@@ -1,7 +1,7 @@
 package main.java.hummel;
 public class HeapSort {
-	public static void main(String args[]) {
-		int arr[] = {8, 4, 8, 13, 1, 10, 9, 5, 7, 6, 11, 14, 2, 12, 15};
+	public static void main(String[] args) {
+		int[] arr = {8, 4, 8, 13, 1, 10, 9, 5, 7, 6, 11, 14, 2, 12, 15};
 		
 		System.out.println("Start array is");
 		printArray(arr);
@@ -14,7 +14,7 @@ public class HeapSort {
 	}
 
 	/* Вспомогательная функция для вывода на экран массива размера n */
-	static void printArray(int arr[]) {
+	static void printArray(int[] arr) {
 		int n = arr.length;
 		for (int i = 0; i < n; ++i) {
 			System.out.print(arr[i] + " ");
@@ -23,7 +23,7 @@ public class HeapSort {
 	}
 
 	// Процедура для преобразования в двоичную кучу поддерева с корневым узлом i, что является индексом в arr[]. n - размер кучи
-	void heapify(int arr[], int n, int i) {
+	void heapify(int[] arr, int n, int i) {
 		int max = i; // Инициализируем наибольший элемент как корень
 		int l = 2 * i + 1; // левый = 2*i + 1
 		int r = 2 * i + 2; // правый = 2*i + 2
@@ -75,7 +75,7 @@ public class HeapSort {
 		}
 	}
 
-	public void sort(int arr[]) {
+	public void sort(int[] arr) {
 		int n = arr.length;
 
 		System.out.println();

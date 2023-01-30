@@ -1,8 +1,26 @@
+package main.java.hummel;
+
 import java.io.*;
 
 public class JsonValidator {
-	public static int cur = 0;
+	public static int cur;
 	public static Tokens[] arr;
+
+	public static boolean array() {
+		return term(Tokens.ALEFT) && term(Tokens.ARIGHT) || term(Tokens.ALEFT) && elements() && term(Tokens.ARIGHT);
+	}
+
+	public static boolean element() {
+		return value();
+	}
+
+	public static boolean elements() {
+		return element() || element() && term(Tokens.KOSKA) && elements();
+	}
+
+	public static boolean json() {
+		return element();
+	}
 
 	public static void main(String[] args) {
 		BufferedReader reader = null;
@@ -58,30 +76,6 @@ public class JsonValidator {
 		}
 	}
 
-	public static boolean term(Tokens tok) {
-		if (arr[cur] == tok) {
-			cur++;
-			return true;
-		}
-		return false;
-	}
-
-	public static boolean array() {
-		return term(Tokens.ALEFT) && term(Tokens.ARIGHT) || term(Tokens.ALEFT) && elements() && term(Tokens.ARIGHT);
-	}
-
-	public static boolean element() {
-		return value();
-	}
-
-	public static boolean elements() {
-		return element() || element() && term(Tokens.KOSKA) && elements();
-	}
-
-	public static boolean json() {
-		return element();
-	}
-
 	public static boolean member() {
 		return string() && term(Tokens.DWUKROP) && element();
 	}
@@ -98,6 +92,14 @@ public class JsonValidator {
 		return term(Tokens.STRING);
 	}
 
+	public static boolean term(Tokens tok) {
+		if (arr[cur] == tok) {
+			cur++;
+			return true;
+		}
+		return false;
+	}
+
 	public static boolean value() {
 		return object() || array() || string();
 	}
@@ -105,7 +107,7 @@ public class JsonValidator {
 	enum Tokens {
 		SLEFT("{"), SRIGHT("}"), ALEFT("{"), ARIGHT("}"), STRING("\"tag\""), DWUKROP(":"), KOSKA(",");
 
-		String s;
+		public String s;
 
 		Tokens(String s) {
 			this.s = s;
