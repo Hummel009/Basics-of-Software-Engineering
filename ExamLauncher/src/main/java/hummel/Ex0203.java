@@ -1,9 +1,11 @@
+package main.java.hummel;
+
 import java.util.*;
 
 public class Ex0203 {
-	public static int time = 0;
+	public static int time;
 	public static int bufferSize;
-	public static ArrayDeque<Package> buffer;
+	public static Deque<Package> buffer;
 	public static Scanner scanner = new Scanner(System.in);
 
 	public static void launch() {

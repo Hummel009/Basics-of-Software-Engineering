@@ -1,3 +1,5 @@
+package main.java.hummel;
+
 import java.util.Scanner;
 
 public class Ex0602 {
@@ -25,9 +27,7 @@ public class Ex0602 {
 				}
 
 				System.out.println(isTreeValid(0, Integer.MIN_VALUE, Integer.MAX_VALUE) ? "CORRECT" : "INCORRECT");
-			}
-
-			else {
+			} else {
 				System.out.println("CORRECT");
 			}
 		}

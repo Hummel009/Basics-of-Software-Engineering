@@ -1,3 +1,5 @@
+package main.java.hummel;
+
 import java.util.*;
 
 public class ExamLauncher {

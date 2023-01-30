@@ -1,45 +1,9 @@
+package main.java.hummel;
+
 import java.util.*;
 
 public class Ex0604 {
 	public static Scanner scan = new Scanner(System.in);
-
-	public static class OnlineSet {
-		private HashSet<Integer> set;
-		private long lastSum;
-
-		public OnlineSet() {
-			set = new HashSet<>();
-			lastSum = 0;
-		}
-
-		public void add(int i) {
-			int f = (int) ((i + lastSum) % 1000000001);
-			set.add(f);
-		}
-
-		public void remove(int i) {
-			int f = (int) ((i + lastSum) % 1000000001);
-			set.remove(f);
-		}
-
-		public boolean contains(int i) {
-			int f = (int) ((i + lastSum) % 1000000001);
-			return set.contains(f);
-		}
-
-		public long sum(int l, int r) {
-			int f_l = (int) ((l + lastSum) % 1000000001);
-			int f_r = (int) ((r + lastSum) % 1000000001);
-			long sum = 0;
-			for (int i = f_l; i <= f_r; i++) {
-				if (set.contains(i)) {
-					sum += i;
-				}
-			}
-			lastSum += sum;
-			return sum;
-		}
-	}
 
 	public static void launch() {
 		OnlineSet set = new OnlineSet();
@@ -73,6 +37,44 @@ public class Ex0604 {
 				System.out.println("Invalid operation");
 				break;
 			}
+		}
+	}
+
+	public static class OnlineSet {
+		private HashSet<Integer> set;
+		private long lastSum;
+
+		public OnlineSet() {
+			set = new HashSet<>();
+			lastSum = 0;
+		}
+
+		public void add(int i) {
+			int f = (int) ((i + lastSum) % 1000000001);
+			set.add(f);
+		}
+
+		public boolean contains(int i) {
+			int f = (int) ((i + lastSum) % 1000000001);
+			return set.contains(f);
+		}
+
+		public void remove(int i) {
+			int f = (int) ((i + lastSum) % 1000000001);
+			set.remove(f);
+		}
+
+		public long sum(int l, int r) {
+			int f_l = (int) ((l + lastSum) % 1000000001);
+			int f_r = (int) ((r + lastSum) % 1000000001);
+			long sum = 0;
+			for (int i = f_l; i <= f_r; i++) {
+				if (set.contains(i)) {
+					sum += i;
+				}
+			}
+			lastSum += sum;
+			return sum;
 		}
 	}
 }

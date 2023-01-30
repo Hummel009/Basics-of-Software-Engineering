@@ -1,9 +1,11 @@
+package main.java.hummel;
+
 import java.util.Scanner;
 
 public class Ex0301 {
 	public static int size;
 	public static int[] heap;
-	public static int swapCounter = 0;
+	public static int swapCounter;
 	public static StringBuilder stringBuilder = new StringBuilder();
 	public static Scanner scanner = new Scanner(System.in);
 

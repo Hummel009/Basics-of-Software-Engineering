@@ -1,3 +1,5 @@
+package main.java.hummel;
+
 import java.util.*;
 
 public class Ex0502 {
@@ -83,7 +85,7 @@ public class Ex0502 {
 		}
 
 		public static class Words {
-			public LinkedList<String> wordsList;
+			public List<String> wordsList;
 
 			public Words() {
 				wordsList = new LinkedList<>();
@@ -91,7 +93,7 @@ public class Ex0502 {
 
 			public void add(String string) {
 				if (!contains(string)) {
-					wordsList.addFirst(string);
+					((LinkedList<String>) wordsList).addFirst(string);
 				}
 			}
 

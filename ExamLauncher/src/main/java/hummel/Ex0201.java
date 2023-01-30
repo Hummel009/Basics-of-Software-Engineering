@@ -1,10 +1,12 @@
+package main.java.hummel;
+
 import java.util.*;
 
 public class Ex0201 {
 	public static Scanner in = new Scanner(System.in);
 
 	public static void launch() {
-		char bracket[] = in.next().toCharArray();
+		char[] bracket = in.next().toCharArray();
 		LinkedList<Character> stack = new LinkedList<>();
 
 		int n = bracket.length;
@@ -17,12 +19,11 @@ public class Ex0201 {
 				}
 				stack.push(bracket[i]);
 			} else if (bracket[i] == '}' || bracket[i] == ')' || bracket[i] == ']') {
-				if (stack.peek() == reverseBracket(bracket[i])) {
-					stack.pop();
-				} else {
+				if (!Objects.equals(stack.peek(), reverseBracket(bracket[i]))) {
 					System.out.println(i + 1);
 					return;
 				}
+				stack.pop();
 			}
 		}
 		if (stack.isEmpty()) {

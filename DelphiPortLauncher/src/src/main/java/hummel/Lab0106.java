@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Lab0106 {
 	public static Scanner input = new Scanner(System.in);
-	public static HashMap<Month, Integer> daysSinceNY = new HashMap<>();
-	public static HashMap<Month, Integer> monthCapacity = new HashMap<>();
+	public static Map<Month, Integer> daysSinceNY = new EnumMap<>(Month.class);
+	public static Map<Month, Integer> monthCapacity = new EnumMap<>(Month.class);
 
 	static {
 		daysSinceNY.put(Month.JAN, 0);

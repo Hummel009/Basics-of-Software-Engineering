@@ -1,3 +1,5 @@
+package main.java.hummel;
+
 import java.util.Scanner;
 
 public class Ex0603 {
@@ -37,9 +39,7 @@ public class Ex0603 {
 		int vertexCount = scanner.nextInt();
 		if (vertexCount == 0) {
 			System.out.println("CORRECT");
-		}
-
-		else {
+		} else {
 			nodes = new Node[vertexCount];
 			for (int i = 0; i < vertexCount; i++) {
 				nodes[i] = new Node(scanner.nextLong(), scanner.nextInt(), scanner.nextInt());

@@ -1,9 +1,11 @@
+package main.java.hummel;
+
 import java.io.*;
 import java.util.*;
 
 public class Ex0204 {
 	public static Scanner scanner = new Scanner(System.in);
-	
+
 	public static void launch() {
 		int operationCount = scanner.nextInt();
 
@@ -27,8 +29,8 @@ public class Ex0204 {
 	}
 
 	public static class MyReader {
-		public BufferedReader reader = null;
-		public StringTokenizer tokenizer = null;
+		public BufferedReader reader;
+		public StringTokenizer tokenizer;
 
 		public MyReader(Reader r) throws IOException {
 			reader = new BufferedReader(r);
