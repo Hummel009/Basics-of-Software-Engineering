@@ -9,8 +9,8 @@ public class ADS02 {
 	public static Scanner input13 = new Scanner(System.in);
 	public static Scanner input21 = new Scanner(System.in);
 	public static Scanner input22 = new Scanner(System.in);
-	public static ArrayList<Content> list = new ArrayList<>();
-	public static HashMap<String, Content> map = new HashMap<>();
+	public static List<Content> list = new ArrayList<>();
+	public static Map<String, Content> map = new HashMap<>();
 
 	private static void addObject() {
 		// Можно любое количество страниц в терминах и подтерминах
@@ -79,17 +79,17 @@ public class ADS02 {
 	}
 
 	private static void editObject(Content obj) {
-		obj.ids.clear();
-		obj.sub.clear();
+		obj.cIds.clear();
+		obj.cSub.clear();
 		System.out.println("Enter the new ids of the old object.");
 		while (true) {
 			int read = input12.nextInt();
 			if (read == 0) {
 				break;
 			}
-			obj.ids.add(read);
+			obj.cIds.add(read);
 		}
-		Collections.sort(obj.ids);
+		Collections.sort(obj.cIds);
 
 		while (true) {
 			System.out.println("Has sub-content?");
@@ -110,7 +110,7 @@ public class ADS02 {
 			}
 			Collections.sort(temp);
 			Content prev = new Content(name, temp);
-			obj.sub.add(prev);
+			obj.cSub.add(prev);
 		}
 	}
 
@@ -124,8 +124,8 @@ public class ADS02 {
 			System.out.println("Wrong! Enter the sub-object name then.");
 			String namesub = input13.nextLine();
 			for (Content c : map.values()) {
-				for (Content sub : c.sub) {
-					if (c.sub != null && sub.name.equals(namesub)) {
+				for (Content sub : c.cSub) {
+					if (c.cSub != null && sub.cName.equals(namesub)) {
 						editObject(c);
 					}
 				}
@@ -144,8 +144,8 @@ public class ADS02 {
 			System.out.println("Wrong! Enter the sub-object name then.");
 			String namesub = input13.nextLine();
 			for (Content c : map.values()) {
-				for (Content sub : c.sub) {
-					if (c.sub != null && sub.name.equals(namesub)) {
+				for (Content sub : c.cSub) {
+					if (c.cSub != null && sub.cName.equals(namesub)) {
 						System.out.println(c.toString());
 					}
 				}
@@ -208,13 +208,13 @@ public class ADS02 {
 		Content cont = map.get(name);
 		if (cont != null) {
 			list.remove(cont);
-			map.remove(cont.name);
+			map.remove(cont.cName);
 		} else {
 			System.out.println("Wrong! Enter the sub-object name then.");
 			String namesub = input13.nextLine();
 			for (Content c : map.values()) {
-				for (Content sub : c.sub) {
-					if (c.sub != null && sub.name.equals(namesub)) {
+				for (Content sub : c.cSub) {
+					if (c.cSub != null && sub.cName.equals(namesub)) {
 						list.remove(c);
 					}
 				}
@@ -230,10 +230,10 @@ public class ADS02 {
 	}
 
 	private static void sortContent() {
-		Comparator<Content> comparator = Comparator.comparing(o1 -> o1.ids.get(0));
+		Comparator<Content> comparator = Comparator.comparing(o1 -> o1.cIds.get(0));
 		for (Content c : list) {
-			if (c.sub != null) {
-				Collections.sort(c.sub, comparator);
+			if (c.cSub != null) {
+				Collections.sort(c.cSub, comparator);
 			}
 		}
 		Collections.sort(list, comparator);
@@ -241,11 +241,11 @@ public class ADS02 {
 	}
 
 	private static void sortName() {
-		Comparator<Content> comparator = Comparator.comparing(o1 -> o1.name);
+		Comparator<Content> comparator = Comparator.comparing(o1 -> o1.cName);
 		Collections.sort(list, comparator);
 		for (Content c : list) {
-			if (c.sub != null) {
-				Collections.sort(c.sub, comparator);
+			if (c.cSub != null) {
+				Collections.sort(c.cSub, comparator);
 			}
 		}
 		showObjects();

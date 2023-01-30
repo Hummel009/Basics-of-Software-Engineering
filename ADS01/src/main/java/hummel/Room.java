@@ -20,14 +20,14 @@ public class Room {
 	public enum RoomType {
 		OTSEK("otsek"), ROOM("room"), CORRIDOR("corridor");
 
-		public String name;
+		public String eName;
 		RoomType(String fName) {
-			name = fName;
+			eName = fName;
 		}
 
 		public static RoomType forName(String search) {
 			for (RoomType r : RoomType.values()) {
-				if (search.equals(r.name)) {
+				if (search.equals(r.eName)) {
 					return r;
 				}
 			}
@@ -38,14 +38,14 @@ public class Room {
 	public enum WindowType {
 		BIG("big"), SMALL("small"), NONE("none");
 
-		public String name;
+		public String eName;
 		WindowType(String fName) {
-			name = fName;
+			eName = fName;
 		}
 
 		public static WindowType forName(String search) {
 			for (WindowType r : WindowType.values()) {
-				if (search.equals(r.name)) {
+				if (search.equals(r.eName)) {
 					return r;
 				}
 			}

@@ -3,29 +3,29 @@ package main.java.hummel;
 import java.util.*;
 
 public class Content {
-	public ArrayList<Content> sub = new ArrayList<>();
-	public ArrayList<Integer> ids = new ArrayList<>();
-	public String name;
+	public List<Content> cSub = new ArrayList<>();
+	public List<Integer> cIds = new ArrayList<>();
+	public String cName;
 
-	public Content(String fname, ArrayList<Integer> fids,  ArrayList<Content> fsub) {
-		name = fname;
-		ids = fids;
-		sub = fsub;
+	public Content(String fName, List<Integer> fIds,  List<Content> fSub) {
+		cName = fName;
+		cIds = fIds;
+		cSub = fSub;
 	}
 
-	public Content(String fname, ArrayList<Integer> fids) {
-		name = fname;
-		ids = fids;
-		sub = null;
+	public Content(String fname, List<Integer> fids) {
+		cName = fname;
+		cIds = fids;
+		cSub = null;
 	}
 
 	@Override
 	public String toString() {
-		if (sub == null) {
-			return name + ": " + ids.toString() + ", sub does not exist.";
+		if (cSub == null) {
+			return cName + ": " + cIds.toString() + ", sub does not exist.";
 		} else {
-			String s = name + ": " + ids.toString() + ", subs:\n";
-			for (Content c: sub) {
+			String s = cName + ": " + cIds.toString() + ", subs:\n";
+			for (Content c: cSub) {
 				s+= c.toString() + "\n";
 			}
 			return s;

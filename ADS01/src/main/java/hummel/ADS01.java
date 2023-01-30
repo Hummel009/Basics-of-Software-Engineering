@@ -67,7 +67,7 @@ public class ADS01 {
 					for (String b3 : new String[] { "true", "false" }) {
 						for (RoomType r : RoomType.values()) {
 							for (WindowType w : WindowType.values()) {
-								room[i] = new Room(f.name, b1, b2, b3, r, w);
+								room[i] = new Room(f.eName, b1, b2, b3, r, w);
 								i++;
 							}
 						}
@@ -127,7 +127,7 @@ public class ADS01 {
 	}
 
 	public static boolean compareRooms(Room rm1, Room rm2) {
-		return rm1.direct.equals(rm2.direct) && rm1.color.equals(rm2.color) && rm1.glowing.equals(rm2.glowing) && rm1.environment.equals(rm2.environment) && rm1.rtype.name.equals(rm2.rtype.name) && rm1.wtype.name.equals(rm2.wtype.name);
+		return rm1.direct.equals(rm2.direct) && rm1.color.equals(rm2.color) && rm1.glowing.equals(rm2.glowing) && rm1.environment.equals(rm2.environment) && rm1.rtype.eName.equals(rm2.rtype.eName) && rm1.wtype.eName.equals(rm2.wtype.eName);
 	}
 
 	public static void drawAsAMatrix(int left1, int right, int left2) {
@@ -176,15 +176,15 @@ public class ADS01 {
 	public enum Floors {
 		ONE("black"), TWO("grey"), THREE("green");
 
-		public String name;
+		public String eName;
 
 		Floors(String fName) {
-			name = fName;
+			eName = fName;
 		}
 
 		public static Floors forName(String search) {
 			for (Floors color : Floors.values()) {
-				if (search.equals(color.name)) {
+				if (search.equals(color.eName)) {
 					return color;
 				}
 			}

@@ -5,7 +5,7 @@ import java.util.*;
 public class ADS03 {
 	public static Scanner scan = new Scanner(System.in);
 	public Node root;
-	public ArrayList<Value> list = new ArrayList<>();
+	public List<Value> list = new ArrayList<>();
 	public int[] rab = new int[100];
 	public int[] arb = new int[100];
 	public int[] abr = new int[100];
@@ -244,9 +244,9 @@ public class ADS03 {
 	}
 
 	public static class Node {
-		int value;
-		Node left;
-		Node right;
+		public int value;
+		public Node left;
+		public Node right;
 
 		public Node(int data) {
 			value = data;
@@ -255,7 +255,7 @@ public class ADS03 {
 	}
 
 	public static class Value {
-		int value;
+		public int value;
 
 		public Value(int data) {
 			value = data;
