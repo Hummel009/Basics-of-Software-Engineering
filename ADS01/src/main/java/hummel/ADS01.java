@@ -2,10 +2,57 @@ package main.java.hummel;
 
 import java.util.*;
 
-import main.java.hummel.Room.*;
+import main.java.hummel.ADS01.Room.*;
 
 public class ADS01 {
 	public static Scanner input = new Scanner(System.in);
+
+	public static boolean compareRooms(Room rm1, Room rm2) {
+		return rm1.direct.equals(rm2.direct) && rm1.color.equals(rm2.color) && rm1.glowing.equals(rm2.glowing) && rm1.environment.equals(rm2.environment) && rm1.rtype.eName.equals(rm2.rtype.eName) && rm1.wtype.eName.equals(rm2.wtype.eName);
+	}
+
+	public static void drawAsAMatrix(int left1, int right, int left2) {
+		int lLeft1 = left1 / 5;
+		int lRight = right / 5;
+		int lLeft2 = left2 / 5;
+		String[][] matr = new String[26][26];
+		for (int i = 0; i < 26; i++) {
+			for (int j = 0; j < 26; j++) {
+				matr[i][j] = " ";
+			}
+		}
+		int x = 12;
+		int y = 12;
+		while (lLeft1 > 0) {
+			matr[x][y] = "G";
+			x--;
+			lLeft1--;
+		}
+		while (lRight > 0) {
+			matr[x][y] = "G";
+			y--;
+			lRight--;
+		}
+		while (lLeft2 > 0) {
+			matr[x][y] = "G";
+			x++;
+			lLeft2--;
+		}
+		matr[x][y] = "L";
+		matr[12][12] = "S";
+		System.out.println("|=======================================|");
+		System.out.println("|===============  ROUTE  ===============|");
+		System.out.println("|=======================================|");
+		System.out.println();
+		System.out.println("==========================");
+		for (int i = 0; i < 26; i++) {
+			for (int j = 0; j < 26; j++) {
+				System.out.print(matr[i][j]);
+			}
+			System.out.println();
+		}
+		System.out.println("==========================");
+	}
 
 	public static void main(String[] args) {
 		System.out.println("─────────────────────────────────────────────────────────────────────────");
@@ -126,53 +173,6 @@ public class ADS01 {
 		}
 	}
 
-	public static boolean compareRooms(Room rm1, Room rm2) {
-		return rm1.direct.equals(rm2.direct) && rm1.color.equals(rm2.color) && rm1.glowing.equals(rm2.glowing) && rm1.environment.equals(rm2.environment) && rm1.rtype.eName.equals(rm2.rtype.eName) && rm1.wtype.eName.equals(rm2.wtype.eName);
-	}
-
-	public static void drawAsAMatrix(int left1, int right, int left2) {
-		int lLeft1 = left1 / 5;
-		int lRight = right / 5;
-		int lLeft2 = left2 / 5;
-		String[][] matr = new String[26][26];
-		for (int i = 0; i < 26; i++) {
-			for (int j = 0; j < 26; j++) {
-				matr[i][j] = " ";
-			}
-		}
-		int x = 12;
-		int y = 12;
-		while (lLeft1 > 0) {
-			matr[x][y] = "G";
-			x--;
-			lLeft1--;
-		}
-		while (lRight > 0) {
-			matr[x][y] = "G";
-			y--;
-			lRight--;
-		}
-		while (lLeft2 > 0) {
-			matr[x][y] = "G";
-			x++;
-			lLeft2--;
-		}
-		matr[x][y] = "L";
-		matr[12][12] = "S";
-		System.out.println("|=======================================|");
-		System.out.println("|===============  ROUTE  ===============|");
-		System.out.println("|=======================================|");
-		System.out.println();
-		System.out.println("==========================");
-		for (int i = 0; i < 26; i++) {
-			for (int j = 0; j < 26; j++) {
-				System.out.print(matr[i][j]);
-			}
-			System.out.println();
-		}
-		System.out.println("==========================");
-	}
-
 	public enum Floors {
 		ONE("black"), TWO("grey"), THREE("green");
 
@@ -191,4 +191,61 @@ public class ADS01 {
 			return null;
 		}
 	}
+
+	public static class Room {
+		public String color;
+		public String glowing;
+		public String direct;
+		public String environment;
+		public RoomType rtype;
+		public WindowType wtype;
+
+		public Room(String fcolor, String fglowing, String fdirect, String fenvironment, RoomType frtype, WindowType fwtype) {
+			color = fcolor;
+			glowing = fglowing;
+			direct = fdirect;
+			environment = fenvironment;
+			rtype = frtype;
+			wtype = fwtype;
+		}
+
+		public enum RoomType {
+			OTSEK("otsek"), ROOM("room"), CORRIDOR("corridor");
+
+			public String eName;
+
+			RoomType(String fName) {
+				eName = fName;
+			}
+
+			public static RoomType forName(String search) {
+				for (RoomType r : RoomType.values()) {
+					if (search.equals(r.eName)) {
+						return r;
+					}
+				}
+				return null;
+			}
+		}
+
+		public enum WindowType {
+			BIG("big"), SMALL("small"), NONE("none");
+
+			public String eName;
+
+			WindowType(String fName) {
+				eName = fName;
+			}
+
+			public static WindowType forName(String search) {
+				for (WindowType r : WindowType.values()) {
+					if (search.equals(r.eName)) {
+						return r;
+					}
+				}
+				return null;
+			}
+		}
+	}
+
 }

@@ -250,4 +250,34 @@ public class ADS02 {
 		}
 		showObjects();
 	}
+
+	public static class Content {
+		public List<Content> cSub = new ArrayList<>();
+		public List<Integer> cIds = new ArrayList<>();
+		public String cName;
+
+		public Content(String fname, List<Integer> fids) {
+			cName = fname;
+			cIds = fids;
+			cSub = null;
+		}
+
+		public Content(String fName, List<Integer> fIds, List<Content> fSub) {
+			cName = fName;
+			cIds = fIds;
+			cSub = fSub;
+		}
+
+		@Override
+		public String toString() {
+			if (cSub == null) {
+				return cName + ": " + cIds.toString() + ", sub does not exist.";
+			}
+			StringBuilder s = new StringBuilder().append(cName).append(": ").append(cIds.toString()).append(", subs:\n");
+			for (Content c : cSub) {
+				s.append(c.toString()).append("\n");
+			}
+			return s.toString();
+		}
+	}
 }
