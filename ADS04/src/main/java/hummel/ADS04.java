@@ -1,16 +1,16 @@
 ﻿package main.java.hummel;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class ADS04 {
 	public static Scanner scan = new Scanner(System.in);
 	// Массив растояний проходов от узла к узлу
-	public static int step[] = new int[100];
+	public static int[] step = new int[100];
 	// Массив растояний от узла к узлу
-	public static int arrv[][] = new int[10][10];
+	public static int[][] arrv = new int[10][10];
 
 	public static void main(String[] args) {
-		int arrp[] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+		int[] arrp = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 		for (int sus = 0; sus < 100; sus++) {
 			step[sus] = 0;
 		}
@@ -49,7 +49,8 @@ public class ADS04 {
 		}
 
 		// Нахождение путей от узла к узлу
-		int tmp1, tmp2;
+		int tmp1;
+		int tmp2;
 		System.out.printf("\nFind a way from: ");
 		tmp1 = scan.nextInt();
 
@@ -78,7 +79,7 @@ public class ADS04 {
 			}
 		}
 
-		int arrm[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		int[] arrm = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 		// Нахождение минимального пути
 		System.out.printf("Min: ");
@@ -98,7 +99,7 @@ public class ADS04 {
 		}
 
 		// Нахождение эксцентриситетов (Минимальное растояние от узла к узлу)
-		int ex[][] = new int[11][11];
+		int[][] ex = new int[11][11];
 		for (int c1 = 0; c1 < 11; c1++) {
 			for (int c2 = 0; c2 < 11; c2++) {
 				ex[c1][c2] = 0;
@@ -197,15 +198,11 @@ public class ADS04 {
 	private static void maxmin(int j, int k, int[] arrp, int tmp1, int tmp2, int i, int tmp, int mm, int[] arrm) {
 		while (k < i && j != tmp2) {
 			if (arrv[j][k] != 0 && arrp[k] != 0) {
-				int arrpt[] = new int[10];
-				for (int g = 0; g < 10; g++) {
-					arrpt[g] = arrp[g];
-				}
+				int[] arrpt = new int[10];
+				arrpt = Arrays.copyOf(arrp, 10);
 
-				int arrmt[] = new int[10];
-				for (int g = 0; g < 10; g++) {
-					arrmt[g] = arrm[g];
-				}
+				int[] arrmt = new int[10];
+				arrmt = Arrays.copyOf(arrm, 10);
 				int g = 0;
 				for (; arrmt[g] != 0; g++) {
 				}
@@ -231,10 +228,8 @@ public class ADS04 {
 	private static void serch(int j, int k, int[] arrp, int tmp1, int tmp2, int i, int tmp) {
 		while (k < i && j != tmp2) {
 			if (arrv[j][k] != 0 && arrp[k] != 0) {
-				int arrpt[] = new int[10];
-				for (int g = 0; g < 10; g++) {
-					arrpt[g] = arrp[g];
-				}
+				int[] arrpt = new int[10];
+				arrpt = Arrays.copyOf(arrp, 10);
 				arrpt[k] = 0;
 				serch(k, 0, arrpt, tmp1, tmp2, i, tmp + arrv[j][k]);
 			}
