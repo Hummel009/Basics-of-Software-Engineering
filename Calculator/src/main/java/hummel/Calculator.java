@@ -1,30 +1,24 @@
 ﻿package main.java.hummel;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.text.DecimalFormat;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.Map.Entry;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 
 public class Calculator implements ActionListener {
-	private final JButton[] button = new JButton[50];
-	private Operation operation;
-	private double output;
-	private double input1;
-	private double input2;
-	private final JTextField outputField = new JTextField(20);
-	private final JPanel panel = new JPanel();
-	private int notInclude;
-	private int[] exNums = { 22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42 };
-	private boolean isExtended = false;
+	public JButton[] button = new JButton[50];
+	public Operation operation;
+	public double output;
+	public double input1;
+	public double input2;
+	public JTextField outputField = new JTextField(20);
+	public JPanel panel = new JPanel();
+	public int notInclude;
+	public int[] exNums = { 22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42 };
+	public boolean isExtended;
 
 	public static void main(String[] arg) {
 		new Calculator();
@@ -110,7 +104,7 @@ public class Calculator implements ActionListener {
 		panel.add(button);
 	}
 
-	public void registerHiddenButton(JButton button, String name) {
+	public void registerHiddenButton(AbstractButton button, String name) {
 		button.setFont(button.getFont().deriveFont(20f));
 		button.addActionListener(this);
 		button.setText(name);
@@ -163,23 +157,23 @@ public class Calculator implements ActionListener {
 		vd.put(button[12], 3);
 		vd.put(button[11], 4);
 
-		for (JButton btn: one.keySet()) {
-			if (jbutton == btn) {
-				oneNumber(one.get(btn), btn);
+		for (Entry<JButton, Operation> btn : one.entrySet()) {
+			if (jbutton == btn.getKey()) {
+				oneNumber(btn.getValue(), btn.getKey());
 				break;
 			}
 		}
 
-		for (JButton btn: two.keySet()) {
-			if (jbutton == btn) {
-				twoNumbers(two.get(btn), btn);
+		for (Entry<JButton, Operation> btn : two.entrySet()) {
+			if (jbutton == btn.getKey()) {
+				twoNumbers(btn.getValue(), btn.getKey());
 				break;
 			}
 		}
 
-		for (JButton btn: vd.keySet()) {
-			if (jbutton == btn) {
-				enable(vd.get(btn));
+		for (Entry<JButton, Integer> btn : vd.entrySet()) {
+			if (jbutton == btn.getKey()) {
+				enable(btn.getValue());
 				break;
 			}
 		}
@@ -195,7 +189,7 @@ public class Calculator implements ActionListener {
 	}
 
 	private void enable(int i) {
-		switch(i) {
+		switch (i) {
 		case 0:
 			extendedMode();
 			break;
@@ -248,7 +242,7 @@ public class Calculator implements ActionListener {
 		outputField.setText(outputField.getText() + "=" + result);
 	}
 
-	public void oneNumber(Operation op, JButton button) {
+	public void oneNumber(Operation op, AbstractButton button) {
 		input1 = Double.parseDouble(outputField.getText());
 		operation = op;
 		calculate();
@@ -256,7 +250,7 @@ public class Calculator implements ActionListener {
 		outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result);
 	}
 
-	public void twoNumbers(Operation op, JButton button) {
+	public void twoNumbers(Operation op, AbstractButton button) {
 		notInclude = outputField.getText().length() + button.getText().length();
 		input1 = Double.parseDouble(outputField.getText());
 		operation = op;
@@ -264,7 +258,7 @@ public class Calculator implements ActionListener {
 	}
 
 	public void calculate() {
-		Map<Operation, Double> op = new HashMap<>();
+		Map<Operation, Double> op = new EnumMap<>(Operation.class);
 		op.put(Operation.PLUS, input1 + input2);
 		op.put(Operation.MINUS, input1 - input2);
 		op.put(Operation.MULTIPLE, input1 * input2);
@@ -293,7 +287,7 @@ public class Calculator implements ActionListener {
 		op.put(Operation.BACK, 1 / input1);
 		op.put(Operation.NULL, input2);
 
-		switch(operation) {
+		switch (operation) {
 		case DOUBLEFACT:
 			long result2 = 1;
 			for (Long k = Math.round(input1); k > 0; k = k - 2) {
