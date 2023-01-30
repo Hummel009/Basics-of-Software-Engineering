@@ -5,14 +5,7 @@ import java.util.*;
 import main.java.hummel.Room.*;
 
 public class ADS01 {
-	public static Room rm;
 	public static Scanner input = new Scanner(System.in);
-	public static String color;
-	public static String glowing;
-	public static String direct;
-	public static String environment;
-	public static RoomType type;
-	public static WindowType wtype;
 
 	public static void main(String[] args) {
 		System.out.println("─────────────────────────────────────────────────────────────────────────");
@@ -37,16 +30,19 @@ public class ADS01 {
 		} while (floor == null);
 
 		System.out.println("Enter the color of the room (green, black, grey): ");
-		color = input.nextLine();
+		String color = input.nextLine();
 
 		System.out.println("Enter the glowing of the room (true/false): ");
-		glowing = input.nextLine();
+		String glowing = input.nextLine();
 
 		System.out.println("Enter the glowing type of the room (true/false): ");
-		direct = input.nextLine();
+		String direct = input.nextLine();
 
 		System.out.println("Enter the med environment of the room (true/false): ");
-		environment = input.nextLine();
+		String environment = input.nextLine();
+
+		RoomType type;
+		WindowType wtype;
 
 		do {
 			System.out.println("Enter the room type of the room: ");
@@ -60,303 +56,29 @@ public class ADS01 {
 			wtype = WindowType.forName(w);
 		} while (wtype == null);
 
-		rm = new Room(color, glowing, direct, environment, type, wtype);
+		Room rm = new Room(color, glowing, direct, environment, type, wtype);
 
 		int i = 0;
 
-		Room room[] = new Room[216];
+		Room[] room = new Room[216];
+		for (String s : new String[] { "grey", "black", "green" }) {
+			for (String b1 : new String[] { "true", "false" }) {
+				for (String b2 : new String[] { "true", "false" }) {
+					for (String b3 : new String[] { "true", "false" }) {
+						for (RoomType r : RoomType.values()) {
+							for (WindowType w : WindowType.values()) {
+								room[i] = new Room(s, b1, b2, b3, r, w);
+								i++;
+							}
+						}
+					}
+				}
+			}
+		}
 
 		Room blackRoom = new Room("grey", "true", "false", "false", RoomType.ROOM, WindowType.SMALL);
 		Room lab = new Room("grey", "true", "true", "true", RoomType.ROOM, WindowType.BIG);
 		Room prison = new Room("green", "false", "false", "false", RoomType.ROOM, WindowType.NONE);
-
-		room[i++] = new Room("grey", "true", "true", "true", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("black", "true", "true", "true", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("green", "true", "true", "true", RoomType.ROOM, WindowType.BIG);
-
-		room[i++] = new Room("grey", "false", "true", "true", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("black", "false", "true", "true", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("green", "false", "true", "true", RoomType.ROOM, WindowType.BIG);
-
-		room[i++] = new Room("grey", "true", "false", "true", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("black", "true", "false", "true", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("green", "true", "false", "true", RoomType.ROOM, WindowType.BIG);
-
-		room[i++] = new Room("grey", "false", "false", "true", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("black", "false", "false", "true", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("green", "false", "false", "true", RoomType.ROOM, WindowType.BIG);
-
-		room[i++] = new Room("grey", "true", "true", "false", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("black", "true", "true", "false", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("green", "true", "true", "false", RoomType.ROOM, WindowType.BIG);
-
-		room[i++] = new Room("grey", "false", "true", "false", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("black", "false", "true", "false", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("green", "false", "true", "false", RoomType.ROOM, WindowType.BIG);
-
-		room[i++] = new Room("grey", "true", "false", "false", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("black", "true", "false", "false", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("green", "true", "false", "false", RoomType.ROOM, WindowType.BIG);
-
-		room[i++] = new Room("grey", "false", "false", "false", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("black", "false", "false", "false", RoomType.ROOM, WindowType.BIG);
-		room[i++] = new Room("green", "false", "false", "false", RoomType.ROOM, WindowType.BIG);
-
-		room[i++] = new Room("grey", "true", "true", "true", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("black", "true", "true", "true", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("green", "true", "true", "true", RoomType.CORRIDOR, WindowType.BIG);
-
-		room[i++] = new Room("grey", "false", "true", "true", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("black", "false", "true", "true", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("green", "false", "true", "true", RoomType.CORRIDOR, WindowType.BIG);
-
-		room[i++] = new Room("grey", "true", "false", "true", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("black", "true", "false", "true", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("green", "true", "false", "true", RoomType.CORRIDOR, WindowType.BIG);
-
-		room[i++] = new Room("grey", "false", "false", "true", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("black", "false", "false", "true", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("green", "false", "false", "true", RoomType.CORRIDOR, WindowType.BIG);
-
-		room[i++] = new Room("grey", "true", "true", "false", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("black", "true", "true", "false", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("green", "true", "true", "false", RoomType.CORRIDOR, WindowType.BIG);
-
-		room[i++] = new Room("grey", "false", "true", "false", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("black", "false", "true", "false", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("green", "false", "true", "false", RoomType.CORRIDOR, WindowType.BIG);
-
-		room[i++] = new Room("grey", "true", "false", "false", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("black", "true", "false", "false", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("green", "true", "false", "false", RoomType.CORRIDOR, WindowType.BIG);
-
-		room[i++] = new Room("grey", "false", "false", "false", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("black", "false", "false", "false", RoomType.CORRIDOR, WindowType.BIG);
-		room[i++] = new Room("green", "false", "false", "false", RoomType.CORRIDOR, WindowType.BIG);
-
-		room[i++] = new Room("grey", "true", "true", "true", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("black", "true", "true", "true", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("green", "true", "true", "true", RoomType.OTSEK, WindowType.BIG);
-
-		room[i++] = new Room("grey", "false", "true", "true", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("black", "false", "true", "true", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("green", "false", "true", "true", RoomType.OTSEK, WindowType.BIG);
-
-		room[i++] = new Room("grey", "true", "false", "true", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("black", "true", "false", "true", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("green", "true", "false", "true", RoomType.OTSEK, WindowType.BIG);
-
-		room[i++] = new Room("grey", "false", "false", "true", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("black", "false", "false", "true", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("green", "false", "false", "true", RoomType.OTSEK, WindowType.BIG);
-
-		room[i++] = new Room("grey", "true", "true", "false", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("black", "true", "true", "false", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("green", "true", "true", "false", RoomType.OTSEK, WindowType.BIG);
-
-		room[i++] = new Room("grey", "false", "true", "false", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("black", "false", "true", "false", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("green", "false", "true", "false", RoomType.OTSEK, WindowType.BIG);
-
-		room[i++] = new Room("grey", "true", "false", "false", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("black", "true", "false", "false", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("green", "true", "false", "false", RoomType.OTSEK, WindowType.BIG);
-
-		room[i++] = new Room("grey", "false", "false", "false", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("black", "false", "false", "false", RoomType.OTSEK, WindowType.BIG);
-		room[i++] = new Room("green", "false", "false", "false", RoomType.OTSEK, WindowType.BIG);
-
-		room[i++] = new Room("grey", "true", "true", "true", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("black", "true", "true", "true", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("green", "true", "true", "true", RoomType.ROOM, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "false", "true", "true", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("black", "false", "true", "true", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("green", "false", "true", "true", RoomType.ROOM, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "true", "false", "true", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("black", "true", "false", "true", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("green", "true", "false", "true", RoomType.ROOM, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "false", "false", "true", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("black", "false", "false", "true", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("green", "false", "false", "true", RoomType.ROOM, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "true", "true", "false", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("black", "true", "true", "false", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("green", "true", "true", "false", RoomType.ROOM, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "false", "true", "false", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("black", "false", "true", "false", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("green", "false", "true", "false", RoomType.ROOM, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "true", "false", "false", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("black", "true", "false", "false", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("green", "true", "false", "false", RoomType.ROOM, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "false", "false", "false", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("black", "false", "false", "false", RoomType.ROOM, WindowType.SMALL);
-		room[i++] = new Room("green", "false", "false", "false", RoomType.ROOM, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "true", "true", "true", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("black", "true", "true", "true", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("green", "true", "true", "true", RoomType.CORRIDOR, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "false", "true", "true", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("black", "false", "true", "true", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("green", "false", "true", "true", RoomType.CORRIDOR, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "true", "false", "true", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("black", "true", "false", "true", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("green", "true", "false", "true", RoomType.CORRIDOR, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "false", "false", "true", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("black", "false", "false", "true", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("green", "false", "false", "true", RoomType.CORRIDOR, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "true", "true", "false", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("black", "true", "true", "false", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("green", "true", "true", "false", RoomType.CORRIDOR, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "false", "true", "false", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("black", "false", "true", "false", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("green", "false", "true", "false", RoomType.CORRIDOR, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "true", "false", "false", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("black", "true", "false", "false", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("green", "true", "false", "false", RoomType.CORRIDOR, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "false", "false", "false", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("black", "false", "false", "false", RoomType.CORRIDOR, WindowType.SMALL);
-		room[i++] = new Room("green", "false", "false", "false", RoomType.CORRIDOR, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "true", "true", "true", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("black", "true", "true", "true", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("green", "true", "true", "true", RoomType.OTSEK, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "false", "true", "true", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("black", "false", "true", "true", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("green", "false", "true", "true", RoomType.OTSEK, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "true", "false", "true", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("black", "true", "false", "true", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("green", "true", "false", "true", RoomType.OTSEK, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "false", "false", "true", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("black", "false", "false", "true", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("green", "false", "false", "true", RoomType.OTSEK, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "true", "true", "false", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("black", "true", "true", "false", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("green", "true", "true", "false", RoomType.OTSEK, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "false", "true", "false", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("black", "false", "true", "false", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("green", "false", "true", "false", RoomType.OTSEK, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "true", "false", "false", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("black", "true", "false", "false", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("green", "true", "false", "false", RoomType.OTSEK, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "false", "false", "false", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("black", "false", "false", "false", RoomType.OTSEK, WindowType.SMALL);
-		room[i++] = new Room("green", "false", "false", "false", RoomType.OTSEK, WindowType.SMALL);
-
-		room[i++] = new Room("grey", "true", "true", "true", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("black", "true", "true", "true", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("green", "true", "true", "true", RoomType.ROOM, WindowType.NONE);
-
-		room[i++] = new Room("grey", "false", "true", "true", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("black", "false", "true", "true", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("green", "false", "true", "true", RoomType.ROOM, WindowType.NONE);
-
-		room[i++] = new Room("grey", "true", "false", "true", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("black", "true", "false", "true", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("green", "true", "false", "true", RoomType.ROOM, WindowType.NONE);
-
-		room[i++] = new Room("grey", "false", "false", "true", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("black", "false", "false", "true", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("green", "false", "false", "true", RoomType.ROOM, WindowType.NONE);
-
-		room[i++] = new Room("grey", "true", "true", "false", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("black", "true", "true", "false", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("green", "true", "true", "false", RoomType.ROOM, WindowType.NONE);
-
-		room[i++] = new Room("grey", "false", "true", "false", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("black", "false", "true", "false", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("green", "false", "true", "false", RoomType.ROOM, WindowType.NONE);
-
-		room[i++] = new Room("grey", "true", "false", "false", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("black", "true", "false", "false", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("green", "true", "false", "false", RoomType.ROOM, WindowType.NONE);
-
-		room[i++] = new Room("grey", "false", "false", "false", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("black", "false", "false", "false", RoomType.ROOM, WindowType.NONE);
-		room[i++] = new Room("green", "false", "false", "false", RoomType.ROOM, WindowType.NONE);
-
-		room[i++] = new Room("grey", "true", "true", "true", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("black", "true", "true", "true", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("green", "true", "true", "true", RoomType.CORRIDOR, WindowType.NONE);
-
-		room[i++] = new Room("grey", "false", "true", "true", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("black", "false", "true", "true", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("green", "false", "true", "true", RoomType.CORRIDOR, WindowType.NONE);
-
-		room[i++] = new Room("grey", "true", "false", "true", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("black", "true", "false", "true", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("green", "true", "false", "true", RoomType.CORRIDOR, WindowType.NONE);
-
-		room[i++] = new Room("grey", "false", "false", "true", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("black", "false", "false", "true", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("green", "false", "false", "true", RoomType.CORRIDOR, WindowType.NONE);
-
-		room[i++] = new Room("grey", "true", "true", "false", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("black", "true", "true", "false", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("green", "true", "true", "false", RoomType.CORRIDOR, WindowType.NONE);
-
-		room[i++] = new Room("grey", "false", "true", "false", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("black", "false", "true", "false", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("green", "false", "true", "false", RoomType.CORRIDOR, WindowType.NONE);
-
-		room[i++] = new Room("grey", "true", "false", "false", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("black", "true", "false", "false", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("green", "true", "false", "false", RoomType.CORRIDOR, WindowType.NONE);
-
-		room[i++] = new Room("grey", "false", "false", "false", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("black", "false", "false", "false", RoomType.CORRIDOR, WindowType.NONE);
-		room[i++] = new Room("green", "false", "false", "false", RoomType.CORRIDOR, WindowType.NONE);
-
-		room[i++] = new Room("grey", "true", "true", "true", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("black", "true", "true", "true", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("green", "true", "true", "true", RoomType.OTSEK, WindowType.NONE);
-
-		room[i++] = new Room("grey", "false", "true", "true", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("black", "false", "true", "true", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("green", "false", "true", "true", RoomType.OTSEK, WindowType.NONE);
-
-		room[i++] = new Room("grey", "true", "false", "true", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("black", "true", "false", "true", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("green", "true", "false", "true", RoomType.OTSEK, WindowType.NONE);
-
-		room[i++] = new Room("grey", "false", "false", "true", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("black", "false", "false", "true", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("green", "false", "false", "true", RoomType.OTSEK, WindowType.NONE);
-
-		room[i++] = new Room("grey", "true", "true", "false", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("black", "true", "true", "false", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("green", "true", "true", "false", RoomType.OTSEK, WindowType.NONE);
-
-		room[i++] = new Room("grey", "false", "true", "false", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("black", "false", "true", "false", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("green", "false", "true", "false", RoomType.OTSEK, WindowType.NONE);
-
-		room[i++] = new Room("grey", "true", "false", "false", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("black", "true", "false", "false", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("green", "true", "false", "false", RoomType.OTSEK, WindowType.NONE);
-
-		room[i++] = new Room("grey", "false", "false", "false", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("black", "false", "false", "false", RoomType.OTSEK, WindowType.NONE);
-		room[i++] = new Room("green", "false", "false", "false", RoomType.OTSEK, WindowType.NONE);
 
 		System.out.println("|=======================================|");
 		System.out.println("|==============  GO BACK  ==============|");
@@ -405,25 +127,14 @@ public class ADS01 {
 	}
 
 	public static boolean compareRooms(Room rm1, Room rm2) {
-		if (rm1.direct.equals(rm2.direct) && rm1.color.equals(rm2.color)) {
-			if (rm1.glowing.equals(rm2.glowing)) {
-				if (rm1.environment.equals(rm2.environment)) {
-					if (rm1.rtype.getName().equals(rm2.rtype.getName())) {
-						if (rm1.wtype.getName().equals(rm2.wtype.getName())) {
-							return true;
-						}
-					}
-				}
-			}
-		}
-		return false;
+		return rm1.direct.equals(rm2.direct) && rm1.color.equals(rm2.color) && rm1.glowing.equals(rm2.glowing) && rm1.environment.equals(rm2.environment) && rm1.rtype.getName().equals(rm2.rtype.getName()) && rm1.wtype.getName().equals(rm2.wtype.getName());
 	}
 
 	public static void drawAsAMatrix(int left1, int right, int left2) {
 		int lLeft1 = left1 / 5;
 		int lRight = right / 5;
 		int lLeft2 = left2 / 5;
-		String matr[][] = new String[26][26];
+		String[][] matr = new String[26][26];
 		for (int i = 0; i < 26; i++) {
 			for (int j = 0; j < 26; j++) {
 				matr[i][j] = " ";
@@ -466,6 +177,7 @@ public class ADS01 {
 		ONE("black"), TWO("grey"), THREE("green");
 
 		private String name;
+
 		Floors(String fName) {
 			name = fName;
 		}
