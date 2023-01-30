@@ -61,13 +61,13 @@ public class ADS01 {
 		int i = 0;
 
 		Room[] room = new Room[216];
-		for (String s : new String[] { "grey", "black", "green" }) {
+		for (Floors f : Floors.values()) {
 			for (String b1 : new String[] { "true", "false" }) {
 				for (String b2 : new String[] { "true", "false" }) {
 					for (String b3 : new String[] { "true", "false" }) {
 						for (RoomType r : RoomType.values()) {
 							for (WindowType w : WindowType.values()) {
-								room[i] = new Room(s, b1, b2, b3, r, w);
+								room[i] = new Room(f.name, b1, b2, b3, r, w);
 								i++;
 							}
 						}
@@ -127,7 +127,7 @@ public class ADS01 {
 	}
 
 	public static boolean compareRooms(Room rm1, Room rm2) {
-		return rm1.direct.equals(rm2.direct) && rm1.color.equals(rm2.color) && rm1.glowing.equals(rm2.glowing) && rm1.environment.equals(rm2.environment) && rm1.rtype.getName().equals(rm2.rtype.getName()) && rm1.wtype.getName().equals(rm2.wtype.getName());
+		return rm1.direct.equals(rm2.direct) && rm1.color.equals(rm2.color) && rm1.glowing.equals(rm2.glowing) && rm1.environment.equals(rm2.environment) && rm1.rtype.name.equals(rm2.rtype.name) && rm1.wtype.name.equals(rm2.wtype.name);
 	}
 
 	public static void drawAsAMatrix(int left1, int right, int left2) {
@@ -176,19 +176,15 @@ public class ADS01 {
 	public enum Floors {
 		ONE("black"), TWO("grey"), THREE("green");
 
-		private String name;
+		public String name;
 
 		Floors(String fName) {
 			name = fName;
 		}
 
-		public String getName() {
-			return name;
-		}
-
 		public static Floors forName(String search) {
 			for (Floors color : Floors.values()) {
-				if (search.equals(color.getName())) {
+				if (search.equals(color.name)) {
 					return color;
 				}
 			}
