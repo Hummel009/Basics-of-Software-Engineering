@@ -1,10 +1,11 @@
 ﻿package main.java.hummel;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 public class Belarcon {
 	public static Scanner scan = new Scanner(System.in);
-	public static HashMap<String, String> letters = new HashMap<>();
+	public static Map<String, String> letters = new HashMap<>();
 	static {
 		letters.put("А", "");
 		letters.put("Е", "");
@@ -47,11 +48,11 @@ public class Belarcon {
 		do {
 			entered = scan.nextLine();
 			entered = entered.toUpperCase();
-			for (String sus: letters.keySet()) {
-				entered = entered.replace(sus, letters.get(sus));
+			for (Entry<String, String> sus: letters.entrySet()) {
+				entered = entered.replace(sus.getKey(), sus.getValue());
 			}
 			System.out.println(reverse(entered));
-		} while (entered != "стоп");
+		} while (!"стоп".equals(entered));
 	}
 
 	public static String reverse(String str) {
