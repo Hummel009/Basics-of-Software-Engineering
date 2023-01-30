@@ -112,12 +112,10 @@ public class Calculator implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		final JButton jbutton = (JButton) event.getSource();
-		selectButton(jbutton);
+		selectButton((JButton) event.getSource());
 	}
 
 	public void selectButton(JButton jbutton) {
-
 		Map<JButton, Operation> one = new HashMap<>();
 		one.put(button[23], Operation.FACTORIAL);
 		one.put(button[44], Operation.DOUBLEFACT);

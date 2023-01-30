@@ -78,18 +78,18 @@ public class ADS02 {
 		showObjects();
 	}
 
-	private static void editObject(Content obj) {
-		obj.cIds.clear();
-		obj.cSub.clear();
+	private static void editObject(Content content) {
+		content.contentIds.clear();
+		content.contentSubs.clear();
 		System.out.println("Enter the new ids of the old object.");
 		while (true) {
 			int read = input12.nextInt();
 			if (read == 0) {
 				break;
 			}
-			obj.cIds.add(read);
+			content.contentIds.add(read);
 		}
-		Collections.sort(obj.cIds);
+		Collections.sort(content.contentIds);
 
 		while (true) {
 			System.out.println("Has sub-content?");
@@ -110,7 +110,7 @@ public class ADS02 {
 			}
 			Collections.sort(temp);
 			Content prev = new Content(name, temp);
-			obj.cSub.add(prev);
+			content.contentSubs.add(prev);
 		}
 	}
 
@@ -124,8 +124,8 @@ public class ADS02 {
 			System.out.println("Wrong! Enter the sub-object name then.");
 			String namesub = input13.nextLine();
 			for (Content c : map.values()) {
-				for (Content sub : c.cSub) {
-					if (c.cSub != null && sub.cName.equals(namesub)) {
+				for (Content sub : c.contentSubs) {
+					if (c.contentSubs != null && sub.contentName.equals(namesub)) {
 						editObject(c);
 					}
 				}
@@ -144,8 +144,8 @@ public class ADS02 {
 			System.out.println("Wrong! Enter the sub-object name then.");
 			String namesub = input13.nextLine();
 			for (Content c : map.values()) {
-				for (Content sub : c.cSub) {
-					if (c.cSub != null && sub.cName.equals(namesub)) {
+				for (Content sub : c.contentSubs) {
+					if (c.contentSubs != null && sub.contentName.equals(namesub)) {
 						System.out.println(c.toString());
 					}
 				}
@@ -208,13 +208,13 @@ public class ADS02 {
 		Content cont = map.get(name);
 		if (cont != null) {
 			list.remove(cont);
-			map.remove(cont.cName);
+			map.remove(cont.contentName);
 		} else {
 			System.out.println("Wrong! Enter the sub-object name then.");
 			String namesub = input13.nextLine();
 			for (Content c : map.values()) {
-				for (Content sub : c.cSub) {
-					if (c.cSub != null && sub.cName.equals(namesub)) {
+				for (Content sub : c.contentSubs) {
+					if (c.contentSubs != null && sub.contentName.equals(namesub)) {
 						list.remove(c);
 					}
 				}
@@ -230,10 +230,10 @@ public class ADS02 {
 	}
 
 	private static void sortContent() {
-		Comparator<Content> comparator = Comparator.comparing(o1 -> o1.cIds.get(0));
+		Comparator<Content> comparator = Comparator.comparing(o1 -> o1.contentIds.get(0));
 		for (Content c : list) {
-			if (c.cSub != null) {
-				Collections.sort(c.cSub, comparator);
+			if (c.contentSubs != null) {
+				Collections.sort(c.contentSubs, comparator);
 			}
 		}
 		Collections.sort(list, comparator);
@@ -241,40 +241,40 @@ public class ADS02 {
 	}
 
 	private static void sortName() {
-		Comparator<Content> comparator = Comparator.comparing(o1 -> o1.cName);
+		Comparator<Content> comparator = Comparator.comparing(o1 -> o1.contentName);
 		Collections.sort(list, comparator);
 		for (Content c : list) {
-			if (c.cSub != null) {
-				Collections.sort(c.cSub, comparator);
+			if (c.contentSubs != null) {
+				Collections.sort(c.contentSubs, comparator);
 			}
 		}
 		showObjects();
 	}
 
 	public static class Content {
-		public List<Content> cSub = new ArrayList<>();
-		public List<Integer> cIds = new ArrayList<>();
-		public String cName;
+		public List<Content> contentSubs = new ArrayList<>();
+		public List<Integer> contentIds = new ArrayList<>();
+		public String contentName;
 
-		public Content(String fname, List<Integer> fids) {
-			cName = fname;
-			cIds = fids;
-			cSub = null;
+		public Content(String fName, List<Integer> fIds) {
+			contentName = fName;
+			contentIds = fIds;
+			contentSubs = null;
 		}
 
 		public Content(String fName, List<Integer> fIds, List<Content> fSub) {
-			cName = fName;
-			cIds = fIds;
-			cSub = fSub;
+			contentName = fName;
+			contentIds = fIds;
+			contentSubs = fSub;
 		}
 
 		@Override
 		public String toString() {
-			if (cSub == null) {
-				return cName + ": " + cIds.toString() + ", sub does not exist.";
+			if (contentSubs == null) {
+				return contentName + ": " + contentIds.toString() + ", sub does not exist.";
 			}
-			StringBuilder s = new StringBuilder().append(cName).append(": ").append(cIds.toString()).append(", subs:\n");
-			for (Content c : cSub) {
+			StringBuilder s = new StringBuilder().append(contentName).append(": ").append(contentIds.toString()).append(", subs:\n");
+			for (Content c : contentSubs) {
 				s.append(c.toString()).append("\n");
 			}
 			return s.toString();

@@ -7,8 +7,8 @@ import main.java.hummel.ADS01.Room.*;
 public class ADS01 {
 	public static Scanner input = new Scanner(System.in);
 
-	public static boolean compareRooms(Room rm1, Room rm2) {
-		return rm1.direct.equals(rm2.direct) && rm1.color.equals(rm2.color) && rm1.glowing.equals(rm2.glowing) && rm1.environment.equals(rm2.environment) && rm1.rtype.eName.equals(rm2.rtype.eName) && rm1.wtype.eName.equals(rm2.wtype.eName);
+	public static boolean compareRooms(Room room1, Room room2) {
+		return room1.direct.equals(room2.direct) && room1.color.equals(room2.color) && room1.glowing.equals(room2.glowing) && room1.environment.equals(room2.environment) && room1.roomType.roomName.equals(room2.roomType.roomName) && room1.windowType.windowName.equals(room2.windowType.windowName);
 	}
 
 	public static void drawAsAMatrix(int left1, int right, int left2) {
@@ -197,30 +197,30 @@ public class ADS01 {
 		public String glowing;
 		public String direct;
 		public String environment;
-		public RoomType rtype;
-		public WindowType wtype;
+		public RoomType roomType;
+		public WindowType windowType;
 
-		public Room(String fcolor, String fglowing, String fdirect, String fenvironment, RoomType frtype, WindowType fwtype) {
-			color = fcolor;
-			glowing = fglowing;
-			direct = fdirect;
-			environment = fenvironment;
-			rtype = frtype;
-			wtype = fwtype;
+		public Room(String fColor, String fGlowing, String fDirect, String fEnvironment, RoomType fRoomType, WindowType fWindowType) {
+			color = fColor;
+			glowing = fGlowing;
+			direct = fDirect;
+			environment = fEnvironment;
+			roomType = fRoomType;
+			windowType = fWindowType;
 		}
 
 		public enum RoomType {
 			OTSEK("otsek"), ROOM("room"), CORRIDOR("corridor");
 
-			public String eName;
+			public String roomName;
 
 			RoomType(String fName) {
-				eName = fName;
+				roomName = fName;
 			}
 
 			public static RoomType forName(String search) {
 				for (RoomType r : RoomType.values()) {
-					if (search.equals(r.eName)) {
+					if (search.equals(r.roomName)) {
 						return r;
 					}
 				}
@@ -231,15 +231,15 @@ public class ADS01 {
 		public enum WindowType {
 			BIG("big"), SMALL("small"), NONE("none");
 
-			public String eName;
+			public String windowName;
 
 			WindowType(String fName) {
-				eName = fName;
+				windowName = fName;
 			}
 
 			public static WindowType forName(String search) {
 				for (WindowType r : WindowType.values()) {
-					if (search.equals(r.eName)) {
+					if (search.equals(r.windowName)) {
 						return r;
 					}
 				}
