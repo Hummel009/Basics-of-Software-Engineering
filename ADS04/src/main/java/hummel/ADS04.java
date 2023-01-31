@@ -49,21 +49,21 @@ public class ADS04 {
 		}
 
 		// Нахождение путей от узла к узлу
-		int tmp1;
-		int tmp2;
+
 		System.out.printf("\nFind a way from: ");
-		tmp1 = scan.nextInt();
+		int tmp1 = scan.nextInt();
 
 		System.out.printf("Find a way to: ");
-		tmp2 = scan.nextInt();
+		int tmp2 = scan.nextInt();
 
 		arrp[tmp1 - 1] = 0;
 		// Нахождение всех путей
-		serch(tmp1 - 1, 0, arrp, tmp1 - 1, tmp2 - 1, i, 0);
+		search(tmp1 - 1, 0, arrp, tmp1 - 1, tmp2 - 1, i, 0);
 
-		int y = 0;
 		// Матрица содержащая сложности всех путей
-		for (; step[y] != 0; y++) {
+		int y = 0;
+		while (step[y] != 0) {
+			y++;
 		}
 
 		System.out.printf("\n");
@@ -84,17 +84,17 @@ public class ADS04 {
 		// Нахождение минимального пути
 		System.out.printf("Min: ");
 		arrm[0] = tmp1;
-		maxmin(tmp1 - 1, 0, arrp, tmp1 - 1, tmp2 - 1, i, 0, step[0], arrm); // min
+		maxMin(tmp1 - 1, 0, arrp, tmp1 - 1, tmp2 - 1, i, 0, step[0], arrm); // min
 
 		// Нахождение максимального пути
 		System.out.printf("Max: ");
-		maxmin(tmp1 - 1, 0, arrp, tmp1 - 1, tmp2 - 1, i, 0, step[y - 1], arrm); // max
+		maxMin(tmp1 - 1, 0, arrp, tmp1 - 1, tmp2 - 1, i, 0, step[y - 1], arrm); // max
 
 		// Нахождение всех путей
 		System.out.printf("\nAll: \n");
 		for (int g = 0; g < y; g++) {
 			if (g == 0 || step[g] != step[g - 1]) {
-				maxmin(tmp1 - 1, 0, arrp, tmp1 - 1, tmp2 - 1, i, 0, step[g], arrm);
+				maxMin(tmp1 - 1, 0, arrp, tmp1 - 1, tmp2 - 1, i, 0, step[g], arrm);
 			}
 		}
 
@@ -111,15 +111,18 @@ public class ADS04 {
 					arrp[g] = 1;
 				}
 
-				for (int g = 0; step[g] != 0; g++) {
-					step[g] = 0;
+				int g1 = 0;
+				while (step[g1] != 0) {
+					step[g1] = 0;
+					g1++;
 				}
 
 				arrp[tmp1 - 1] = 0;
-				serch(tmp1 - 1, 0, arrp, tmp1 - 1, tmp2 - 1, i, 0);
+				search(tmp1 - 1, 0, arrp, tmp1 - 1, tmp2 - 1, i, 0);
 
 				int w = 0;
-				for (; step[w] != 0; w++) {
+				while (step[w] != 0) {
+					w++;
 				}
 
 				for (int g = 0; g < w - 1; g++) {
@@ -195,50 +198,49 @@ public class ADS04 {
 		}
 	}
 
-	private static void maxmin(int j, int k, int[] arrp, int tmp1, int tmp2, int i, int tmp, int mm, int[] arrm) {
+	private static void maxMin(int j, int k, int[] arrp, int tmp1, int tmp2, int i, int tmp, int mm, int[] arrm) {
 		while (k < i && j != tmp2) {
 			if (arrv[j][k] != 0 && arrp[k] != 0) {
-				int[] arrpt = new int[10];
-				arrpt = Arrays.copyOf(arrp, 10);
-
-				int[] arrmt = new int[10];
-				arrmt = Arrays.copyOf(arrm, 10);
+				int[] arrpt = arrp.clone();
+				int[] arrmt = arrm.clone();
 				int g = 0;
-				for (; arrmt[g] != 0; g++) {
+				while (arrmt[g] != 0) {
+					g++;
 				}
 				arrmt[g] = k + 1;
-
 				arrpt[k] = 0;
-				maxmin(k, 0, arrpt, tmp1, tmp2, i, tmp + arrv[j][k], mm, arrmt);
+				maxMin(k, 0, arrpt, tmp1, tmp2, i, tmp + arrv[j][k], mm, arrmt);
 			}
 			k++;
 		}
 
 		if (j == tmp2 && tmp == mm) {
 			System.out.printf("%d ", arrm[0]);
-			for (int g = 1; arrm[g] != 0; g++) {
-				System.out.printf("-> %d ", arrm[g]);
-			}
 
+			int g = 1;
+			while (arrm[g] != 0) {
+				System.out.printf("-> %d ", arrm[g]);
+				g++;
+			}
 			System.out.printf("(%d)\n", tmp);
 
 		}
 	}
 
-	private static void serch(int j, int k, int[] arrp, int tmp1, int tmp2, int i, int tmp) {
+	private static void search(int j, int k, int[] arrp, int tmp1, int tmp2, int i, int tmp) {
 		while (k < i && j != tmp2) {
 			if (arrv[j][k] != 0 && arrp[k] != 0) {
-				int[] arrpt = new int[10];
-				arrpt = Arrays.copyOf(arrp, 10);
+				int[] arrpt = arrp.clone();
 				arrpt[k] = 0;
-				serch(k, 0, arrpt, tmp1, tmp2, i, tmp + arrv[j][k]);
+				search(k, 0, arrpt, tmp1, tmp2, i, tmp + arrv[j][k]);
 			}
 			k++;
 		}
 
 		if (j == tmp2) {
 			int t = 0;
-			for (; step[t] != 0; t++) {
+			while (step[t] != 0) {
+				t++;
 			}
 			step[t] = tmp;
 		}
