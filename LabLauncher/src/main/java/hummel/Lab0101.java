@@ -1,4 +1,4 @@
-package src.main.java.hummel;
+package main.java.hummel;
 
 public class Lab0101 {
 	public static void launch() {
