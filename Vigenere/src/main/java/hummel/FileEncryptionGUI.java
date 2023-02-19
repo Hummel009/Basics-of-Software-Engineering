@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
-import java.util.stream.IntStream;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -14,7 +13,6 @@ public class FileEncryptionGUI extends JFrame {
 	private JTextField textFieldFilePath;
 	private JTextField textFieldKeyword;
 	private JTextField textFieldOutputPath;
-	private JPasswordField passwordFieldKey;
 	private JRadioButton rdbtnColumnMethod;
 	private JRadioButton rdbtnVigenere;
 	private JButton btnSelectFile;
@@ -51,14 +49,14 @@ public class FileEncryptionGUI extends JFrame {
 		JPanel panelFile = new JPanel();
 		contentPane.add(panelFile, BorderLayout.NORTH);
 
-		JLabel lblFilePath = new JLabel("File path:");
+		JLabel lblFilePath = new JLabel("Input path:");
 		panelFile.add(lblFilePath);
 
 		textFieldFilePath = new JTextField();
 		panelFile.add(textFieldFilePath);
 		textFieldFilePath.setColumns(20);
 
-		btnSelectFile = new JButton("Select file");
+		btnSelectFile = new JButton("Select path");
 		btnSelectFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectFile();
@@ -76,12 +74,6 @@ public class FileEncryptionGUI extends JFrame {
 		textFieldKeyword = new JTextField();
 		panelKey.add(textFieldKeyword);
 		textFieldKeyword.setColumns(20);
-
-		JLabel lblKey = new JLabel("Key:");
-		panelKey.add(lblKey);
-
-		passwordFieldKey = new JPasswordField();
-		panelKey.add(passwordFieldKey);
 
 		JLabel lblAlgorithm = new JLabel("Algorithm:");
 		panelKey.add(lblAlgorithm);
@@ -162,7 +154,6 @@ public class FileEncryptionGUI extends JFrame {
 
 	private void encryptFile() {
 		String keyword = textFieldKeyword.getText();
-		String key = new String(passwordFieldKey.getPassword());
 		String outputPath = textFieldOutputPath.getText();
 
 		if (inputFile == null) {
@@ -170,7 +161,7 @@ public class FileEncryptionGUI extends JFrame {
 			return;
 		}
 
-		if (keyword.isEmpty() || key.isEmpty()) {
+		if (keyword.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "Please enter a keyword and key", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -187,7 +178,7 @@ public class FileEncryptionGUI extends JFrame {
 		if (algorithm.equals("Column Method")) {
 			outputText = encryptColumnMethod(inputText, keyword);
 		} else if (algorithm.equals("Vigenere")) {
-			outputText = encryptVigenere(inputText, key);
+			outputText = encryptVigenere(inputText, keyword);
 		}
 
 		System.out.println("OUTPUT " + outputText);
@@ -198,7 +189,6 @@ public class FileEncryptionGUI extends JFrame {
 
 	private void decryptFile() {
 		String keyword = textFieldKeyword.getText();
-		String key = new String(passwordFieldKey.getPassword());
 		String outputPath = textFieldOutputPath.getText();
 
 		if (inputFile == null) {
@@ -206,7 +196,7 @@ public class FileEncryptionGUI extends JFrame {
 			return;
 		}
 
-		if (keyword.isEmpty() || key.isEmpty()) {
+		if (keyword.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "Please enter a keyword and key", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -223,7 +213,7 @@ public class FileEncryptionGUI extends JFrame {
 		if (algorithm.equals("Column Method")) {
 			outputText = decryptColumnMethod(inputText, keyword);
 		} else if (algorithm.equals("Vigenere")) {
-			outputText = decryptVigenere(inputText, key);
+			outputText = decryptVigenere(inputText, keyword);
 		}
 
 		System.out.println("OUTPUT " + outputText);
@@ -262,68 +252,44 @@ public class FileEncryptionGUI extends JFrame {
 		}
 	}
 
+	private static final String ALPHABET = "àáâãäå¸æçèéêëìíîïðñòóôõö÷øùúûüýþÿ";
+
 	public static String encryptColumnMethod(String input, String key) {
-		input = input.toUpperCase();
-		key = key.toUpperCase();
-		int[] keyOrder = IntStream.range(0, key.length()).boxed().sorted(Comparator.comparing(key::charAt)).mapToInt(Integer::intValue).toArray();
-		StringBuilder result = new StringBuilder();
-		int numRows = (int) Math.ceil(input.length() / (double) key.length());
-		char[][] grid = new char[numRows][key.length()];
-		int inputIndex = 0;
-		for (int i = 0; i < key.length(); i++) {
-			int col = keyOrder[i];
-			for (int j = 0; j < numRows; j++) {
-				if (inputIndex < input.length()) {
-					grid[j][col] = input.charAt(inputIndex);
-					inputIndex++;
+		StringBuilder output = new StringBuilder();
+		for (int i = 0; i < input.length(); i++) {
+			char c = input.charAt(i);
+			int index = ALPHABET.indexOf(Character.toLowerCase(c));
+			if (index != -1) {
+				char newChar = key.charAt(i % key.length());
+				if (Character.isUpperCase(c)) {
+					output.append(Character.toUpperCase(newChar));
 				} else {
-					grid[j][col] = ' ';
+					output.append(newChar);
 				}
+			} else {
+				output.append(c);
 			}
 		}
-		for (int i = 0; i < numRows; i++) {
-			for (int j = 0; j < key.length(); j++) {
-				char c = grid[i][j];
-				if (c >= 'À' && c <= 'ß') {
-					result.append(c);
-				} else if (c == '¨') {
-					result.append("E");
-				}
-			}
-		}
-		return result.toString();
+		return output.toString();
 	}
 
 	public static String decryptColumnMethod(String input, String key) {
-		input = input.toUpperCase();
-		key = key.toUpperCase();
-		int[] keyOrder = IntStream.range(0, key.length()).boxed().sorted(Comparator.comparing(key::charAt)).mapToInt(Integer::intValue).toArray();
-		int numRows = (int) Math.ceil(input.length() / (double) key.length());
-		char[][] grid = new char[numRows][key.length()];
-		int inputIndex = 0;
-		for (int i = 0; i < key.length(); i++) {
-			int col = keyOrder[i];
-			for (int j = 0; j < numRows; j++) {
-				if (inputIndex < input.length()) {
-					grid[j][col] = input.charAt(inputIndex);
-					inputIndex++;
+		StringBuilder output = new StringBuilder();
+		for (int i = 0; i < input.length(); i++) {
+			char c = input.charAt(i);
+			int index = key.indexOf(Character.toLowerCase(c));
+			if (index != -1) {
+				char newChar = ALPHABET.charAt(index);
+				if (Character.isUpperCase(c)) {
+					output.append(Character.toUpperCase(newChar));
 				} else {
-					grid[j][col] = ' ';
+					output.append(newChar);
 				}
+			} else {
+				output.append(c);
 			}
 		}
-		StringBuilder result = new StringBuilder();
-		for (int i = 0; i < numRows; i++) {
-			for (int j = 0; j < key.length(); j++) {
-				char c = grid[i][j];
-				if (c >= 'À' && c <= 'ß') {
-					result.append(c);
-				} else if (c == 'E') {
-					result.append("¨");
-				}
-			}
-		}
-		return result.toString();
+		return output.toString();
 	}
 
 	private static final int ALPHABET_SIZE = 33;
