@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
+import java.util.stream.IntStream;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -39,107 +40,107 @@ public class FileEncryptionGUI extends JFrame {
 	}
 
 	public FileEncryptionGUI() {
-        setTitle("File Encryption");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setContentPane(contentPane);
-        contentPane.setLayout(new BorderLayout(0, 0));
+		setTitle("File Encryption");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
 
-        JPanel panelFile = new JPanel();
-        contentPane.add(panelFile, BorderLayout.NORTH);
+		JPanel panelFile = new JPanel();
+		contentPane.add(panelFile, BorderLayout.NORTH);
 
-        JLabel lblFilePath = new JLabel("File path:");
-        panelFile.add(lblFilePath);
+		JLabel lblFilePath = new JLabel("File path:");
+		panelFile.add(lblFilePath);
 
-        textFieldFilePath = new JTextField();
-        panelFile.add(textFieldFilePath);
-        textFieldFilePath.setColumns(20);
+		textFieldFilePath = new JTextField();
+		panelFile.add(textFieldFilePath);
+		textFieldFilePath.setColumns(20);
 
-        btnSelectFile = new JButton("Select file");
-        btnSelectFile.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                selectFile();
-            }
-        });
-        panelFile.add(btnSelectFile);
+		btnSelectFile = new JButton("Select file");
+		btnSelectFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				selectFile();
+			}
+		});
+		panelFile.add(btnSelectFile);
 
-        JPanel panelKey = new JPanel();
-        contentPane.add(panelKey, BorderLayout.CENTER);
-        panelKey.setLayout(new GridLayout(0, 1, 0, 0));
+		JPanel panelKey = new JPanel();
+		contentPane.add(panelKey, BorderLayout.CENTER);
+		panelKey.setLayout(new GridLayout(0, 1, 0, 0));
 
-        JLabel lblKeyword = new JLabel("Keyword:");
-        panelKey.add(lblKeyword);
+		JLabel lblKeyword = new JLabel("Keyword:");
+		panelKey.add(lblKeyword);
 
-        textFieldKeyword = new JTextField();
-        panelKey.add(textFieldKeyword);
-        textFieldKeyword.setColumns(20);
+		textFieldKeyword = new JTextField();
+		panelKey.add(textFieldKeyword);
+		textFieldKeyword.setColumns(20);
 
-        JLabel lblKey = new JLabel("Key:");
-        panelKey.add(lblKey);
+		JLabel lblKey = new JLabel("Key:");
+		panelKey.add(lblKey);
 
-        passwordFieldKey = new JPasswordField();
-        panelKey.add(passwordFieldKey);
+		passwordFieldKey = new JPasswordField();
+		panelKey.add(passwordFieldKey);
 
-        JLabel lblAlgorithm = new JLabel("Algorithm:");
-        panelKey.add(lblAlgorithm);
+		JLabel lblAlgorithm = new JLabel("Algorithm:");
+		panelKey.add(lblAlgorithm);
 
-        rdbtnColumnMethod = new JRadioButton("Column Method");
-        rdbtnColumnMethod.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                algorithm = "Column Method";
-            }
-        });
-        panelKey.add(rdbtnColumnMethod);
+		rdbtnColumnMethod = new JRadioButton("Column Method");
+		rdbtnColumnMethod.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				algorithm = "Column Method";
+			}
+		});
+		panelKey.add(rdbtnColumnMethod);
 
-        rdbtnVigenere = new JRadioButton("Vigenere");
-        rdbtnVigenere.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                algorithm = "Vigenere";
-            }
-        });
-        panelKey.add(rdbtnVigenere);
+		rdbtnVigenere = new JRadioButton("Vigenere");
+		rdbtnVigenere.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				algorithm = "Vigenere";
+			}
+		});
+		panelKey.add(rdbtnVigenere);
 
-        JPanel panelOutput = new JPanel();
-        contentPane.add(panelOutput, BorderLayout.SOUTH);
+		JPanel panelOutput = new JPanel();
+		contentPane.add(panelOutput, BorderLayout.SOUTH);
 
-        JLabel lblOutputPath = new JLabel("Output path:");
-        panelOutput.add(lblOutputPath);
+		JLabel lblOutputPath = new JLabel("Output path:");
+		panelOutput.add(lblOutputPath);
 
-        textFieldOutputPath = new JTextField();
-        panelOutput.add(textFieldOutputPath);
-        textFieldOutputPath.setColumns(20);
+		textFieldOutputPath = new JTextField();
+		panelOutput.add(textFieldOutputPath);
+		textFieldOutputPath.setColumns(20);
 
-        btnOutputPath = new JButton("Select path");
-        btnOutputPath.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                selectOutputPath();
-            }
-        });
-        panelOutput.add(btnOutputPath);
+		btnOutputPath = new JButton("Select path");
+		btnOutputPath.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				selectOutputPath();
+			}
+		});
+		panelOutput.add(btnOutputPath);
 
-        JPanel panelButtons = new JPanel();
-        contentPane.add(panelButtons, BorderLayout.EAST);
-        panelButtons.setLayout(new GridLayout(0, 1, 0, 0));
+		JPanel panelButtons = new JPanel();
+		contentPane.add(panelButtons, BorderLayout.EAST);
+		panelButtons.setLayout(new GridLayout(0, 1, 0, 0));
 
-        btnEncrypt = new JButton("Encrypt");
-        btnEncrypt.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                encryptFile();
-            }
-        });
-        panelButtons.add(btnEncrypt);
+		btnEncrypt = new JButton("Encrypt");
+		btnEncrypt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				encryptFile();
+			}
+		});
+		panelButtons.add(btnEncrypt);
 
-        btnDecrypt = new JButton("Decrypt");
-        btnDecrypt.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                decryptFile();
-            }
-        });
-        panelButtons.add(btnDecrypt);
+		btnDecrypt = new JButton("Decrypt");
+		btnDecrypt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				decryptFile();
+			}
+		});
+		panelButtons.add(btnDecrypt);
 		setLocationRelativeTo(null);
-    }
+	}
 
 	private void selectFile() {
 		JFileChooser fileChooser = new JFileChooser();
@@ -180,6 +181,7 @@ public class FileEncryptionGUI extends JFrame {
 		}
 
 		String inputText = readFile(inputFile);
+		System.out.println("INPUT " + inputText);
 		String outputText = "";
 
 		if (algorithm.equals("Column Method")) {
@@ -188,6 +190,7 @@ public class FileEncryptionGUI extends JFrame {
 			outputText = encryptVigenere(inputText, key);
 		}
 
+		System.out.println("OUTPUT " + outputText);
 		writeFile(outputFile, outputText);
 
 		JOptionPane.showMessageDialog(this, "Encryption complete", "Message", JOptionPane.INFORMATION_MESSAGE);
@@ -214,6 +217,7 @@ public class FileEncryptionGUI extends JFrame {
 		}
 
 		String inputText = readFile(inputFile);
+		System.out.println("INPUT " + inputText);
 		String outputText = "";
 
 		if (algorithm.equals("Column Method")) {
@@ -222,6 +226,7 @@ public class FileEncryptionGUI extends JFrame {
 			outputText = decryptVigenere(inputText, key);
 		}
 
+		System.out.println("OUTPUT " + outputText);
 		writeFile(outputFile, outputText);
 
 		JOptionPane.showMessageDialog(this, "Decryption complete", "Message", JOptionPane.INFORMATION_MESSAGE);
@@ -257,92 +262,113 @@ public class FileEncryptionGUI extends JFrame {
 		}
 	}
 
-	private static String encryptColumnMethod(String text, String keyword) {
-		StringBuilder sb = new StringBuilder();
-		int[] key = new int[keyword.length()];
-		int[] sortedKey = new int[keyword.length()];
-		for (int i = 0; i < keyword.length(); i++) {
-			key[i] = keyword.charAt(i) - 'à' + 1;
-			sortedKey[i] = key[i];
-		}
-		Arrays.sort(sortedKey);
-		for (int i = 0; i < text.length(); i += keyword.length()) {
-			StringBuilder block = new StringBuilder();
-			for (int j = 0; j < keyword.length() && i + j < text.length(); j++) {
-				block.append(text.charAt(i + j));
-			}
-			for (int j = 0; j < keyword.length(); j++) {
-				int index = -1;
-				for (int k = 0; k < keyword.length(); k++) {
-					if (key[k] == sortedKey[j]) {
-						index = k;
-						break;
-					}
-				}
-				if (index >= block.length()) {
-					sb.append(" ");
+	public static String encryptColumnMethod(String input, String key) {
+		input = input.toUpperCase();
+		key = key.toUpperCase();
+		int[] keyOrder = IntStream.range(0, key.length()).boxed().sorted(Comparator.comparing(key::charAt)).mapToInt(Integer::intValue).toArray();
+		StringBuilder result = new StringBuilder();
+		int numRows = (int) Math.ceil(input.length() / (double) key.length());
+		char[][] grid = new char[numRows][key.length()];
+		int inputIndex = 0;
+		for (int i = 0; i < key.length(); i++) {
+			int col = keyOrder[i];
+			for (int j = 0; j < numRows; j++) {
+				if (inputIndex < input.length()) {
+					grid[j][col] = input.charAt(inputIndex);
+					inputIndex++;
 				} else {
-					sb.append(block.charAt(index));
+					grid[j][col] = ' ';
 				}
 			}
 		}
-		return sb.toString();
-	}
-
-	private static String decryptColumnMethod(String text, String keyword) {
-		StringBuilder sb = new StringBuilder();
-		int[] key = new int[keyword.length()];
-		int[] sortedKey = new int[keyword.length()];
-		for (int i = 0; i < keyword.length(); i++) {
-			key[i] = keyword.charAt(i) - 'à' + 1;
-			sortedKey[i] = key[i];
-		}
-		Arrays.sort(sortedKey);
-		int blockLength = (int) Math.ceil((double) text.length() / keyword.length());
-		for (int i = 0; i < blockLength; i++) {
-			StringBuilder block = new StringBuilder();
-			for (int j = 0; j < keyword.length(); j++) {
-				int index = -1;
-				for (int k = 0; k < keyword.length(); k++) {
-					if (key[k] == sortedKey[j]) {
-						index = k;
-						break;
-					}
-				}
-				if (i * keyword.length() + index < text.length()) {
-					block.append(text.charAt(i * keyword.length() + index));
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < key.length(); j++) {
+				char c = grid[i][j];
+				if (c >= 'À' && c <= 'ß') {
+					result.append(c);
+				} else if (c == '¨') {
+					result.append("E");
 				}
 			}
-			sb.append(block.toString());
 		}
-		return sb.toString();
+		return result.toString();
 	}
 
-	private static String decryptVigenere(String text, String key) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0, j = 0; i < text.length(); i++) {
-			char c = text.charAt(i);
-			if (c >= 'à' && c <= 'ÿ') {
-				int shift = key.charAt(j) - 'à';
-				c = (char) ((c - 'à' + 33 - shift) % 33 + 'à');
-				sb.append(c);
-				j = (j + 1) % key.length();
+	public static String decryptColumnMethod(String input, String key) {
+		input = input.toUpperCase();
+		key = key.toUpperCase();
+		int[] keyOrder = IntStream.range(0, key.length()).boxed().sorted(Comparator.comparing(key::charAt)).mapToInt(Integer::intValue).toArray();
+		int numRows = (int) Math.ceil(input.length() / (double) key.length());
+		char[][] grid = new char[numRows][key.length()];
+		int inputIndex = 0;
+		for (int i = 0; i < key.length(); i++) {
+			int col = keyOrder[i];
+			for (int j = 0; j < numRows; j++) {
+				if (inputIndex < input.length()) {
+					grid[j][col] = input.charAt(inputIndex);
+					inputIndex++;
+				} else {
+					grid[j][col] = ' ';
+				}
 			}
 		}
-		return sb.toString();
+		StringBuilder result = new StringBuilder();
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < key.length(); j++) {
+				char c = grid[i][j];
+				if (c >= 'À' && c <= 'ß') {
+					result.append(c);
+				} else if (c == 'E') {
+					result.append("¨");
+				}
+			}
+		}
+		return result.toString();
 	}
 
-	private static String encryptVigenere(String text, String key) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0, j = 0; i < text.length(); i++) {
-			char c = text.charAt(i);
-			if (c >= 'à' && c <= 'ÿ') {
-				int shift = key.charAt(j) - 'à';
-				c = (char) ((c - 'à' + shift) % 33 + 'à');
-				sb.append(c);
-				j = (j + 1) % key.length();
+	private static final int ALPHABET_SIZE = 33;
+
+	public static String encryptVigenere(String input, String key) {
+		int[] keyIndices = new int[input.length()];
+		for (int i = 0; i < input.length(); i++) {
+			keyIndices[i] = key.charAt(i % key.length()) - 'à';
+		}
+		StringBuilder result = new StringBuilder();
+		for (int i = 0, j = 0; i < input.length(); i++) {
+			char c = input.charAt(i);
+			if (Character.isLetter(c)) {
+				int cIndex = c - 'à';
+				int kIndex = keyIndices[j];
+				int encryptedIndex = (cIndex + kIndex) % ALPHABET_SIZE;
+				char encryptedChar = (char) (encryptedIndex + 'à');
+				result.append(encryptedChar);
+				j = (j + 1) % keyIndices.length;
+			} else {
+				result.append(c);
 			}
 		}
-		return sb.toString();
+		return result.toString();
+	}
+
+	public static String decryptVigenere(String input, String key) {
+		int[] keyIndices = new int[input.length()];
+		for (int i = 0; i < input.length(); i++) {
+			keyIndices[i] = key.charAt(i % key.length()) - 'à';
+		}
+		StringBuilder result = new StringBuilder();
+		for (int i = 0, j = 0; i < input.length(); i++) {
+			char c = input.charAt(i);
+			if (Character.isLetter(c)) {
+				int cIndex = c - 'à';
+				int kIndex = keyIndices[j];
+				int decryptedIndex = (cIndex - kIndex + ALPHABET_SIZE) % ALPHABET_SIZE;
+				char decryptedChar = (char) (decryptedIndex + 'à');
+				result.append(decryptedChar);
+				j = (j + 1) % keyIndices.length;
+			} else {
+				result.append(c);
+			}
+		}
+		return result.toString();
 	}
 }
