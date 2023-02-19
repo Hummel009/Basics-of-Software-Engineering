@@ -260,7 +260,8 @@ public class FileEncryptionGUI extends JFrame {
 			char c = input.charAt(i);
 			int index = ALPHABET.indexOf(Character.toLowerCase(c));
 			if (index != -1) {
-				char newChar = key.charAt(i % key.length());
+				int keyIndex = i % key.length();
+				char newChar = key.charAt(keyIndex);
 				if (Character.isUpperCase(c)) {
 					output.append(Character.toUpperCase(newChar));
 				} else {
@@ -277,6 +278,7 @@ public class FileEncryptionGUI extends JFrame {
 		StringBuilder output = new StringBuilder();
 		for (int i = 0; i < input.length(); i++) {
 			char c = input.charAt(i);
+			int keyIndex = i % key.length();
 			int index = key.indexOf(Character.toLowerCase(c));
 			if (index != -1) {
 				char newChar = ALPHABET.charAt(index);
