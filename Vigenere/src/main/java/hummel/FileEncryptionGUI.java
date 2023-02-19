@@ -9,7 +9,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class FileEncryptionGUI extends JFrame {
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldFilePath;
 	private JTextField textFieldKeyword;
@@ -228,7 +227,7 @@ public class FileEncryptionGUI extends JFrame {
 		JOptionPane.showMessageDialog(this, "Decryption complete", "Message", JOptionPane.INFORMATION_MESSAGE);
 	}
 
-	private String readFile(File file) {
+	private static String readFile(File file) {
 		StringBuilder sb = new StringBuilder();
 
 		try {
@@ -248,7 +247,7 @@ public class FileEncryptionGUI extends JFrame {
 		return sb.toString();
 	}
 
-	private void writeFile(File file, String text) {
+	private static void writeFile(File file, String text) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(text);
@@ -258,7 +257,7 @@ public class FileEncryptionGUI extends JFrame {
 		}
 	}
 
-	private String encryptColumnMethod(String text, String keyword) {
+	private static String encryptColumnMethod(String text, String keyword) {
 		StringBuilder sb = new StringBuilder();
 		int[] key = new int[keyword.length()];
 		int[] sortedKey = new int[keyword.length()];
@@ -290,7 +289,7 @@ public class FileEncryptionGUI extends JFrame {
 		return sb.toString();
 	}
 
-	private String decryptColumnMethod(String text, String keyword) {
+	private static String decryptColumnMethod(String text, String keyword) {
 		StringBuilder sb = new StringBuilder();
 		int[] key = new int[keyword.length()];
 		int[] sortedKey = new int[keyword.length()];
@@ -319,7 +318,7 @@ public class FileEncryptionGUI extends JFrame {
 		return sb.toString();
 	}
 
-	private String decryptVigenere(String text, String key) {
+	private static String decryptVigenere(String text, String key) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0, j = 0; i < text.length(); i++) {
 			char c = text.charAt(i);
@@ -333,7 +332,7 @@ public class FileEncryptionGUI extends JFrame {
 		return sb.toString();
 	}
 
-	private String encryptVigenere(String text, String key) {
+	private static String encryptVigenere(String text, String key) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0, j = 0; i < text.length(); i++) {
 			char c = text.charAt(i);
