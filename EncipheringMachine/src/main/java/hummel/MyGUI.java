@@ -10,7 +10,6 @@ public class MyGUI implements ActionListener {
 	private JFrame frame;
 	private JTextField textField;
 	private JTextArea textArea;
-	private JRadioButton radioButton;
 	private String text = "";
 
 	public MyGUI() {
@@ -38,8 +37,9 @@ public class MyGUI implements ActionListener {
 		panel.add(label2, constraints);
 
 		constraints.gridx = 1;
-		radioButton = new JRadioButton();
-		panel.add(radioButton, constraints);
+		JButton recreateButton = new JButton("Load Text");
+		recreateButton.addActionListener(this);
+		panel.add(recreateButton, constraints);
 
 		constraints.gridx = 2;
 		JButton loadButton = new JButton("Load File");
@@ -51,12 +51,12 @@ public class MyGUI implements ActionListener {
 		JLabel label3 = new JLabel("Save to File:");
 		panel.add(label3, constraints);
 
-		constraints.gridx = 1;
+		constraints.gridx = 2;
 		JButton saveButton = new JButton("Save File");
 		saveButton.addActionListener(this);
 		panel.add(saveButton, constraints);
 
-		constraints.gridx = 2;
+		constraints.gridx = 1;
 		JButton saveTextButton = new JButton("Save Text");
 		saveTextButton.addActionListener(this);
 		panel.add(saveTextButton, constraints);
@@ -76,6 +76,7 @@ public class MyGUI implements ActionListener {
 		frame.add(panel);
 		frame.pack();
 		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
 	}
 
 	@Override
@@ -112,12 +113,23 @@ public class MyGUI implements ActionListener {
 				}
 			}
 		} else if ("Save Text".equals(e.getActionCommand())) {
-			text = textField.getText();
 			textArea.setText(text);
+		} else if ("Load Text".equals(e.getActionCommand())) {
+			text = textField.getText();
 		}
 	}
 
 	public static void main(String[] args) {
+		Font font = new Font("Arial", Font.PLAIN, 26);
+		UIManager.put("Button.font", font);
+		UIManager.put("CheckBox.font", font);
+		UIManager.put("ComboBox.font", font);
+		UIManager.put("Label.font", font);
+		UIManager.put("List.font", font);
+		UIManager.put("RadioButton.font", font);
+		UIManager.put("TextArea.font", font);
+		UIManager.put("TextField.font", font);
+
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
