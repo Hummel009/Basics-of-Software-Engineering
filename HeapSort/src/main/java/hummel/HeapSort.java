@@ -1,4 +1,4 @@
-package main.java.hummel;
+package hummel;
 
 public class HeapSort {
 	public static void main(String[] args) {

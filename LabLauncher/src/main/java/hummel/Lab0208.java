@@ -1,4 +1,4 @@
-package main.java.hummel;
+package hummel;
 
 import java.util.*;
 

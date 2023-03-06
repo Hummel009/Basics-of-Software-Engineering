@@ -1,8 +1,8 @@
-package main.java.hummel;
+package hummel;
 
 import java.util.*;
 
-import main.java.hummel.ADS01.Room.*;
+import hummel.ADS01.Room.*;
 
 public class ADS01 {
 	public static Scanner input = new Scanner(System.in);
