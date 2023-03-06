@@ -3,7 +3,7 @@ package hummel;
 public class Lab0105 {
 
 	public static void doCalcsWithEps(double limit) {
-		double eps = 0;
+		double eps;
 		double x = 0.1;
 		while (x < 1.0) {
 			int k = 1;

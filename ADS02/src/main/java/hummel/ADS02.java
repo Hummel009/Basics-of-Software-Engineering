@@ -8,7 +8,6 @@ public class ADS02 {
 	public static Scanner input12 = new Scanner(System.in);
 	public static Scanner input13 = new Scanner(System.in);
 	public static Scanner input21 = new Scanner(System.in);
-	public static Scanner input22 = new Scanner(System.in);
 	public static List<Content> list = new ArrayList<>();
 	public static Map<String, Content> map = new HashMap<>();
 
@@ -139,14 +138,14 @@ public class ADS02 {
 		String name = input11.nextLine();
 		Content cont = map.get(name);
 		if (cont != null) {
-			System.out.println(cont.toString());
+			System.out.println(cont);
 		} else {
 			System.out.println("Wrong! Enter the sub-object name then.");
 			String namesub = input13.nextLine();
 			for (Content c : map.values()) {
 				for (Content sub : c.contentSubs) {
 					if (c.contentSubs != null && sub.contentName.equals(namesub)) {
-						System.out.println(c.toString());
+						System.out.println(c);
 					}
 				}
 			}
@@ -233,27 +232,27 @@ public class ADS02 {
 		Comparator<Content> comparator = Comparator.comparing(o1 -> o1.contentIds.get(0));
 		for (Content c : list) {
 			if (c.contentSubs != null) {
-				Collections.sort(c.contentSubs, comparator);
+				c.contentSubs.sort(comparator);
 			}
 		}
-		Collections.sort(list, comparator);
+		list.sort(comparator);
 		showObjects();
 	}
 
 	private static void sortName() {
 		Comparator<Content> comparator = Comparator.comparing(o1 -> o1.contentName);
-		Collections.sort(list, comparator);
+		list.sort(comparator);
 		for (Content c : list) {
 			if (c.contentSubs != null) {
-				Collections.sort(c.contentSubs, comparator);
+				c.contentSubs.sort(comparator);
 			}
 		}
 		showObjects();
 	}
 
 	public static class Content {
-		public List<Content> contentSubs = new ArrayList<>();
-		public List<Integer> contentIds = new ArrayList<>();
+		public List<Content> contentSubs;
+		public List<Integer> contentIds;
 		public String contentName;
 
 		public Content(String fName, List<Integer> fIds) {

@@ -102,6 +102,7 @@ public class Ex0502 {
 				for (String str : wordsList) {
 					if (str.equals(string)) {
 						contains = true;
+						break;
 					}
 				}
 				return contains;

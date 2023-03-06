@@ -39,9 +39,9 @@ public class Lab0201 {
 	}
 
 	public static void print(int[][] arr) {
-		for (int i = 0; i < arr.length; i++) {
-			for (int j = 0; j < arr[i].length; j++) {
-				System.out.printf("%3d", arr[i][j]);
+		for (int[] ints : arr) {
+			for (int anInt : ints) {
+				System.out.printf("%3d", anInt);
 			}
 			System.out.println();
 		}

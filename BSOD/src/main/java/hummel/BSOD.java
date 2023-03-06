@@ -3,6 +3,7 @@ package hummel;
 import java.awt.Container;
 import java.awt.Frame;
 import java.awt.Toolkit;
+import java.util.Objects;
 
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -18,7 +19,7 @@ public class BSOD extends JFrame {
 
 	public BSOD() {
 		setUndecorated(true);
-		JComponent img = new JLabel(new ImageIcon(getClass().getResource("BSOD.jpg")));
+		JComponent img = new JLabel(new ImageIcon(Objects.requireNonNull(getClass().getResource("BSOD.jpg"))));
 		img.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
 		Container pane = getContentPane();
 		pane.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());

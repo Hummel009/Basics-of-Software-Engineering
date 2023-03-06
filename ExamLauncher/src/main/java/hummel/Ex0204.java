@@ -28,23 +28,4 @@ public class Ex0204 {
 		}
 	}
 
-	public static class MyReader {
-		public BufferedReader reader;
-		public StringTokenizer tokenizer;
-
-		public MyReader(Reader r) throws IOException {
-			reader = new BufferedReader(r);
-		}
-
-		public String next() throws IOException {
-			while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-				tokenizer = new StringTokenizer(reader.readLine());
-			}
-			return tokenizer.nextToken();
-		}
-
-		public int nextInt() throws IOException {
-			return Integer.parseInt(next());
-		}
-	}
 }

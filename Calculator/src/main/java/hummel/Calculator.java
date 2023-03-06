@@ -35,13 +35,13 @@ public class Calculator implements ActionListener {
 
 		registerButton(button[13], "C");
 		registerButton(button[12], "e");
-		registerButton(button[11], "\u03C0");
-		registerButton(button[14], "\u00F7");
+		registerButton(button[11], "π");
+		registerButton(button[14], "÷");
 
 		registerButton(button[7], "7");
 		registerButton(button[8], "8");
 		registerButton(button[9], "9");
-		registerButton(button[15], "\u00D7");
+		registerButton(button[15], "×");
 
 		registerButton(button[4], "4");
 		registerButton(button[5], "5");
@@ -58,16 +58,16 @@ public class Calculator implements ActionListener {
 		registerButton(button[10], ".");
 		registerButton(button[19], "=");
 
-		registerButton(button[20], "\u221A");
+		registerButton(button[20], "√");
 		registerButton(button[21], "^");
 		registerButton(button[34], "^2");
 		registerButton(button[35], "^3");
 
 		registerHiddenButton(button[22], "log");
-		registerHiddenButton(button[24], "sin\u00B0");
-		registerHiddenButton(button[25], "cos\u00B0");
-		registerHiddenButton(button[26], "tg\u00B0");
-		registerHiddenButton(button[27], "ctg\u00B0");
+		registerHiddenButton(button[24], "sin°");
+		registerHiddenButton(button[25], "cos°");
+		registerHiddenButton(button[26], "tg°");
+		registerHiddenButton(button[27], "ctg°");
 		registerHiddenButton(button[28], "arcsin");
 		registerHiddenButton(button[29], "arccos");
 		registerHiddenButton(button[30], "arctg");
@@ -84,7 +84,7 @@ public class Calculator implements ActionListener {
 		registerButton(button[23], "n!");
 		registerButton(button[44], "n!!");
 
-		registerButton(button[32], "\u0418\u043D\u0436\u0435\u043D\u0435\u0440");
+		registerButton(button[32], "Extended");
 
 		outputField.setFont(outputField.getFont().deriveFont(40f));
 		outputField.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -217,7 +217,7 @@ public class Calculator implements ActionListener {
 			}
 
 			panel.add(button[32]);
-			button[32].setText("\u041D\u0430\u0437\u0430\u0434");
+			button[32].setText("Back");
 		} else {
 			panel.setLayout(new GridLayout(7, 4));
 			isExtended = false;
@@ -228,7 +228,7 @@ public class Calculator implements ActionListener {
 			}
 
 			panel.add(button[32]);
-			button[32].setText("\u0418\u043D\u0436\u0435\u043D\u0435\u0440");
+			button[32].setText("Extended");
 		}
 	}
 
@@ -288,7 +288,7 @@ public class Calculator implements ActionListener {
 		switch (operation) {
 		case DOUBLEFACT:
 			long result2 = 1;
-			for (Long k = Math.round(input1); k > 0; k = k - 2) {
+			for (long k = Math.round(input1); k > 0; k = k - 2) {
 				result2 = result2 * k;
 			}
 			output = result2;
@@ -306,6 +306,6 @@ public class Calculator implements ActionListener {
 	}
 
 	public enum Operation {
-		NULL, ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL, LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER, SIN, SQRT, TG, SQARE, CUBE, LG, LN, CH, SH, TH, CTH, TEN, BACK, DOUBLEFACT;
+		NULL, ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL, LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER, SIN, SQRT, TG, SQARE, CUBE, LG, LN, CH, SH, TH, CTH, TEN, BACK, DOUBLEFACT
 	}
 }

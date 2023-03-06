@@ -74,7 +74,6 @@ public class ADS03 {
 				}
 			}
 			System.out.println(s + "R) --> " + abr[i+1]);
-			s += "   ";
 		}
 	}
 
@@ -118,7 +117,6 @@ public class ADS03 {
 				}
 			}
 			System.out.println(s + "R) --> " + arb[i+1]);
-			s += "   ";
 		}
 	}
 
@@ -162,7 +160,6 @@ public class ADS03 {
 				}
 			}
 			System.out.println(s + "R) --> " + rab[i+1]);
-			s += "   ";
 		}
 	}
 

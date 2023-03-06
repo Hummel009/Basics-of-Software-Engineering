@@ -16,7 +16,7 @@ public class ADS04 {
 		}
 
 		// Вписываем количество узлов
-		System.out.printf("Write Number of Nodes: ");
+		System.out.print("Write Number of Nodes: ");
 		int i = scan.nextInt();
 
 		// Записываем направления и сложности проходов узлов: (1 -> 3: 5) связь
@@ -33,27 +33,27 @@ public class ADS04 {
 		}
 
 		// Вывод Матрицы смежности
-		System.out.printf("\n  |");
+		System.out.print("\n  |");
 		for (int k = 0; k < i; k++) {
 			System.out.printf("__%d_|", k + 1);
 		}
 
-		System.out.printf("\n");
+		System.out.print("\n");
 
 		for (int j = 0; j < i; j++) {
 			System.out.printf("|%d|", j + 1);
 			for (int k = 0; k < i; k++) {
 				System.out.printf(" %2d |", arrv[j][k]);
 			}
-			System.out.printf("\n");
+			System.out.print("\n");
 		}
 
 		// Нахождение путей от узла к узлу
 
-		System.out.printf("\nFind a way from: ");
+		System.out.print("\nFind a way from: ");
 		int tmp1 = scan.nextInt();
 
-		System.out.printf("Find a way to: ");
+		System.out.print("Find a way to: ");
 		int tmp2 = scan.nextInt();
 
 		arrp[tmp1 - 1] = 0;
@@ -66,7 +66,7 @@ public class ADS04 {
 			y++;
 		}
 
-		System.out.printf("\n");
+		System.out.print("\n");
 
 		// Сортировка матрицы путей
 		for (int g = 0; g < y - 1; g++) {
@@ -82,16 +82,16 @@ public class ADS04 {
 		int[] arrm = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 		// Нахождение минимального пути
-		System.out.printf("Min: ");
+		System.out.print("Min: ");
 		arrm[0] = tmp1;
 		maxMin(tmp1 - 1, 0, arrp, tmp1 - 1, tmp2 - 1, i, 0, step[0], arrm); // min
 
 		// Нахождение максимального пути
-		System.out.printf("Max: ");
+		System.out.print("Max: ");
 		maxMin(tmp1 - 1, 0, arrp, tmp1 - 1, tmp2 - 1, i, 0, step[y - 1], arrm); // max
 
 		// Нахождение всех путей
-		System.out.printf("\nAll: \n");
+		System.out.print("\nAll: \n");
 		for (int g = 0; g < y; g++) {
 			if (g == 0 || step[g] != step[g - 1]) {
 				maxMin(tmp1 - 1, 0, arrp, tmp1 - 1, tmp2 - 1, i, 0, step[g], arrm);
@@ -166,19 +166,19 @@ public class ADS04 {
 		}
 
 		// Вывод мтарицы эксцентриситетов
-		System.out.printf("\n  |");
+		System.out.print("\n  |");
 		for (int k = 0; k < i; k++) {
 			System.out.printf("__%d_|", k + 1);
 		}
 
-		System.out.printf("\n");
+		System.out.print("\n");
 
 		for (int j = 0; j < i; j++) {
 			System.out.printf("|%d|", j + 1);
 			for (int k = 0; k < i; k++) {
 				System.out.printf(" %2d |", ex[j][k]);
 			}
-			System.out.printf("\n");
+			System.out.print("\n");
 		}
 
 		// Нахождение центра или центров, если эксцентриситеты совпадают
@@ -190,7 +190,7 @@ public class ADS04 {
 		}
 
 		// Вывод центра
-		System.out.printf("\nCenter(s): ");
+		System.out.print("\nCenter(s): ");
 		for (int maxj = 0; maxj < i; maxj++) {
 			if (ex[i][maxj] == tempmin) {
 				System.out.printf("%d ", maxj + 1);

@@ -69,7 +69,7 @@ public class ADS01 {
 		System.out.println("─██████──────────██████─██████──██████─██████████████████─██████████████─");
 		System.out.println("─────────────────────────────────────────────────────────────────────────");
 
-		Floors floor = null;
+		Floors floor;
 		do {
 			System.out.println("Enter the color of the floor: ");
 			String color = input.nextLine();
@@ -104,24 +104,6 @@ public class ADS01 {
 		} while (wtype == null);
 
 		Room rm = new Room(color, glowing, direct, environment, type, wtype);
-
-		int i = 0;
-
-		Room[] room = new Room[216];
-		for (Floors f : Floors.values()) {
-			for (String b1 : new String[] { "true", "false" }) {
-				for (String b2 : new String[] { "true", "false" }) {
-					for (String b3 : new String[] { "true", "false" }) {
-						for (RoomType r : RoomType.values()) {
-							for (WindowType w : WindowType.values()) {
-								room[i] = new Room(f.eName, b1, b2, b3, r, w);
-								i++;
-							}
-						}
-					}
-				}
-			}
-		}
 
 		Room blackRoom = new Room("grey", "true", "false", "false", RoomType.ROOM, WindowType.SMALL);
 		Room lab = new Room("grey", "true", "true", "true", RoomType.ROOM, WindowType.BIG);
@@ -176,7 +158,7 @@ public class ADS01 {
 	public enum Floors {
 		ONE("black"), TWO("grey"), THREE("green");
 
-		public String eName;
+		public final String eName;
 
 		Floors(String fName) {
 			eName = fName;
@@ -212,7 +194,7 @@ public class ADS01 {
 		public enum RoomType {
 			OTSEK("otsek"), ROOM("room"), CORRIDOR("corridor");
 
-			public String roomName;
+			public final String roomName;
 
 			RoomType(String fName) {
 				roomName = fName;
@@ -231,7 +213,7 @@ public class ADS01 {
 		public enum WindowType {
 			BIG("big"), SMALL("small"), NONE("none");
 
-			public String windowName;
+			public final String windowName;
 
 			WindowType(String fName) {
 				windowName = fName;

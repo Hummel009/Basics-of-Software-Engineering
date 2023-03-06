@@ -39,7 +39,7 @@ public class Ex0401 {
 		public void initSet(int entryCount, int position) {
 			setArray[position] = position;
 			rank[position] = entryCount;
-			maxRank = entryCount > maxRank ? entryCount : maxRank;
+			maxRank = Math.max(entryCount, maxRank);
 		}
 
 		public void union(int destination, int source) {
@@ -52,7 +52,7 @@ public class Ex0401 {
 
 			setArray[sourceID] = destinationID;
 			rank[destinationID] += rank[sourceID];
-			maxRank = rank[destinationID] > maxRank ? rank[destinationID] : maxRank;
+			maxRank = Math.max(rank[destinationID], maxRank);
 		}
 	}
 }

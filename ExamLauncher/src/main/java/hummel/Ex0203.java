@@ -14,7 +14,7 @@ public class Ex0203 {
 		int packageCount = scanner.nextInt();
 
 		if (packageCount == 0) {
-			System.out.println("");
+			System.out.println();
 		} else if (packageCount == 1) {
 			System.out.println(scanner.nextInt());
 		} else {

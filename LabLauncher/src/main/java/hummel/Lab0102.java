@@ -3,7 +3,7 @@ package hummel;
 import java.util.*;
 
 public class Lab0102 {
-	private static Scanner input = new Scanner(System.in);
+	private static final Scanner input = new Scanner(System.in);
 
 	public static int readln(Scanner input, String message) {
 		int n = 0;

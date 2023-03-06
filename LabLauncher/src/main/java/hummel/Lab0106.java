@@ -83,7 +83,8 @@ public class Lab0106 {
 			date = readln(input, "Enter the day: ");
 		} while (date > temp2 || date < 1);
 
-		System.out.println(date + " " + month.toString() + " " + year);
+		assert month != null;
+		System.out.println(date + " " + month + " " + year);
 
 		int result = date + daysSinceNY.get(month) + (year - 1) * 365;
 		int additional = (year - 1) / 4 - (year - 1) / 100 + (year - 1) / 400;
@@ -100,13 +101,14 @@ public class Lab0106 {
 				break;
 			}
 		}
-		System.out.println(weekday.toString());
+		assert weekday != null;
+		System.out.println(weekday);
 	}
 
 	public enum Month {
 		JAN(1), FEB(2), MAR(3), APR(4), MAY(5), JUN(6), JUL(7), AUG(8), SEP(9), OCT(10), NOV(11), DEC(12);
 
-		public int num;
+		public final int num;
 
 		Month(int i) {
 			num = i;
@@ -116,7 +118,7 @@ public class Lab0106 {
 	public enum Weekday {
 		MON(1), TUE(2), WED(3), THI(4), FRI(5), SAT(6), SUN(0);
 
-		public int num;
+		public final int num;
 
 		Weekday(int i) {
 			num = i;

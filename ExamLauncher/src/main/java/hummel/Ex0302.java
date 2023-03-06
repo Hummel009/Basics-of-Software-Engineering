@@ -11,7 +11,7 @@ public class Ex0302 {
 		int processesCount = scanner.nextInt();
 		for (int i = 0; i < processesCount; i++) {
 			Processor firstFree = heap.getFirstFree();
-			System.out.println(String.format("%s %s", firstFree.number, firstFree.time));
+			System.out.printf("%s %s%n", firstFree.number, firstFree.time);
 			long newTime = scanner.nextLong();
 			if (newTime != 0) {
 				heap.changeTime(newTime);

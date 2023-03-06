@@ -41,7 +41,7 @@ public class Ex0604 {
 	}
 
 	public static class OnlineSet {
-		private HashSet<Integer> set;
+		private final HashSet<Integer> set;
 		private long lastSum;
 
 		public OnlineSet() {

@@ -33,7 +33,9 @@ public class JsonValidator {
 		String line = null;
 		String ls = System.lineSeparator();
 		try {
-			while ((line = reader.readLine()) != null) {
+			while (true) {
+				assert reader != null;
+				if ((line = reader.readLine()) == null) break;
 				stringBuilder.append(line);
 				stringBuilder.append(ls);
 			}
@@ -70,9 +72,9 @@ public class JsonValidator {
 		}
 
 		if (json()) {
-			System.out.printf("\nTrue");
+			System.out.print("\nTrue");
 		} else {
-			System.out.printf("\nFalse");
+			System.out.print("\nFalse");
 		}
 	}
 
@@ -107,7 +109,7 @@ public class JsonValidator {
 	enum Tokens {
 		SLEFT("{"), SRIGHT("}"), ALEFT("{"), ARIGHT("}"), STRING("\"tag\""), DWUKROP(":"), KOSKA(",");
 
-		public String s;
+		public final String s;
 
 		Tokens(String s) {
 			this.s = s;

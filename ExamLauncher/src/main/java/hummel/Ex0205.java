@@ -29,7 +29,7 @@ public class Ex0205 {
 				stringBuilder.append(element);
 				stringBuilder.append(" ");
 			}
-			System.out.println(stringBuilder.toString());
+			System.out.println(stringBuilder);
 		} else {
 			int left = 0;
 			int right = windowSize - 1;
@@ -52,7 +52,7 @@ public class Ex0205 {
 				right++;
 			}
 
-			System.out.println(stringBuilder.toString());
+			System.out.println(stringBuilder);
 		}
 	}
 }
