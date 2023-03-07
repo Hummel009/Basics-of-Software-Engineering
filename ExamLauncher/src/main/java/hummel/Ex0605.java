@@ -36,16 +36,12 @@ public class Ex0605 {
 			for (int i = from; i <= until; i++) {
 				tmp.append(text.charAt(i));
 			}
-			text = text.replaceFirst(tmp.toString(), "");// ������� ��, ���
-															// �������� �
-															// �������� ������
+			text = text.replaceFirst(tmp.toString(), "");
 			StringBuilder textSB = new StringBuilder(text);
-			textSB.insert(instead, tmp); // instead - ���� ��������, tmp - ���
-											// ��������
+			textSB.insert(instead, tmp);
 			text = textSB.toString();
 
 			return text;
 		}
-
 	}
 }
