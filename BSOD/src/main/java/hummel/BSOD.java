@@ -1,37 +1,38 @@
 package hummel;
 
-import java.awt.Container;
-import java.awt.Frame;
-import java.awt.Toolkit;
-import java.util.Objects;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
 
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.WindowConstants;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
-public class BSOD extends JFrame {
+public class BSOD {
 	public static void main(String[] args) {
-		new BSOD();
-	}
+		try {
+			InputStream imageStream = BSOD.class.getResourceAsStream("/resources/BSOD.jpg");
+			JFrame frame = new JFrame();
+			frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+			frame.setResizable(false);
+			frame.setUndecorated(true);
+			frame.setAlwaysOnTop(true);
+			frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 
-	public BSOD() {
-		setUndecorated(true);
-		JComponent img = new JLabel(new ImageIcon(Objects.requireNonNull(getClass().getResource("BSOD.jpg"))));
-		img.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
-		Container pane = getContentPane();
-		pane.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
-		GroupLayout gl = new GroupLayout(pane);
-		pane.setLayout(gl);
-		gl.setHorizontalGroup(gl.createSequentialGroup().addComponent(img));
-		gl.setVerticalGroup(gl.createParallelGroup().addComponent(img));
-		setExtendedState(Frame.MAXIMIZED_BOTH);
-		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setAlwaysOnTop(true);
-		setVisible(true);
+			assert imageStream != null;
+
+			BufferedImage originalImage = ImageIO.read(imageStream);
+			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			Image scaledImage = originalImage.getScaledInstance(screenSize.width, screenSize.height, Image.SCALE_SMOOTH);
+
+			ImageIcon imageIcon = new ImageIcon(scaledImage);
+			JLabel imageLabel = new JLabel(imageIcon);
+			imageLabel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+			frame.add(imageLabel);
+
+			frame.setLocationRelativeTo(null);
+			frame.setVisible(true);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

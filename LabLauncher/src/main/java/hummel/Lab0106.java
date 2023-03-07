@@ -35,22 +35,6 @@ public class Lab0106 {
 		monthCapacity.put(Month.DEC, 31);
 	}
 
-	public static int readln(Scanner input, String message) {
-		int n = 0;
-		boolean error;
-		do {
-			error = false;
-			System.out.print(message);
-			try {
-				n = input.nextInt();
-			} catch (InputMismatchException e) {
-				error = true;
-				input.next();
-			}
-		} while (error);
-		return n;
-	}
-
 	public static void launch() {
 		System.out.println("Enter the date in three steps like, 2002 07 10");
 		int year;
@@ -103,6 +87,22 @@ public class Lab0106 {
 		}
 		assert weekday != null;
 		System.out.println(weekday);
+	}
+
+	public static int readln(Scanner input, String message) {
+		int n = 0;
+		boolean error;
+		do {
+			error = false;
+			System.out.print(message);
+			try {
+				n = input.nextInt();
+			} catch (InputMismatchException e) {
+				error = true;
+				input.next();
+			}
+		} while (error);
+		return n;
 	}
 
 	public enum Month {

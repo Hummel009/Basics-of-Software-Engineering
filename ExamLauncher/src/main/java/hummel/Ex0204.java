@@ -1,6 +1,5 @@
 package hummel;
 
-import java.io.*;
 import java.util.*;
 
 public class Ex0204 {

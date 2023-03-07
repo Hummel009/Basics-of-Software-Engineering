@@ -2,8 +2,8 @@ package hummel;
 
 public class Lab0201 {
 	public static void launch() {
-		int[][] arr1 = new int[][]{{1, -1, 0}, {2, 0, -1}, {1, 1, 1}};
-		int[][] arr2 = new int[][]{{5, 3, 1}, {-1, 2, 0}, {-3, 0, 0}};
+		int[][] arr1 = { { 1, -1, 0 }, { 2, 0, -1 }, { 1, 1, 1 } };
+		int[][] arr2 = { { 5, 3, 1 }, { -1, 2, 0 }, { -3, 0, 0 } };
 
 		print(arr1);
 		System.out.println();
@@ -17,6 +17,15 @@ public class Lab0201 {
 		int[][] res2 = new int[3][3];
 		sum(arr1, arr2, res2);
 		print(res2);
+	}
+
+	public static void print(int[][] arr) {
+		for (int[] ints : arr) {
+			for (int anInt : ints) {
+				System.out.printf("%3d", anInt);
+			}
+			System.out.println();
+		}
 	}
 
 	public static int[][] sum(int[][] arr1, int[][] arr2) {
@@ -35,15 +44,6 @@ public class Lab0201 {
 			for (int j = 1; j < arr1[i].length; j++) {
 				res[i][j] = arr1[i][j] + arr2[i][j];
 			}
-		}
-	}
-
-	public static void print(int[][] arr) {
-		for (int[] ints : arr) {
-			for (int anInt : ints) {
-				System.out.printf("%3d", anInt);
-			}
-			System.out.println();
 		}
 	}
 }

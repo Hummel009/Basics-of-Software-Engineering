@@ -10,7 +10,7 @@ public class Ex0605 {
 		String text = scanner.nextLine();
 		System.out.println("Enter args count:");
 		int argsCount = scanner.nextInt();
-		scanner.nextLine(); // баг, для правильного чтения
+		scanner.nextLine();
 		Rope rope = new Rope(text, argsCount);
 		for (int i = 0; i < argsCount; i++) {
 			String arg = scanner.nextLine();
@@ -36,12 +36,12 @@ public class Ex0605 {
 			for (int i = from; i <= until; i++) {
 				tmp.append(text.charAt(i));
 			}
-			text = text.replaceFirst(tmp.toString(), "");// Удалили то, что
-															// получили с
-															// исходной строки
+			text = text.replaceFirst(tmp.toString(), "");// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ, пїЅпїЅпїЅ
+															// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
+															// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			StringBuilder textSB = new StringBuilder(text);
-			textSB.insert(instead, tmp); // instead - куда вставить, tmp - что
-											// вставить
+			textSB.insert(instead, tmp); // instead - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, tmp - пїЅпїЅпїЅ
+											// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			text = textSB.toString();
 
 			return text;

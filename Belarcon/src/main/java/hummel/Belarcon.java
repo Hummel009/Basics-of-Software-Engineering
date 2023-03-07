@@ -1,85 +1,63 @@
-﻿package hummel;
+package hummel;
 
-import java.util.*;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Scanner;
+import java.util.Set;
 
 public class Belarcon {
-	public static Scanner scan = new Scanner(System.in);
-	public static Map<String, String> letters = new HashMap<>();
-	static {
-		letters.put("А", "");
-		letters.put("Е", "");
-		letters.put("Ё", "");
-		letters.put("И", "");
-		letters.put("О", "");
-		letters.put("У", "");
-		letters.put("Ы", "");
-		letters.put("Э", "");
-		letters.put("Ю", "");
-		letters.put("Я", "");
-		letters.put("Ь", "");
+    public static Scanner scan = new Scanner(System.in);
+    public static Map<String, String> letters = new HashMap<>();
 
-		letters.put("Б", "ب");
-		letters.put("В", "و");
-		letters.put("Г", "ه");
-		letters.put("Д", "د");
-		letters.put("Ж", "ژ");
-		letters.put("З", "ض");
-		letters.put("Й", "ى");
-		letters.put("К", "ق");
-		letters.put("Л", "ل");
-		letters.put("М", "م");
-		letters.put("Н", "ن");
-		letters.put("П", "پ");
-		letters.put("Р", "ر");
-		letters.put("С", "ص");
-		letters.put("Т", "ط");
-		letters.put("Ф", "ف");
-		letters.put("Х", "خ");
-		letters.put("Ц", "ࢯ");
-		letters.put("Ч", "چ");
-		letters.put("Ш", "ش");
-		letters.put("Щ", "ش");
-		letters.put("Ъ", "ع");
-	}
+    public static void main(String[] args) {
+        try {
+            InputStream stream = Belarcon.class.getResourceAsStream("/resources/convert1.txt");
+            assert stream != null;
+            InputStreamReader streamReader = new InputStreamReader(stream);
+            BufferedReader reader = new BufferedReader(streamReader);
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(":");
+                if (parts.length == 2) {
+                    letters.put(parts[0], parts[1]);
+                }
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	public static void main(String[] args) {
-		String entered;
-		do {
-			entered = scan.nextLine();
-			entered = entered.toUpperCase();
-			for (Entry<String, String> sus: letters.entrySet()) {
-				entered = entered.replace(sus.getKey(), sus.getValue());
-			}
-			System.out.println(reverse(entered));
-		} while (!"стоп".equals(entered));
-	}
+        String entered;
+        do {
+            entered = scan.nextLine();
+            entered = entered.toUpperCase();
+            entered = removeNonSetCharacters(entered, letters.keySet());
+            for (Entry<String, String> sus : letters.entrySet()) {
+                entered = entered.replace(sus.getKey(), sus.getValue());
+            }
+            System.out.println(reverse(entered));
+        } while (!"stop".equals(entered));
+    }
 
-	public static String reverse(String str) {
-		  return new StringBuilder(str).reverse().toString();
-	}
+    public static String reverse(String str) {
+        return new StringBuilder(str).reverse().toString();
+    }
 
-	public static void viceVersa() {
-		letters.put("ب", "Б");
-		letters.put("و", "В");
-		letters.put("ه", "Г");
-		letters.put("د", "Д");
-		letters.put("ژ", "Ж");
-		letters.put("ض", "З");
-		letters.put("ى", "Й");
-		letters.put("ق", "К");
-		letters.put("ل", "Л");
-		letters.put("م", "М");
-		letters.put("ن", "Н");
-		letters.put("پ", "П");
-		letters.put("ر", "Р");
-		letters.put("ص", "С");
-		letters.put("ط", "Т");
-		letters.put("ف", "Ф");
-		letters.put("خ", "Х");
-		letters.put("ࢯ", "Ц");
-		letters.put("چ", "Ч");
-		letters.put("ش", "Ш");
-		letters.put("ع", "Ъ");
-	}
+    public static String removeNonSetCharacters(String input, Set<String> allowedCharacters) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < input.length(); i++) {
+            String c = String.valueOf(input.charAt(i));
+            if (allowedCharacters.contains(c)) {
+                result.append(c);
+            }
+        }
+        return result.toString();
+    }
 }

@@ -23,19 +23,19 @@ public class JsonValidator {
 	}
 
 	public static void main(String[] args) {
-		BufferedReader reader = null;
-		try {
-			reader = new BufferedReader(new FileReader("amogus.txt"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		InputStream stream = JsonValidator.class.getResourceAsStream("/resources/amogus.txt");
+		assert stream != null;
+		InputStreamReader streamReader = new InputStreamReader(stream);
+		BufferedReader reader = new BufferedReader(streamReader);
 		StringBuilder stringBuilder = new StringBuilder();
-		String line = null;
+		String line;
 		String ls = System.lineSeparator();
 		try {
 			while (true) {
-				assert reader != null;
-				if ((line = reader.readLine()) == null) break;
+				line = reader.readLine();
+				if (line == null) {
+					break;
+				}
 				stringBuilder.append(line);
 				stringBuilder.append(ls);
 			}

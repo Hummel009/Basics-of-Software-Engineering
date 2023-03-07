@@ -5,6 +5,19 @@ import java.util.*;
 public class Lab0211 {
 	public static Scanner input = new Scanner(System.in);
 
+	public static int factorial(int num) {
+		if (num >= 1) {
+			return num * factorial(num - 1);
+		}
+		return 1;
+	}
+
+	public static void launch() {
+		int num = readln(input, "Enter the number: ");
+		int factorial = factorial(num);
+		System.out.println(factorial);
+	}
+
 	public static int readln(Scanner input, String message) {
 		int n = 0;
 		boolean error;
@@ -19,18 +32,5 @@ public class Lab0211 {
 			}
 		} while (error);
 		return n;
-	}
-
-	public static void launch() {
-		int num = readln(input, "Enter the number: ");
-		int factorial = factorial(num);
-		System.out.println(factorial);
-	}
-
-	public static int factorial(int num) {
-		if (num >= 1) {
-			return num * factorial(num - 1);
-		}
-		return 1;
 	}
 }

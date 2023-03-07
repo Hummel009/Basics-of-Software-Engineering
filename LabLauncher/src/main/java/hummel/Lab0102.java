@@ -5,22 +5,6 @@ import java.util.*;
 public class Lab0102 {
 	private static final Scanner input = new Scanner(System.in);
 
-	public static int readln(Scanner input, String message) {
-		int n = 0;
-		boolean error;
-		do {
-			error = false;
-			System.out.print(message);
-			try {
-				n = input.nextInt();
-			} catch (InputMismatchException e) {
-				error = true;
-				input.next();
-			}
-		} while (error);
-		return n;
-	}
-
 	public static void launch() {
 		int n = readln(input, "Enter the quantity of elements: ");
 
@@ -47,5 +31,21 @@ public class Lab0102 {
 			}
 		}
 		System.out.println("GCD is " + arr[n - 1]);
+	}
+
+	public static int readln(Scanner input, String message) {
+		int n = 0;
+		boolean error;
+		do {
+			error = false;
+			System.out.print(message);
+			try {
+				n = input.nextInt();
+			} catch (InputMismatchException e) {
+				error = true;
+				input.next();
+			}
+		} while (error);
+		return n;
 	}
 }

@@ -12,7 +12,6 @@ public class ADS02 {
 	public static Map<String, Content> map = new HashMap<>();
 
 	private static void addObject() {
-		// ћожно любое количество страниц в терминах и подтерминах
 		ArrayList<Integer> ids1 = new ArrayList<>();
 		ids1.add(17);
 		ids1.add(81);
@@ -47,19 +46,13 @@ public class ADS02 {
 		ids31.add(56);
 		ids31.add(69);
 
-		// ћожно любое количество терминов, подтерминов и доступна люба€
-		// вложенность
-
-		// ќбычный
 		ArrayList<Content> conts11 = new ArrayList<>();
 		conts11.add(new Content("b", ids11));
 
-		// ƒва подтермина
 		ArrayList<Content> conts21 = new ArrayList<>();
 		conts21.add(new Content("y", ids21));
 		conts21.add(new Content("b", ids22));
 
-		// ѕодтермин в подтермине
 		ArrayList<Content> conts32 = new ArrayList<>();
 		conts32.add(new Content("o", ids32));
 		ArrayList<Content> conts31 = new ArrayList<>();

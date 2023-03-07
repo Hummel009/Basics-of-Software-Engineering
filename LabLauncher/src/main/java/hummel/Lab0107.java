@@ -22,7 +22,7 @@ public class Lab0107 {
 		int last = strList.length - 1;
 
 		for (String s : strList) {
-			if (!Objects.equals(s, strList[last]) && sogl.contains(s.charAt(s.length() - 1)) && glas.contains(s.charAt(0)) ) {
+			if (!Objects.equals(s, strList[last]) && sogl.contains(s.charAt(s.length() - 1)) && glas.contains(s.charAt(0))) {
 				System.out.print(s + " ");
 			}
 		}

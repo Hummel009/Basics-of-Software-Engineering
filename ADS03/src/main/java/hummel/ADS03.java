@@ -36,7 +36,7 @@ public class ADS03 {
 
 	public void printABR() {
 		printABR(root);
-		abr[abrc] = this.root.value;
+		abr[abrc] = root.value;
 		abrc++;
 	}
 
@@ -73,13 +73,13 @@ public class ADS03 {
 					break;
 				}
 			}
-			System.out.println(s + "R) --> " + abr[i+1]);
+			System.out.println(s + "R) --> " + abr[i + 1]);
 		}
 	}
 
 	public void printARB() {
 		printARB(root);
-		arb[arbc] = this.root.value;
+		arb[arbc] = root.value;
 		arbc++;
 	}
 
@@ -116,13 +116,13 @@ public class ADS03 {
 					break;
 				}
 			}
-			System.out.println(s + "R) --> " + arb[i+1]);
+			System.out.println(s + "R) --> " + arb[i + 1]);
 		}
 	}
 
 	public void printRAB() {
 		printRAB(root);
-		rab[rabc] = this.root.value;
+		rab[rabc] = root.value;
 		rabc++;
 	}
 
@@ -159,7 +159,7 @@ public class ADS03 {
 					break;
 				}
 			}
-			System.out.println(s + "R) --> " + rab[i+1]);
+			System.out.println(s + "R) --> " + rab[i + 1]);
 		}
 	}
 

@@ -1,4 +1,4 @@
-﻿package hummel;
+package hummel;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -19,10 +19,6 @@ public class Calculator implements ActionListener {
 	public int notInclude;
 	public int[] exNums = { 22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42 };
 	public boolean isExtended;
-
-	public static void main(String[] arg) {
-		new Calculator();
-	}
 
 	public Calculator() {
 		JFrame frame = new JFrame("JavaCalculator v2.0");
@@ -97,6 +93,123 @@ public class Calculator implements ActionListener {
 		frame.setLocationRelativeTo(null);
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		selectButton((JButton) event.getSource());
+	}
+
+	public void calculate() {
+		Map<Operation, Double> op = new EnumMap<>(Operation.class);
+		op.put(Operation.PLUS, input1 + input2);
+		op.put(Operation.MINUS, input1 - input2);
+		op.put(Operation.MULTIPLE, input1 * input2);
+		op.put(Operation.ARCSIN, Math.asin(input1));
+		op.put(Operation.ARCCOS, Math.acos(input1));
+		op.put(Operation.ARCTG, Math.atan(input1));
+		op.put(Operation.ARCCTG, 1 / Math.atan(input1));
+		op.put(Operation.SIN, Math.sin(Math.toRadians(input1)));
+		op.put(Operation.COS, Math.cos(Math.toRadians(input1)));
+		op.put(Operation.TG, Math.tan(Math.toRadians(input1)));
+		op.put(Operation.CTG, 1 / Math.tan(Math.toRadians(input1)));
+		op.put(Operation.SQRT, Math.sqrt(input1));
+		op.put(Operation.LOGARITHM, Math.log10(input1) / Math.log10(input2));
+		op.put(Operation.POWER, Math.pow(input1, input2));
+		op.put(Operation.DIVIDE, input1 / input2);
+		op.put(Operation.PERCENT, input2 * input1 / 100);
+		op.put(Operation.SQARE, input1 * input1);
+		op.put(Operation.CUBE, Math.pow(input1, 3));
+		op.put(Operation.LG, Math.log10(input1));
+		op.put(Operation.LN, Math.log(input1));
+		op.put(Operation.CH, (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)) / 2);
+		op.put(Operation.SH, (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)) / 2);
+		op.put(Operation.TH, (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)) / (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)));
+		op.put(Operation.CTH, (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)) / (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)));
+		op.put(Operation.TEN, Math.pow(10, input1));
+		op.put(Operation.BACK, 1 / input1);
+		op.put(Operation.NULL, input2);
+
+		switch (operation) {
+		case DOUBLEFACT:
+			long result2 = 1;
+			for (long k = Math.round(input1); k > 0; k = k - 2) {
+				result2 = result2 * k;
+			}
+			output = result2;
+			break;
+		case FACTORIAL:
+			long result = 1;
+			for (long i = 1; i <= input1; i++) {
+				result = result * i;
+			}
+			output = result;
+			break;
+		default:
+			output = op.get(operation);
+		}
+	}
+
+	private void enable(int i) {
+		switch (i) {
+		case 0:
+			extendedMode();
+			break;
+		case 1:
+			output = input1 = input2 = 0;
+			outputField.setText("");
+			break;
+		case 2:
+			equals();
+			break;
+		case 3:
+			outputField.setText("2.718281828459045");
+			break;
+		case 4:
+			outputField.setText("3.141592653589793");
+		}
+	}
+
+	public void equals() {
+		input2 = Double.parseDouble(outputField.getText().substring(notInclude));
+
+		calculate();
+		final String result = new DecimalFormat("#.###############").format(output);
+		outputField.setText(outputField.getText() + "=" + result);
+	}
+
+	public void extendedMode() {
+		if (!isExtended) {
+			panel.setLayout(new GridLayout(11, 4));
+			isExtended = true;
+			panel.remove(button[32]);
+
+			for (int exNum : exNums) {
+				panel.add(button[exNum]);
+			}
+
+			panel.add(button[32]);
+			button[32].setText("Back");
+		} else {
+			panel.setLayout(new GridLayout(7, 4));
+			isExtended = false;
+			panel.remove(button[32]);
+
+			for (int exNum : exNums) {
+				panel.remove(button[exNum]);
+			}
+
+			panel.add(button[32]);
+			button[32].setText("Extended");
+		}
+	}
+
+	public void oneNumber(Operation op, AbstractButton button) {
+		input1 = Double.parseDouble(outputField.getText());
+		operation = op;
+		calculate();
+		final String result = new DecimalFormat("#.###############").format(output);
+		outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result);
+	}
+
 	public void registerButton(JButton button, String name) {
 		button.setFont(button.getFont().deriveFont(20f));
 		button.addActionListener(this);
@@ -108,11 +221,6 @@ public class Calculator implements ActionListener {
 		button.setFont(button.getFont().deriveFont(20f));
 		button.addActionListener(this);
 		button.setText(name);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent event) {
-		selectButton((JButton) event.getSource());
 	}
 
 	public void selectButton(JButton jbutton) {
@@ -186,68 +294,6 @@ public class Calculator implements ActionListener {
 		}
 	}
 
-	private void enable(int i) {
-		switch (i) {
-		case 0:
-			extendedMode();
-			break;
-		case 1:
-			output = input1 = input2 = 0;
-			outputField.setText("");
-			break;
-		case 2:
-			equals();
-			break;
-		case 3:
-			outputField.setText("2.718281828459045");
-			break;
-		case 4:
-			outputField.setText("3.141592653589793");
-		}
-	}
-
-	public void extendedMode() {
-		if (!isExtended) {
-			panel.setLayout(new GridLayout(11, 4));
-			isExtended = true;
-			panel.remove(button[32]);
-
-			for (int exNum : exNums) {
-				panel.add(button[exNum]);
-			}
-
-			panel.add(button[32]);
-			button[32].setText("Back");
-		} else {
-			panel.setLayout(new GridLayout(7, 4));
-			isExtended = false;
-			panel.remove(button[32]);
-
-			for (int exNum : exNums) {
-				panel.remove(button[exNum]);
-			}
-
-			panel.add(button[32]);
-			button[32].setText("Extended");
-		}
-	}
-
-	public void equals() {
-		input2 = Double.parseDouble(outputField.getText().substring(notInclude));
-
-		calculate();
-		final String result = new DecimalFormat("#.###############").format(output);
-		outputField.setText(outputField.getText() + "=" + result);
-	}
-
-	public void oneNumber(Operation op, AbstractButton button) {
-		input1 = Double.parseDouble(outputField.getText());
-		operation = op;
-		calculate();
-		final String result = new DecimalFormat("#.###############").format(output);
-		outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result);
-	}
-
 	public void twoNumbers(Operation op, AbstractButton button) {
 		notInclude = outputField.getText().length() + button.getText().length();
 		input1 = Double.parseDouble(outputField.getText());
@@ -255,54 +301,8 @@ public class Calculator implements ActionListener {
 		outputField.setText(outputField.getText() + button.getText());
 	}
 
-	public void calculate() {
-		Map<Operation, Double> op = new EnumMap<>(Operation.class);
-		op.put(Operation.PLUS, input1 + input2);
-		op.put(Operation.MINUS, input1 - input2);
-		op.put(Operation.MULTIPLE, input1 * input2);
-		op.put(Operation.ARCSIN, Math.asin(input1));
-		op.put(Operation.ARCCOS, Math.acos(input1));
-		op.put(Operation.ARCTG, Math.atan(input1));
-		op.put(Operation.ARCCTG, 1 / Math.atan(input1));
-		op.put(Operation.SIN, Math.sin(Math.toRadians(input1)));
-		op.put(Operation.COS, Math.cos(Math.toRadians(input1)));
-		op.put(Operation.TG, Math.tan(Math.toRadians(input1)));
-		op.put(Operation.CTG, 1 / Math.tan(Math.toRadians(input1)));
-		op.put(Operation.SQRT, Math.sqrt(input1));
-		op.put(Operation.LOGARITHM, Math.log10(input1) / Math.log10(input2));
-		op.put(Operation.POWER, Math.pow(input1, input2));
-		op.put(Operation.DIVIDE, input1 / input2);
-		op.put(Operation.PERCENT, input2 * input1 / 100);
-		op.put(Operation.SQARE, input1 * input1);
-		op.put(Operation.CUBE, Math.pow(input1, 3));
-		op.put(Operation.LG, Math.log10(input1));
-		op.put(Operation.LN, Math.log(input1));
-		op.put(Operation.CH, (Math.pow(2.7183, input1) + Math.pow(2.7183, (-1) * input1)) / 2);
-		op.put(Operation.SH, (Math.pow(2.7183, input1) - Math.pow(2.7183, (-1) * input1)) / 2);
-		op.put(Operation.TH, (Math.pow(2.7183, input1) - Math.pow(2.7183, (-1) * input1)) / (Math.pow(2.7183, input1) + Math.pow(2.7183, (-1) * input1)));
-		op.put(Operation.CTH, (Math.pow(2.7183, input1) + Math.pow(2.7183, (-1) * input1)) / (Math.pow(2.7183, input1) - Math.pow(2.7183, (-1) * input1)));
-		op.put(Operation.TEN, Math.pow(10, input1));
-		op.put(Operation.BACK, 1 / input1);
-		op.put(Operation.NULL, input2);
-
-		switch (operation) {
-		case DOUBLEFACT:
-			long result2 = 1;
-			for (long k = Math.round(input1); k > 0; k = k - 2) {
-				result2 = result2 * k;
-			}
-			output = result2;
-			break;
-		case FACTORIAL:
-			long result = 1;
-			for (long i = 1; i <= input1; i++) {
-				result = result * i;
-			}
-			output = result;
-			break;
-		default:
-			output = op.get(operation);
-		}
+	public static void main(String[] arg) {
+		new Calculator();
 	}
 
 	public enum Operation {

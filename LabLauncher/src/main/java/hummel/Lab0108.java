@@ -1,6 +1,6 @@
 package hummel;
 
-import java.util.*;
+import java.util.Random;
 
 public class Lab0108 {
 	public static Random random = new Random();
