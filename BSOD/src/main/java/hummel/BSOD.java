@@ -1,38 +1,54 @@
 package hummel;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
-public class BSOD {
-	public static void main(String[] args) {
-		try {
-			InputStream imageStream = BSOD.class.getResourceAsStream("/resources/BSOD.jpg");
-			JFrame frame = new JFrame();
-			frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-			frame.setResizable(false);
-			frame.setUndecorated(true);
-			frame.setAlwaysOnTop(true);
-			frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+public class BSOD extends JFrame {
+    public static void main(String[] arg) {
+        EventQueue.invokeLater(() -> {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Windows Classic".equals(info.getName())) {
+                    try {
+                        UIManager.setLookAndFeel(info.getClassName());
+                    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                             UnsupportedLookAndFeelException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                }
+            }
+            JFrame frame = new BSOD();
+            frame.setVisible(true);
+        });
+    }
 
-			assert imageStream != null;
+    public BSOD() {
+        try {
+            InputStream imageStream = BSOD.class.getResourceAsStream("/resources/BSOD.jpg");
+            setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            setResizable(false);
+            setUndecorated(true);
+            setAlwaysOnTop(true);
+            setSize(Toolkit.getDefaultToolkit().getScreenSize());
 
-			BufferedImage originalImage = ImageIO.read(imageStream);
-			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-			Image scaledImage = originalImage.getScaledInstance(screenSize.width, screenSize.height, Image.SCALE_SMOOTH);
+            assert imageStream != null;
 
-			ImageIcon imageIcon = new ImageIcon(scaledImage);
-			JLabel imageLabel = new JLabel(imageIcon);
-			imageLabel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
-			frame.add(imageLabel);
+            BufferedImage originalImage = ImageIO.read(imageStream);
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            Image scaledImage = originalImage.getScaledInstance(screenSize.width, screenSize.height, Image.SCALE_SMOOTH);
 
-			frame.setLocationRelativeTo(null);
-			frame.setVisible(true);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+            ImageIcon imageIcon = new ImageIcon(scaledImage);
+            JLabel imageLabel = new JLabel(imageIcon);
+            imageLabel.setBounds(0, 0, getWidth(), getHeight());
+            add(imageLabel);
+
+            setLocationRelativeTo(null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
