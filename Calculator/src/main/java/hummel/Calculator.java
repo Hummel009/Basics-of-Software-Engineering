@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.function.Supplier;
 
 import javax.swing.*;
 
@@ -19,6 +20,53 @@ public class Calculator extends JFrame implements ActionListener {
     public int notInclude;
     public int[] exNums = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
     public boolean isExtended;
+    public Map<Operation, Supplier<Double>> op = new EnumMap<>(Operation.class);
+
+    {
+        op.put(Operation.PLUS, () -> input1 + input2);
+        op.put(Operation.MINUS, () -> input1 - input2);
+        op.put(Operation.MULTIPLE, () -> input1 * input2);
+        op.put(Operation.ARCSIN, () -> Math.asin(input1));
+        op.put(Operation.ARCCOS, () -> Math.acos(input1));
+        op.put(Operation.ARCTG, () -> Math.atan(input1));
+        op.put(Operation.ARCCTG, () -> 1 / Math.atan(input1));
+        op.put(Operation.SIN, () -> Math.sin(Math.toRadians(input1)));
+        op.put(Operation.COS, () -> Math.cos(Math.toRadians(input1)));
+        op.put(Operation.TG, () -> Math.tan(Math.toRadians(input1)));
+        op.put(Operation.CTG, () -> 1 / Math.tan(Math.toRadians(input1)));
+        op.put(Operation.SQRT, () -> Math.sqrt(input1));
+        op.put(Operation.LOGARITHM, () -> Math.log10(input1) / Math.log10(input2));
+        op.put(Operation.POWER, () -> Math.pow(input1, input2));
+        op.put(Operation.DIVIDE, () -> input1 / input2);
+        op.put(Operation.PERCENT, () -> input2 * input1 / 100);
+        op.put(Operation.SQARE, () -> input1 * input1);
+        op.put(Operation.CUBE, () -> Math.pow(input1, 3));
+        op.put(Operation.LG, () -> Math.log10(input1));
+        op.put(Operation.LN, () -> Math.log(input1));
+        op.put(Operation.CH, () -> (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)) / 2);
+        op.put(Operation.SH, () -> (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)) / 2);
+        op.put(Operation.TH, () -> (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)) / (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)));
+        op.put(Operation.CTH, () -> (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)) / (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)));
+        op.put(Operation.TEN, () -> Math.pow(10, input1));
+        op.put(Operation.BACK, () -> 1 / input1);
+        op.put(Operation.NULL, () -> input2);
+        op.put(Operation.DOUBLEFACT, () -> {
+            long result = 1;
+            for (long k = Math.round(input1); k > 0; k -= 1) {
+                result = result * k;
+            }
+            output = result;
+            return output;
+        });
+        op.put(Operation.FACTORIAL, () -> {
+            long result = 1;
+            for (long k = Math.round(input1); k > 0; k -= 2) {
+                result = result * k;
+            }
+            output = result;
+            return output;
+        });
+    }
 
     public Calculator() {
         setTitle("Hummel009's Calculator");
@@ -99,53 +147,7 @@ public class Calculator extends JFrame implements ActionListener {
     }
 
     public void calculate() {
-        Map<Operation, Double> op = new EnumMap<>(Operation.class);
-        op.put(Operation.PLUS, input1 + input2);
-        op.put(Operation.MINUS, input1 - input2);
-        op.put(Operation.MULTIPLE, input1 * input2);
-        op.put(Operation.ARCSIN, Math.asin(input1));
-        op.put(Operation.ARCCOS, Math.acos(input1));
-        op.put(Operation.ARCTG, Math.atan(input1));
-        op.put(Operation.ARCCTG, 1 / Math.atan(input1));
-        op.put(Operation.SIN, Math.sin(Math.toRadians(input1)));
-        op.put(Operation.COS, Math.cos(Math.toRadians(input1)));
-        op.put(Operation.TG, Math.tan(Math.toRadians(input1)));
-        op.put(Operation.CTG, 1 / Math.tan(Math.toRadians(input1)));
-        op.put(Operation.SQRT, Math.sqrt(input1));
-        op.put(Operation.LOGARITHM, Math.log10(input1) / Math.log10(input2));
-        op.put(Operation.POWER, Math.pow(input1, input2));
-        op.put(Operation.DIVIDE, input1 / input2);
-        op.put(Operation.PERCENT, input2 * input1 / 100);
-        op.put(Operation.SQARE, input1 * input1);
-        op.put(Operation.CUBE, Math.pow(input1, 3));
-        op.put(Operation.LG, Math.log10(input1));
-        op.put(Operation.LN, Math.log(input1));
-        op.put(Operation.CH, (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)) / 2);
-        op.put(Operation.SH, (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)) / 2);
-        op.put(Operation.TH, (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)) / (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)));
-        op.put(Operation.CTH, (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)) / (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)));
-        op.put(Operation.TEN, Math.pow(10, input1));
-        op.put(Operation.BACK, 1 / input1);
-        op.put(Operation.NULL, input2);
-
-        switch (operation) {
-            case DOUBLEFACT:
-                long result2 = 1;
-                for (long k = Math.round(input1); k > 0; k = k - 2) {
-                    result2 = result2 * k;
-                }
-                output = result2;
-                break;
-            case FACTORIAL:
-                long result = 1;
-                for (long i = 1; i <= input1; i++) {
-                    result = result * i;
-                }
-                output = result;
-                break;
-            default:
-                output = op.get(operation);
-        }
+        output = op.get(operation).get();
     }
 
     private void enable(int i) {
@@ -170,7 +172,6 @@ public class Calculator extends JFrame implements ActionListener {
 
     public void equals() {
         input2 = Double.parseDouble(outputField.getText().substring(notInclude));
-
         calculate();
         final String result = new DecimalFormat("#.###############").format(output);
         outputField.setText(outputField.getText() + "=" + result);
@@ -203,6 +204,12 @@ public class Calculator extends JFrame implements ActionListener {
     }
 
     public void oneNumber(Operation op, AbstractButton button) {
+        String outputText = outputField.getText();
+        int equalsIndex = outputText.indexOf("=");
+        if (equalsIndex != -1) {
+            outputText = outputText.substring(equalsIndex + 1).trim();
+            outputField.setText(outputText);
+        }
         input1 = Double.parseDouble(outputField.getText());
         operation = op;
         calculate();
@@ -295,6 +302,12 @@ public class Calculator extends JFrame implements ActionListener {
     }
 
     public void twoNumbers(Operation op, AbstractButton button) {
+        String outputText = outputField.getText();
+        int equalsIndex = outputText.indexOf("=");
+        if (equalsIndex != -1) {
+            outputText = outputText.substring(equalsIndex + 1).trim();
+            outputField.setText(outputText);
+        }
         notInclude = outputField.getText().length() + button.getText().length();
         input1 = Double.parseDouble(outputField.getText());
         operation = op;
@@ -307,7 +320,8 @@ public class Calculator extends JFrame implements ActionListener {
                 if ("Windows Classic".equals(info.getName())) {
                     try {
                         UIManager.setLookAndFeel(info.getClassName());
-                    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+                    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                             UnsupportedLookAndFeelException e) {
                         throw new RuntimeException(e);
                     }
                     break;
