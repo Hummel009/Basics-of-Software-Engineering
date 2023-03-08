@@ -21,7 +21,8 @@ public class Calculator extends JFrame implements ActionListener {
     public boolean isExtended;
 
     public Calculator() {
-        super("JavaCalculator v2.0");
+        setTitle("Hummel009's Calculator");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         for (int i = 0; i <= 49; i++) {
             button[i] = new JButton();
