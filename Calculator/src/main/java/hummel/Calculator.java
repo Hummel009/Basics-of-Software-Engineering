@@ -52,7 +52,7 @@ public class Calculator extends JFrame implements ActionListener {
         op.put(Operation.NULL, () -> input2);
         op.put(Operation.DOUBLEFACT, () -> {
             long result = 1;
-            for (long k = Math.round(input1); k > 0; k -= 1) {
+            for (long k = Math.round(input1); k > 0; k -= 2) {
                 result = result * k;
             }
             output = result;
@@ -60,7 +60,7 @@ public class Calculator extends JFrame implements ActionListener {
         });
         op.put(Operation.FACTORIAL, () -> {
             long result = 1;
-            for (long k = Math.round(input1); k > 0; k -= 2) {
+            for (long k = Math.round(input1); k > 0; k -= 1) {
                 result = result * k;
             }
             output = result;
@@ -150,31 +150,15 @@ public class Calculator extends JFrame implements ActionListener {
         output = op.get(operation).get();
     }
 
-    private void enable(int i) {
-        switch (i) {
-            case 0:
-                extendedMode();
-                break;
-            case 1:
-                output = input1 = input2 = 0;
-                outputField.setText("");
-                break;
-            case 2:
-                equals();
-                break;
-            case 3:
-                outputField.setText("2.718281828459045");
-                break;
-            case 4:
-                outputField.setText("3.141592653589793");
-        }
-    }
-
     public void equals() {
-        input2 = Double.parseDouble(outputField.getText().substring(notInclude));
-        calculate();
-        final String result = new DecimalFormat("#.###############").format(output);
-        outputField.setText(outputField.getText() + "=" + result);
+        try {
+            input2 = Double.parseDouble(outputField.getText().substring(notInclude));
+            calculate();
+            String result = new DecimalFormat("#.###############").format(output);
+            outputField.setText(outputField.getText() + "=" + result);
+        } catch (Exception e) {
+            outputField.setText("");
+        }
     }
 
     public void extendedMode() {
@@ -210,11 +194,15 @@ public class Calculator extends JFrame implements ActionListener {
             outputText = outputText.substring(equalsIndex + 1).trim();
             outputField.setText(outputText);
         }
-        input1 = Double.parseDouble(outputField.getText());
-        operation = op;
-        calculate();
-        final String result = new DecimalFormat("#.###############").format(output);
-        outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result);
+        try {
+            input1 = Double.parseDouble(outputField.getText());
+            operation = op;
+            calculate();
+            String result = new DecimalFormat("#.###############").format(output);
+            outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result);
+        } catch (Exception e) {
+            outputField.setText("");
+        }
     }
 
     public void registerButton(JButton button, String name) {
@@ -263,12 +251,15 @@ public class Calculator extends JFrame implements ActionListener {
         two.put(button[14], Operation.DIVIDE);
         two.put(button[18], Operation.PERCENT);
 
-        Map<JButton, Integer> vd = new HashMap<>();
-        vd.put(button[32], 0);
-        vd.put(button[13], 1);
-        vd.put(button[19], 2);
-        vd.put(button[12], 3);
-        vd.put(button[11], 4);
+        Map<JButton, Runnable> vd = new HashMap<>();
+        vd.put(button[32], this::extendedMode);
+        vd.put(button[13], () -> {
+            output = input1 = input2 = 0;
+            outputField.setText("");
+        });
+        vd.put(button[19], this::equals);
+        vd.put(button[12], () -> outputField.setText("2.718281828459045"));
+        vd.put(button[11], () -> outputField.setText("3.141592653589793"));
 
         for (Entry<JButton, Operation> btn : one.entrySet()) {
             if (jbutton == btn.getKey()) {
@@ -284,9 +275,9 @@ public class Calculator extends JFrame implements ActionListener {
             }
         }
 
-        for (Entry<JButton, Integer> btn : vd.entrySet()) {
+        for (Entry<JButton, Runnable> btn : vd.entrySet()) {
             if (jbutton == btn.getKey()) {
-                enable(btn.getValue());
+                btn.getValue().run();
                 break;
             }
         }
@@ -308,10 +299,14 @@ public class Calculator extends JFrame implements ActionListener {
             outputText = outputText.substring(equalsIndex + 1).trim();
             outputField.setText(outputText);
         }
-        notInclude = outputField.getText().length() + button.getText().length();
-        input1 = Double.parseDouble(outputField.getText());
-        operation = op;
-        outputField.setText(outputField.getText() + button.getText());
+        try {
+            notInclude = outputField.getText().length() + button.getText().length();
+            input1 = Double.parseDouble(outputField.getText());
+            operation = op;
+            outputField.setText(outputField.getText() + button.getText());
+        } catch (Exception e) {
+            outputField.setText("");
+        }
     }
 
     public static void main(String[] arg) {
