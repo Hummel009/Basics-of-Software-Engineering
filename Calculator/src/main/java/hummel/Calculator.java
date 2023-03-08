@@ -261,33 +261,43 @@ public class Calculator extends JFrame implements ActionListener {
         vd.put(button[12], () -> outputField.setText("2.718281828459045"));
         vd.put(button[11], () -> outputField.setText("3.141592653589793"));
 
+        boolean skip = false;
         for (Entry<JButton, Operation> btn : one.entrySet()) {
             if (jbutton == btn.getKey()) {
                 oneNumber(btn.getValue(), btn.getKey());
+                skip = true;
                 break;
             }
         }
 
-        for (Entry<JButton, Operation> btn : two.entrySet()) {
-            if (jbutton == btn.getKey()) {
-                twoNumbers(btn.getValue(), btn.getKey());
-                break;
+        if (!skip) {
+            for (Entry<JButton, Operation> btn : two.entrySet()) {
+                if (jbutton == btn.getKey()) {
+                    twoNumbers(btn.getValue(), btn.getKey());
+                    skip = true;
+                    break;
+                }
             }
         }
 
-        for (Entry<JButton, Runnable> btn : vd.entrySet()) {
-            if (jbutton == btn.getKey()) {
-                btn.getValue().run();
-                break;
+        if (!skip) {
+            for (Entry<JButton, Runnable> btn : vd.entrySet()) {
+                if (jbutton == btn.getKey()) {
+                    btn.getValue().run();
+                    skip = true;
+                    break;
+                }
             }
         }
 
-        for (int i = 0; i < 11; i++) {
-            if (jbutton == button[i]) {
-                String t = outputField.getText();
-                t += button[i].getText();
-                outputField.setText(t);
-                break;
+        if (!skip) {
+            for (int i = 0; i < 11; i++) {
+                if (jbutton == button[i]) {
+                    String t = outputField.getText();
+                    t += button[i].getText();
+                    outputField.setText(t);
+                    break;
+                }
             }
         }
     }
