@@ -1,8 +1,9 @@
 import java.io.*;
 import java.util.*;
+import java.util.stream.*;
 
-public class Main {
-	public static void main(String[] args) {
+public class Lab05 {
+    public static void main(String[] args) throws Exception {
 		List<Integer> c1 = new ArrayList<>();
 		List<Integer> c2 = new ArrayList<>();
 		boolean isC1 = true;
@@ -23,14 +24,12 @@ public class Main {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
+        
 		Collections.sort(c1);
 		Collections.sort(c2);
-
-		List<Integer> result = new ArrayList<>();
-		result.addAll(c1);
-		result.addAll(c2);
-
-		System.out.println(result);
-	}
+        
+        List<Integer> result = Stream.concat(c1.stream(), c2.stream()).collect(Collectors.toList());
+        
+        System.out.println(result);
+    }
 }
