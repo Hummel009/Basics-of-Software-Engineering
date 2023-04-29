@@ -1,1 +1,1 @@
-My projects for the Belarusian State University of Informatics and Radioelectronics.
+My small projects and programs for my own use.
