@@ -12,7 +12,8 @@ public class MySQLAppRepository {
 
 	public static void saveToDB(List<String> users) {
 		String usr = users.toString();
-		try (Connection connection = getConnection()) {
+		try {
+			Connection connection = getConnection();
 			PreparedStatement statement = connection.prepareStatement(INSERT_MYSQL);
 			statement.setString(1, usr);
 			int rowsInserted = statement.executeUpdate();
@@ -27,7 +28,8 @@ public class MySQLAppRepository {
 
 	public static List<String> getFromDB() {
 		String usr = null;
-		try (Connection connection = getConnection()) {
+		try {
+			Connection connection = getConnection();
 			PreparedStatement statement = connection.prepareStatement(SELECT_MYSQL);
 			ResultSet resultSet = statement.executeQuery();
 			if (resultSet.next()) {
