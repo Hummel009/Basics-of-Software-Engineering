@@ -50,10 +50,4 @@ public class MySQLAppRepository {
 	public static Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(APP_MYSQL_DATABASE_URL, APP_MYSQL_DATABASE_USER, APP_MYSQL_DATABASE_PASS);
 	}
-
-	public static class UsersTable {
-		public static final String TABLE_NAME = "users";
-		public static final String COLUMN_NAME = "name";
-	}
-
 }
