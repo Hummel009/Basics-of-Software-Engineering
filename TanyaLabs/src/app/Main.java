@@ -1,7 +1,5 @@
-package app.database;
+package app;
 import java.util.*;
-
-import app.Application;
 
 public class Main {
 	public static List<String> userNames = new ArrayList<>();
