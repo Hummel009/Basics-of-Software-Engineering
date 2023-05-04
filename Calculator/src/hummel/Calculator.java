@@ -80,18 +80,18 @@ public class Calculator extends JFrame implements ActionListener {
 
         registerButton(button[13], "C");
         registerButton(button[12], "e");
-        registerButton(button[11], "π");
-        registerButton(button[14], "÷");
+        registerButton(button[11], "p");
+        registerButton(button[14], "/");
 
         registerButton(button[7], "7");
         registerButton(button[8], "8");
         registerButton(button[9], "9");
-        registerButton(button[15], "×");
+        registerButton(button[15], "*");
 
         registerButton(button[4], "4");
         registerButton(button[5], "5");
         registerButton(button[6], "6");
-        registerButton(button[16], "−");
+        registerButton(button[16], "-");
 
         registerButton(button[1], "1");
         registerButton(button[2], "2");
@@ -103,7 +103,7 @@ public class Calculator extends JFrame implements ActionListener {
         registerButton(button[10], ".");
         registerButton(button[19], "=");
 
-        registerButton(button[20], "√");
+        registerButton(button[20], "sqrt");
         registerButton(button[21], "^");
         registerButton(button[34], "^2");
         registerButton(button[35], "^3");
