@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Supplier;
 
-public class Calculator extends JFrame implements ActionListener {
+public class ProjectCalculator extends JFrame implements ActionListener {
 	public JButton[] button = new JButton[50];
 	public Operation operation;
 	public double output;
