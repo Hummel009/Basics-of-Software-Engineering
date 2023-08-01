@@ -12,19 +12,19 @@ import java.util.Map.Entry;
 import java.util.function.Supplier;
 
 public class Calculator extends JFrame implements ActionListener {
-	public JButton[] button = new JButton[50];
-	public Operation operation;
-	public double output;
-	public double input1;
-	public double input2;
-	public JTextField outputField = new JTextField(20);
-	public JPanel panel = new JPanel();
-	public int notInclude;
-	public int[] exNums = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
-	public boolean isExtended;
-	public Map<Operation, Supplier<Double>> op = new EnumMap<>(Operation.class);
+	public static JButton[] button = new JButton[50];
+	public static Operation operation;
+	public static double output;
+	public static double input1;
+	public static double input2;
+	public static JTextField outputField = new JTextField(20);
+	public static JPanel panel = new JPanel();
+	public static int notInclude;
+	public static int[] exNums = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
+	public static boolean isExtended;
+	public static Map<Operation, Supplier<Double>> op = new EnumMap<>(Operation.class);
 
-	{
+	static {
 		op.put(Operation.PLUS, () -> input1 + input2);
 		op.put(Operation.MINUS, () -> input1 - input2);
 		op.put(Operation.MULTIPLE, () -> input1 * input2);
@@ -137,7 +137,7 @@ public class Calculator extends JFrame implements ActionListener {
 		outputField.setHorizontalAlignment(SwingConstants.RIGHT);
 		outputField.setEditable(false);
 		operation = Operation.NULL;
-		add(outputField, BorderLayout.NORTH);
+		add(outputField, BorderLayout.PAGE_START);
 		add(panel, BorderLayout.CENTER);
 		setSize(600, 700);
 		setLocationRelativeTo(null);
@@ -148,11 +148,11 @@ public class Calculator extends JFrame implements ActionListener {
 		selectButton((JButton) event.getSource());
 	}
 
-	public void calculate() {
+	public static void calculate() {
 		output = op.get(operation).get();
 	}
 
-	public void equals() {
+	public static void equals() {
 		try {
 			input2 = Double.parseDouble(outputField.getText().substring(notInclude));
 			calculate();
@@ -163,19 +163,8 @@ public class Calculator extends JFrame implements ActionListener {
 		}
 	}
 
-	public void extendedMode() {
-		if (!isExtended) {
-			panel.setLayout(new GridLayout(11, 4));
-			isExtended = true;
-			panel.remove(button[32]);
-
-			for (int exNum : exNums) {
-				panel.add(button[exNum]);
-			}
-
-			panel.add(button[32]);
-			button[32].setText("Back");
-		} else {
+	public static void extendedMode() {
+		if (isExtended) {
 			panel.setLayout(new GridLayout(7, 4));
 			isExtended = false;
 			panel.remove(button[32]);
@@ -186,10 +175,21 @@ public class Calculator extends JFrame implements ActionListener {
 
 			panel.add(button[32]);
 			button[32].setText("Extended");
+		} else {
+			panel.setLayout(new GridLayout(11, 4));
+			isExtended = true;
+			panel.remove(button[32]);
+
+			for (int exNum : exNums) {
+				panel.add(button[exNum]);
+			}
+
+			panel.add(button[32]);
+			button[32].setText("Back");
 		}
 	}
 
-	public void oneNumber(Operation op, AbstractButton button) {
+	public static void oneNumber(Operation op, AbstractButton button) {
 		String outputText = outputField.getText();
 		int equalsIndex = outputText.indexOf('=');
 		if (equalsIndex != -1) {
@@ -220,7 +220,7 @@ public class Calculator extends JFrame implements ActionListener {
 		button.setText(name);
 	}
 
-	public void selectButton(JButton jbutton) {
+	public static void selectButton(JButton jbutton) {
 		Map<JButton, Operation> one = new HashMap<>();
 		one.put(button[23], Operation.FACTORIAL);
 		one.put(button[44], Operation.DOUBLEFACT);
@@ -254,12 +254,12 @@ public class Calculator extends JFrame implements ActionListener {
 		two.put(button[18], Operation.PERCENT);
 
 		Map<JButton, Runnable> vd = new HashMap<>();
-		vd.put(button[32], this::extendedMode);
+		vd.put(button[32], Calculator::extendedMode);
 		vd.put(button[13], () -> {
 			output = input1 = input2 = 0;
 			outputField.setText("");
 		});
-		vd.put(button[19], this::equals);
+		vd.put(button[19], Calculator::equals);
 		vd.put(button[12], () -> outputField.setText("2.718281828459045"));
 		vd.put(button[11], () -> outputField.setText("3.141592653589793"));
 
@@ -304,7 +304,7 @@ public class Calculator extends JFrame implements ActionListener {
 		}
 	}
 
-	public void twoNumbers(Operation op, AbstractButton button) {
+	public static void twoNumbers(Operation op, AbstractButton button) {
 		String outputText = outputField.getText();
 		int equalsIndex = outputText.indexOf('=');
 		if (equalsIndex != -1) {
