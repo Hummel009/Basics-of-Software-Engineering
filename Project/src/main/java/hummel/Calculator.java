@@ -143,11 +143,6 @@ public class Calculator extends JFrame implements ActionListener {
 		setLocationRelativeTo(null);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent event) {
-		selectButton((JButton) event.getSource());
-	}
-
 	public static void calculate() {
 		output = op.get(operation).get();
 	}
@@ -205,19 +200,6 @@ public class Calculator extends JFrame implements ActionListener {
 		} catch (Exception e) {
 			outputField.setText("");
 		}
-	}
-
-	public void registerButton(JButton button, String name) {
-		button.setFont(button.getFont().deriveFont(20.0f));
-		button.addActionListener(this);
-		button.setText(name);
-		panel.add(button);
-	}
-
-	public void registerHiddenButton(AbstractButton button, String name) {
-		button.setFont(button.getFont().deriveFont(20.0f));
-		button.addActionListener(this);
-		button.setText(name);
 	}
 
 	public static void selectButton(JButton jbutton) {
@@ -337,6 +319,24 @@ public class Calculator extends JFrame implements ActionListener {
 			JFrame frame = new Calculator();
 			frame.setVisible(true);
 		});
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		selectButton((JButton) event.getSource());
+	}
+
+	public void registerButton(JButton button, String name) {
+		button.setFont(button.getFont().deriveFont(20.0f));
+		button.addActionListener(this);
+		button.setText(name);
+		panel.add(button);
+	}
+
+	public void registerHiddenButton(AbstractButton button, String name) {
+		button.setFont(button.getFont().deriveFont(20.0f));
+		button.addActionListener(this);
+		button.setText(name);
 	}
 
 	public enum Operation {
