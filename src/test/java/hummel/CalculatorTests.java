@@ -8,7 +8,7 @@ class CalculatorTests {
 	private Calculator calculator;
 
 	@Test
-	public void testSARCCOS() {
+	void testSARCCOS() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[0]);
 		calculator.selectButton(Calculator.BUTTONS[10]);
@@ -18,7 +18,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSARCCTG() {
+	void testSARCCTG() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[1]);
 		calculator.selectButton(Calculator.BUTTONS[31]);
@@ -26,7 +26,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSARCSIN() {
+	void testSARCSIN() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[0]);
 		calculator.selectButton(Calculator.BUTTONS[10]);
@@ -36,7 +36,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSARCTG() {
+	void testSARCTG() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[1]);
 		calculator.selectButton(Calculator.BUTTONS[30]);
@@ -44,7 +44,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSCOS() {
+	void testSCOS() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[6]);
 		calculator.selectButton(Calculator.BUTTONS[0]);
@@ -53,7 +53,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSCTG() {
+	void testSCTG() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[4]);
 		calculator.selectButton(Calculator.BUTTONS[5]);
@@ -62,7 +62,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSDIVIDE() {
+	void testSDIVIDE() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[9]);
 		calculator.selectButton(Calculator.BUTTONS[14]);
@@ -72,7 +72,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSNUMBER() {
+	void testSNUMBER() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[3]);
 		calculator.selectButton(Calculator.BUTTONS[23]);
@@ -80,7 +80,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSFACTORIAL() {
+	void testSFACTORIAL() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[3]);
 		calculator.selectButton(Calculator.BUTTONS[23]);
@@ -88,7 +88,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSLOGARITHM() {
+	void testSLOGARITHM() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[2]);
 		calculator.selectButton(Calculator.BUTTONS[5]);
@@ -99,7 +99,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSMINUS() {
+	void testSMINUS() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[2]);
 		calculator.selectButton(Calculator.BUTTONS[16]);
@@ -109,7 +109,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSMULTIPLE() {
+	void testSMULTIPLE() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[2]);
 		calculator.selectButton(Calculator.BUTTONS[15]);
@@ -119,7 +119,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSPERCENT() {
+	void testSPERCENT() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[1]);
 		calculator.selectButton(Calculator.BUTTONS[0]);
@@ -132,7 +132,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSPLUS() {
+	void testSPLUS() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[2]);
 		calculator.selectButton(Calculator.BUTTONS[17]);
@@ -142,7 +142,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSPOWER() {
+	void testSPOWER() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[5]);
 		calculator.selectButton(Calculator.BUTTONS[21]);
@@ -152,7 +152,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSSIN() {
+	void testSSIN() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[3]);
 		calculator.selectButton(Calculator.BUTTONS[0]);
@@ -161,7 +161,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSSQRT() {
+	void testSSQRT() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[2]);
 		calculator.selectButton(Calculator.BUTTONS[5]);
@@ -170,7 +170,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSTG() {
+	void testSTG() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[4]);
 		calculator.selectButton(Calculator.BUTTONS[5]);
@@ -179,7 +179,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSDOUBLEFACT() {
+	void testSDOUBLEFACT() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[9]);
 		calculator.selectButton(Calculator.BUTTONS[44]);
@@ -187,7 +187,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSTEN() {
+	void testSTEN() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[2]);
 		calculator.selectButton(Calculator.BUTTONS[42]);
@@ -195,7 +195,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSLN() {
+	void testSLN() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[1]);
 		calculator.selectButton(Calculator.BUTTONS[0]);
@@ -204,7 +204,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSLG() {
+	void testSLG() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[1]);
 		calculator.selectButton(Calculator.BUTTONS[0]);
@@ -213,7 +213,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSCUBE() {
+	void testSCUBE() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[3]);
 		calculator.selectButton(Calculator.BUTTONS[35]);
@@ -221,7 +221,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSSQUARE() {
+	void testSSQUARE() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[3]);
 		calculator.selectButton(Calculator.BUTTONS[34]);
@@ -229,7 +229,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSSH() {
+	void testSSH() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[3]);
 		calculator.selectButton(Calculator.BUTTONS[39]);
@@ -237,7 +237,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSCH() {
+	void testSCH() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[3]);
 		calculator.selectButton(Calculator.BUTTONS[38]);
@@ -245,7 +245,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSBACK() {
+	void testSBACK() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[1]);
 		calculator.selectButton(Calculator.BUTTONS[43]);
@@ -253,7 +253,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSTH() {
+	void testSTH() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[0]);
 		calculator.selectButton(Calculator.BUTTONS[40]);
@@ -261,7 +261,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testSCTH() {
+	void testSCTH() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[3]);
 		calculator.selectButton(Calculator.BUTTONS[41]);
@@ -269,7 +269,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testExtended() {
+	void testExtended() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[32]);
 		assertEquals(true, calculator.isExtended());
@@ -278,7 +278,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testCLEAR() {
+	void testCLEAR() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[3]);
 		calculator.selectButton(Calculator.BUTTONS[13]);
@@ -286,7 +286,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testE() {
+	void testE() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[12]);
 		calculator.selectButton(Calculator.BUTTONS[19]);
@@ -294,7 +294,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testP() {
+	void testP() {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[11]);
 		calculator.selectButton(Calculator.BUTTONS[19]);
@@ -302,7 +302,7 @@ class CalculatorTests {
 	}
 
 	@Test
-	public void testMain() {
+	void testMain() {
 		Calculator.main(new String[]{""});
 	}
 }

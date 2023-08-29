@@ -12,9 +12,15 @@ import java.util.Map.Entry;
 import java.util.function.Supplier;
 
 public class Calculator extends JFrame implements ActionListener {
-	public static final int[] EXTENDED_MODE_IDS = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
-	public static final JButton[] BUTTONS = new JButton[50];
-	public static final JPanel PANEL = new JPanel();
+	protected static final int[] EXTENDED_MODE_IDS = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
+	protected static final JButton[] BUTTONS = new JButton[50];
+	protected static final JPanel PANEL = new JPanel();
+
+	static {
+		for (int i = 0; i <= 49; i++) {
+			BUTTONS[i] = new JButton();
+		}
+	}
 
 	private Map<Operation, Supplier<Double>> op = new EnumMap<>(Operation.class);
 	private Operation operation;
@@ -28,10 +34,6 @@ public class Calculator extends JFrame implements ActionListener {
 	public Calculator() {
 		setTitle("Hummel009's Calculator");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-		for (int i = 0; i <= 49; i++) {
-			BUTTONS[i] = new JButton();
-		}
 
 		PANEL.setLayout(new GridLayout(7, 4));
 
