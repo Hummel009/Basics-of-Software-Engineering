@@ -28,6 +28,8 @@ test {
 
 jacocoTestReport {
 	reports {
+		html.destination file('/jacoco/html')
+		xml.destination file('/jacoco/xml')
 		xml.required = true
 	}
 }
