@@ -300,4 +300,9 @@ class CalculatorTests {
 		calculator.selectButton(Calculator.BUTTONS[19]);
 		assertEquals(3.141592653589793, calculator.getOutput());
 	}
+
+	@Test
+	public void testMain() {
+		Calculator.main(new String[]{""});
+	}
 }
