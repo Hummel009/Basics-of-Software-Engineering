@@ -2,20 +2,10 @@ plugins {
 	id 'jacoco'
 	id 'java'
 	id 'application'
-	id 'org.sonarqube' version '4.3.0.3225'
 }
 
 group = 'org.example'
 version = '1.0-SNAPSHOT'
-
-sonar {
-	properties {
-		property('sonar.projectName', 'Calculator')
-		property('sonar.projectKey', 'Basics-of-Software-Engineering')
-		property('sonar.sources', 'src/main')
-		property 'sonar.tests', 'src/test'
-	}
-}
 
 repositories {
 	mavenCentral()
@@ -28,9 +18,8 @@ dependencies {
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(11)
+		languageVersion = JavaLanguageVersion.of(8)
 	}
-	sourceSets.main.java.srcDirs = ['src/main/java']
 }
 
 application {
@@ -43,8 +32,6 @@ test {
 
 jacocoTestReport {
 	reports {
-		html.destination file('/jacoco/html')
-		xml.destination file('/jacoco/xml')
 		xml.required = true
 	}
 }
