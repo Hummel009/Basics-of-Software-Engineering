@@ -12,19 +12,88 @@ import java.util.Map.Entry;
 import java.util.function.Supplier;
 
 public class Calculator extends JFrame implements ActionListener {
-	public static JButton[] button = new JButton[50];
-	public static Operation operation;
-	public static double output;
-	public static double input1;
-	public static double input2;
-	public static JTextField outputField = new JTextField(20);
-	public static JPanel panel = new JPanel();
-	public static int notInclude;
-	public static int[] exNums = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
-	public static boolean isExtended;
-	public static Map<Operation, Supplier<Double>> op = new EnumMap<>(Operation.class);
+	public static final int[] EXTENDED_MODE_IDS = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
+	public static final JButton[] BUTTONS = new JButton[50];
+	public static final JPanel PANEL = new JPanel();
 
-	static {
+	private Map<Operation, Supplier<Double>> op = new EnumMap<>(Operation.class);
+	private Operation operation;
+	private double input1;
+	private double input2;
+	private double output;
+	private JTextField outputField = new JTextField(20);
+	private int notInclude;
+	private boolean isExtended;
+
+	public Calculator() {
+		setTitle("Hummel009's Calculator");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+		for (int i = 0; i <= 49; i++) {
+			BUTTONS[i] = new JButton();
+		}
+
+		PANEL.setLayout(new GridLayout(7, 4));
+
+		registerButton(BUTTONS[13], "C");
+		registerButton(BUTTONS[12], "e");
+		registerButton(BUTTONS[11], "p");
+		registerButton(BUTTONS[14], "/");
+
+		registerButton(BUTTONS[7], "7");
+		registerButton(BUTTONS[8], "8");
+		registerButton(BUTTONS[9], "9");
+		registerButton(BUTTONS[15], "*");
+
+		registerButton(BUTTONS[4], "4");
+		registerButton(BUTTONS[5], "5");
+		registerButton(BUTTONS[6], "6");
+		registerButton(BUTTONS[16], "-");
+
+		registerButton(BUTTONS[1], "1");
+		registerButton(BUTTONS[2], "2");
+		registerButton(BUTTONS[3], "3");
+		registerButton(BUTTONS[17], "+");
+
+		registerButton(BUTTONS[18], "%");
+		registerButton(BUTTONS[0], "0");
+		registerButton(BUTTONS[10], ".");
+		registerButton(BUTTONS[19], "=");
+
+		registerButton(BUTTONS[20], "sqrt");
+		registerButton(BUTTONS[21], "^");
+		registerButton(BUTTONS[34], "^2");
+		registerButton(BUTTONS[35], "^3");
+
+		registerHiddenButton(BUTTONS[22], "log");
+		registerHiddenButton(BUTTONS[24], "sin°");
+		registerHiddenButton(BUTTONS[25], "cos°");
+		registerHiddenButton(BUTTONS[26], "tg°");
+		registerHiddenButton(BUTTONS[27], "ctg°");
+		registerHiddenButton(BUTTONS[28], "arcsin");
+		registerHiddenButton(BUTTONS[29], "arccos");
+		registerHiddenButton(BUTTONS[30], "arctg");
+		registerHiddenButton(BUTTONS[31], "arcctg");
+		registerHiddenButton(BUTTONS[42], "10^");
+		registerHiddenButton(BUTTONS[36], "lg");
+		registerHiddenButton(BUTTONS[37], "ln");
+		registerHiddenButton(BUTTONS[38], "ch");
+		registerHiddenButton(BUTTONS[39], "sh");
+		registerHiddenButton(BUTTONS[40], "th");
+		registerHiddenButton(BUTTONS[41], "cth");
+
+		registerButton(BUTTONS[43], "1/x");
+		registerButton(BUTTONS[23], "n!");
+		registerButton(BUTTONS[44], "n!!");
+
+		registerButton(BUTTONS[32], "Extended");
+
+		outputField.setFont(outputField.getFont().deriveFont(40.0f));
+		outputField.setHorizontalAlignment(SwingConstants.RIGHT);
+		outputField.setEditable(false);
+
+		operation = Operation.NULL;
+
 		op.put(Operation.PLUS, () -> input1 + input2);
 		op.put(Operation.MINUS, () -> input1 - input2);
 		op.put(Operation.MULTIPLE, () -> input1 * input2);
@@ -68,86 +137,36 @@ public class Calculator extends JFrame implements ActionListener {
 			output = result;
 			return output;
 		});
-	}
 
-	public Calculator() {
-		setTitle("Hummel009's Calculator");
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-		for (int i = 0; i <= 49; i++) {
-			button[i] = new JButton();
-		}
-
-		panel.setLayout(new GridLayout(7, 4));
-
-		registerButton(button[13], "C");
-		registerButton(button[12], "e");
-		registerButton(button[11], "p");
-		registerButton(button[14], "/");
-
-		registerButton(button[7], "7");
-		registerButton(button[8], "8");
-		registerButton(button[9], "9");
-		registerButton(button[15], "*");
-
-		registerButton(button[4], "4");
-		registerButton(button[5], "5");
-		registerButton(button[6], "6");
-		registerButton(button[16], "-");
-
-		registerButton(button[1], "1");
-		registerButton(button[2], "2");
-		registerButton(button[3], "3");
-		registerButton(button[17], "+");
-
-		registerButton(button[18], "%");
-		registerButton(button[0], "0");
-		registerButton(button[10], ".");
-		registerButton(button[19], "=");
-
-		registerButton(button[20], "sqrt");
-		registerButton(button[21], "^");
-		registerButton(button[34], "^2");
-		registerButton(button[35], "^3");
-
-		registerHiddenButton(button[22], "log");
-		registerHiddenButton(button[24], "sin°");
-		registerHiddenButton(button[25], "cos°");
-		registerHiddenButton(button[26], "tg°");
-		registerHiddenButton(button[27], "ctg°");
-		registerHiddenButton(button[28], "arcsin");
-		registerHiddenButton(button[29], "arccos");
-		registerHiddenButton(button[30], "arctg");
-		registerHiddenButton(button[31], "arcctg");
-		registerHiddenButton(button[42], "10^");
-		registerHiddenButton(button[36], "lg");
-		registerHiddenButton(button[37], "ln");
-		registerHiddenButton(button[38], "ch");
-		registerHiddenButton(button[39], "sh");
-		registerHiddenButton(button[40], "th");
-		registerHiddenButton(button[41], "cth");
-
-		registerButton(button[43], "1/x");
-		registerButton(button[23], "n!");
-		registerButton(button[44], "n!!");
-
-		registerButton(button[32], "Extended");
-
-		outputField.setFont(outputField.getFont().deriveFont(40.0f));
-		outputField.setHorizontalAlignment(SwingConstants.RIGHT);
-		outputField.setEditable(false);
-		operation = Operation.NULL;
 		add(outputField, BorderLayout.PAGE_START);
-		add(panel, BorderLayout.CENTER);
+		add(PANEL, BorderLayout.CENTER);
 		setSize(600, 700);
 		setLocationRelativeTo(null);
 	}
 
-	public static void calculate() {
+	public static void main(String[] arg) {
+		EventQueue.invokeLater(() -> {
+			for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Windows Classic".equals(info.getName())) {
+					try {
+						UIManager.setLookAndFeel(info.getClassName());
+					} catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+					         UnsupportedLookAndFeelException e) {
+						throw new RuntimeException(e);
+					}
+					break;
+				}
+			}
+			JFrame frame = new Calculator();
+			frame.setVisible(true);
+		});
+	}
+
+	public void calculate() {
 		output = op.get(operation).get();
 	}
 
-	public static void equals() {
+	public void equals() {
 		try {
 			input2 = Double.parseDouble(outputField.getText().substring(notInclude));
 			calculate();
@@ -158,33 +177,33 @@ public class Calculator extends JFrame implements ActionListener {
 		}
 	}
 
-	public static void extendedMode() {
+	public void extendedMode() {
 		if (isExtended) {
-			panel.setLayout(new GridLayout(7, 4));
+			PANEL.setLayout(new GridLayout(7, 4));
 			isExtended = false;
-			panel.remove(button[32]);
+			PANEL.remove(BUTTONS[32]);
 
-			for (int exNum : exNums) {
-				panel.remove(button[exNum]);
+			for (int exNum : EXTENDED_MODE_IDS) {
+				PANEL.remove(BUTTONS[exNum]);
 			}
 
-			panel.add(button[32]);
-			button[32].setText("Extended");
+			PANEL.add(BUTTONS[32]);
+			BUTTONS[32].setText("Extended");
 		} else {
-			panel.setLayout(new GridLayout(11, 4));
+			PANEL.setLayout(new GridLayout(11, 4));
 			isExtended = true;
-			panel.remove(button[32]);
+			PANEL.remove(BUTTONS[32]);
 
-			for (int exNum : exNums) {
-				panel.add(button[exNum]);
+			for (int exNum : EXTENDED_MODE_IDS) {
+				PANEL.add(BUTTONS[exNum]);
 			}
 
-			panel.add(button[32]);
-			button[32].setText("Back");
+			PANEL.add(BUTTONS[32]);
+			BUTTONS[32].setText("Back");
 		}
 	}
 
-	public static void oneNumber(Operation op, AbstractButton button) {
+	public void oneNumber(Operation op, AbstractButton button) {
 		String outputText = outputField.getText();
 		int equalsIndex = outputText.indexOf('=');
 		if (equalsIndex != -1) {
@@ -202,48 +221,48 @@ public class Calculator extends JFrame implements ActionListener {
 		}
 	}
 
-	public static void selectButton(JButton jbutton) {
+	public void selectButton(JButton jbutton) {
 		Map<JButton, Operation> one = new HashMap<>();
-		one.put(button[23], Operation.FACTORIAL);
-		one.put(button[44], Operation.DOUBLEFACT);
-		one.put(button[20], Operation.SQRT);
-		one.put(button[24], Operation.SIN);
-		one.put(button[25], Operation.COS);
-		one.put(button[26], Operation.TG);
-		one.put(button[27], Operation.CTG);
-		one.put(button[28], Operation.ARCSIN);
-		one.put(button[29], Operation.ARCCOS);
-		one.put(button[30], Operation.ARCTG);
-		one.put(button[31], Operation.ARCCTG);
-		one.put(button[34], Operation.SQARE);
-		one.put(button[35], Operation.CUBE);
-		one.put(button[36], Operation.LG);
-		one.put(button[37], Operation.LN);
-		one.put(button[38], Operation.CH);
-		one.put(button[39], Operation.SH);
-		one.put(button[40], Operation.TH);
-		one.put(button[41], Operation.CTH);
-		one.put(button[42], Operation.TEN);
-		one.put(button[43], Operation.BACK);
+		one.put(BUTTONS[23], Operation.FACTORIAL);
+		one.put(BUTTONS[44], Operation.DOUBLEFACT);
+		one.put(BUTTONS[20], Operation.SQRT);
+		one.put(BUTTONS[24], Operation.SIN);
+		one.put(BUTTONS[25], Operation.COS);
+		one.put(BUTTONS[26], Operation.TG);
+		one.put(BUTTONS[27], Operation.CTG);
+		one.put(BUTTONS[28], Operation.ARCSIN);
+		one.put(BUTTONS[29], Operation.ARCCOS);
+		one.put(BUTTONS[30], Operation.ARCTG);
+		one.put(BUTTONS[31], Operation.ARCCTG);
+		one.put(BUTTONS[34], Operation.SQARE);
+		one.put(BUTTONS[35], Operation.CUBE);
+		one.put(BUTTONS[36], Operation.LG);
+		one.put(BUTTONS[37], Operation.LN);
+		one.put(BUTTONS[38], Operation.CH);
+		one.put(BUTTONS[39], Operation.SH);
+		one.put(BUTTONS[40], Operation.TH);
+		one.put(BUTTONS[41], Operation.CTH);
+		one.put(BUTTONS[42], Operation.TEN);
+		one.put(BUTTONS[43], Operation.BACK);
 
 		Map<JButton, Operation> two = new HashMap<>();
-		two.put(button[17], Operation.PLUS);
-		two.put(button[16], Operation.MINUS);
-		two.put(button[15], Operation.MULTIPLE);
-		two.put(button[22], Operation.LOGARITHM);
-		two.put(button[21], Operation.POWER);
-		two.put(button[14], Operation.DIVIDE);
-		two.put(button[18], Operation.PERCENT);
+		two.put(BUTTONS[17], Operation.PLUS);
+		two.put(BUTTONS[16], Operation.MINUS);
+		two.put(BUTTONS[15], Operation.MULTIPLE);
+		two.put(BUTTONS[22], Operation.LOGARITHM);
+		two.put(BUTTONS[21], Operation.POWER);
+		two.put(BUTTONS[14], Operation.DIVIDE);
+		two.put(BUTTONS[18], Operation.PERCENT);
 
 		Map<JButton, Runnable> vd = new HashMap<>();
-		vd.put(button[32], Calculator::extendedMode);
-		vd.put(button[13], () -> {
+		vd.put(BUTTONS[32], this::extendedMode);
+		vd.put(BUTTONS[13], () -> {
 			output = input1 = input2 = 0;
 			outputField.setText("");
 		});
-		vd.put(button[19], Calculator::equals);
-		vd.put(button[12], () -> outputField.setText("2.718281828459045"));
-		vd.put(button[11], () -> outputField.setText("3.141592653589793"));
+		vd.put(BUTTONS[19], this::equals);
+		vd.put(BUTTONS[12], () -> outputField.setText("2.718281828459045"));
+		vd.put(BUTTONS[11], () -> outputField.setText("3.141592653589793"));
 
 		boolean skip = false;
 		for (Entry<JButton, Operation> btn : one.entrySet()) {
@@ -276,9 +295,9 @@ public class Calculator extends JFrame implements ActionListener {
 
 		if (!skip) {
 			for (int i = 0; i < 11; i++) {
-				if (jbutton == button[i]) {
+				if (jbutton == BUTTONS[i]) {
 					String t = outputField.getText();
-					t += button[i].getText();
+					t += BUTTONS[i].getText();
 					outputField.setText(t);
 					break;
 				}
@@ -286,7 +305,7 @@ public class Calculator extends JFrame implements ActionListener {
 		}
 	}
 
-	public static void twoNumbers(Operation op, AbstractButton button) {
+	public void twoNumbers(Operation op, AbstractButton button) {
 		String outputText = outputField.getText();
 		int equalsIndex = outputText.indexOf('=');
 		if (equalsIndex != -1) {
@@ -303,24 +322,6 @@ public class Calculator extends JFrame implements ActionListener {
 		}
 	}
 
-	public static void main(String[] arg) {
-		EventQueue.invokeLater(() -> {
-			for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-				if ("Windows Classic".equals(info.getName())) {
-					try {
-						UIManager.setLookAndFeel(info.getClassName());
-					} catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
-					         UnsupportedLookAndFeelException e) {
-						throw new RuntimeException(e);
-					}
-					break;
-				}
-			}
-			JFrame frame = new Calculator();
-			frame.setVisible(true);
-		});
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		selectButton((JButton) event.getSource());
@@ -330,7 +331,7 @@ public class Calculator extends JFrame implements ActionListener {
 		button.setFont(button.getFont().deriveFont(20.0f));
 		button.addActionListener(this);
 		button.setText(name);
-		panel.add(button);
+		PANEL.add(button);
 	}
 
 	public void registerHiddenButton(AbstractButton button, String name) {
@@ -341,5 +342,13 @@ public class Calculator extends JFrame implements ActionListener {
 
 	public enum Operation {
 		NULL, ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL, LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER, SIN, SQRT, TG, SQARE, CUBE, LG, LN, CH, SH, TH, CTH, TEN, BACK, DOUBLEFACT
+	}
+
+	public double getOutput() {
+		return output;
+	}
+
+	public boolean isExtended() {
+		return isExtended;
 	}
 }

@@ -1,5 +1,6 @@
 plugins {
 	id 'java'
+	id 'application'
 }
 
 group = 'org.example'
@@ -12,8 +13,19 @@ repositories {
 dependencies {
 	testImplementation platform('org.junit:junit-bom:5.9.1')
 	testImplementation 'org.junit.jupiter:junit-jupiter'
+	testImplementation project(path: ':')
+}
+
+application {
+	mainClassName = 'hummel.Calculator'
 }
 
 test {
 	useJUnitPlatform()
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'hummel.Calculator'
+	}
 }
