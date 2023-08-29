@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Calculator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Calculator</a> &gt; <a href="index.source.html" class="el_package">hummel</a> &gt; <span class="el_source">Calculator.java</span></div><h1>Calculator.java</h1><pre class="source lang-java linenums">package hummel;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.function.Supplier;
+
+public class Calculator extends JFrame implements ActionListener {
+<span class="fc" id="L15">	public static final int[] EXTENDED_MODE_IDS = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};</span>
+<span class="fc" id="L16">	public static final JButton[] BUTTONS = new JButton[50];</span>
+<span class="fc" id="L17">	public static final JPanel PANEL = new JPanel();</span>
+
+<span class="fc" id="L19">	private Map&lt;Operation, Supplier&lt;Double&gt;&gt; op = new EnumMap&lt;&gt;(Operation.class);</span>
+	private Operation operation;
+	private double input1;
+	private double input2;
+	private double output;
+<span class="fc" id="L24">	private JTextField outputField = new JTextField(20);</span>
+	private int notInclude;
+	private boolean isExtended;
+
+<span class="fc" id="L28">	public Calculator() {</span>
+<span class="fc" id="L29">		setTitle(&quot;Hummel009's Calculator&quot;);</span>
+<span class="fc" id="L30">		setDefaultCloseOperation(EXIT_ON_CLOSE);</span>
+
+<span class="fc bfc" id="L32" title="All 2 branches covered.">		for (int i = 0; i &lt;= 49; i++) {</span>
+<span class="fc" id="L33">			BUTTONS[i] = new JButton();</span>
+		}
+
+<span class="fc" id="L36">		PANEL.setLayout(new GridLayout(7, 4));</span>
+
+<span class="fc" id="L38">		registerButton(BUTTONS[13], &quot;C&quot;);</span>
+<span class="fc" id="L39">		registerButton(BUTTONS[12], &quot;e&quot;);</span>
+<span class="fc" id="L40">		registerButton(BUTTONS[11], &quot;p&quot;);</span>
+<span class="fc" id="L41">		registerButton(BUTTONS[14], &quot;/&quot;);</span>
+
+<span class="fc" id="L43">		registerButton(BUTTONS[7], &quot;7&quot;);</span>
+<span class="fc" id="L44">		registerButton(BUTTONS[8], &quot;8&quot;);</span>
+<span class="fc" id="L45">		registerButton(BUTTONS[9], &quot;9&quot;);</span>
+<span class="fc" id="L46">		registerButton(BUTTONS[15], &quot;*&quot;);</span>
+
+<span class="fc" id="L48">		registerButton(BUTTONS[4], &quot;4&quot;);</span>
+<span class="fc" id="L49">		registerButton(BUTTONS[5], &quot;5&quot;);</span>
+<span class="fc" id="L50">		registerButton(BUTTONS[6], &quot;6&quot;);</span>
+<span class="fc" id="L51">		registerButton(BUTTONS[16], &quot;-&quot;);</span>
+
+<span class="fc" id="L53">		registerButton(BUTTONS[1], &quot;1&quot;);</span>
+<span class="fc" id="L54">		registerButton(BUTTONS[2], &quot;2&quot;);</span>
+<span class="fc" id="L55">		registerButton(BUTTONS[3], &quot;3&quot;);</span>
+<span class="fc" id="L56">		registerButton(BUTTONS[17], &quot;+&quot;);</span>
+
+<span class="fc" id="L58">		registerButton(BUTTONS[18], &quot;%&quot;);</span>
+<span class="fc" id="L59">		registerButton(BUTTONS[0], &quot;0&quot;);</span>
+<span class="fc" id="L60">		registerButton(BUTTONS[10], &quot;.&quot;);</span>
+<span class="fc" id="L61">		registerButton(BUTTONS[19], &quot;=&quot;);</span>
+
+<span class="fc" id="L63">		registerButton(BUTTONS[20], &quot;sqrt&quot;);</span>
+<span class="fc" id="L64">		registerButton(BUTTONS[21], &quot;^&quot;);</span>
+<span class="fc" id="L65">		registerButton(BUTTONS[34], &quot;^2&quot;);</span>
+<span class="fc" id="L66">		registerButton(BUTTONS[35], &quot;^3&quot;);</span>
+
+<span class="fc" id="L68">		registerHiddenButton(BUTTONS[22], &quot;log&quot;);</span>
+<span class="fc" id="L69">		registerHiddenButton(BUTTONS[24], &quot;sinВ°&quot;);</span>
+<span class="fc" id="L70">		registerHiddenButton(BUTTONS[25], &quot;cosВ°&quot;);</span>
+<span class="fc" id="L71">		registerHiddenButton(BUTTONS[26], &quot;tgВ°&quot;);</span>
+<span class="fc" id="L72">		registerHiddenButton(BUTTONS[27], &quot;ctgВ°&quot;);</span>
+<span class="fc" id="L73">		registerHiddenButton(BUTTONS[28], &quot;arcsin&quot;);</span>
+<span class="fc" id="L74">		registerHiddenButton(BUTTONS[29], &quot;arccos&quot;);</span>
+<span class="fc" id="L75">		registerHiddenButton(BUTTONS[30], &quot;arctg&quot;);</span>
+<span class="fc" id="L76">		registerHiddenButton(BUTTONS[31], &quot;arcctg&quot;);</span>
+<span class="fc" id="L77">		registerHiddenButton(BUTTONS[42], &quot;10^&quot;);</span>
+<span class="fc" id="L78">		registerHiddenButton(BUTTONS[36], &quot;lg&quot;);</span>
+<span class="fc" id="L79">		registerHiddenButton(BUTTONS[37], &quot;ln&quot;);</span>
+<span class="fc" id="L80">		registerHiddenButton(BUTTONS[38], &quot;ch&quot;);</span>
+<span class="fc" id="L81">		registerHiddenButton(BUTTONS[39], &quot;sh&quot;);</span>
+<span class="fc" id="L82">		registerHiddenButton(BUTTONS[40], &quot;th&quot;);</span>
+<span class="fc" id="L83">		registerHiddenButton(BUTTONS[41], &quot;cth&quot;);</span>
+
+<span class="fc" id="L85">		registerButton(BUTTONS[43], &quot;1/x&quot;);</span>
+<span class="fc" id="L86">		registerButton(BUTTONS[23], &quot;n!&quot;);</span>
+<span class="fc" id="L87">		registerButton(BUTTONS[44], &quot;n!!&quot;);</span>
+
+<span class="fc" id="L89">		registerButton(BUTTONS[32], &quot;Extended&quot;);</span>
+
+<span class="fc" id="L91">		outputField.setFont(outputField.getFont().deriveFont(40.0f));</span>
+<span class="fc" id="L92">		outputField.setHorizontalAlignment(SwingConstants.RIGHT);</span>
+<span class="fc" id="L93">		outputField.setEditable(false);</span>
+
+<span class="fc" id="L95">		operation = Operation.NULL;</span>
+
+<span class="fc" id="L97">		op.put(Operation.PLUS, () -&gt; input1 + input2);</span>
+<span class="fc" id="L98">		op.put(Operation.MINUS, () -&gt; input1 - input2);</span>
+<span class="fc" id="L99">		op.put(Operation.MULTIPLE, () -&gt; input1 * input2);</span>
+<span class="fc" id="L100">		op.put(Operation.ARCSIN, () -&gt; Math.asin(input1));</span>
+<span class="fc" id="L101">		op.put(Operation.ARCCOS, () -&gt; Math.acos(input1));</span>
+<span class="fc" id="L102">		op.put(Operation.ARCTG, () -&gt; Math.atan(input1));</span>
+<span class="fc" id="L103">		op.put(Operation.ARCCTG, () -&gt; 1 / Math.atan(input1));</span>
+<span class="fc" id="L104">		op.put(Operation.SIN, () -&gt; Math.sin(Math.toRadians(input1)));</span>
+<span class="fc" id="L105">		op.put(Operation.COS, () -&gt; Math.cos(Math.toRadians(input1)));</span>
+<span class="fc" id="L106">		op.put(Operation.TG, () -&gt; Math.tan(Math.toRadians(input1)));</span>
+<span class="fc" id="L107">		op.put(Operation.CTG, () -&gt; 1 / Math.tan(Math.toRadians(input1)));</span>
+<span class="fc" id="L108">		op.put(Operation.SQRT, () -&gt; Math.sqrt(input1));</span>
+<span class="fc" id="L109">		op.put(Operation.LOGARITHM, () -&gt; Math.log10(input1) / Math.log10(input2));</span>
+<span class="fc" id="L110">		op.put(Operation.POWER, () -&gt; Math.pow(input1, input2));</span>
+<span class="fc" id="L111">		op.put(Operation.DIVIDE, () -&gt; input1 / input2);</span>
+<span class="fc" id="L112">		op.put(Operation.PERCENT, () -&gt; input2 * input1 / 100);</span>
+<span class="fc" id="L113">		op.put(Operation.SQARE, () -&gt; input1 * input1);</span>
+<span class="fc" id="L114">		op.put(Operation.CUBE, () -&gt; Math.pow(input1, 3));</span>
+<span class="fc" id="L115">		op.put(Operation.LG, () -&gt; Math.log10(input1));</span>
+<span class="fc" id="L116">		op.put(Operation.LN, () -&gt; Math.log(input1));</span>
+<span class="fc" id="L117">		op.put(Operation.CH, () -&gt; (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)) / 2);</span>
+<span class="fc" id="L118">		op.put(Operation.SH, () -&gt; (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)) / 2);</span>
+<span class="fc" id="L119">		op.put(Operation.TH, () -&gt; (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)) / (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)));</span>
+<span class="fc" id="L120">		op.put(Operation.CTH, () -&gt; (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)) / (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)));</span>
+<span class="fc" id="L121">		op.put(Operation.TEN, () -&gt; Math.pow(10, input1));</span>
+<span class="fc" id="L122">		op.put(Operation.BACK, () -&gt; 1 / input1);</span>
+<span class="fc" id="L123">		op.put(Operation.NULL, () -&gt; input2);</span>
+<span class="fc" id="L124">		op.put(Operation.DOUBLEFACT, () -&gt; {</span>
+<span class="fc" id="L125">			long result = 1;</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">			for (long k = Math.round(input1); k &gt; 0; k -= 2) {</span>
+<span class="fc" id="L127">				result = result * k;</span>
+			}
+<span class="fc" id="L129">			output = result;</span>
+<span class="fc" id="L130">			return output;</span>
+		});
+<span class="fc" id="L132">		op.put(Operation.FACTORIAL, () -&gt; {</span>
+<span class="fc" id="L133">			long result = 1;</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">			for (long k = Math.round(input1); k &gt; 0; k -= 1) {</span>
+<span class="fc" id="L135">				result = result * k;</span>
+			}
+<span class="fc" id="L137">			output = result;</span>
+<span class="fc" id="L138">			return output;</span>
+		});
+
+<span class="fc" id="L141">		add(outputField, BorderLayout.PAGE_START);</span>
+<span class="fc" id="L142">		add(PANEL, BorderLayout.CENTER);</span>
+<span class="fc" id="L143">		setSize(600, 700);</span>
+<span class="fc" id="L144">		setLocationRelativeTo(null);</span>
+<span class="fc" id="L145">	}</span>
+
+	public static void main(String[] arg) {
+<span class="fc" id="L148">		EventQueue.invokeLater(() -&gt; {</span>
+<span class="pc bpc" id="L149" title="1 of 2 branches missed.">			for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {</span>
+<span class="fc bfc" id="L150" title="All 2 branches covered.">				if (&quot;Windows Classic&quot;.equals(info.getName())) {</span>
+					try {
+<span class="fc" id="L152">						UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="nc" id="L153">					} catch (ClassNotFoundException | InstantiationException | IllegalAccessException |</span>
+					         UnsupportedLookAndFeelException e) {
+<span class="nc" id="L155">						throw new RuntimeException(e);</span>
+<span class="fc" id="L156">					}</span>
+					break;
+				}
+			}
+<span class="fc" id="L160">			JFrame frame = new Calculator();</span>
+<span class="fc" id="L161">			frame.setVisible(true);</span>
+<span class="fc" id="L162">		});</span>
+<span class="fc" id="L163">	}</span>
+
+	public void calculate() {
+<span class="fc" id="L166">		output = op.get(operation).get();</span>
+<span class="fc" id="L167">	}</span>
+
+	public void equals() {
+		try {
+<span class="fc" id="L171">			input2 = Double.parseDouble(outputField.getText().substring(notInclude));</span>
+<span class="fc" id="L172">			calculate();</span>
+<span class="fc" id="L173">			String result = new DecimalFormat(&quot;#.###############&quot;).format(output);</span>
+<span class="fc" id="L174">			outputField.setText(outputField.getText() + &quot;=&quot; + result);</span>
+<span class="nc" id="L175">		} catch (Exception e) {</span>
+<span class="nc" id="L176">			outputField.setText(&quot;&quot;);</span>
+<span class="fc" id="L177">		}</span>
+<span class="fc" id="L178">	}</span>
+
+	public void extendedMode() {
+<span class="fc bfc" id="L181" title="All 2 branches covered.">		if (isExtended) {</span>
+<span class="fc" id="L182">			PANEL.setLayout(new GridLayout(7, 4));</span>
+<span class="fc" id="L183">			isExtended = false;</span>
+<span class="fc" id="L184">			PANEL.remove(BUTTONS[32]);</span>
+
+<span class="fc bfc" id="L186" title="All 2 branches covered.">			for (int exNum : EXTENDED_MODE_IDS) {</span>
+<span class="fc" id="L187">				PANEL.remove(BUTTONS[exNum]);</span>
+			}
+
+<span class="fc" id="L190">			PANEL.add(BUTTONS[32]);</span>
+<span class="fc" id="L191">			BUTTONS[32].setText(&quot;Extended&quot;);</span>
+		} else {
+<span class="fc" id="L193">			PANEL.setLayout(new GridLayout(11, 4));</span>
+<span class="fc" id="L194">			isExtended = true;</span>
+<span class="fc" id="L195">			PANEL.remove(BUTTONS[32]);</span>
+
+<span class="fc bfc" id="L197" title="All 2 branches covered.">			for (int exNum : EXTENDED_MODE_IDS) {</span>
+<span class="fc" id="L198">				PANEL.add(BUTTONS[exNum]);</span>
+			}
+
+<span class="fc" id="L201">			PANEL.add(BUTTONS[32]);</span>
+<span class="fc" id="L202">			BUTTONS[32].setText(&quot;Back&quot;);</span>
+		}
+<span class="fc" id="L204">	}</span>
+
+	public void oneNumber(Operation op, AbstractButton button) {
+<span class="fc" id="L207">		String outputText = outputField.getText();</span>
+<span class="fc" id="L208">		int equalsIndex = outputText.indexOf('=');</span>
+<span class="pc bpc" id="L209" title="1 of 2 branches missed.">		if (equalsIndex != -1) {</span>
+<span class="nc" id="L210">			outputText = outputText.substring(equalsIndex + 1).trim();</span>
+<span class="nc" id="L211">			outputField.setText(outputText);</span>
+		}
+		try {
+<span class="fc" id="L214">			input1 = Double.parseDouble(outputField.getText());</span>
+<span class="fc" id="L215">			operation = op;</span>
+<span class="fc" id="L216">			calculate();</span>
+<span class="fc" id="L217">			String result = new DecimalFormat(&quot;#.###############&quot;).format(output);</span>
+<span class="fc" id="L218">			outputField.setText(button.getText() + &quot;(&quot; + outputField.getText() + &quot;)&quot; + &quot;=&quot; + result);</span>
+<span class="nc" id="L219">		} catch (Exception e) {</span>
+<span class="nc" id="L220">			outputField.setText(&quot;&quot;);</span>
+<span class="fc" id="L221">		}</span>
+<span class="fc" id="L222">	}</span>
+
+	public void selectButton(JButton jbutton) {
+<span class="fc" id="L225">		Map&lt;JButton, Operation&gt; one = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L226">		one.put(BUTTONS[23], Operation.FACTORIAL);</span>
+<span class="fc" id="L227">		one.put(BUTTONS[44], Operation.DOUBLEFACT);</span>
+<span class="fc" id="L228">		one.put(BUTTONS[20], Operation.SQRT);</span>
+<span class="fc" id="L229">		one.put(BUTTONS[24], Operation.SIN);</span>
+<span class="fc" id="L230">		one.put(BUTTONS[25], Operation.COS);</span>
+<span class="fc" id="L231">		one.put(BUTTONS[26], Operation.TG);</span>
+<span class="fc" id="L232">		one.put(BUTTONS[27], Operation.CTG);</span>
+<span class="fc" id="L233">		one.put(BUTTONS[28], Operation.ARCSIN);</span>
+<span class="fc" id="L234">		one.put(BUTTONS[29], Operation.ARCCOS);</span>
+<span class="fc" id="L235">		one.put(BUTTONS[30], Operation.ARCTG);</span>
+<span class="fc" id="L236">		one.put(BUTTONS[31], Operation.ARCCTG);</span>
+<span class="fc" id="L237">		one.put(BUTTONS[34], Operation.SQARE);</span>
+<span class="fc" id="L238">		one.put(BUTTONS[35], Operation.CUBE);</span>
+<span class="fc" id="L239">		one.put(BUTTONS[36], Operation.LG);</span>
+<span class="fc" id="L240">		one.put(BUTTONS[37], Operation.LN);</span>
+<span class="fc" id="L241">		one.put(BUTTONS[38], Operation.CH);</span>
+<span class="fc" id="L242">		one.put(BUTTONS[39], Operation.SH);</span>
+<span class="fc" id="L243">		one.put(BUTTONS[40], Operation.TH);</span>
+<span class="fc" id="L244">		one.put(BUTTONS[41], Operation.CTH);</span>
+<span class="fc" id="L245">		one.put(BUTTONS[42], Operation.TEN);</span>
+<span class="fc" id="L246">		one.put(BUTTONS[43], Operation.BACK);</span>
+
+<span class="fc" id="L248">		Map&lt;JButton, Operation&gt; two = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L249">		two.put(BUTTONS[17], Operation.PLUS);</span>
+<span class="fc" id="L250">		two.put(BUTTONS[16], Operation.MINUS);</span>
+<span class="fc" id="L251">		two.put(BUTTONS[15], Operation.MULTIPLE);</span>
+<span class="fc" id="L252">		two.put(BUTTONS[22], Operation.LOGARITHM);</span>
+<span class="fc" id="L253">		two.put(BUTTONS[21], Operation.POWER);</span>
+<span class="fc" id="L254">		two.put(BUTTONS[14], Operation.DIVIDE);</span>
+<span class="fc" id="L255">		two.put(BUTTONS[18], Operation.PERCENT);</span>
+
+<span class="fc" id="L257">		Map&lt;JButton, Runnable&gt; vd = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L258">		vd.put(BUTTONS[32], this::extendedMode);</span>
+<span class="fc" id="L259">		vd.put(BUTTONS[13], () -&gt; {</span>
+<span class="fc" id="L260">			output = input1 = input2 = 0;</span>
+<span class="fc" id="L261">			outputField.setText(&quot;&quot;);</span>
+<span class="fc" id="L262">		});</span>
+<span class="fc" id="L263">		vd.put(BUTTONS[19], this::equals);</span>
+<span class="fc" id="L264">		vd.put(BUTTONS[12], () -&gt; outputField.setText(&quot;2.718281828459045&quot;));</span>
+<span class="fc" id="L265">		vd.put(BUTTONS[11], () -&gt; outputField.setText(&quot;3.141592653589793&quot;));</span>
+
+<span class="fc" id="L267">		boolean skip = false;</span>
+<span class="fc bfc" id="L268" title="All 2 branches covered.">		for (Entry&lt;JButton, Operation&gt; btn : one.entrySet()) {</span>
+<span class="fc bfc" id="L269" title="All 2 branches covered.">			if (jbutton == btn.getKey()) {</span>
+<span class="fc" id="L270">				oneNumber(btn.getValue(), btn.getKey());</span>
+<span class="fc" id="L271">				skip = true;</span>
+<span class="fc" id="L272">				break;</span>
+			}
+<span class="fc" id="L274">		}</span>
+
+<span class="fc bfc" id="L276" title="All 2 branches covered.">		if (!skip) {</span>
+<span class="fc bfc" id="L277" title="All 2 branches covered.">			for (Entry&lt;JButton, Operation&gt; btn : two.entrySet()) {</span>
+<span class="fc bfc" id="L278" title="All 2 branches covered.">				if (jbutton == btn.getKey()) {</span>
+<span class="fc" id="L279">					twoNumbers(btn.getValue(), btn.getKey());</span>
+<span class="fc" id="L280">					skip = true;</span>
+<span class="fc" id="L281">					break;</span>
+				}
+<span class="fc" id="L283">			}</span>
+		}
+
+<span class="fc bfc" id="L286" title="All 2 branches covered.">		if (!skip) {</span>
+<span class="fc bfc" id="L287" title="All 2 branches covered.">			for (Entry&lt;JButton, Runnable&gt; btn : vd.entrySet()) {</span>
+<span class="fc bfc" id="L288" title="All 2 branches covered.">				if (jbutton == btn.getKey()) {</span>
+<span class="fc" id="L289">					btn.getValue().run();</span>
+<span class="fc" id="L290">					skip = true;</span>
+<span class="fc" id="L291">					break;</span>
+				}
+<span class="fc" id="L293">			}</span>
+		}
+
+<span class="fc bfc" id="L296" title="All 2 branches covered.">		if (!skip) {</span>
+<span class="pc bpc" id="L297" title="1 of 2 branches missed.">			for (int i = 0; i &lt; 11; i++) {</span>
+<span class="fc bfc" id="L298" title="All 2 branches covered.">				if (jbutton == BUTTONS[i]) {</span>
+<span class="fc" id="L299">					String t = outputField.getText();</span>
+<span class="fc" id="L300">					t += BUTTONS[i].getText();</span>
+<span class="fc" id="L301">					outputField.setText(t);</span>
+<span class="fc" id="L302">					break;</span>
+				}
+			}
+		}
+<span class="fc" id="L306">	}</span>
+
+	public void twoNumbers(Operation op, AbstractButton button) {
+<span class="fc" id="L309">		String outputText = outputField.getText();</span>
+<span class="fc" id="L310">		int equalsIndex = outputText.indexOf('=');</span>
+<span class="pc bpc" id="L311" title="1 of 2 branches missed.">		if (equalsIndex != -1) {</span>
+<span class="nc" id="L312">			outputText = outputText.substring(equalsIndex + 1).trim();</span>
+<span class="nc" id="L313">			outputField.setText(outputText);</span>
+		}
+		try {
+<span class="fc" id="L316">			notInclude = outputField.getText().length() + button.getText().length();</span>
+<span class="fc" id="L317">			input1 = Double.parseDouble(outputField.getText());</span>
+<span class="fc" id="L318">			operation = op;</span>
+<span class="fc" id="L319">			outputField.setText(outputField.getText() + button.getText());</span>
+<span class="nc" id="L320">		} catch (Exception e) {</span>
+<span class="nc" id="L321">			outputField.setText(&quot;&quot;);</span>
+<span class="fc" id="L322">		}</span>
+<span class="fc" id="L323">	}</span>
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+<span class="nc" id="L327">		selectButton((JButton) event.getSource());</span>
+<span class="nc" id="L328">	}</span>
+
+	public void registerButton(JButton button, String name) {
+<span class="fc" id="L331">		button.setFont(button.getFont().deriveFont(20.0f));</span>
+<span class="fc" id="L332">		button.addActionListener(this);</span>
+<span class="fc" id="L333">		button.setText(name);</span>
+<span class="fc" id="L334">		PANEL.add(button);</span>
+<span class="fc" id="L335">	}</span>
+
+	public void registerHiddenButton(AbstractButton button, String name) {
+<span class="fc" id="L338">		button.setFont(button.getFont().deriveFont(20.0f));</span>
+<span class="fc" id="L339">		button.addActionListener(this);</span>
+<span class="fc" id="L340">		button.setText(name);</span>
+<span class="fc" id="L341">	}</span>
+
+<span class="fc" id="L343">	public enum Operation {</span>
+<span class="fc" id="L344">		NULL, ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL, LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER, SIN, SQRT, TG, SQARE, CUBE, LG, LN, CH, SH, TH, CTH, TEN, BACK, DOUBLEFACT</span>
+	}
+
+	public double getOutput() {
+<span class="fc" id="L348">		return output;</span>
+	}
+
+	public boolean isExtended() {
+<span class="fc" id="L352">		return isExtended;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
