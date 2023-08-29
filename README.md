@@ -1,3 +1,5 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Hummel009_Basics-of-Software-Engineering)
+
 Мой проект для BSUIR/БГУИР (белорусский государственный университет информатики и радиоэлектроники).
 
 Предмет - OPI/ОПИ (основы программной инженерии).
