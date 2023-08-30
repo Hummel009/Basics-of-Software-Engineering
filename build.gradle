@@ -1,3 +1,6 @@
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
 plugins {
 	id 'jacoco'
 	id 'java'
@@ -5,7 +8,8 @@ plugins {
 }
 
 group = 'org.example'
-version = '1.0-SNAPSHOT'
+final def currentDate = LocalDate.now()
+version = 'v' + currentDate.format(DateTimeFormatter.ofPattern('yy.MM.dd'))
 
 repositories {
 	mavenCentral()
