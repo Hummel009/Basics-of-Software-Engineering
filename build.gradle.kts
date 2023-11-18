@@ -25,6 +25,12 @@ dependencies {
 	testImplementation(project(":"))
 }
 
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
 application {
 	mainClass = "hummel.Main"
 }
