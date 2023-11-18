@@ -14,13 +14,19 @@ repositories {
 	mavenCentral()
 }
 
+val embed: Configuration by configurations.creating
+
 dependencies {
+	embed("com.formdev:flatlaf:3.2.1")
+	embed("com.formdev:flatlaf-intellij-themes:3.2.1")
+	implementation("com.formdev:flatlaf:3.2.1")
+	implementation("com.formdev:flatlaf-intellij-themes:3.2.1")
 	testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
 	testImplementation(project(":"))
 }
 
 application {
-	mainClass = "hummel.Calculator"
+	mainClass = "hummel.Main"
 }
 
 tasks {
@@ -34,7 +40,18 @@ tasks {
 	}
 	jar {
 		manifest {
-			attributes(mapOf("Main-Class" to "hummel.Calculator"))
+			attributes(
+				mapOf(
+					"Main-Class" to "hummel.Main"
+				)
+			)
 		}
+		from(embed.map {
+			if (it.isDirectory) it else zipTree(it)
+		})
+		duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	}
+	withType<JavaCompile>().configureEach {
+		options.encoding = "UTF-8"
 	}
 }

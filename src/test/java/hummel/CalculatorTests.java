@@ -303,6 +303,6 @@ class CalculatorTests {
 
 	@Test
 	void testMain() {
-		Calculator.main(new String[]{""});
+		Main.main(new String[]{""});
 	}
 }
