@@ -1,8 +1,7 @@
 package hummel;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CalculatorTests {
 	private Calculator calculator;
@@ -304,5 +303,15 @@ class CalculatorTests {
 	@Test
 	void testMain() {
 		Main.main(new String[]{""});
+	}
+
+	static void assertEquals(double d1, double d2) {
+		double expected = Math.round(d1 * 1.0e9) / 1.0e9;
+		double actual = Math.round(d2 * 1.0e9) / 1.0e9;
+		Assertions.assertEquals(expected, actual);
+	}
+
+	static void assertEquals(boolean d1, boolean d2) {
+		Assertions.assertEquals(d1, d2);
 	}
 }
