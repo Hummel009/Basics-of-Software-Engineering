@@ -10,15 +10,15 @@ import java.util.Map.Entry;
 import java.util.function.Supplier;
 
 public class Calculator extends JFrame {
-	public static final int[] EXTENDED_MODE_IDS = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
-	public static final JButton[] BUTTONS = new JButton[50];
-	public static final JPanel PANEL = new JPanel();
+	protected static final int[] EXTENDED_MODE_IDS = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
+	protected static final JButton[] BUTTONS = new JButton[50];
+	protected static final JPanel PANEL = new JPanel();
 
-	public static final Map<Operation, Supplier<Double>> ENGINE = new EnumMap<>(Operation.class);
-	public static final Map<JButton, Supplier<Runnable>> FUNC = new HashMap<>();
+	protected static final Map<Operation, Supplier<Double>> ENGINE = new EnumMap<>(Operation.class);
+	protected static final Map<JButton, Supplier<Runnable>> FUNC = new HashMap<>();
 
-	public static final Map<Operation, JButton> ONE_OPERAND = new EnumMap<>(Operation.class);
-	public static final Map<Operation, JButton> TWO_OPERAND = new EnumMap<>(Operation.class);
+	protected static final Map<Operation, JButton> ONE_OPERAND = new EnumMap<>(Operation.class);
+	protected static final Map<Operation, JButton> TWO_OPERAND = new EnumMap<>(Operation.class);
 
 	static {
 		for (int i = 0; i <= 49; i++) {
@@ -221,11 +221,11 @@ public class Calculator extends JFrame {
 		setLocationRelativeTo(null);
 	}
 
-	public void calculate() {
+	private void calculate() {
 		output = ENGINE.get(operation).get();
 	}
 
-	public void oneNumber(Operation op, AbstractButton button) {
+	private void oneNumber(Operation op, AbstractButton button) {
 		String outputText = outputField.getText();
 		int equalsIndex = outputText.indexOf('=');
 		if (equalsIndex != -1) {
@@ -285,7 +285,7 @@ public class Calculator extends JFrame {
 		}
 	}
 
-	public void twoNumbers(Operation op, AbstractButton button) {
+	private void twoNumbers(Operation op, AbstractButton button) {
 		String outputText = outputField.getText();
 		int equalsIndex = outputText.indexOf('=');
 		if (equalsIndex != -1) {
@@ -302,7 +302,7 @@ public class Calculator extends JFrame {
 		}
 	}
 
-	public void registerButton(AbstractButton button, String name, boolean hidden) {
+	private void registerButton(AbstractButton button, String name, boolean hidden) {
 		button.setFont(button.getFont().deriveFont(20.0f));
 		button.addActionListener(event -> selectButton((JButton) event.getSource()));
 		button.setText(name);
@@ -317,10 +317,6 @@ public class Calculator extends JFrame {
 
 	public Operation getOperation() {
 		return operation;
-	}
-
-	public void setOperation(Operation operation) {
-		this.operation = operation;
 	}
 
 	public double getOutput() {
