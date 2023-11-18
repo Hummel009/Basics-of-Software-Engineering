@@ -14,8 +14,7 @@ public class Main {
 				UIManager.setLookAndFeel(new FlatGitHubDarkIJTheme());
 				Calculator frame = new Calculator();
 				frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (Exception ignored) {
 			}
 		});
 	}
