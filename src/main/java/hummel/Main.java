@@ -12,7 +12,7 @@ public class Main {
 		EventQueue.invokeLater(() -> {
 			try {
 				UIManager.setLookAndFeel(new FlatGitHubDarkIJTheme());
-				Calculator frame = new Calculator();
+				var frame = new Calculator();
 				frame.setVisible(true);
 			} catch (Exception ignored) {
 			}

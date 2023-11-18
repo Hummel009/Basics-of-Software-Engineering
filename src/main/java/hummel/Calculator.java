@@ -6,7 +6,6 @@ import java.text.DecimalFormat;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.function.Supplier;
 
 public class Calculator extends JFrame {
@@ -127,16 +126,16 @@ public class Calculator extends JFrame {
 		ENGINE.put(Operation.BACK, () -> 1 / input1);
 		ENGINE.put(Operation.NULL, () -> input2);
 		ENGINE.put(Operation.DOUBLEFACT, () -> {
-			long result = 1;
-			for (long k = Math.round(input1); k > 0; k -= 2) {
+			var result = 1L;
+			for (var k = Math.round(input1); k > 0; k -= 2) {
 				result = result * k;
 			}
 			output = result;
 			return output;
 		});
 		ENGINE.put(Operation.FACTORIAL, () -> {
-			long result = 1;
-			for (long k = Math.round(input1); k > 0; k -= 1) {
+			var result = 1L;
+			for (var k = Math.round(input1); k > 0; k -= 1) {
 				result = result * k;
 			}
 			output = result;
@@ -179,7 +178,7 @@ public class Calculator extends JFrame {
 				isExtended = false;
 				PANEL.remove(BUTTONS[32]);
 
-				for (int exNum : EXTENDED_MODE_IDS) {
+				for (var exNum : EXTENDED_MODE_IDS) {
 					PANEL.remove(BUTTONS[exNum]);
 				}
 
@@ -190,7 +189,7 @@ public class Calculator extends JFrame {
 				isExtended = true;
 				PANEL.remove(BUTTONS[32]);
 
-				for (int exNum : EXTENDED_MODE_IDS) {
+				for (var exNum : EXTENDED_MODE_IDS) {
 					PANEL.add(BUTTONS[exNum]);
 				}
 
@@ -206,7 +205,7 @@ public class Calculator extends JFrame {
 			try {
 				input2 = Double.parseDouble(outputField.getText().substring(notInclude));
 				calculate();
-				String result = new DecimalFormat("#.###############").format(output);
+				var result = new DecimalFormat("#.###############").format(output);
 				outputField.setText(outputField.getText() + "=" + result);
 			} catch (Exception e) {
 				outputField.setText("");
@@ -226,8 +225,8 @@ public class Calculator extends JFrame {
 	}
 
 	private void oneNumber(Operation op, AbstractButton button) {
-		String outputText = outputField.getText();
-		int equalsIndex = outputText.indexOf('=');
+		var outputText = outputField.getText();
+		var equalsIndex = outputText.indexOf('=');
 		if (equalsIndex != -1) {
 			outputText = outputText.substring(equalsIndex + 1).trim();
 			outputField.setText(outputText);
@@ -236,7 +235,7 @@ public class Calculator extends JFrame {
 			input1 = Double.parseDouble(outputField.getText());
 			operation = op;
 			calculate();
-			String result = new DecimalFormat("#.###############").format(output);
+			var result = new DecimalFormat("#.###############").format(output);
 			outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result);
 		} catch (Exception e) {
 			outputField.setText("");
@@ -244,8 +243,8 @@ public class Calculator extends JFrame {
 	}
 
 	public void selectButton(JButton jbutton) {
-		boolean skip = false;
-		for (Entry<Operation, JButton> btn : ONE_OPERAND.entrySet()) {
+		var skip = false;
+		for (var btn : ONE_OPERAND.entrySet()) {
 			if (jbutton == btn.getValue()) {
 				oneNumber(btn.getKey(), btn.getValue());
 				skip = true;
@@ -254,7 +253,7 @@ public class Calculator extends JFrame {
 		}
 
 		if (!skip) {
-			for (Entry<Operation, JButton> btn : TWO_OPERAND.entrySet()) {
+			for (var btn : TWO_OPERAND.entrySet()) {
 				if (jbutton == btn.getValue()) {
 					twoNumbers(btn.getKey(), btn.getValue());
 					skip = true;
@@ -264,7 +263,7 @@ public class Calculator extends JFrame {
 		}
 
 		if (!skip) {
-			for (Entry<JButton, Supplier<Runnable>> btn : FUNC.entrySet()) {
+			for (var btn : FUNC.entrySet()) {
 				if (jbutton == btn.getKey()) {
 					btn.getValue().get().run();
 					skip = true;
@@ -274,9 +273,9 @@ public class Calculator extends JFrame {
 		}
 
 		if (!skip) {
-			for (int i = 0; i < 11; i++) {
+			for (var i = 0; i < 11; i++) {
 				if (jbutton == BUTTONS[i]) {
-					String t = outputField.getText();
+					var t = outputField.getText();
 					t += BUTTONS[i].getText();
 					outputField.setText(t);
 					break;
@@ -286,8 +285,8 @@ public class Calculator extends JFrame {
 	}
 
 	private void twoNumbers(Operation op, AbstractButton button) {
-		String outputText = outputField.getText();
-		int equalsIndex = outputText.indexOf('=');
+		var outputText = outputField.getText();
+		var equalsIndex = outputText.indexOf('=');
 		if (equalsIndex != -1) {
 			outputText = outputText.substring(equalsIndex + 1).trim();
 			outputField.setText(outputText);
