@@ -306,8 +306,8 @@ class CalculatorTests {
 	}
 
 	static void assertEquals(double d1, double d2) {
-		double expected = Math.round(d1 * 1.0e9) / 1.0e9;
-		double actual = Math.round(d2 * 1.0e9) / 1.0e9;
+		var expected = Math.round(d1 * 1.0e9) / 1.0e9;
+		var actual = Math.round(d2 * 1.0e9) / 1.0e9;
 		Assertions.assertEquals(expected, actual);
 	}
 
