@@ -13,7 +13,7 @@ class CalculatorTests {
 		calculator.selectButton(Calculator.BUTTONS[10]);
 		calculator.selectButton(Calculator.BUTTONS[5]);
 		calculator.selectButton(Calculator.BUTTONS[29]);
-		assertEquals(Math.acos(0.5), calculator.getOutput());
+		assertEquals(StrictMath.acos(0.5), calculator.getOutput());
 	}
 
 	@Test
@@ -21,7 +21,7 @@ class CalculatorTests {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[1]);
 		calculator.selectButton(Calculator.BUTTONS[31]);
-		assertEquals(1 / (Math.PI / 4.0), calculator.getOutput());
+		assertEquals(1.2732395447351628, calculator.getOutput());
 	}
 
 	@Test
@@ -31,7 +31,7 @@ class CalculatorTests {
 		calculator.selectButton(Calculator.BUTTONS[10]);
 		calculator.selectButton(Calculator.BUTTONS[5]);
 		calculator.selectButton(Calculator.BUTTONS[28]);
-		assertEquals(Math.asin(0.5), calculator.getOutput());
+		assertEquals(StrictMath.asin(0.5), calculator.getOutput());
 	}
 
 	@Test
@@ -39,7 +39,7 @@ class CalculatorTests {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[1]);
 		calculator.selectButton(Calculator.BUTTONS[30]);
-		assertEquals((Math.PI / 4.0), calculator.getOutput());
+		assertEquals(0.7853981633974483, calculator.getOutput());
 	}
 
 	@Test
@@ -48,7 +48,7 @@ class CalculatorTests {
 		calculator.selectButton(Calculator.BUTTONS[6]);
 		calculator.selectButton(Calculator.BUTTONS[0]);
 		calculator.selectButton(Calculator.BUTTONS[25]);
-		assertEquals(Math.cos(1.0471975511965976), calculator.getOutput());
+		assertEquals(StrictMath.cos(1.0471975511965976), calculator.getOutput());
 	}
 
 	@Test
@@ -57,7 +57,7 @@ class CalculatorTests {
 		calculator.selectButton(Calculator.BUTTONS[4]);
 		calculator.selectButton(Calculator.BUTTONS[5]);
 		calculator.selectButton(Calculator.BUTTONS[27]);
-		assertEquals(1 / Math.tan(0.7853981633974483), calculator.getOutput());
+		assertEquals(1 / StrictMath.tan(0.7853981633974483), calculator.getOutput());
 	}
 
 	@Test
@@ -156,7 +156,7 @@ class CalculatorTests {
 		calculator.selectButton(Calculator.BUTTONS[3]);
 		calculator.selectButton(Calculator.BUTTONS[0]);
 		calculator.selectButton(Calculator.BUTTONS[24]);
-		assertEquals(Math.sin(0.5235987755982988), calculator.getOutput());
+		assertEquals(StrictMath.sin(0.5235987755982988), calculator.getOutput());
 	}
 
 	@Test
@@ -174,7 +174,7 @@ class CalculatorTests {
 		calculator.selectButton(Calculator.BUTTONS[4]);
 		calculator.selectButton(Calculator.BUTTONS[5]);
 		calculator.selectButton(Calculator.BUTTONS[26]);
-		assertEquals(Math.tan(0.7853981633974483), calculator.getOutput());
+		assertEquals(StrictMath.tan(0.7853981633974483), calculator.getOutput());
 	}
 
 	@Test
@@ -199,7 +199,7 @@ class CalculatorTests {
 		calculator.selectButton(Calculator.BUTTONS[1]);
 		calculator.selectButton(Calculator.BUTTONS[0]);
 		calculator.selectButton(Calculator.BUTTONS[37]);
-		assertEquals(Math.log(10), calculator.getOutput());
+		assertEquals(StrictMath.log(10), calculator.getOutput());
 	}
 
 	@Test
@@ -232,7 +232,7 @@ class CalculatorTests {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[3]);
 		calculator.selectButton(Calculator.BUTTONS[39]);
-		assertEquals((Math.pow(2.7183, 3) - Math.pow(2.7183, (-1) * 3)) / 2, calculator.getOutput());
+		assertEquals((StrictMath.pow(2.7183, 3) - StrictMath.pow(2.7183, -3)) / 2, calculator.getOutput());
 	}
 
 	@Test
@@ -240,7 +240,7 @@ class CalculatorTests {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[3]);
 		calculator.selectButton(Calculator.BUTTONS[38]);
-		assertEquals((Math.pow(2.7183, 3) + Math.pow(2.7183, (-1) * 3)) / 2, calculator.getOutput());
+		assertEquals((StrictMath.pow(2.7183, 3) + StrictMath.pow(2.7183, -3)) / 2, calculator.getOutput());
 	}
 
 	@Test
@@ -256,7 +256,7 @@ class CalculatorTests {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[0]);
 		calculator.selectButton(Calculator.BUTTONS[40]);
-		assertEquals((0.0) / (Math.pow(2.7183, 0) + Math.pow(2.7183, 0)), calculator.getOutput());
+		assertEquals(0.0 / (StrictMath.pow(2.7183, 0) + StrictMath.pow(2.7183, 0)), calculator.getOutput());
 	}
 
 	@Test
@@ -264,7 +264,7 @@ class CalculatorTests {
 		calculator = new Calculator();
 		calculator.selectButton(Calculator.BUTTONS[3]);
 		calculator.selectButton(Calculator.BUTTONS[41]);
-		assertEquals((Math.pow(2.7183, 3) + Math.pow(2.7183, (-1) * 3)) / (Math.pow(2.7183, 3) - Math.pow(2.7183, (-1) * 3)), calculator.getOutput());
+		assertEquals((StrictMath.pow(2.7183, 3) + StrictMath.pow(2.7183, -3)) / (StrictMath.pow(2.7183, 3) - StrictMath.pow(2.7183, -3)), calculator.getOutput());
 	}
 
 	@Test
@@ -306,13 +306,13 @@ class CalculatorTests {
 		Main.main("");
 	}
 
-	static void assertEquals(double d1, double d2) {
+	private static void assertEquals(double d1, double d2) {
 		var expected = Math.round(d1 * 1.0e9) / 1.0e9;
 		var actual = Math.round(d2 * 1.0e9) / 1.0e9;
 		Assertions.assertEquals(expected, actual);
 	}
 
-	static void assertEquals(boolean d1, boolean d2) {
+	private static void assertEquals(boolean d1, boolean d2) {
 		Assertions.assertEquals(d1, d2);
 	}
 }

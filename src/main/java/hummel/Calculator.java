@@ -7,8 +7,10 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
+@SuppressWarnings("WeakerAccess")
 public class Calculator extends JFrame {
 	protected static final int[] EXTENDED_MODE_IDS = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
 	protected static final JButton[] BUTTONS = new JButton[50];
@@ -32,7 +34,7 @@ public class Calculator extends JFrame {
 	private double input2;
 	private double output;
 	private int notInclude;
-	private boolean isExtended;
+	private boolean extended;
 
 	public Calculator() {
 		setTitle("Hummel009's Calculator");
@@ -102,28 +104,28 @@ public class Calculator extends JFrame {
 		ENGINE.put(Operation.PLUS, () -> input1 + input2);
 		ENGINE.put(Operation.MINUS, () -> input1 - input2);
 		ENGINE.put(Operation.MULTIPLE, () -> input1 * input2);
-		ENGINE.put(Operation.ARCSIN, () -> Math.asin(input1));
-		ENGINE.put(Operation.ARCCOS, () -> Math.acos(input1));
-		ENGINE.put(Operation.ARCTG, () -> Math.atan(input1));
-		ENGINE.put(Operation.ARCCTG, () -> 1 / Math.atan(input1));
-		ENGINE.put(Operation.SIN, () -> Math.sin(Math.toRadians(input1)));
-		ENGINE.put(Operation.COS, () -> Math.cos(Math.toRadians(input1)));
-		ENGINE.put(Operation.TG, () -> Math.tan(Math.toRadians(input1)));
-		ENGINE.put(Operation.CTG, () -> 1 / Math.tan(Math.toRadians(input1)));
+		ENGINE.put(Operation.ARCSIN, () -> StrictMath.asin(input1));
+		ENGINE.put(Operation.ARCCOS, () -> StrictMath.acos(input1));
+		ENGINE.put(Operation.ARCTG, () -> StrictMath.atan(input1));
+		ENGINE.put(Operation.ARCCTG, () -> 1 / StrictMath.atan(input1));
+		ENGINE.put(Operation.SIN, () -> StrictMath.sin(Math.toRadians(input1)));
+		ENGINE.put(Operation.COS, () -> StrictMath.cos(Math.toRadians(input1)));
+		ENGINE.put(Operation.TG, () -> StrictMath.tan(Math.toRadians(input1)));
+		ENGINE.put(Operation.CTG, () -> 1 / StrictMath.tan(Math.toRadians(input1)));
 		ENGINE.put(Operation.SQRT, () -> Math.sqrt(input1));
-		ENGINE.put(Operation.LOGARITHM, () -> Math.log10(input1) / Math.log10(input2));
-		ENGINE.put(Operation.POWER, () -> Math.pow(input1, input2));
+		ENGINE.put(Operation.LOGARITHM, () -> StrictMath.log10(input1) / StrictMath.log10(input2));
+		ENGINE.put(Operation.POWER, () -> StrictMath.pow(input1, input2));
 		ENGINE.put(Operation.DIVIDE, () -> input1 / input2);
 		ENGINE.put(Operation.PERCENT, () -> input2 * input1 / 100);
 		ENGINE.put(Operation.SQARE, () -> input1 * input1);
-		ENGINE.put(Operation.CUBE, () -> Math.pow(input1, 3));
-		ENGINE.put(Operation.LG, () -> Math.log10(input1));
-		ENGINE.put(Operation.LN, () -> Math.log(input1));
-		ENGINE.put(Operation.CH, () -> (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)) / 2);
-		ENGINE.put(Operation.SH, () -> (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)) / 2);
-		ENGINE.put(Operation.TH, () -> (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)) / (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)));
-		ENGINE.put(Operation.CTH, () -> (Math.pow(2.7183, input1) + Math.pow(2.7183, -1 * input1)) / (Math.pow(2.7183, input1) - Math.pow(2.7183, -1 * input1)));
-		ENGINE.put(Operation.TEN, () -> Math.pow(10, input1));
+		ENGINE.put(Operation.CUBE, () -> StrictMath.pow(input1, 3));
+		ENGINE.put(Operation.LG, () -> StrictMath.log10(input1));
+		ENGINE.put(Operation.LN, () -> StrictMath.log(input1));
+		ENGINE.put(Operation.CH, () -> (StrictMath.pow(2.7183, input1) + StrictMath.pow(2.7183, -1 * input1)) / 2);
+		ENGINE.put(Operation.SH, () -> (StrictMath.pow(2.7183, input1) - StrictMath.pow(2.7183, -1 * input1)) / 2);
+		ENGINE.put(Operation.TH, () -> (StrictMath.pow(2.7183, input1) - StrictMath.pow(2.7183, -1 * input1)) / (StrictMath.pow(2.7183, input1) + StrictMath.pow(2.7183, -1 * input1)));
+		ENGINE.put(Operation.CTH, () -> (StrictMath.pow(2.7183, input1) + StrictMath.pow(2.7183, -1 * input1)) / (StrictMath.pow(2.7183, input1) - StrictMath.pow(2.7183, -1 * input1)));
+		ENGINE.put(Operation.TEN, () -> StrictMath.pow(10, input1));
 		ENGINE.put(Operation.BACK, () -> 1 / input1);
 		ENGINE.put(Operation.NULL, () -> input2);
 		ENGINE.put(Operation.DOUBLEFACT, () -> {
@@ -166,9 +168,9 @@ public class Calculator extends JFrame {
 		TWO_OPERAND.put(Operation.PERCENT, BUTTONS[18]);
 
 		FUNC.put(BUTTONS[32], () -> () -> {
-			if (isExtended) {
+			if (extended) {
 				PANEL.setLayout(new GridLayout(7, 4));
-				isExtended = false;
+				extended = false;
 				PANEL.remove(BUTTONS[32]);
 
 				for (var exNum : EXTENDED_MODE_IDS) {
@@ -179,7 +181,7 @@ public class Calculator extends JFrame {
 				BUTTONS[32].setText("Extended");
 			} else {
 				PANEL.setLayout(new GridLayout(11, 4));
-				isExtended = true;
+				extended = true;
 				PANEL.remove(BUTTONS[32]);
 
 				for (var exNum : EXTENDED_MODE_IDS) {
@@ -199,7 +201,7 @@ public class Calculator extends JFrame {
 				input2 = Double.parseDouble(outputField.getText().substring(notInclude));
 				calculate();
 				var result = new DecimalFormat("#.###############").format(output);
-				outputField.setText(outputField.getText() + "=" + result);
+				outputField.setText(outputField.getText() + '=' + result);
 			} catch (Exception e) {
 				outputField.setText("");
 			}
@@ -229,7 +231,7 @@ public class Calculator extends JFrame {
 			operation = op;
 			calculate();
 			var result = new DecimalFormat("#.###############").format(output);
-			outputField.setText(button.getText() + "(" + outputField.getText() + ")" + "=" + result);
+			outputField.setText(button.getText() + '(' + outputField.getText() + ')' + '=' + result);
 		} catch (Exception e) {
 			outputField.setText("");
 		}
@@ -266,14 +268,7 @@ public class Calculator extends JFrame {
 		}
 
 		if (!skip) {
-			for (var i = 0; i < 11; i++) {
-				if (jbutton == BUTTONS[i]) {
-					var t = outputField.getText();
-					t += BUTTONS[i].getText();
-					outputField.setText(t);
-					break;
-				}
-			}
+			IntStream.range(0, 11).filter(i -> jbutton == BUTTONS[i]).mapToObj(i -> outputField.getText() + BUTTONS[i].getText()).findFirst().ifPresent(text -> outputField.setText(text));
 		}
 	}
 
@@ -307,15 +302,11 @@ public class Calculator extends JFrame {
 		NULL, ARCCOS, ARCCTG, ARCSIN, ARCTG, COS, CTG, DIVIDE, FACTORIAL, LOGARITHM, MINUS, MULTIPLE, PERCENT, PLUS, POWER, SIN, SQRT, TG, SQARE, CUBE, LG, LN, CH, SH, TH, CTH, TEN, BACK, DOUBLEFACT
 	}
 
-	public Operation getOperation() {
-		return operation;
-	}
-
 	public double getOutput() {
 		return output;
 	}
 
 	public boolean isExtended() {
-		return isExtended;
+		return extended;
 	}
 }
