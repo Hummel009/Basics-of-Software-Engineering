@@ -301,8 +301,9 @@ class CalculatorTests {
 	}
 
 	@Test
+	@SuppressWarnings("TestMethodWithoutAssertion")
 	void testMain() {
-		Main.main(new String[]{""});
+		Main.main("");
 	}
 
 	static void assertEquals(double d1, double d2) {

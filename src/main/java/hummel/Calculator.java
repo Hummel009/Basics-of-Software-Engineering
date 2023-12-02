@@ -7,6 +7,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.LongStream;
 
 public class Calculator extends JFrame {
 	protected static final int[] EXTENDED_MODE_IDS = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
@@ -20,7 +21,7 @@ public class Calculator extends JFrame {
 	protected static final Map<Operation, JButton> TWO_OPERAND = new EnumMap<>(Operation.class);
 
 	static {
-		for (int i = 0; i <= 49; i++) {
+		for (var i = 0; i <= 49; i++) {
 			BUTTONS[i] = new JButton();
 		}
 	}
@@ -126,19 +127,11 @@ public class Calculator extends JFrame {
 		ENGINE.put(Operation.BACK, () -> 1 / input1);
 		ENGINE.put(Operation.NULL, () -> input2);
 		ENGINE.put(Operation.DOUBLEFACT, () -> {
-			var result = 1L;
-			for (var k = Math.round(input1); k > 0; k -= 2) {
-				result = result * k;
-			}
-			output = result;
+			output = LongStream.iterate(Math.round(input1), k -> k > 0, k -> k - 2).reduce(1L, (a, b) -> a * b);
 			return output;
 		});
 		ENGINE.put(Operation.FACTORIAL, () -> {
-			var result = 1L;
-			for (var k = Math.round(input1); k > 0; k -= 1) {
-				result = result * k;
-			}
-			output = result;
+			output = LongStream.iterate(Math.round(input1), k -> k > 0, k -> k - 1).reduce(1L, (a, b) -> a * b);
 			return output;
 		});
 
