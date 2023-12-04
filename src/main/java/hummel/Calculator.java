@@ -7,10 +7,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
 
-@SuppressWarnings("WeakerAccess")
 public class Calculator extends JFrame {
 	protected static final int[] EXTENDED_MODE_IDS = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
 	protected static final JButton[] BUTTONS = new JButton[50];
@@ -129,11 +126,19 @@ public class Calculator extends JFrame {
 		ENGINE.put(Operation.BACK, () -> 1 / input1);
 		ENGINE.put(Operation.NULL, () -> input2);
 		ENGINE.put(Operation.DOUBLEFACT, () -> {
-			output = LongStream.iterate(Math.round(input1), k -> k > 0, k -> k - 2).reduce(1L, (a, b) -> a * b);
+			var result = 1L;
+			for (var k = Math.round(input1); k > 0; k -= 2) {
+				result = result * k;
+			}
+			output = result;
 			return output;
 		});
 		ENGINE.put(Operation.FACTORIAL, () -> {
-			output = LongStream.iterate(Math.round(input1), k -> k > 0, k -> k - 1).reduce(1L, (a, b) -> a * b);
+			var result = 1L;
+			for (var k = Math.round(input1); k > 0; k -= 1) {
+				result = result * k;
+			}
+			output = result;
 			return output;
 		});
 
@@ -268,7 +273,13 @@ public class Calculator extends JFrame {
 		}
 
 		if (!skip) {
-			IntStream.range(0, 11).filter(i -> jbutton == BUTTONS[i]).mapToObj(i -> outputField.getText() + BUTTONS[i].getText()).findFirst().ifPresent(text -> outputField.setText(text));
+			for (int i = 0; i < 11; i++) {
+				if (jbutton == BUTTONS[i]) {
+					String s = outputField.getText() + BUTTONS[i].getText();
+					outputField.setText(s);
+					break;
+				}
+			}
 		}
 	}
 

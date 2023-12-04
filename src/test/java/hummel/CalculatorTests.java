@@ -303,7 +303,7 @@ class CalculatorTests {
 	@Test
 	@SuppressWarnings("TestMethodWithoutAssertion")
 	void testMain() {
-		Main.main("");
+		Main.main(new String[]{""});
 	}
 
 	private static void assertEquals(double d1, double d2) {
