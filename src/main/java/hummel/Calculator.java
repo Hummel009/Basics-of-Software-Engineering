@@ -8,16 +8,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class Calculator extends JFrame {
-	protected static final int[] EXTENDED_MODE_IDS = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
-	protected static final JButton[] BUTTONS = new JButton[50];
-	protected static final JPanel PANEL = new JPanel();
+public final class Calculator extends JFrame {
+	static final JButton[] BUTTONS = new JButton[50];
 
-	protected static final Map<Operation, Supplier<Double>> ENGINE = new EnumMap<>(Operation.class);
-	protected static final Map<JButton, Supplier<Runnable>> FUNC = new HashMap<>();
+	private static final int[] EXTENDED_MODE_IDS = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
+	private static final JPanel PANEL = new JPanel();
 
-	protected static final Map<Operation, JButton> ONE_OPERAND = new EnumMap<>(Operation.class);
-	protected static final Map<Operation, JButton> TWO_OPERAND = new EnumMap<>(Operation.class);
+	private static final Map<Operation, Supplier<Double>> ENGINE = new EnumMap<>(Operation.class);
+	private static final Map<JButton, Supplier<Runnable>> FUNC = new HashMap<>();
+
+	private static final Map<Operation, JButton> ONE_OPERAND = new EnumMap<>(Operation.class);
+	private static final Map<Operation, JButton> TWO_OPERAND = new EnumMap<>(Operation.class);
 
 	static {
 		for (var i = 0; i <= 49; i++) {
@@ -128,7 +129,7 @@ public class Calculator extends JFrame {
 		ENGINE.put(Operation.DOUBLEFACT, () -> {
 			var result = 1L;
 			for (var k = Math.round(input1); k > 0; k -= 2) {
-				result = result * k;
+				result *= k;
 			}
 			output = result;
 			return output;
@@ -136,7 +137,7 @@ public class Calculator extends JFrame {
 		ENGINE.put(Operation.FACTORIAL, () -> {
 			var result = 1L;
 			for (var k = Math.round(input1); k > 0; k -= 1) {
-				result = result * k;
+				result *= k;
 			}
 			output = result;
 			return output;
@@ -216,7 +217,7 @@ public class Calculator extends JFrame {
 
 		add(outputField, BorderLayout.PAGE_START);
 		add(PANEL, BorderLayout.CENTER);
-		setSize(400, 500);
+		setSize(300, 500);
 		setLocationRelativeTo(null);
 	}
 
@@ -245,7 +246,7 @@ public class Calculator extends JFrame {
 	public void selectButton(JButton jbutton) {
 		var skip = false;
 		for (var btn : ONE_OPERAND.entrySet()) {
-			if (jbutton == btn.getValue()) {
+			if (jbutton.equals(btn.getValue())) {
 				oneNumber(btn.getKey(), btn.getValue());
 				skip = true;
 				break;
@@ -254,7 +255,7 @@ public class Calculator extends JFrame {
 
 		if (!skip) {
 			for (var btn : TWO_OPERAND.entrySet()) {
-				if (jbutton == btn.getValue()) {
+				if (jbutton.equals(btn.getValue())) {
 					twoNumbers(btn.getKey(), btn.getValue());
 					skip = true;
 					break;
@@ -264,7 +265,7 @@ public class Calculator extends JFrame {
 
 		if (!skip) {
 			for (var btn : FUNC.entrySet()) {
-				if (jbutton == btn.getKey()) {
+				if (jbutton.equals(btn.getKey())) {
 					btn.getValue().get().run();
 					skip = true;
 					break;
@@ -273,9 +274,9 @@ public class Calculator extends JFrame {
 		}
 
 		if (!skip) {
-			for (int i = 0; i < 11; i++) {
-				if (jbutton == BUTTONS[i]) {
-					String s = outputField.getText() + BUTTONS[i].getText();
+			for (var i = 0; i < 11; i++) {
+				if (jbutton.equals(BUTTONS[i])) {
+					var s = outputField.getText() + BUTTONS[i].getText();
 					outputField.setText(s);
 					break;
 				}
