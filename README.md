@@ -1,13 +1,13 @@
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=code_smells)](https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=sqale_rating)](https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=security_rating)](https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=bugs)](https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=vulnerabilities)](https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering)
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=duplicated_lines_density)](https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=reliability_rating)](https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=alert_status)](https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering)
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=sqale_index)](https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=ncloc)](https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering)
+[![Code Smells][code_smells_badge]][code_smells_link]
+[![Maintainability Rating][maintainability_rating_badge]][maintainability_rating_link]
+[![Security Rating][security_rating_badge]][security_rating_link]
+[![Bugs][bugs_badge]][bugs_link]
+[![Vulnerabilities][vulnerabilities_badge]][vulnerabilities_link]
+[![Duplicated Lines (%)][duplicated_lines_density_badge]][duplicated_lines_density_link]
+[![Reliability Rating][reliability_rating_badge]][reliability_rating_link]
+[![Quality Gate Status][quality_gate_status_badge]][quality_gate_status_link]
+[![Technical Debt][technical_debt_badge]][technical_debt_link]
+[![Lines of Code][lines_of_code_badge]][lines_of_code_link]
 
 Мой проект для BSUIR/БГУИР (белорусский государственный университет информатики и радиоэлектроники).
 
@@ -20,3 +20,45 @@ SonarCloud и активировать в нём интеграцию анали
 
 Покрытие юнит-тестами составляет 94%, что является крайне хорошим показателем. Инкапсуляция соблюдена. SonarCloud пишет,
 что качество достойное. Github Actions работают. Jacoco подключен и работает. Интеграция SonarCloud с Jacoco не удалась.
+
+<!----------------------------------------------------------------------------->
+
+[code_smells_badge]: https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=code_smells
+
+[code_smells_link]: https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering
+
+[maintainability_rating_badge]: https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=sqale_rating
+
+[maintainability_rating_link]: https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering
+
+[security_rating_badge]: https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=security_rating
+
+[security_rating_link]: https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering
+
+[bugs_badge]: https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=bugs
+
+[bugs_link]: https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering
+
+[vulnerabilities_badge]: https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=vulnerabilities
+
+[vulnerabilities_link]: https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering
+
+[duplicated_lines_density_badge]: https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=duplicated_lines_density
+
+[duplicated_lines_density_link]: https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering
+
+[reliability_rating_badge]: https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=reliability_rating
+
+[reliability_rating_link]: https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering
+
+[quality_gate_status_badge]: https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=alert_status
+
+[quality_gate_status_link]: https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering
+
+[technical_debt_badge]: https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=sqale_index
+
+[technical_debt_link]: https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering
+
+[lines_of_code_badge]: https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=ncloc
+
+[lines_of_code_link]: https://sonarcloud.io/summary/overall?id=Hummel009_Basics-of-Software-Engineering
