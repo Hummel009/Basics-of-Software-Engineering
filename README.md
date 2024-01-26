@@ -18,9 +18,6 @@
 Тема - калькулятор с графическим интерфейсом. Необходимо покрыть его юнит-тестами, настроить Github Actions, подключить
 SonarCloud и активировать в нём интеграцию анализа покрытия от Jacoco.
 
-Покрытие юнит-тестами составляет 94%, что является крайне хорошим показателем. Инкапсуляция соблюдена. SonarCloud пишет,
-что качество достойное. Github Actions работают. Jacoco подключен и работает. Интеграция SonarCloud с Jacoco не удалась.
-
 <!----------------------------------------------------------------------------->
 
 [code_smells_badge]: https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Basics-of-Software-Engineering&metric=code_smells
