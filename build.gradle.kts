@@ -10,10 +10,6 @@ plugins {
 group = "org.example"
 version = "v" + LocalDate.now().format(DateTimeFormatter.ofPattern("yy.MM.dd"))
 
-repositories {
-	mavenCentral()
-}
-
 val embed: Configuration by configurations.creating
 
 dependencies {
