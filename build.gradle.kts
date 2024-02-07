@@ -7,7 +7,7 @@ plugins {
 	id("jacoco")
 }
 
-group = "org.example"
+group = "by.bsuir.hummel"
 version = LocalDate.now().format(DateTimeFormatter.ofPattern("yy.MM.dd"))
 
 val embed: Configuration by configurations.creating
