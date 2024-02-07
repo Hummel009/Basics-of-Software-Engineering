@@ -7,7 +7,7 @@ plugins {
 	id("jacoco")
 }
 
-group = "by.bsuir.hummel"
+group = "com.github.hummel"
 version = LocalDate.now().format(DateTimeFormatter.ofPattern("yy.MM.dd"))
 
 val embed: Configuration by configurations.creating
@@ -28,7 +28,7 @@ java {
 }
 
 application {
-	mainClass = "by.bsuir.hummel.bose.Main"
+	mainClass = "com.github.hummel.bose.Main"
 }
 
 tasks {
@@ -47,7 +47,7 @@ tasks {
 		manifest {
 			attributes(
 				mapOf(
-					"Main-Class" to "by.bsuir.hummel.bose.Main"
+					"Main-Class" to "com.github.hummel.bose.Main"
 				)
 			)
 		}

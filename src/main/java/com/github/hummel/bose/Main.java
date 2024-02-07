@@ -1,4 +1,4 @@
-package by.bsuir.hummel.bose;
+package com.github.hummel.bose;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;

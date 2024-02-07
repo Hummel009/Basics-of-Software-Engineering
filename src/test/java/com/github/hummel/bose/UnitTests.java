@@ -1,4 +1,4 @@
-package by.bsuir.hummel.bose;
+package com.github.hummel.bose;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
