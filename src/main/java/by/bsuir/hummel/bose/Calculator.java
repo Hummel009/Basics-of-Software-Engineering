@@ -1,4 +1,4 @@
-package hummel;
+package by.bsuir.hummel.bose;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,9 +1,9 @@
-package hummel;
+package by.bsuir.hummel.bose;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class CalculatorTests {
+class UnitTests {
 	private Calculator calculator;
 
 	@Test

@@ -28,7 +28,7 @@ java {
 }
 
 application {
-	mainClass = "hummel.Main"
+	mainClass = "by.bsuir.hummel.bose.Main"
 }
 
 tasks {
@@ -47,7 +47,7 @@ tasks {
 		manifest {
 			attributes(
 				mapOf(
-					"Main-Class" to "hummel.Main"
+					"Main-Class" to "by.bsuir.hummel.bose.Main"
 				)
 			)
 		}
