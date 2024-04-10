@@ -17,7 +17,7 @@ dependencies {
 	embed("com.formdev:flatlaf-intellij-themes:3.4.1")
 	implementation("com.formdev:flatlaf:3.4.1")
 	implementation("com.formdev:flatlaf-intellij-themes:3.4.1")
-	testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
 	testImplementation(project(":"))
 }
 
