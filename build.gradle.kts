@@ -13,11 +13,11 @@ version = LocalDate.now().format(DateTimeFormatter.ofPattern("yy.MM.dd"))
 val embed: Configuration by configurations.creating
 
 dependencies {
-	embed("com.formdev:flatlaf:3.2.5")
-	embed("com.formdev:flatlaf-intellij-themes:3.2.5")
-	implementation("com.formdev:flatlaf:3.2.5")
-	implementation("com.formdev:flatlaf-intellij-themes:3.2.5")
-	testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+	embed("com.formdev:flatlaf:3.4.1")
+	embed("com.formdev:flatlaf-intellij-themes:3.4.1")
+	implementation("com.formdev:flatlaf:3.4.1")
+	implementation("com.formdev:flatlaf-intellij-themes:3.4.1")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
 	testImplementation(project(":"))
 }
 
