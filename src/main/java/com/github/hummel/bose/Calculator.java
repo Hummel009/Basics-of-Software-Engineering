@@ -8,10 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public final class Calculator extends JFrame {
+public class Calculator extends JFrame {
 	static final JButton[] BUTTONS = new JButton[50];
 
-	private static final int[] EXTENDED_MODE_IDS = new int[]{22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
+	private static final int[] EXTENDED_MODE_IDS = {22, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42};
 	private static final JPanel PANEL = new JPanel();
 
 	private static final Map<Operation, Supplier<Double>> ENGINE = new EnumMap<>(Operation.class);
