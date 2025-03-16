@@ -17,8 +17,7 @@ dependencies {
 	embed("com.formdev:flatlaf-intellij-themes:latest.release")
 	implementation("com.formdev:flatlaf:latest.release")
 	implementation("com.formdev:flatlaf-intellij-themes:latest.release")
-	testImplementation("org.junit.jupiter:junit-jupiter-api:latest.release")
-	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:latest.release")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.11.0")
 }
 
 java {
